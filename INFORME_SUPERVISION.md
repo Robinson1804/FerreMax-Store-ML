@@ -94,7 +94,9 @@ Antigravity no se colgó en esta corrida (el monitor de más de 15 min sin activ
   - espera a que ambos servidores respondan.
 - **Limpieza:** `demo.sh` actualizado. Movidos a `.agents/respaldo/`: la carpeta sobrante `frontend-react/`, los archivos de plantilla, `test_stage3.py`, la base anterior (`ferremax_antes_resiembra.db`) y el CSV del agente.
 
-## 4. Resultados reales de la evaluación offline (Capa 1)
+## 4. Resultados reales de la evaluación offline (Capa 1) · versión 1 (dos modos)
+
+> Sustituida por la sección 8 (tres modos). Las filas CONV y ML (= ML_REGLAS) se reproducen idénticas en la versión 2.
 
 **Ficha de la corrida:**
 - Corrida: 2026-09-24 18:05:13. Reproducible: la corrida de las 17:45 dio los mismos valores.
@@ -115,7 +117,7 @@ Antigravity no se colgó en esta corrida (el monitor de más de 15 min sin activ
 
 ## 5. Verificaciones ejecutadas
 
-- **`backend/verificar.py`:** 15/15 OK.
+- **`backend/verificar.py`:** 15/15 OK en la versión 1; 28/28 en la versión 2 (sección 8).
   - 420 comprobantes y los 11 campos exactos.
   - 557 reglas que cumplen los umbrales.
   - Búsqueda y carrito distintos entre CONV y ML.
@@ -139,8 +141,77 @@ Antigravity no se colgó en esta corrida (el monitor de más de 15 min sin activ
 2. **Efecto de la definición de P@5 de sesión:** las listas que se muestran tras agregar productos (las del carrito excluyen lo que ya está en él) tienden a aportar 0. El ajuste final excluye las mostradas después de la última adición, pero las intermedias siguen entrando al promedio. La tienda tiene cuatro bloques que registran listas: Inicio "Recomendados", pie de Búsqueda ("también llevan"), Detalle "Complementa tu compra" y Carrito. Conviene que el diseño de los escenarios ESC-01…08 lo tenga en cuenta.
 3. **Seguridad del panel:** los endpoints `/api/admin/*` no validan el token en el backend; solo el frontend protege las rutas. Queda pendiente por prioridad acordada.
 4. **Diseño del panel:** Resumen, Inventario, Pedidos, Clientes, Eventos y Configuración funcionan, pero no reproducen fielmente su diseño de Stitch.
-5. **`peso_contenido`:** se guarda y se muestra, pero ningún algoritmo lo usa.
+5. **`peso_contenido`:** resuelto en la versión 2 (ver sección 8).
 6. **Versión de Python:** el entorno usa Python 3.13.3 (el BRIEF pide 3.12); todas las dependencias funcionan.
+
+## 8. Versión 2 · filtrado colaborativo y reordenamiento supervisado (24/09/2026)
+
+Especificación aprobada por el equipo de tesis y enviada por la sesión principal.
+
+### Qué se agregó
+- **`backend/colaborativo.py`:** filtrado colaborativo ítem-ítem.
+  - Matriz binaria cliente × producto y similitud coseno entre productos (scikit-learn), sin autosimilitud.
+  - Guarda 20 vecinos por producto con similitud > 0.
+  - Puntaje CF(j | B) = Σ sim(i, j), para i ∈ B.
+- **`backend/reordenador.py`:** reordenador supervisado.
+  - **Candidatos:** top 10 por reglas ∪ top 10 por CF ∪ top 10 por popularidad de la categoría de B ∪ top 5 por TF-IDF, sin ítems de B ni stock 0.
+  - **16 variables:** conf/lift/soporte máximos y nº de reglas activas; cf_score y cf_sim_max; popularidad normalizada; fracción de misma categoría y subcategoría; log del cociente de precios; similitud de contenido; tamaño de B; 4 banderas de origen.
+  - **Etiquetado:** cada boleta de entrenamiento con 2 o más ítems, probando cada ítem como oculto.
+  - **Modelo:** regresión logística y LightGBM 4.7 (instalado en `.venv`), ambos con `class_weight="balanced"`; se elige por average precision en la validación temporal (10 % final) y se reentrena con todos los ejemplos.
+  - **Persistencia:** joblib en `backend/modelos/` (ignorado por git), con versión, fecha, n ejemplos y AP.
+- **Configuración:** nueva columna `configuracion.variante_ml` = `REGLAS` | `COMPLETO` (por defecto `COMPLETO`), con migración automática en `init_db`.
+  - `GET /api/admin/config` expone los metadatos del reordenador.
+  - Panel → Recomendador muestra el selector de variante y la ficha del modelo.
+- **`peso_contenido`:** ahora se usa. Multiplica la variable `similitud_contenido` al predecir; el valor por defecto pasó de 0.5 a **1.0** (neutro, el modelo tal como se entrenó).
+- **`GET /api/recomendar/cliente/{codigo}[?skus=]`:** B = historial del cliente ∪ carrito; si el cliente no tiene historial, cae a reglas y popularidad. Lo usan "Recomendados para ti" de Inicio (con sesión) y un nuevo bloque en Mi cuenta. Las listas de Mi cuenta posteriores a la confirmación no afectan los indicadores.
+- **`POST /api/admin/modelo/reentrenar`:** reentrena reglas, CF y reordenador juntos (unos 5 s).
+- **Producción** (420 boletas): se eligió **regresión logística**, con AP de validación {'regresion_logistica': 0.4448, 'lightgbm': 0.4419}.
+
+### Evaluación offline con tres modos (resultados reales)
+
+**Ficha de la corrida:**
+- Corrida 2026-09-24 18:17:14; semilla 42; partición temporal 80/20.
+  - Entrenamiento: 336 boletas (2026-01-02–2026-05-25).
+  - Prueba: 80 evaluadas de 84 (2026-05-25–2026-06-30).
+- Todo se entrenó solo con el 80 %:
+  - 566 reglas;
+  - CF de 59 productos y 132 clientes;
+  - reordenador **lightgbm** con AP de validación {'regresion_logistica': 0.258, 'lightgbm': 0.3147}, entrenado con 18794 ejemplos (1031 positivos, 1109 contextos).
+- Cobertura de candidatos: 0.9297 en entrenamiento y **0.8625 en prueba**. Ese es el techo de Recall@5 de ML_COMPLETO.
+- Resultados deterministas: dos corridas dieron un CSV idéntico byte a byte.
+
+| Modo | n | Precision@5 media / mediana / DE | Recall@5 media / mediana / DE | Aciertos |
+|---|---|---|---|---|
+| CONV | 80 | 0.1025 / 0.2000 / 0.1006 | 0.5125 / 1.0000 / 0.5030 | 41 |
+| ML_REGLAS | 80 | 0.1325 / 0.2000 / 0.0952 | 0.6625 / 1.0000 / 0.4758 | 53 |
+| ML_COMPLETO | 80 | 0.1550 / 0.2000 / 0.0840 | 0.7750 / 1.0000 / 0.4202 | 62 |
+
+| McNemar exacto | Ambos | Solo el primero | Solo el segundo | Ninguno | p |
+|---|---|---|---|---|---|
+| CONV vs ML_COMPLETO | 40 | 1 | 22 | 17 | < 0.0001 |
+| ML_REGLAS vs ML_COMPLETO | 52 | 1 | 10 | 17 | 0.0117 |
+| CONV vs ML_REGLAS | 37 | 4 | 16 | 23 | 0.0118 |
+
+- CONV y ML_REGLAS reproducen exactamente los valores de la versión 1, porque se ocultan los mismos productos.
+- Con corrección de Bonferroni para las 3 comparaciones (α = 0.05/3 ≈ 0.0167), las tres diferencias siguen siendo significativas.
+
+### Verificación de la versión 2
+- **`backend/verificar.py`:** 28/28 OK. Se agregaron:
+  - CF simétrico y sin autosimilitud (3008 pares), con 20 vecinos o menos y similitud > 0;
+  - popularidad y CF del reordenador calculados solo con el 80 %, y reordenador entrenado con 336 de 420 boletas;
+  - predicción de 5 productos, sin la canasta ni stock 0;
+  - variante REGLAS con fuente `REGLA` y COMPLETO con fuente `REORDENADOR`;
+  - recomendación por cliente con y sin historial;
+  - evaluación offline con 3 modos × 80 filas y McNemar de los dos pares pedidos.
+- **E2E en Chrome** con una sesión ML (variante COMPLETO): 7 listas, 1 sin oportunidad, P@5 0.2333, tiempo 17.2 s, 0 errores de consola.
+- Capturas de las pantallas 05 y 06 con tres modos, McNemar y ficha del reordenador.
+- `npm run build` sin errores; `demo.ps1 -Resembrar -Evaluar` sin errores.
+
+### Observaciones metodológicas de la versión 2
+1. **Variables optimistas dentro del entrenamiento.** Las variables de los ejemplos de entrenamiento se calculan con reglas y CF que incluyen la misma boleta de la que sale el ejemplo. Por eso el modelo ve variables más optimistas que las que encontrará en prueba. No hay fuga hacia el conjunto de prueba (la evaluación es honesta), pero el reordenador podría rendir algo más con variables calculadas fuera de la boleta (validación cruzada por bloques temporales). Es una mejora posible, no un error.
+2. **CF por cliente con asignación simulada.** Los clientes de la siembra son simulados: cada boleta se asigna al azar a uno de 150 códigos. Por eso el historial por cliente mezcla canastas sin relación y el CF cliente × producto funciona, sobre todo, porque los ítems de una misma boleta caen en el mismo cliente. Con datos reales de clientes, el CF debería aportar señal propia.
+3. **Modelo elegido distinto en producción y en la corrida offline.** Con las 420 boletas gana la regresión logística; con el 80 % gana LightGBM. Ambas elecciones siguen la regla de la especificación y las dos quedan registradas en la ficha.
+4. **Techo de cobertura.** En 11 de las 80 boletas de prueba (13.75 %) el producto oculto no está entre los candidatos, así que ningún ordenamiento podría acertarlo.
 
 ## 7. Cómo levantar la demostración (dos comandos)
 

@@ -22,3 +22,6 @@ backend/modelos/*.joblib
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Respaldos locales del supervisor (incluye una copia de la base de datos)
+.agents/respaldo/

@@ -55,9 +55,22 @@ function TarjetaIndicador({ titulo, icono, colorIcono, conv, ml, pie }) {
   );
 }
 
-// Gráfico de barras CONV vs ML para un indicador; "Sin datos" si no hay valores
-function GraficoCondicion({ datos, decimales, dominio, unidad }) {
-  const hay = datos.some((d) => d.CONV !== null || d.ML !== null);
+// Series por defecto (Capa 2: condiciones CONV y ML)
+const SERIES_CONDICION = [
+  ['CONV', 'Convencional (CONV)', NAVY],
+  ['ML', 'Machine Learning (ML)', NARANJA],
+];
+// Capa 1: tres modos offline
+const VERDE = '#10B981';
+const SERIES_OFFLINE = [
+  ['CONV', 'CONV', NAVY],
+  ['ML_REGLAS', 'ML_REGLAS', NARANJA],
+  ['ML_COMPLETO', 'ML_COMPLETO', VERDE],
+];
+
+// Gráfico de barras por serie para un indicador; "Sin datos" si no hay valores
+function GraficoCondicion({ datos, decimales, dominio, unidad, series = SERIES_CONDICION }) {
+  const hay = datos.some((d) => series.some(([k]) => d[k] !== null && d[k] !== undefined));
   if (!hay) {
     return <div className="h-64 flex items-center justify-center text-sm text-slate-400 border border-dashed border-gray-200 rounded-lg">Sin datos</div>;
   }
@@ -71,12 +84,11 @@ function GraficoCondicion({ datos, decimales, dominio, unidad }) {
           <YAxis domain={dominio || [0, 'auto']} tick={{ fontSize: 11, fill: '#94A3B8' }} />
           <Tooltip formatter={(v) => etiqueta(v)} />
           <Legend wrapperStyle={{ fontSize: 12 }} />
-          <Bar dataKey="CONV" name="Convencional (CONV)" fill={NAVY} radius={[6, 6, 0, 0]} maxBarSize={56}>
-            <LabelList dataKey="CONV" position="top" formatter={etiqueta} style={{ fontSize: 11, fontWeight: 700, fill: NAVY }} />
-          </Bar>
-          <Bar dataKey="ML" name="Machine Learning (ML)" fill={NARANJA} radius={[6, 6, 0, 0]} maxBarSize={56}>
-            <LabelList dataKey="ML" position="top" formatter={etiqueta} style={{ fontSize: 11, fontWeight: 700, fill: NARANJA }} />
-          </Bar>
+          {series.map(([clave, nombre, color]) => (
+            <Bar key={clave} dataKey={clave} name={nombre} fill={color} radius={[6, 6, 0, 0]} maxBarSize={56}>
+              <LabelList dataKey={clave} position="top" formatter={etiqueta} style={{ fontSize: 11, fontWeight: 700, fill: color }} />
+            </Bar>
+          ))}
         </BarChart>
       </ResponsiveContainer>
     </div>
@@ -101,10 +113,12 @@ function TablaEstadisticos({ filas }) {
         </thead>
         <tbody className="divide-y divide-gray-100 font-mono text-[12px]">
           {filas.map((f) => (
-            <tr key={`${f.indicador}-${f.modo}`} className={f.modo === 'ML' ? 'hover:bg-orange-50/40' : 'hover:bg-blue-50/40'}>
+            <tr key={`${f.indicador}-${f.modo}`} className={f.modo.startsWith('ML') ? 'hover:bg-orange-50/40' : 'hover:bg-blue-50/40'}>
               <td className="py-2.5 px-3.5 font-sans font-semibold text-slate-800">{f.indicador}</td>
               <td className="py-2.5 px-3 text-center">
-                <span className={f.modo === 'ML'
+                <span className={f.modo === 'ML_COMPLETO'
+                  ? 'inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-200'
+                  : f.modo.startsWith('ML')
                   ? 'inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200'
                   : 'inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-[#0F2A4A] border border-slate-300'}>{f.modo}</span>
               </td>
@@ -174,10 +188,14 @@ export default function Evaluacion() {
 
   // ---------- Capa 1 ----------
   const pm = off?.por_modo || {};
+  const modosOffline = off?.modos || MODOS;
+  const seriesOffline = SERIES_OFFLINE.filter(([k]) => modosOffline.includes(k)).length
+    ? SERIES_OFFLINE.filter(([k]) => modosOffline.includes(k))
+    : SERIES_CONDICION;
   const filasCapa1 = [
     ['Precision@5', 'precision5'],
     ['Recall@5', 'recall5'],
-  ].flatMap(([indicador, campo]) => MODOS.map((modo) => ({
+  ].flatMap(([indicador, campo]) => modosOffline.map((modo) => ({
     indicador, modo, d: 4, s: pm[modo]?.[campo], extra: pm[modo]?.aciertos, extraTitulo: 'Aciertos',
   })));
 
@@ -397,6 +415,11 @@ export default function Evaluacion() {
                 ['Periodo de prueba', off.periodo_prueba ? `${off.periodo_prueba[0]} → ${off.periodo_prueba[1]}` : '—'],
                 ['Umbrales', off.umbrales ? `soporte ≥ ${off.umbrales.soporte_min} · confianza ≥ ${off.umbrales.confianza_min} · lift ≥ ${off.umbrales.lift_min}` : '—'],
                 ['Reglas entrenadas', off.reglas_entrenadas],
+                ['Filtrado colaborativo', off.cf_productos != null ? `${off.cf_productos} productos · ${off.cf_clientes} clientes` : '—'],
+                ['Reordenador', off.reordenador ? `${off.reordenador.tipo} · ${off.reordenador.n_ejemplos} ejemplos (${off.reordenador.n_positivos} positivos)` : '—'],
+                ['AP validación temporal', off.reordenador ? Object.entries(off.reordenador.ap_validacion || {}).map(([m, v]) => `${m} ${v}`).join(' · ') : '—'],
+                ['Cobertura de candidatos (prueba)', off.cobertura_candidatos_prueba ?? '—'],
+                ['Peso de contenido', off.peso_contenido ?? '—'],
                 ['Archivo CSV', off.csv],
               ].map(([k, v]) => (
                 <div key={k} className="min-w-0">
@@ -414,14 +437,14 @@ export default function Evaluacion() {
                 <h2 className="text-base font-bold text-slate-900">Precision@5 y Recall@5 por modo (offline)</h2>
                 <p className="text-xs text-slate-500 mt-0.5">Precision@5 = aciertos / 5; Recall@5 = aciertos / 1 (un producto oculto por comprobante de prueba)</p>
               </div>
-              <Leyenda />
             </div>
             <div className="pt-6">
               <GraficoCondicion
-                datos={[
-                  { indicador: 'Precision@5', CONV: pm.CONV?.precision5?.media ?? null, ML: pm.ML?.precision5?.media ?? null },
-                  { indicador: 'Recall@5', CONV: pm.CONV?.recall5?.media ?? null, ML: pm.ML?.recall5?.media ?? null },
-                ]}
+                series={seriesOffline}
+                datos={['precision5', 'recall5'].map((campo) => ({
+                  indicador: campo === 'precision5' ? 'Precision@5' : 'Recall@5',
+                  ...Object.fromEntries(modosOffline.map((m) => [m, pm[m]?.[campo]?.media ?? null])),
+                }))}
                 decimales={4}
                 dominio={[0, 1]}
               />
@@ -429,6 +452,34 @@ export default function Evaluacion() {
             <div className="mt-6">
               <TablaEstadisticos filas={filasCapa1} />
             </div>
+            {off.mcnemar_exacto && (
+              <div className="mt-6 overflow-x-auto rounded-lg border border-gray-200">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="border-b border-gray-200 bg-[#F5F6F8] text-slate-600 font-semibold uppercase text-[10px] tracking-wider">
+                      <th className="py-3 px-3.5">McNemar exacto (pares de modos)</th>
+                      <th className="py-3 px-3 text-right">Ambos aciertan</th>
+                      <th className="py-3 px-3 text-right">Solo el primero</th>
+                      <th className="py-3 px-3 text-right">Solo el segundo</th>
+                      <th className="py-3 px-3 text-right">Ninguno</th>
+                      <th className="py-3 px-3 text-right">p-valor</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 font-mono text-[12px]">
+                    {Object.entries(off.mcnemar_exacto).map(([par, m]) => (
+                      <tr key={par}>
+                        <td className="py-2.5 px-3.5 font-sans font-semibold text-slate-800">{par.replace('_vs_', ' vs ')}</td>
+                        <td className="py-2.5 px-3 text-right">{m.ambos}</td>
+                        <td className="py-2.5 px-3 text-right">{m.solo_primero}</td>
+                        <td className="py-2.5 px-3 text-right">{m.solo_segundo}</td>
+                        <td className="py-2.5 px-3 text-right">{m.ninguno}</td>
+                        <td className="py-2.5 px-3 text-right font-bold">{m.p_valor < 0.0001 ? '< 0.0001' : m.p_valor.toFixed(4)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
             <p className="mt-3 text-xs text-slate-500 italic flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[16px] text-slate-400">info</span>
               Datos simulados para la demostración del prototipo. Aciertos = comprobantes de prueba en que el producto oculto apareció en el top-5.

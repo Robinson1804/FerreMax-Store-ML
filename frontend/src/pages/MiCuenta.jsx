@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { soles } from "../lib/api";
-import { useTienda } from "../lib/tienda";
+import { useTienda, useRecomendaciones } from "../lib/tienda";
 import EtiquetaModo from "../components/EtiquetaModo";
 
 const CATEGORIAS = ["Pinturas y Acabados", "Herramientas", "Construcción y Estructuras", "Electricidad", "Gasfitería", "Ferretería General"];
@@ -9,7 +9,51 @@ const numeroPedido = (id) => String(id ?? "").padStart(6, "0");
 
 // Pantalla de maqueta: el cliente se identifica solo por su código anónimo de la sesión de evaluación.
 // Solo se muestra el pedido confirmado en esta visita (no hay historial por cliente en el backend).
-// Sin bloque de recomendaciones: esta pantalla se visita después de confirmar y no debe registrar listas.
+// Recomendaciones para ti: B = historial de compras del cliente (GET /api/recomendar/cliente/{codigo}).
+// Las listas que se muestran aquí después de confirmar quedan fuera de los indicadores de la sesión
+// (el cálculo solo considera eventos anteriores a CONFIRMACION_CARRITO).
+function RecomendacionesCliente() {
+  const { carrito, agregar } = useTienda();
+  const { lista, cargando } = useRecomendaciones("cuenta", carrito.map((i) => i.sku), 5, { porCliente: true });
+  return (
+    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div>
+          <h3 className="text-xl font-bold text-slate-800">Recomendaciones para ti</h3>
+          <p className="text-xs text-slate-500">Según tu historial de compras y tu carrito</p>
+        </div>
+        <span className="inline-flex items-center gap-1.5 bg-[#F26B1D] text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide shadow-xs">
+          <span className="material-symbols-outlined text-[14px]">psychology</span>
+          <span><EtiquetaModo /></span>
+        </span>
+      </div>
+      {cargando ? (
+        <p className="text-sm text-slate-500">Cargando recomendaciones…</p>
+      ) : !lista.length ? (
+        <p className="text-sm text-slate-500">No hay recomendaciones disponibles.</p>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          {lista.map((p) => (
+            <div key={p.sku} className="border border-slate-200 rounded-lg p-3 flex flex-col gap-2 hover:border-[#F26B1D] transition-colors">
+              <Link to={`/detalle/${encodeURIComponent(p.sku)}?origen=RECOMENDACION&pos=${p.posicion}`} className="text-sm font-semibold text-[#0F2A4A] hover:text-[#F26B1D] leading-snug">
+                {p.nombre}
+              </Link>
+              <span className="text-[11px] text-slate-500">{p.marca} · SKU {p.sku}</span>
+              <div className="mt-auto flex items-center justify-between">
+                <span className="text-sm font-extrabold text-[#0F2A4A]">{soles(p.precio)}</span>
+                <button type="button" onClick={() => agregar(p, "RECOMENDACION", p.posicion)}
+                  className="bg-[#F26B1D] hover:bg-[#d95a12] text-white text-xs font-bold px-2.5 py-1.5 rounded">
+                  Agregar
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function MiCuenta() {
   const navigate = useNavigate();
   const { sesion, unidades, subtotal, ultimoPedido } = useTienda();
@@ -239,6 +283,7 @@ export default function MiCuenta() {
 </div>
 )}
 </div>
+{codigo && <RecomendacionesCliente />}
 </section>
 </div>
 </main>

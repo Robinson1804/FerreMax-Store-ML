@@ -19,7 +19,10 @@ Tienda web de ferretería con un **recomendador híbrido** que opera en dos modo
 - **Modo Convencional (O1):** recomienda los productos más vendidos y los de la misma categoría del producto o del carrito. Sin aprendizaje.
 - **Modo Machine Learning (O2):**
   - Mecanismo A, *búsqueda por necesidad*: el cliente escribe "pintar un dormitorio"; se vectoriza con TF-IDF el texto de cada producto (nombre + marca + categoría + subcategoría + descripción de uso + palabras clave) y se devuelven los K = 5 más similares por coseno.
-  - Mecanismo B, *productos complementarios*: reglas de asociación (FP-Growth) extraídas de los comprobantes; dado el producto visto o el contenido del carrito, se recomiendan los consecuentes ordenados por confianza × lift, completando hasta K = 5 con popularidad.
+  - Mecanismo B, *productos complementarios*: reglas de asociación (FP-Growth) extraídas de los comprobantes; dado el producto visto o el contenido del carrito, se recomiendan los consecuentes ordenados por confianza × lift, completando hasta K = 5 con popularidad de la misma categoría.
+  - Mecanismo C, *filtrado colaborativo ítem-ítem* (agregado el 24/09/2026): matriz binaria cliente × producto, similitud coseno entre productos, 20 vecinos por producto; puntaje CF de un candidato j dado B = Σ sim(i, j), i ∈ B. Se usa como fuente de candidatos y en `GET /api/recomendar/cliente/{codigo}` (B = historial del cliente ∪ carrito; sin historial, reglas y popularidad).
+  - Mecanismo D, *reordenamiento supervisado* (agregado el 24/09/2026): candidatos = top 10 por reglas ∪ top 10 por CF ∪ top 10 por popularidad de la categoría de B ∪ top 5 por similitud TF-IDF con B (sin ítems de B ni stock 0); 16 variables por par (B, candidato); etiqueta 1 si el candidato es el ítem oculto de una boleta de entrenamiento; regresión logística o LightGBM (class_weight balanced) elegido por average precision en validación temporal (10 % final); se ordena por probabilidad y se toman K = 5.
+  - Variantes del modo ML (`configuracion.variante_ml`): **REGLAS** (mecanismo B) y **COMPLETO** (B + C + D, por defecto). La búsqueda por necesidad (A) es igual en ambas.
 - Filtro de stock: nunca recomendar productos con stock 0 (regla de negocio, no variable de estudio).
 
 ## 3. Lo que se mide (no negociable)
@@ -31,7 +34,7 @@ Tipos de evento: `INICIO_BUSQUEDA, CONSULTA, RECOM_MOSTRADA, PRODUCTO_AGREGADO, 
 Indicadores que el panel de evaluación debe calcular desde el registro:
 - **Tiempo de selección (s)** = timestamp(CONFIRMACION_CARRITO) − timestamp(INICIO_BUSQUEDA) por sesión.
 - **Precision@5 de sesión** = productos agregados con origen RECOMENDACION de la última lista mostrada / 5.
-- **Evaluación offline (Capa 1)**: script que, para cada comprobante del conjunto de prueba (20 % más reciente), oculta un producto, genera 5 recomendaciones con cada modo y calcula Precision@5 y Recall@5 (aciertos/5 y aciertos/1). Exporta CSV con una fila por comprobante y modo.
+- **Evaluación offline (Capa 1)**: script que, para cada comprobante del conjunto de prueba (20 % más reciente), oculta un producto, genera 5 recomendaciones con cada modo (CONV, ML_REGLAS, ML_COMPLETO; reglas, popularidad, CF y reordenador entrenados solo con el 80 %) y calcula Precision@5 y Recall@5 (aciertos/5 y aciertos/1), más McNemar exacto entre pares de modos. Exporta CSV con una fila por comprobante y modo.
 
 ## 4. Stack
 

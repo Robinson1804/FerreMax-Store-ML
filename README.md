@@ -5,7 +5,9 @@ Prototipo de la tesis *Sistema web basado en Machine Learning para mejorar la re
 - **Convencional (CONV, O1):** más vendidos de la misma categoría del producto o del carrito; luego más vendidos del resto. Búsqueda por coincidencia literal de palabras.
 - **Machine Learning (ML, O2):**
   - *Búsqueda por necesidad:* TF-IDF (scikit-learn) sobre nombre, marca, categoría, subcategoría, uso y palabras clave; similitud coseno; K = 5.
-  - *Complementarios:* reglas de asociación FP-Growth (mlxtend) sobre los comprobantes; consecuentes ordenados por confianza × lift; si no alcanzan K, relleno por popularidad **dentro de la misma categoría**.
+  - *Complementarios, variante REGLAS:* reglas de asociación FP-Growth (mlxtend) sobre los comprobantes; consecuentes ordenados por confianza × lift; si no alcanzan K, relleno por popularidad **dentro de la misma categoría**.
+  - *Complementarios, variante COMPLETO (por defecto):* candidatos de reglas, filtrado colaborativo ítem-ítem (cliente × producto, coseno, 20 vecinos), popularidad de la categoría y similitud TF-IDF; un **reordenador supervisado** (regresión logística o LightGBM, elegido por average precision en validación temporal) los ordena por probabilidad de ser el producto que falta en la canasta. La variante se elige en Panel → Recomendador (`variante_ml`).
+  - *Por cliente:* `GET /api/recomendar/cliente/{codigo}` usa el historial de compras ∪ carrito ("Recomendados para ti" en Inicio y Mi cuenta cuando hay sesión con código).
 - Nunca se recomiendan productos con stock 0.
 
 > **Datos simulados.** Los 62 productos, 420 boletas y clientes vienen de `datos/datos_simulados_prototipo.json`; no son datos reales de la empresa.
@@ -19,7 +21,7 @@ powershell -ExecutionPolicy Bypass -File .\demo.ps1 -Resembrar -Evaluar
 
 Deja corriendo el backend en http://localhost:8000 (documentación en `/docs`) y la tienda en http://localhost:5173. Panel: http://localhost:5173/admin/login con **admin / admin123** (se cambian con las variables de entorno `ADMIN_USER` y `ADMIN_PASS`).
 
-- `-Resembrar`: borra la base, siembra las 420 boletas (determinista, semilla 42) y reentrena las reglas con los umbrales de `configuracion`.
+- `-Resembrar`: borra la base, siembra las 420 boletas (determinista, semilla 42) y reentrena reglas, filtrado colaborativo y reordenador con los umbrales de `configuracion`.
 - `-Evaluar`: corre además la evaluación offline y deja el CSV en `backend/salidas/`.
 - `.\demo.ps1 -Detener`: detiene los servidores de los puertos 8000 y 5173 (usa `netstat` + `taskkill`; en Windows no existe `pkill`).
 
@@ -30,7 +32,9 @@ En Git Bash, Linux o Mac: `./demo.sh --resembrar`.
 ```
 backend/   Python + FastAPI + SQLAlchemy (SQLite por defecto; PostgreSQL con DATABASE_URL)
   main.py               API REST (tienda, recomendador, eventos, indicadores, panel)
-  recommender.py        algoritmos CONV y ML como funciones puras + servicio ligado a la BD
+  recommender.py        algoritmos CONV y ML (reglas) como funciones puras + servicio ligado a la BD
+  colaborativo.py       filtrado colaborativo ítem-ítem (cliente × producto, coseno, 20 vecinos)
+  reordenador.py        candidatos + 16 variables + regresión logística / LightGBM (backend/modelos/)
   evaluacion_offline.py Capa 1: partición temporal 80/20, Precision@5 y Recall@5
   seed.py               siembra determinista desde datos/datos_simulados_prototipo.json
   verificar.py          comprobación automática del checklist (sobre una copia de la BD)
@@ -80,9 +84,9 @@ cd backend
 ```
 
 1. Ordena los comprobantes por fecha y reserva el 20 % más reciente como conjunto de prueba.
-2. Calcula la popularidad y las reglas FP-Growth **solo con el 80 % de entrenamiento**, para que no haya fuga de información.
-3. En cada comprobante de prueba con 2 o más productos oculta uno al azar (semilla 42) y genera 5 recomendaciones con cada modo, usando la misma función que la API.
-4. Calcula Precision@5 = aciertos / 5 y Recall@5 = aciertos / 1.
+2. Calcula popularidad, reglas FP-Growth, filtrado colaborativo y reordenador **solo con el 80 % de entrenamiento**, para que no haya fuga de información.
+3. En cada comprobante de prueba con 2 o más productos oculta uno al azar (semilla 42) y genera 5 recomendaciones con cada modo (CONV, ML_REGLAS, ML_COMPLETO), usando las mismas funciones que la API.
+4. Calcula Precision@5 = aciertos / 5 y Recall@5 = aciertos / 1, y la prueba exacta de McNemar entre pares de modos.
 
 Salidas:
 - `backend/salidas/evaluacion_offline.csv`: una fila por comprobante y modo.
@@ -112,8 +116,9 @@ Comprueba, sobre una copia temporal de la base:
 | POST | `/api/carrito/confirmar` | crea el pedido y registra CONFIRMACION_CARRITO |
 | POST | `/api/eventos` | registra un evento (valida tipo y origen) |
 | GET | `/api/sesiones/activa` | sesión de evaluación en curso (la usa la tienda) |
-| GET/PUT | `/api/admin/config` | modo activo y parámetros (PUT con los seis campos) |
-| POST | `/api/admin/modelo/reentrenar` | FP-Growth con los umbrales configurados |
+| GET/PUT | `/api/admin/config` | modo activo, parámetros, `variante_ml` y metadatos del reordenador (PUT con los seis campos; `variante_ml` opcional) |
+| GET | `/api/recomendar/cliente/{codigo}[?skus=]` | recomendaciones por historial del cliente ∪ carrito |
+| POST | `/api/admin/modelo/reentrenar` | reglas FP-Growth, filtrado colaborativo y reordenador juntos |
 | GET | `/api/admin/reglas[?vigentes=true]` | reglas ordenadas por confianza × lift |
 | POST/PUT/GET | `/api/admin/sesiones` | iniciar, finalizar o listar sesiones de evaluación |
 | GET | `/api/admin/eventos?id_sesion=&codigo_cliente=&condicion=&tipo_evento=` | registro de eventos |
@@ -124,4 +129,4 @@ Comprueba, sobre una copia temporal de la base:
 
 - Los endpoints `/api/admin/*` no validan el token en el backend; solo el frontend protege las rutas del panel.
 - Las pantallas de panel Resumen, Inventario, Pedidos, Clientes, Eventos y Configuración son funcionales pero no reproducen fielmente su diseño de Stitch (sí lo hacen Recomendador y Evaluación, además de toda la tienda).
-- El parámetro `peso_contenido` se guarda y se muestra, pero ningún algoritmo lo usa todavía.
+- `peso_contenido` multiplica la variable `similitud_contenido` del reordenador solo al predecir (1 = neutro, el modelo tal como se entrenó).
