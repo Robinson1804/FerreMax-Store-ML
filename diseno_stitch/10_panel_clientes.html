@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-[#F5F6F8]">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FerreMax - Panel de administración · Clientes</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00152f",
+            "primary-container": "#0f2a4a",
+            "secondary-container": "#f26b1d",
+            "surface": "#f8f9fb",
+            "surface-dim": "#d9dadc",
+            "surface-container": "#edeef0",
+            "surface-container-low": "#f3f4f6",
+            "surface-container-lowest": "#ffffff"
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-1 {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="h-full font-sans text-sm text-gray-900 bg-[#F5F6F8] flex overflow-hidden antialiased">
+
+<!-- ========================================================================= -->
+<!-- LEFT SIDEBAR: Brand, Platform, AI, System & User Widget (260px)           -->
+<!-- ========================================================================= -->
+<aside class="w-[260px] bg-[#0F2A4A] text-white flex-shrink-0 flex flex-col justify-between h-full select-none z-20 shadow-md">
+  <div class="flex flex-col flex-1 overflow-y-auto custom-scrollbar">
+    <!-- Brand Header -->
+    <div class="p-5 flex items-center gap-3 border-b border-[#1b3a60]">
+      <div class="w-10 h-10 rounded-lg bg-[#F26B1D] flex items-center justify-center font-extrabold text-white text-xl shadow-sm tracking-tight">
+        F
+      </div>
+      <div class="flex flex-col">
+        <span class="text-white font-bold text-lg tracking-tight leading-none">FERREMAX</span>
+        <span class="text-[10px] uppercase tracking-widest text-[#a8c5eb] mt-1 font-semibold">Panel de control</span>
+      </div>
+    </div>
+
+    <!-- Navigation Hierarchy -->
+    <nav class="p-3 space-y-6">
+      <!-- SECTION 1: PLATAFORMA -->
+      <div>
+        <span class="px-3 text-[11px] uppercase tracking-wider text-[#7a92b7] font-semibold">Plataforma</span>
+        <ul class="mt-2 space-y-1">
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors text-sm font-medium">
+              <span class="material-symbols-outlined text-lg">dashboard</span>
+              <span>Resumen</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors text-sm font-medium">
+              <span class="material-symbols-outlined text-lg">inventory_2</span>
+              <span>Productos e inventario</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors text-sm font-medium">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-lg">shopping_cart</span>
+                <span>Pedidos</span>
+              </div>
+              <span class="bg-[#1e4472] text-[#ffdbcc] text-[11px] font-bold px-2 py-0.5 rounded-full border border-[#2b5891]">14</span>
+            </a>
+          </li>
+          <li>
+            <!-- ACTIVE ITEM: Clientes -->
+            <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#F26B1D] text-white text-sm font-medium shadow-sm transition-transform">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-lg fill-1">group</span>
+                <span class="font-semibold">Clientes</span>
+              </div>
+              <div class="w-2 h-2 rounded-full bg-white"></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SECTION 2: INTELIGENCIA ARTIFICIAL -->
+      <div>
+        <span class="px-3 text-[11px] uppercase tracking-wider text-[#7a92b7] font-semibold">Inteligencia Artificial</span>
+        <ul class="mt-2 space-y-1">
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors text-sm font-medium">
+              <span class="material-symbols-outlined text-lg">psychology</span>
+              <span>Recomendador</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors text-sm font-medium">
+              <span class="material-symbols-outlined text-lg">analytics</span>
+              <span>Evaluación</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors text-sm font-medium">
+              <span class="material-symbols-outlined text-lg">event_note</span>
+              <span>Registro de eventos</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SECTION 3: SISTEMA -->
+      <div>
+        <span class="px-3 text-[11px] uppercase tracking-wider text-[#7a92b7] font-semibold">Sistema</span>
+        <ul class="mt-2 space-y-1">
+          <li>
+            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors text-sm font-medium">
+              <span class="material-symbols-outlined text-lg">settings</span>
+              <span>Configuración</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Bottom User Profile Widget -->
+  <div class="p-3 border-t border-[#1b3a60] bg-[#0c223c]">
+    <div class="flex items-center justify-between p-2 rounded-lg hover:bg-[#16355b] transition-colors cursor-pointer">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-full bg-[#1b4372] border border-[#3b6ea8] flex items-center justify-center font-bold text-xs text-white">
+          AD
+        </div>
+        <div class="flex flex-col text-left">
+          <span class="text-xs font-semibold text-white leading-tight">Admin Investigador</span>
+          <span class="text-[11px] text-[#8ea8cc] leading-tight mt-0.5">admin@ferremax.pe</span>
+        </div>
+      </div>
+      <button class="text-[#7a92b7] hover:text-white p-1 rounded transition-colors" title="Cerrar Sesión">
+        <span class="material-symbols-outlined text-lg">logout</span>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- ========================================================================= -->
+<!-- MAIN LAYOUT WRAPPER                                                       -->
+<!-- ========================================================================= -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+
+  <!-- TOP HEADER -->
+  <header class="bg-white border-b border-gray-200 px-8 py-3.5 flex items-center justify-between flex-shrink-0 z-10">
+    <div>
+      <div class="flex items-center gap-3">
+        <h1 class="text-xl font-bold text-gray-900 leading-tight">Gestión de Clientes</h1>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          Directorio anónimo activo
+        </span>
+      </div>
+      <p class="text-xs text-gray-500 mt-0.5">Segmentación de compradores, trazabilidad de frecuencia y asignación a grupos experimentales</p>
+    </div>
+
+    <!-- Right Header Elements -->
+    <div class="flex items-center gap-4">
+      <a class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 transition-colors text-xs font-semibold" href="https://ferremax.pe" target="_blank">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Tienda en vivo: ferremax.pe</span>
+        <span class="material-symbols-outlined text-xs">open_in_new</span>
+      </a>
+
+      <!-- Notifications -->
+      <button class="relative p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+        <span class="material-symbols-outlined text-xl">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#F26B1D]"></span>
+      </button>
+
+      <!-- Profile Pill -->
+      <div class="flex items-center gap-2.5 pl-3 border-l border-gray-200">
+        <div class="w-8 h-8 rounded-full bg-[#0F2A4A] text-white flex items-center justify-center text-xs font-bold shadow-sm">
+          AD
+        </div>
+        <div class="flex flex-col text-left">
+          <span class="text-xs font-semibold text-gray-800">Administrador</span>
+          <span class="text-[10px] text-gray-500 font-medium">UPN - Tesis 2026</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SCROLLABLE MAIN CONTENT -->
+  <main class="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar">
+
+    <!-- 1. NOTA SUPERIOR DE PRIVACIDAD / PROTOCOLO EXPERIMENTAL -->
+    <div class="bg-blue-50/70 border border-blue-200 rounded-xl p-4 flex items-center justify-between shadow-sm">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-blue-100 text-[#0F2A4A] flex items-center justify-center flex-shrink-0">
+          <span class="material-symbols-outlined text-xl">shield</span>
+        </div>
+        <div>
+          <span class="font-semibold text-xs text-[#0F2A4A] uppercase tracking-wider block">Protocolo de Privacidad y Consentimiento Informado</span>
+          <p class="text-xs text-blue-900 mt-0.5 font-medium">
+            Los clientes se identifican por código anónimo; no se almacenan nombres ni documentos en el módulo de evaluación.
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-xs text-blue-700 font-medium">
+        <span class="inline-flex items-center gap-1 bg-white px-2.5 py-1 rounded-md border border-blue-200 shadow-2xs">
+          <span class="material-symbols-outlined text-sm text-emerald-600">verified_user</span>
+          Cumplimiento Ley N° 29733 (Perú)
+        </span>
+      </div>
+    </div>
+
+    <!-- 2. TRES TARJETAS RESUMEN -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <!-- Card 1 -->
+      <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+        <div class="space-y-1">
+          <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Clientes con compra (12m)</span>
+          <div class="text-3xl font-extrabold text-gray-900 tracking-tight">184</div>
+          <div class="flex items-center gap-1 text-xs font-medium text-emerald-600">
+            <span class="material-symbols-outlined text-sm font-bold">trending_up</span>
+            <span>+12 nuevos este mes</span>
+          </div>
+        </div>
+        <div class="w-12 h-12 rounded-xl bg-blue-50 text-[#0F2A4A] flex items-center justify-center border border-blue-100">
+          <span class="material-symbols-outlined text-2xl fill-1">groups</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+        <div class="space-y-1">
+          <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Participantes en evaluación</span>
+          <div class="text-3xl font-extrabold text-[#F26B1D] tracking-tight">30 <span class="text-sm font-normal text-gray-500">/ 184</span></div>
+          <div class="inline-flex items-center gap-1 text-xs font-semibold text-orange-700 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
+            <span class="material-symbols-outlined text-xs">science</span>
+            <span>Muestra activa protocolo A/B</span>
+          </div>
+        </div>
+        <div class="w-12 h-12 rounded-xl bg-orange-50 text-[#F26B1D] flex items-center justify-center border border-orange-100">
+          <span class="material-symbols-outlined text-2xl">experiment</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white rounded-xl p-5 border border-gray-200 shadow-sm flex items-center justify-between">
+        <div class="space-y-1">
+          <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Compra promedio</span>
+          <div class="text-3xl font-extrabold text-[#0F2A4A] tracking-tight">S/ 236<span class="text-lg font-medium text-gray-500">.40</span></div>
+          <div class="flex items-center gap-1 text-xs font-medium text-gray-500">
+            <span>Ticket medio omnicanal</span>
+          </div>
+        </div>
+        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-100">
+          <span class="material-symbols-outlined text-2xl fill-1">point_of_sale</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BUSCADOR Y FILTROS -->
+    <section class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-3 flex-1 min-w-[320px]">
+        <!-- Buscador -->
+        <div class="relative min-w-[240px] flex-1 max-w-sm">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+          <input
+            type="text"
+            placeholder="Buscar por código (ej. CLI-007)..."
+            value="CLI-007"
+            class="w-full pl-9 pr-3 py-2 text-sm bg-gray-50/70 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] focus:bg-white transition-all font-mono"
+          />
+        </div>
+
+        <!-- Filtro Tipo -->
+        <div class="relative">
+          <select class="appearance-none bg-white border border-gray-200 rounded-lg pl-3 pr-8 py-2 text-xs font-medium text-gray-700 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] cursor-pointer">
+            <option>Todos los tipos</option>
+            <option>Persona</option>
+            <option>Empresa</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base">expand_more</span>
+        </div>
+
+        <!-- Filtro Participa en Evaluación -->
+        <div class="relative">
+          <select class="appearance-none bg-white border border-gray-200 rounded-lg pl-3 pr-8 py-2 text-xs font-medium text-gray-700 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] cursor-pointer">
+            <option>Evaluación: Todos</option>
+            <option selected>Participa en evaluación: Sí</option>
+            <option>Participa en evaluación: No</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base">expand_more</span>
+        </div>
+
+        <!-- Limpiar filtros -->
+        <button class="text-xs text-gray-500 hover:text-[#0F2A4A] font-medium flex items-center gap-1 px-2 py-1.5 rounded hover:bg-gray-100 transition-colors">
+          <span class="material-symbols-outlined text-sm">restart_alt</span>
+          <span>Restablecer</span>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button class="inline-flex items-center gap-1.5 px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-semibold text-gray-700 bg-white hover:bg-gray-50 transition-all shadow-sm">
+          <span class="material-symbols-outlined text-base">download</span>
+          <span>Exportar muestra CSV</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. CONTENIDO PRINCIPAL: TABLA DE 12 CLIENTES + PANEL DE DETALLE DERECHO -->
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+
+      <!-- ================================================================= -->
+      <!-- TABLA DE CLIENTES (CLI-001 a CLI-012) - 7 Columnas                -->
+      <!-- ================================================================= -->
+      <div class="xl:col-span-7 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+        <div class="px-5 py-3.5 border-b border-gray-200 bg-gray-50/50 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-xs uppercase tracking-wider text-gray-700">Listado de Compradores Registrados</span>
+            <span class="text-[11px] font-semibold text-[#0F2A4A] bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">12 mostrados</span>
+          </div>
+          <span class="text-[11px] text-gray-400">Ordenado por código</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-gray-50/80 border-b border-gray-200 text-[11px] uppercase tracking-wider text-gray-500 font-semibold">
+                <th class="py-3 px-3">Código</th>
+                <th class="py-3 px-2">Tipo</th>
+                <th class="py-3 px-2">Primera compra</th>
+                <th class="py-3 px-2 text-center">N° Compras</th>
+                <th class="py-3 px-2">Última compra</th>
+                <th class="py-3 px-3 text-right">Ticket prom.</th>
+                <th class="py-3 px-2 text-center">Evaluación</th>
+                <th class="py-3 px-3 text-center">Acción</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              
+              <!-- CLI-001 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-001</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-700">Persona</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">14/01/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">4</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">18/09/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 142.50</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Sí</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-002 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-002</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-blue-50 text-blue-700 border border-blue-100">Empresa</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">03/02/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">8</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">05/09/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 840.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-500">No</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-003 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-003</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-700">Persona</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">20/02/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">2</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">11/08/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 68.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-500">No</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-004 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-004</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-blue-50 text-blue-700 border border-blue-100">Empresa</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">01/03/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">6</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">14/09/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 520.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Sí</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-005 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-005</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-700">Persona</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">15/03/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">1</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">Hoy, 08:50</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 48.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-500">No</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-006 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-006</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-700">Persona</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">28/03/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">3</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">16/09/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 92.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Sí</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-007 (SELECTED ROW - HIGHLIGHTED) -->
+              <tr class="bg-orange-50/60 border-l-4 border-l-[#F26B1D] font-medium">
+                <td class="py-2.5 px-3 font-mono font-bold text-[#F26B1D] flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-xs">arrow_right</span>
+                  CLI-007
+                </td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-100 text-[#a14000]">Persona</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">10/04/2026</td>
+                <td class="py-2.5 px-2 text-center font-extrabold text-gray-900">5</td>
+                <td class="py-2.5 px-2 text-gray-900 font-mono font-semibold">Hoy, 10:33</td>
+                <td class="py-2.5 px-3 text-right font-mono font-bold text-[#0F2A4A]">S/ 125.40</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                    Sí (Activo)
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2.5 py-1 rounded text-[11px] font-bold bg-[#F26B1D] text-white shadow-xs">
+                    Viendo
+                  </button>
+                </td>
+              </tr>
+
+              <!-- CLI-008 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-008</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-700">Persona</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">22/04/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">2</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">02/09/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 74.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-500">No</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-009 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-009</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-blue-50 text-blue-700 border border-blue-100">Empresa</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">05/05/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">7</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">Ayer, 11:10</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 315.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Sí</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-010 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-010</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-700">Persona</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">19/05/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">3</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">10/09/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 110.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Sí</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-011 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-011</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-blue-50 text-blue-700 border border-blue-100">Empresa</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">02/06/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">4</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">08/09/2026</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 480.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-500">No</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+              <!-- CLI-012 -->
+              <tr class="hover:bg-gray-50/80 transition-colors">
+                <td class="py-2.5 px-3 font-mono font-bold text-gray-800">CLI-012</td>
+                <td class="py-2.5 px-2">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-700">Persona</span>
+                </td>
+                <td class="py-2.5 px-2 text-gray-500 font-mono">18/06/2026</td>
+                <td class="py-2.5 px-2 text-center font-bold text-gray-800">3</td>
+                <td class="py-2.5 px-2 text-gray-600 font-mono">Hoy, 10:15</td>
+                <td class="py-2.5 px-3 text-right font-mono font-semibold text-gray-800">S/ 240.00</td>
+                <td class="py-2.5 px-2 text-center">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Sí</span>
+                </td>
+                <td class="py-2.5 px-3 text-center">
+                  <button class="px-2 py-1 rounded text-[11px] font-medium text-gray-600 hover:text-[#0F2A4A] hover:bg-gray-100 transition-colors">Ver historial</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Paginación -->
+        <div class="px-5 py-3 border-t border-gray-200 bg-gray-50/70 flex items-center justify-between text-xs text-gray-500 select-none">
+          <span>Mostrando <strong class="text-gray-800">12</strong> de <strong class="text-gray-800">184</strong> clientes</span>
+          <div class="flex items-center gap-1 font-medium">
+            <button class="px-2 py-1 rounded border border-gray-200 bg-white text-gray-400 cursor-not-allowed" disabled>Anterior</button>
+            <button class="w-6 h-6 rounded bg-[#0F2A4A] text-white font-bold flex items-center justify-center">1</button>
+            <button class="w-6 h-6 rounded border border-gray-200 bg-white text-gray-700 hover:bg-gray-100 flex items-center justify-center">2</button>
+            <button class="w-6 h-6 rounded border border-gray-200 bg-white text-gray-700 hover:bg-gray-100 flex items-center justify-center">3</button>
+            <span class="px-1 text-gray-400">...</span>
+            <button class="w-6 h-6 rounded border border-gray-200 bg-white text-gray-700 hover:bg-gray-100 flex items-center justify-center">16</button>
+            <button class="px-2 py-1 rounded border border-gray-200 bg-white text-gray-700 hover:bg-gray-100">Siguiente</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- PANEL DERECHO: HISTORIAL DE CLI-007 Y RECOMENDACIONES ML (5 cols) -->
+      <!-- ================================================================= -->
+      <div class="xl:col-span-5 space-y-5">
+
+        <!-- TARJETA 1: HISTORIAL DE CLI-007 -->
+        <div class="bg-white rounded-xl p-5 border border-orange-200 shadow-sm space-y-4">
+          <!-- Header de CLI-007 -->
+          <div class="border-b border-gray-100 pb-3 flex items-start justify-between">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono font-extrabold text-base text-[#0F2A4A]">CLI-007</span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-orange-100 text-[#a14000]">
+                  Persona Natural
+                </span>
+                <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  Participante A/B
+                </span>
+              </div>
+              <p class="text-xs text-gray-500 mt-0.5">Perfil: Renovación y acabados de interiores (Pintura dormitorio)</p>
+            </div>
+            <span class="text-[11px] font-mono font-bold text-gray-400 bg-gray-50 px-2 py-1 rounded border border-gray-100">
+              5 pedidos
+            </span>
+          </div>
+
+          <!-- Mini KPIs del cliente -->
+          <div class="grid grid-cols-3 gap-2 bg-[#F8F9FB] p-2.5 rounded-lg border border-gray-200/80 text-center">
+            <div>
+              <span class="block text-[10px] text-gray-500 uppercase font-semibold">Total gastado</span>
+              <span class="text-xs font-bold text-[#0F2A4A] font-mono">S/ 627.00</span>
+            </div>
+            <div class="border-x border-gray-200">
+              <span class="block text-[10px] text-gray-500 uppercase font-semibold">Ticket prom.</span>
+              <span class="text-xs font-bold text-[#F26B1D] font-mono">S/ 125.40</span>
+            </div>
+            <div>
+              <span class="block text-[10px] text-gray-500 uppercase font-semibold">Categoría top</span>
+              <span class="text-[11px] font-bold text-blue-700">Pinturas</span>
+            </div>
+          </div>
+
+          <!-- Lista de 5 compras -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-gray-800 uppercase tracking-wide">5 Compras registradas</span>
+              <span class="text-[11px] text-gray-400">Canal digital y mostrador</span>
+            </div>
+
+            <div class="space-y-2 text-xs">
+
+              <!-- Compra 1 (Más reciente - Hoy) -->
+              <div class="p-3 rounded-lg bg-orange-50/40 border border-orange-200/80 flex items-start justify-between">
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-gray-900 text-xs">Pedido #000245</span>
+                    <span class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-1.5 py-0.2 rounded">Hoy, 10:33 AM</span>
+                    <span class="text-[10px] text-gray-400">Web</span>
+                  </div>
+                  <p class="text-gray-700 text-[11px] leading-tight font-medium">
+                    2x Pintura látex blanca Vencedor, 1x Rodillo antigoteo Truper, 1x Brocha 2", 1x Cinta masking Norton
+                  </p>
+                  <span class="text-[10px] text-[#F26B1D] font-medium block">
+                    ★ 3 productos añadidos vía recomendación ML (Pintado)
+                  </span>
+                </div>
+                <div class="text-right pl-2 flex-shrink-0">
+                  <span class="font-mono font-bold text-gray-900 text-sm">S/ 125.40</span>
+                  <span class="text-[10px] text-emerald-600 font-semibold block">Pagado (Yape)</span>
+                </div>
+              </div>
+
+              <!-- Compra 2 -->
+              <div class="p-2.5 rounded-lg bg-gray-50 border border-gray-100 flex items-start justify-between">
+                <div class="space-y-0.5">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-gray-800 text-xs">Pedido #000198</span>
+                    <span class="text-[10px] text-gray-400 font-mono">15/08/2026</span>
+                    <span class="text-[10px] text-gray-400">Mostrador</span>
+                  </div>
+                  <p class="text-gray-600 text-[11px]">
+                    1x Pasta para empaste Glidden 20kg, 1x Espátula de acero 4" Truper
+                  </p>
+                </div>
+                <div class="text-right pl-2 flex-shrink-0">
+                  <span class="font-mono font-bold text-gray-800 text-xs">S/ 56.50</span>
+                  <span class="text-[10px] text-gray-400 block">Efectivo</span>
+                </div>
+              </div>
+
+              <!-- Compra 3 -->
+              <div class="p-2.5 rounded-lg bg-gray-50 border border-gray-100 flex items-start justify-between">
+                <div class="space-y-0.5">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-gray-800 text-xs">Pedido #000142</span>
+                    <span class="text-[10px] text-gray-400 font-mono">22/07/2026</span>
+                    <span class="text-[10px] text-gray-400">Web</span>
+                  </div>
+                  <p class="text-gray-600 text-[11px]">
+                    1x Esmalte sintético negro CPP 1 galón, 1x Aguarrás mineral 1L
+                  </p>
+                </div>
+                <div class="text-right pl-2 flex-shrink-0">
+                  <span class="font-mono font-bold text-gray-800 text-xs">S/ 84.00</span>
+                  <span class="text-[10px] text-gray-400 block">Tarjeta</span>
+                </div>
+              </div>
+
+              <!-- Compra 4 -->
+              <div class="p-2.5 rounded-lg bg-gray-50 border border-gray-100 flex items-start justify-between">
+                <div class="space-y-0.5">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-gray-800 text-xs">Pedido #000089</span>
+                    <span class="text-[10px] text-gray-400 font-mono">03/06/2026</span>
+                    <span class="text-[10px] text-gray-400">Web</span>
+                  </div>
+                  <p class="text-gray-600 text-[11px]">
+                    1x Taladro percutor Makita 650W, 1x Juego de brocas para concreto
+                  </p>
+                </div>
+                <div class="text-right pl-2 flex-shrink-0">
+                  <span class="font-mono font-bold text-gray-800 text-xs">S/ 275.00</span>
+                  <span class="text-[10px] text-gray-400 block">Tarjeta</span>
+                </div>
+              </div>
+
+              <!-- Compra 5 (Primera compra) -->
+              <div class="p-2.5 rounded-lg bg-gray-50 border border-gray-100 flex items-start justify-between">
+                <div class="space-y-0.5">
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-gray-800 text-xs">Pedido #000021</span>
+                    <span class="text-[10px] text-gray-400 font-mono">10/04/2026</span>
+                    <span class="text-[10px] text-gray-400">Mostrador</span>
+                  </div>
+                  <p class="text-gray-600 text-[11px]">
+                    1x Sellador para muros Vencedor 1 galón, 1x Lija al agua grano 120 Norton
+                  </p>
+                </div>
+                <div class="text-right pl-2 flex-shrink-0">
+                  <span class="font-mono font-bold text-gray-800 text-xs">S/ 86.10</span>
+                  <span class="text-[10px] text-gray-400 block">Plin</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- TARJETA 2: BLOQUE RECOMENDACIONES PARA ESTE CLIENTE (MODO ML) -->
+        <div class="bg-gradient-to-br from-orange-50/60 to-white rounded-xl p-5 border border-orange-200 shadow-sm space-y-4">
+          <!-- Header con Chip ML -->
+          <div class="flex items-center justify-between border-b border-orange-100 pb-3">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-lg bg-[#F26B1D] text-white flex items-center justify-center">
+                <span class="material-symbols-outlined text-base">auto_awesome</span>
+              </div>
+              <div>
+                <h3 class="font-bold text-xs text-gray-900 leading-tight">Recomendaciones para este cliente (modo ML)</h3>
+                <p class="text-[10px] text-gray-500 mt-0.5">Generadas mediante algoritmo Apriori / complementariedad de pintado</p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1 bg-[#F26B1D] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+              Modo ML Activo
+            </span>
+          </div>
+
+          <!-- Grid de 4 productos sugeridos según su historial de pintura -->
+          <div class="grid grid-cols-2 gap-3">
+
+            <!-- Producto ML 1: Bandeja para pintura -->
+            <div class="bg-white p-3 rounded-lg border border-orange-200/90 shadow-2xs flex flex-col justify-between hover:border-[#F26B1D] transition-colors">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-semibold text-gray-500 uppercase">Truper</span>
+                  <span class="text-[9px] font-bold text-orange-700 bg-orange-50 px-1.5 py-0.2 rounded border border-orange-200">Lift 4.8</span>
+                </div>
+                <h4 class="font-semibold text-xs text-gray-900 mt-1 leading-snug">Bandeja para pintura 9" reforzada</h4>
+                <p class="text-[10px] text-gray-500 mt-0.5">Complemento directo para rodillo</p>
+              </div>
+              <div class="mt-2.5 pt-2 border-t border-gray-100 flex items-center justify-between">
+                <span class="font-mono font-bold text-xs text-gray-900">S/ 8.90</span>
+                <span class="text-[10px] font-semibold text-emerald-600 flex items-center gap-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Stock: 34
+                </span>
+              </div>
+            </div>
+
+            <!-- Producto ML 2: Imprimante para paredes -->
+            <div class="bg-white p-3 rounded-lg border border-orange-200/90 shadow-2xs flex flex-col justify-between hover:border-[#F26B1D] transition-colors">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-semibold text-gray-500 uppercase">Vencedor</span>
+                  <span class="text-[9px] font-bold text-orange-700 bg-orange-50 px-1.5 py-0.2 rounded border border-orange-200">Conf. 72%</span>
+                </div>
+                <h4 class="font-semibold text-xs text-gray-900 mt-1 leading-snug">Imprimante para paredes 1 galón</h4>
+                <p class="text-[10px] text-gray-500 mt-0.5">Fijador base secado rápido</p>
+              </div>
+              <div class="mt-2.5 pt-2 border-t border-gray-100 flex items-center justify-between">
+                <span class="font-mono font-bold text-xs text-gray-900">S/ 34.00</span>
+                <span class="text-[10px] font-semibold text-emerald-600 flex items-center gap-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Stock: 15
+                </span>
+              </div>
+            </div>
+
+            <!-- Producto ML 3: Lija para pared grano 120 -->
+            <div class="bg-white p-3 rounded-lg border border-orange-200/90 shadow-2xs flex flex-col justify-between hover:border-[#F26B1D] transition-colors">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-semibold text-gray-500 uppercase">Norton</span>
+                  <span class="text-[9px] font-bold text-orange-700 bg-orange-50 px-1.5 py-0.2 rounded border border-orange-200">Regla #4</span>
+                </div>
+                <h4 class="font-semibold text-xs text-gray-900 mt-1 leading-snug">Lija para pared grano 120 (Paq. 10)</h4>
+                <p class="text-[10px] text-gray-500 mt-0.5">Preparación de muro previo al látex</p>
+              </div>
+              <div class="mt-2.5 pt-2 border-t border-gray-100 flex items-center justify-between">
+                <span class="font-mono font-bold text-xs text-gray-900">S/ 6.90</span>
+                <span class="text-[10px] font-semibold text-emerald-600 flex items-center gap-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Stock: 80
+                </span>
+              </div>
+            </div>
+
+            <!-- Producto ML 4: Thinner acrílico 1L -->
+            <div class="bg-white p-3 rounded-lg border border-orange-200/90 shadow-2xs flex flex-col justify-between hover:border-[#F26B1D] transition-colors">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-semibold text-gray-500 uppercase">CPP</span>
+                  <span class="text-[9px] font-bold text-orange-700 bg-orange-50 px-1.5 py-0.2 rounded border border-orange-200">Lift 3.9</span>
+                </div>
+                <h4 class="font-semibold text-xs text-gray-900 mt-1 leading-snug">Thinner acrílico estándar 1 L</h4>
+                <p class="text-[10px] text-gray-500 mt-0.5">Limpieza de brochas y rodillos</p>
+              </div>
+              <div class="mt-2.5 pt-2 border-t border-gray-100 flex items-center justify-between">
+                <span class="font-mono font-bold text-xs text-gray-900">S/ 15.90</span>
+                <span class="text-[10px] font-semibold text-emerald-600 flex items-center gap-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Stock: 22
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Nota metodológica al pie -->
+          <div class="pt-2 border-t border-orange-100 text-[10px] text-gray-500 flex items-center justify-between">
+            <span>Matriz de afinidad entrenada sobre 420 transacciones históricas</span>
+            <span class="text-[#0F2A4A] font-semibold">Tesis UPN 2026</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="pt-4 pb-2 text-center text-xs text-gray-400 border-t border-gray-200/60 select-none">
+      <p>FerreMax · Módulo de Clientes y Asignación Experimental · Tesis UPN 2026 · Sistema Web de Comercio Electrónico Ferretero</p>
+    </footer>
+
+  </main>
+</div>
+
+</body>
+</html>

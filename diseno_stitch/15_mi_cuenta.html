@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mi cuenta · Mis pedidos | FerreMax Perú</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#00152f",
+            "tertiary": "#19140f",
+            "on-tertiary": "#ffffff",
+            "outline": "#74777f",
+            "on-primary-fixed-variant": "#304869",
+            "surface-dim": "#d9dadc",
+            "secondary-fixed-dim": "#ffb694",
+            "on-tertiary-fixed": "#201b15",
+            "background": "#f8f9fb",
+            "tertiary-fixed": "#ece0d8",
+            "inverse-surface": "#2e3132",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#351000",
+            "on-error-container": "#93000a",
+            "surface-container-highest": "#e1e2e4",
+            "outline-variant": "#c4c6cf",
+            "secondary-container": "#ff7528",
+            "primary-fixed-dim": "#b0c8f0",
+            "on-secondary-fixed-variant": "#7b2f00",
+            "tertiary-fixed-dim": "#cfc5bc",
+            "on-background": "#191c1e",
+            "on-primary-fixed": "#001c3a",
+            "error-container": "#ffdad6",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-container": "#5f2200",
+            "error": "#ba1a1a",
+            "primary-fixed": "#d4e3ff",
+            "tertiary-container": "#2e2822",
+            "on-surface": "#191c1e",
+            "on-primary-container": "#7a92b7",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#f0f1f3",
+            "secondary": "#a14000",
+            "inverse-primary": "#b0c8f0",
+            "primary-container": "#0f2a4a",
+            "surface-container": "#edeef0",
+            "secondary-fixed": "#ffdbcc",
+            "on-surface-variant": "#43474e",
+            "on-tertiary-container": "#988f87",
+            "surface-tint": "#485f82",
+            "surface-variant": "#e1e2e4",
+            "surface-bright": "#f8f9fb",
+            "surface-container-high": "#e7e8ea",
+            "on-tertiary-fixed-variant": "#4c463f",
+            "surface-container-low": "#f3f4f6",
+            "surface": "#f8f9fb"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "gutter": "1rem",
+            "margin-tablet": "2rem",
+            "space-xl": "2.5rem",
+            "margin-desktop": "2.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-md": "1rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-tablet": "1.25rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-xl": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "price-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "label-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-lg": ["Inter"],
+            "label-lg": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "price-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "price-md": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "price-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col font-body-md text-on-surface antialiased bg-[#F5F6F8]">
+<!-- 1. Barra superior institucional azul marino -->
+<aside class="w-full bg-[#0F2A4A] text-white text-xs border-b border-[#1E3A5F] select-none">
+<div class="w-full max-w-[1360px] mx-auto px-4 lg:px-10 h-9 flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[17px] text-[#FFB694]">local_shipping</span>
+<span class="font-body-sm font-medium tracking-wide">Envíos a todo el Perú · Delivery rápido en Lima Metropolitana</span>
+<span class="hidden md:inline-block bg-[#1B3B60] text-[#93C5FD] px-2 py-0.5 rounded text-[11px] font-semibold">Tesis UPN 2026</span>
+</div>
+<div class="flex items-center space-x-6 text-[13px]">
+<div class="flex items-center space-x-1.5 text-white/90">
+<span class="material-symbols-outlined text-[16px] text-[#FFB694]">call</span>
+<span class="font-label-sm font-semibold tracking-wide">(01) 712 3456</span>
+</div>
+<a class="hover:text-[#FFB694] transition-colors flex items-center gap-1 font-medium" href="#">
+<span class="material-symbols-outlined text-[16px]">help_outline</span>
+<span>Ayuda</span>
+</a>
+<a class="hover:text-[#FFB694] transition-colors flex items-center gap-1 font-medium" href="#">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+<span>Seguimiento de pedidos</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- 2. Cabecera principal blanca (Sticky Header) -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest border-b border-outline-variant/40 shadow-sm transition-shadow">
+<div class="w-full max-w-[1360px] mx-auto px-4 lg:px-10 h-20 flex items-center justify-between gap-6">
+<!-- Logo a la izquierda -->
+<a class="flex items-center gap-1 flex-shrink-0 cursor-pointer select-none" href="#">
+<span class="text-3xl font-extrabold tracking-tight text-[#0F2A4A]">FERRE</span><span class="text-3xl font-extrabold tracking-tight text-[#F26B1D]">MAX</span>
+<span class="ml-2 text-[10px] font-semibold text-[#0F2A4A]/60 uppercase tracking-widest border border-slate-200 px-1.5 py-0.5 rounded">Perú</span>
+</a>
+<!-- Buscador central amplio -->
+<div class="flex-1 max-w-2xl relative">
+<div class="relative flex items-center">
+<input class="w-full h-11 pl-4 pr-12 bg-white border border-slate-300 rounded-lg text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] focus:border-transparent transition-all shadow-inner" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared, vaciar un techo..." type="text"/>
+<button aria-label="Buscar producto" class="absolute right-1 top-1 bottom-1 px-3.5 bg-[#0F2A4A] hover:bg-[#1E3A5F] active:bg-[#0A1D33] text-white rounded-md flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+</div>
+</div>
+<!-- Acciones a la derecha -->
+<div class="flex items-center space-x-5 flex-shrink-0">
+<!-- Mi cuenta destacada -->
+<a class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200 group" href="#">
+<div class="w-9 h-9 rounded-full bg-[#0F2A4A]/10 text-[#0F2A4A] flex items-center justify-center group-hover:bg-[#0F2A4A] group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<div class="text-left leading-tight">
+<span class="block text-[11px] text-slate-500 font-medium">Hola, CLI-007</span>
+<span class="block text-sm font-bold text-[#0F2A4A] group-hover:text-[#F26B1D] transition-colors">Mi cuenta</span>
+</div>
+</a>
+<!-- Divisor vertical -->
+<div class="h-8 w-px bg-slate-200"></div>
+<!-- Carrito de compras -->
+<a class="flex items-center gap-3 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200 group" href="#">
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px] text-[#0F2A4A]">shopping_cart</span>
+<span class="absolute -top-1.5 -right-2 bg-[#F26B1D] text-white font-bold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">4</span>
+</div>
+<div class="text-left leading-tight hidden xl:block">
+<span class="block text-[11px] text-slate-500 font-medium">Carrito</span>
+<span class="block text-sm font-bold text-[#0F2A4A]">S/ 125.40</span>
+</div>
+</a>
+</div>
+</div>
+</header>
+<!-- 3. Menú de navegación inferior (Sub-header) -->
+<nav class="bg-white border-b border-slate-200 shadow-sm relative z-30">
+<div class="w-full max-w-[1360px] mx-auto px-4 lg:px-10 h-11 flex items-center justify-between">
+<div class="flex items-center space-x-6 h-full">
+<!-- Botón azul 'Todas las categorías' -->
+<button class="h-full bg-[#0F2A4A] hover:bg-[#1E3A5F] text-white px-4 flex items-center gap-2 font-label-md text-xs font-semibold rounded-t transition-colors tracking-wide" type="button">
+<span class="material-symbols-outlined text-[18px]">menu</span>
+<span>Todas las categorías</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<!-- Enlaces horizontales -->
+<div class="flex items-center space-x-6 text-sm font-medium text-slate-700">
+<a class="hover:text-[#F26B1D] transition-colors py-2" href="#">Inicio</a>
+<a class="hover:text-[#F26B1D] transition-colors py-2" href="#">Productos</a>
+<a class="hover:text-[#F26B1D] transition-colors py-2" href="#">Categorías</a>
+<a class="hover:text-[#F26B1D] transition-colors flex items-center gap-1.5 py-2" href="#">
+<span>Ofertas</span>
+<span class="bg-[#F26B1D] text-white text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">HOT</span>
+</a>
+</div>
+</div>
+<!-- Enlace Venta Corporativa & Mayoristas -->
+<a class="text-xs font-bold text-[#0F2A4A] hover:text-[#F26B1D] flex items-center gap-1.5 transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px] text-[#0F2A4A]">corporate_fare</span>
+<span>Venta Corporativa &amp; Mayoristas</span>
+</a>
+</div>
+</nav>
+<!-- 4. Área principal de contenido (Fondo gris claro #F5F6F8) -->
+<main class="flex-1 w-full max-w-[1360px] mx-auto px-4 lg:px-10 py-6">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center space-x-2 text-xs text-slate-500 mb-4">
+<a class="hover:text-[#0F2A4A] transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[14px]">home</span>
+<span>Inicio</span>
+</a>
+<span class="text-slate-400">/</span>
+<a class="hover:text-[#0F2A4A] transition-colors" href="#">Mi cuenta</a>
+<span class="text-slate-400">/</span>
+<span aria-current="page" class="text-slate-800 font-semibold">Mis pedidos</span>
+</nav>
+<!-- Encabezado de bienvenida de la cuenta -->
+<section class="bg-white border border-slate-200 rounded-xl p-5 mb-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full bg-[#0F2A4A] text-white flex items-center justify-center font-bold text-lg ring-4 ring-[#0F2A4A]/10">
+            007
+          </div>
+<span class="absolute -bottom-1 -right-1 bg-emerald-500 border-2 border-white w-4 h-4 rounded-full" title="Conexión en línea activa"></span>
+</div>
+<div>
+<div class="flex items-center gap-2.5">
+<h1 class="text-xl md:text-2xl font-bold text-[#0F2A4A]">Hola, CLI-007</h1>
+<span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>Cuenta Verificada</span>
+</span>
+<span class="hidden sm:inline-flex bg-amber-50 text-amber-800 text-[11px] font-semibold px-2.5 py-0.5 rounded border border-amber-200">
+              Perfil experimental · Tesis UPN 2026
+            </span>
+</div>
+<p class="text-sm text-slate-600 mt-1">
+            Gestiona tus compras recientes, revisa el estado de entrega y descubre recomendaciones personalizadas de materiales.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start md:self-auto flex-shrink-0">
+<div class="text-right">
+<div class="text-xs text-slate-500">Último acceso</div>
+<div class="text-xs font-semibold text-slate-700">Hoy, 10:45 AM (Lima, PE)</div>
+</div>
+</div>
+</section>
+<!-- Layout de 2 columnas (12 columnas: 3 col izquierda + 9 col derecha) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Columna izquierda: Menú lateral (3 columnas / ~280px) -->
+<aside class="lg:col-span-3 space-y-4">
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm p-3.5 divide-y divide-slate-100">
+<div class="pb-2 space-y-1">
+<!-- Mis datos -->
+<a class="flex items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0F2A4A] rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-[#0F2A4A] transition-colors">person_outline</span>
+<span>Mis datos</span>
+</a>
+<!-- Mis pedidos (Activo) -->
+<a class="flex items-center justify-between px-3.5 py-2.5 text-sm font-bold text-[#F26B1D] bg-[#FFF3EB] border-l-4 border-[#F26B1D] rounded-r-lg transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-[#F26B1D]">package_2</span>
+<span>Mis pedidos</span>
+</div>
+<span class="bg-[#F26B1D] text-white text-[11px] font-bold px-2 py-0.5 rounded-full">5</span>
+</a>
+<!-- Direcciones -->
+<a class="flex items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0F2A4A] rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-[#0F2A4A] transition-colors">location_on</span>
+<span>Direcciones</span>
+</a>
+<!-- Recomendaciones para mí -->
+<a class="flex items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0F2A4A] rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-amber-500 group-hover:text-amber-600 transition-colors">auto_awesome</span>
+<div class="flex items-center gap-1.5">
+<span>Recomendaciones</span>
+<span class="text-[9px] font-extrabold uppercase bg-amber-100 text-amber-800 px-1 rounded">IA</span>
+</div>
+</a>
+</div>
+<div class="pt-2">
+<!-- Cerrar sesión -->
+<a class="flex items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-red-600 transition-colors">logout</span>
+<span>Cerrar sesión</span>
+</a>
+</div>
+</div>
+<!-- Caja informativa sutil al pie del menú lateral -->
+<div class="bg-slate-100/80 border border-slate-200/80 rounded-xl p-3.5 text-xs text-slate-600">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-500 mt-0.5">info</span>
+<div>
+<p class="font-semibold text-slate-800">Entorno de Pruebas UPN</p>
+<p class="text-[11px] text-slate-500 mt-0.5">Sesión experimental <span class="font-mono font-bold text-slate-700">CLI-007</span> activa para evaluación del motor de recomendación apriori.</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Columna derecha (9 columnas): Tarjeta principal y recomendaciones -->
+<section class="lg:col-span-9 space-y-6">
+<!-- Tarjeta blanca principal de Mis Pedidos -->
+<div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<!-- Encabezado con título y filtros -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-slate-100 gap-4">
+<div>
+<h2 class="text-2xl font-bold text-[#0F2A4A] tracking-tight">Mis pedidos</h2>
+<p class="text-xs text-slate-500 mt-0.5">Consulta el historial detallado de tus facturas y despachos</p>
+</div>
+<!-- Filtros rápidos -->
+<div class="flex items-center bg-slate-100 p-1 rounded-lg text-xs font-semibold">
+<button class="px-3 py-1.5 bg-white text-[#0F2A4A] rounded-md shadow-xs" type="button">Todos (5)</button>
+<button class="px-3 py-1.5 text-slate-600 hover:text-[#0F2A4A] transition-colors" type="button">En proceso (1)</button>
+<button class="px-3 py-1.5 text-slate-600 hover:text-[#0F2A4A] transition-colors" type="button">Entregados (4)</button>
+</div>
+</div>
+<!-- Tabla de pedidos -->
+<div class="overflow-x-auto mt-4">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+<th class="py-3 px-4" scope="col">N° pedido</th>
+<th class="py-3 px-3" scope="col">Fecha</th>
+<th class="py-3 px-4" scope="col">Productos</th>
+<th class="py-3 px-4 text-right" scope="col">Total S/</th>
+<th class="py-3 px-4 text-center" scope="col">Estado</th>
+<th class="py-3 px-4 text-right" scope="col">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-sm">
+<!-- Fila 1 -->
+<tr class="hover:bg-amber-50/30 transition-colors">
+<td class="py-4 px-4 whitespace-nowrap">
+<div class="font-bold text-[#0F2A4A] flex items-center gap-1.5">
+<span>#000245</span>
+<span class="bg-[#FFF3EB] text-[#F26B1D] text-[10px] font-bold px-1.5 py-0.5 rounded border border-[#FFD8C2]">Más reciente</span>
+</div>
+</td>
+<td class="py-4 px-3 whitespace-nowrap text-xs text-slate-600 font-medium">
+                    Hoy, 10:33 AM
+                  </td>
+<td class="py-4 px-4 text-xs text-slate-700 max-w-xs">
+<span class="font-medium text-slate-900">2x</span> Pintura látex blanca Vencedor, <span class="font-medium text-slate-900">1x</span> Rodillo 9", <span class="font-medium text-slate-900">1x</span> Brocha 2", <span class="font-medium text-slate-900">1x</span> Cinta masking 
+                    <span class="block text-[11px] text-slate-400 mt-0.5">(4 ítems)</span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap text-right font-extrabold text-[#0F2A4A]">
+                    S/ 125.40
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+<span>Registrado</span>
+</span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap text-right">
+<button class="text-xs font-bold text-[#0F2A4A] hover:text-[#F26B1D] border border-slate-300 hover:border-[#F26B1D] px-2.5 py-1.5 rounded transition-all" type="button">
+                      Ver detalle
+                    </button>
+</td>
+</tr>
+<!-- Fila 2 -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="py-4 px-4 whitespace-nowrap font-bold text-[#0F2A4A]">
+                    #000231
+                  </td>
+<td class="py-4 px-3 whitespace-nowrap text-xs text-slate-600">
+                    12/09/2026
+                  </td>
+<td class="py-4 px-4 text-xs text-slate-700 max-w-xs">
+<span class="font-medium text-slate-900">1x</span> Taladro percutor 1/2" 650W Makita, <span class="font-medium text-slate-900">1x</span> Set de brocas concreto
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-right font-extrabold text-[#0F2A4A]">
+                    S/ 322.00
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="material-symbols-outlined text-[13px] text-emerald-600">check_circle</span>
+<span>Entregado</span>
+</span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap text-right">
+<button class="text-xs font-semibold text-slate-700 hover:text-[#0F2A4A] hover:underline px-2.5 py-1.5" type="button">
+                      Ver detalle
+                    </button>
+</td>
+</tr>
+<!-- Fila 3 -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="py-4 px-4 whitespace-nowrap font-bold text-[#0F2A4A]">
+                    #000218
+                  </td>
+<td class="py-4 px-3 whitespace-nowrap text-xs text-slate-600">
+                    03/09/2026
+                  </td>
+<td class="py-4 px-4 text-xs text-slate-700 max-w-xs">
+<span class="font-medium text-slate-900">2x</span> Pasta para empaste Glidden 20kg, <span class="font-medium text-slate-900">1x</span> Espátula de acero 4"
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-right font-extrabold text-[#0F2A4A]">
+                    S/ 89.50
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="material-symbols-outlined text-[13px] text-emerald-600">check_circle</span>
+<span>Entregado</span>
+</span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap text-right">
+<button class="text-xs font-semibold text-slate-700 hover:text-[#0F2A4A] hover:underline px-2.5 py-1.5" type="button">
+                      Ver detalle
+                    </button>
+</td>
+</tr>
+<!-- Fila 4 -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="py-4 px-4 whitespace-nowrap font-bold text-[#0F2A4A]">
+                    #000204
+                  </td>
+<td class="py-4 px-3 whitespace-nowrap text-xs text-slate-600">
+                    21/08/2026
+                  </td>
+<td class="py-4 px-4 text-xs text-slate-700 max-w-xs">
+<span class="font-medium text-slate-900">30x</span> Cemento Sol Tipo I 42.5kg, <span class="font-medium text-slate-900">10x</span> Fierro corrugado 3/8"
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-right font-extrabold text-[#0F2A4A]">
+                    S/ 1,130.50
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="material-symbols-outlined text-[13px] text-emerald-600">check_circle</span>
+<span>Entregado</span>
+</span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap text-right">
+<button class="text-xs font-semibold text-slate-700 hover:text-[#0F2A4A] hover:underline px-2.5 py-1.5" type="button">
+                      Ver detalle
+                    </button>
+</td>
+</tr>
+<!-- Fila 5 -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="py-4 px-4 whitespace-nowrap font-bold text-[#0F2A4A]">
+                    #000197
+                  </td>
+<td class="py-4 px-3 whitespace-nowrap text-xs text-slate-600">
+                    14/08/2026
+                  </td>
+<td class="py-4 px-4 text-xs text-slate-700 max-w-xs">
+<span class="font-medium text-slate-900">1x</span> Esmalte sintético negro CPP 1 galón, <span class="font-medium text-slate-900">1x</span> Thinner acrílico 1L
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-right font-extrabold text-[#0F2A4A]">
+                    S/ 58.90
+                  </td>
+<td class="py-4 px-4 whitespace-nowrap text-center">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="material-symbols-outlined text-[13px] text-emerald-600">check_circle</span>
+<span>Entregado</span>
+</span>
+</td>
+<td class="py-4 px-4 whitespace-nowrap text-right">
+<button class="text-xs font-semibold text-slate-700 hover:text-[#0F2A4A] hover:underline px-2.5 py-1.5" type="button">
+                      Ver detalle
+                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Paginación sutil al pie de la tabla -->
+<div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+<span>Mostrando 5 de 5 pedidos registrados</span>
+<div class="flex items-center gap-2">
+<button class="px-2 py-1 rounded border border-slate-200 text-slate-400 cursor-not-allowed" disabled="">Anterior</button>
+<button class="px-2.5 py-1 rounded bg-[#0F2A4A] text-white font-bold">1</button>
+<button class="px-2 py-1 rounded border border-slate-200 text-slate-400 cursor-not-allowed" disabled="">Siguiente</button>
+</div>
+</div>
+</div>
+<!-- Bloque inferior de Recomendaciones (Machine Learning / Tesis) -->
+<div class="bg-[#FFF7ED] border border-[#FDBA74] rounded-xl p-6 shadow-sm">
+<!-- Cabecera del bloque -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-[#F26B1D] text-white flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[19px]">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-slate-800">Recomendaciones para ti</h3>
+</div>
+</div>
+<!-- Chip Modo: Machine Learning -->
+<div>
+<span class="inline-flex items-center gap-1.5 bg-[#F26B1D] text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide shadow-xs">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+<span>Modo: Machine Learning</span>
+</span>
+</div>
+</div>
+<!-- Subtítulo explicativo -->
+<p class="text-xs sm:text-sm text-slate-600 mb-4 font-medium">
+            Según tus compras de pintura (Pedido #000245), podrías necesitar:
+          </p>
+<!-- Grid de 5 tarjetas de producto con fondo blanco -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3.5">
+<!-- Tarjeta 1 -->
+<div class="bg-white rounded-lg border border-orange-200/70 p-3.5 hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<div class="h-28 bg-[#F8F9FB] rounded flex items-center justify-center mb-2.5 relative overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200" data-alt="A clean product shot of a pack of 10 sanding paper sheets for wall finishing, Norton brand, studio lighting on soft gray background, modern hardware store e-commerce aesthetic with crisp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVj2EtZ24I-Y5M84AQdqHY6jA9ChzNT4X5Wm-2NwRWbeK-WsaUubynzyKC8F33rqiCCeRaLoF2z7M4SzD2ZQKl56LfT-B1B596-8L6H9YWJEpA35hqVOUm2DQXC5xrdj77s4PWGqmde-iZvaE1f3kOq1KniQmeLXLx3GscxkQlnABwcD4wuQ3pesi_Y9yaqqiAQObMvEuf-HjFpUPFraYT--uE5Gz-_FHS1Gfr6jJgyVYkIp-v6k1p8G91n3xuAx7dzjmfbdng_jkW"/>
+<span class="absolute top-1.5 left-1.5 bg-slate-900/70 text-white text-[9px] font-bold px-1 rounded">Lijas</span>
+</div>
+<h4 class="text-xs font-bold text-slate-800 line-clamp-2 min-h-[32px]">
+                  Lija para pared grano 120
+                </h4>
+<p class="text-[11px] text-slate-500 mt-0.5">Norton · Paq. 10 unid.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="font-extrabold text-sm text-[#0F2A4A]">S/ 6.90</span>
+<button class="bg-[#F26B1D] hover:bg-[#DE5A10] active:bg-[#C74D09] text-white text-[11px] font-bold px-2.5 py-1.5 rounded transition-colors flex items-center gap-1 shadow-xs" type="button">
+<span>+ Agregar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 2 -->
+<div class="bg-white rounded-lg border border-orange-200/70 p-3.5 hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<div class="h-28 bg-[#F8F9FB] rounded flex items-center justify-center mb-2.5 relative overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200" data-alt="Durable industrial paint roller tray 9 inch Truper reinforced plastic tool for painters on neutral white and gray background, clean commercial product photograph." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4skdxWet2AfTRBuafB6fqsOQeEF_jDP1ykFNY2Nu-PjXbSSb8aQ7BiNImxMUziEyXTRA0ednwFhKOJ-qENRL-Lw6_OuHBlsUb8E1qPNbeKxit-HF9UCcst4DpGlw3zX_RcBSz3y9WHqYv_pFq1T0VjEikds4U-_zxVjKKhuqZxYvd-O2D2-CPAG2pfWnBjddq18sniPn7XKoD-tcRHXatcxwXg4G3t1h0rhy7z7lYWgxbocBGuFsgiilT2imiOYlc9oAbuZooSzcf"/>
+<span class="absolute top-1.5 left-1.5 bg-slate-900/70 text-white text-[9px] font-bold px-1 rounded">Accesorios</span>
+</div>
+<h4 class="text-xs font-bold text-slate-800 line-clamp-2 min-h-[32px]">
+                  Bandeja para pintura
+                </h4>
+<p class="text-[11px] text-slate-500 mt-0.5">Truper 9" reforzada</p>
+</div>
+<div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="font-extrabold text-sm text-[#0F2A4A]">S/ 8.90</span>
+<button class="bg-[#F26B1D] hover:bg-[#DE5A10] active:bg-[#C74D09] text-white text-[11px] font-bold px-2.5 py-1.5 rounded transition-colors flex items-center gap-1 shadow-xs" type="button">
+<span>+ Agregar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 3 -->
+<div class="bg-white rounded-lg border border-orange-200/70 p-3.5 hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<div class="h-28 bg-[#F8F9FB] rounded flex items-center justify-center mb-2.5 relative overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200" data-alt="One gallon plastic bucket of wall surface primer sealer paint Vencedor brand for masonry indoor drywall, bright crisp commercial studio photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVJbrrTQuAVtfrfOsnrJFaUEuK4a_ww3m0etCrICksDhyTsisFwVr7FBlgamPtDtTtywHAq6BrT6z0BRzTXMFKcLSOOh_1fZFgXqWcOgnVMf52o07tf0jEWp9JrefuC12EiukAdjxErqdJlQK6BTkISiEcEg1h4eTCmR6Wb1HBaD3fTUsl7vQnsQTF70BRCT4X1EUJOI5KP05dv-gYgbXbrfIv-uhiwBuBEBTxJyfbntiLNkLW8BHwL_Q7BYsIiWB9n6FXGTXxEUvG"/>
+<span class="absolute top-1.5 left-1.5 bg-slate-900/70 text-white text-[9px] font-bold px-1 rounded">Base</span>
+</div>
+<h4 class="text-xs font-bold text-slate-800 line-clamp-2 min-h-[32px]">
+                  Imprimante 1 galón
+                </h4>
+<p class="text-[11px] text-slate-500 mt-0.5">Vencedor para paredes</p>
+</div>
+<div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="font-extrabold text-sm text-[#0F2A4A]">S/ 34.00</span>
+<button class="bg-[#F26B1D] hover:bg-[#DE5A10] active:bg-[#C74D09] text-white text-[11px] font-bold px-2.5 py-1.5 rounded transition-colors flex items-center gap-1 shadow-xs" type="button">
+<span>+ Agregar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 4 -->
+<div class="bg-white rounded-lg border border-orange-200/70 p-3.5 hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<div class="h-28 bg-[#F8F9FB] rounded flex items-center justify-center mb-2.5 relative overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200" data-alt="One liter metal can bottle of universal acrylic paint thinner solvent solvent thinner CPP brand isolated clean bright studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpE4zPeONXc5jCkFYThuDEIt4uQKQ5GLm2vgPG2dOWtROqMP1XnNwUT_17pDLLMUOpjAmqG_8zuijcjydtMoLOr83oDJTgO-Dwuu5Y4P4tNPFDcQtBzlCI7r2C314mv_G3ztWQ21b8v1rszExi_vnpdwwHg4wZvi3a2Fd-m6MY4zddhGp3YI7b4iKrC433OeLD8OiFOitSNHB0toktWpMuo23kzwwrSRjZRZkqXQdWfftMLsisTorR6aO-mMLF1aW59P60Nsb7JETj"/>
+<span class="absolute top-1.5 left-1.5 bg-slate-900/70 text-white text-[9px] font-bold px-1 rounded">Solventes</span>
+</div>
+<h4 class="text-xs font-bold text-slate-800 line-clamp-2 min-h-[32px]">
+                  Thinner acrílico 1 L
+                </h4>
+<p class="text-[11px] text-slate-500 mt-0.5">CPP universal</p>
+</div>
+<div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="font-extrabold text-sm text-[#0F2A4A]">S/ 15.90</span>
+<button class="bg-[#F26B1D] hover:bg-[#DE5A10] active:bg-[#C74D09] text-white text-[11px] font-bold px-2.5 py-1.5 rounded transition-colors flex items-center gap-1 shadow-xs" type="button">
+<span>+ Agregar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 5 -->
+<div class="bg-white rounded-lg border border-orange-200/70 p-3.5 hover:shadow-md transition-all flex flex-col justify-between group">
+<div>
+<div class="h-28 bg-[#F8F9FB] rounded flex items-center justify-center mb-2.5 relative overflow-hidden">
+<img class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200" data-alt="Roll of beige painter masking tape 2 inch high adhesion Norton brand lying on white flat surface, clean sharp studio product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc6rAPoo_09wlnmATThq0p50BOOV9DBRHYNQBkKD52GHfjPnbd-ypYRHIQD70dgOhaHCwRr6uvq1wx6iomIBaiU2Rn-neSk_D-vp-SU8j6xJ-QOvM_3XWciiepZ02-VvadVgVJFTCzs5W60wZbbyUMSVNy0iEit5U5QuPxt7FWXoYSarYXI9LPZwBvlGGYn0ixk7KjPF8rNOpw1L56oE0HYdfSdlNRNl_Pmpll9Dkv6kZ_kcFK-uiA3Yx3JlC4qyqll94uDcn81zHc"/>
+<span class="absolute top-1.5 left-1.5 bg-slate-900/70 text-white text-[9px] font-bold px-1 rounded">Cintas</span>
+</div>
+<h4 class="text-xs font-bold text-slate-800 line-clamp-2 min-h-[32px]">
+                  Cinta masking tape 2"
+                </h4>
+<p class="text-[11px] text-slate-500 mt-0.5">Norton alta adherencia</p>
+</div>
+<div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span class="font-extrabold text-sm text-[#0F2A4A]">S/ 9.00</span>
+<button class="bg-[#F26B1D] hover:bg-[#DE5A10] active:bg-[#C74D09] text-white text-[11px] font-bold px-2.5 py-1.5 rounded transition-colors flex items-center gap-1 shadow-xs" type="button">
+<span>+ Agregar</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Nota al pie del bloque de recomendaciones -->
+<div class="mt-4 pt-3 border-t border-orange-200/60 flex items-center justify-between text-[11px] text-slate-500">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-orange-400">insights</span>
+<span>Sugerencias obtenidas de reglas de asociación sobre compras anteriores</span>
+</div>
+<span class="text-[10px] text-slate-400 hidden sm:inline">Confianza ML: 89.4% · Lift: 2.14</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- 5. Pie de página institucional azul marino (#0F2A4A, text-white) -->
+<footer class="bg-[#0F2A4A] text-white mt-12 border-t border-[#1E3A5F]">
+<div class="w-full max-w-[1360px] mx-auto px-4 lg:px-10 py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Columna 1: FERREMAX corporativo -->
+<div>
+<div class="flex items-center gap-1 mb-3">
+<span class="text-2xl font-extrabold tracking-tight text-white">FERRE</span><span class="text-2xl font-extrabold tracking-tight text-[#F26B1D]">MAX</span>
+</div>
+<p class="text-xs text-slate-300 leading-relaxed mb-3">
+            Líderes en distribución ferretera, materiales de construcción pesada y acabados para obras residenciales y comerciales en todo el territorio peruano.
+          </p>
+<div class="text-[11px] text-slate-400 space-y-0.5 border-t border-slate-700/60 pt-2.5">
+<p><span class="font-semibold text-slate-300">RUC:</span> 20601234567</p>
+<p><span class="font-semibold text-slate-300">Razón Social:</span> FerreMax Perú S.A.</p>
+<p><span class="font-semibold text-slate-300">Sede Central:</span> Av. Argentina 2410, Lima</p>
+</div>
+</div>
+<!-- Columna 2: Categorías principales -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-[#FFB694] mb-3">Categorías</h4>
+<ul class="text-xs space-y-2 text-slate-300">
+<li><a class="hover:text-white transition-colors" href="#">Pinturas y Acabados</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Herramientas Eléctricas y Manuales</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Fierros y Materiales de Construcción</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Gasfitería y Tuberías</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Electricidad e Iluminación Industrial</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Seguridad y Protección Personal</a></li>
+</ul>
+</div>
+<!-- Columna 3: Ayuda y Soporte -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-[#FFB694] mb-3">Ayuda y Soporte</h4>
+<ul class="text-xs space-y-2 text-slate-300">
+<li><a class="hover:text-white transition-colors" href="#">Términos y Condiciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Políticas de Envío Nacional</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Venta Corporativa</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Soporte Técnico</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Preguntas Frecuentes</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Políticas de Privacidad</a></li>
+</ul>
+</div>
+<!-- Columna 4: Atención y Garantía -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-[#FFB694] mb-3">Atención y Garantía</h4>
+<div class="space-y-3 text-xs text-slate-300">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[18px] text-[#FFB694] mt-0.5">phone_in_talk</span>
+<div>
+<p class="font-bold text-white text-sm">(01) 712 3456</p>
+<p class="text-[11px] text-slate-400">Lun - Sáb: 7:30 AM - 7:00 PM</p>
+</div>
+</div>
+<!-- Libro de Reclamaciones destacado -->
+<a class="block bg-[#16365C] hover:bg-[#1E4574] border border-slate-600/60 rounded-lg p-2.5 transition-colors" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[24px] text-amber-400">menu_book</span>
+<div>
+<p class="font-bold text-white text-xs">Libro de Reclamaciones</p>
+<p class="text-[10px] text-slate-300">Conforme a ley N° 29571</p>
+</div>
+</div>
+</a>
+<!-- Métodos de pago y sellos -->
+<div class="pt-1">
+<p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-1.5">Pagos 100% seguros</p>
+<div class="flex items-center gap-2 text-slate-300 text-xs font-semibold">
+<span class="bg-white/10 px-2 py-0.5 rounded text-[11px]">Visa</span>
+<span class="bg-white/10 px-2 py-0.5 rounded text-[11px]">Mastercard</span>
+<span class="bg-white/10 px-2 py-0.5 rounded text-[11px]">Yape / Plin</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Barra inferior de copyright -->
+<div class="border-t border-slate-700/80 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+<p class="text-center md:text-left">
+          © 2026 FerreMax Perú S.A. - Tesis: Sistema web basado en Machine Learning para la recomendación de productos - UPN 2026. Todos los derechos reservados.
+        </p>
+<div class="flex items-center space-x-4 text-[11px]">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-400">lock</span>
+<span>Certificado SSL 256-bit</span>
+</span>
+<span>·</span>
+<span>SUNAT RUC Verificado</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

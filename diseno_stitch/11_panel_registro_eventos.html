@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Panel de Administración · Registro de Eventos | FerreMax</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#d9dadc",
+            "on-tertiary-fixed": "#201b15",
+            "primary-container": "#0f2a4a",
+            "primary-fixed-dim": "#b0c8f0",
+            "outline-variant": "#c4c6cf",
+            "on-primary-container": "#7a92b7",
+            "inverse-primary": "#b0c8f0",
+            "surface-container": "#edeef0",
+            "background": "#f8f9fb",
+            "surface-tint": "#485f82",
+            "on-tertiary-container": "#988f87",
+            "error-container": "#ffdad6",
+            "surface": "#f8f9fb",
+            "on-primary-fixed": "#001c3a",
+            "on-background": "#191c1e",
+            "surface-container-high": "#e7e8ea",
+            "secondary-fixed-dim": "#ffb694",
+            "secondary-fixed": "#ffdbcc",
+            "on-secondary-fixed-variant": "#7b2f00",
+            "on-secondary-fixed": "#351000",
+            "secondary": "#a14000",
+            "inverse-surface": "#2e3132",
+            "primary-fixed": "#d4e3ff",
+            "on-surface-variant": "#43474e",
+            "on-primary-fixed-variant": "#304869",
+            "on-primary": "#ffffff",
+            "primary": "#00152f",
+            "tertiary-container": "#2e2822",
+            "surface-variant": "#e1e2e4",
+            "on-surface": "#191c1e",
+            "surface-container-low": "#f3f4f6",
+            "secondary-container": "#ff7528",
+            "on-secondary-container": "#5f2200",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed-variant": "#4c463f",
+            "inverse-on-surface": "#f0f1f3",
+            "tertiary-fixed": "#ece0d8",
+            "surface-container-highest": "#e1e2e4",
+            "surface-bright": "#f8f9fb",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#cfc5bc",
+            "error": "#ba1a1a",
+            "on-tertiary": "#ffffff",
+            "on-error-container": "#93000a",
+            "outline": "#74777f",
+            "surface-container-lowest": "#ffffff",
+            "tertiary": "#19140f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-tablet": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "gutter": "1rem",
+            "space-xl": "2.5rem",
+            "margin-desktop": "2.5rem"
+          },
+          "fontFamily": {
+            "label-lg": ["Inter"],
+            "price-lg": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "body-md": ["Inter"],
+            "price-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-xl": ["Inter"],
+            "label-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "price-lg": ["28px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+            "price-md": ["20px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "headline-sm": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+            "headline-md": ["22px", {"lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+            "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "display-lg": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="h-full font-body-md text-body-md text-on-surface bg-surface flex overflow-hidden antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- BARRA LATERAL FIJA (260px) -->
+<aside class="w-[260px] flex-shrink-0 bg-primary-container text-on-primary flex flex-col justify-between border-r border-outline-variant/20 z-20 shadow-lg">
+<div class="flex flex-col h-full">
+<!-- Encabezado Sidebar con Marca FERREMAX -->
+<div class="px-space-lg py-5 border-b border-white/10 flex items-center justify-between">
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-headline-md text-headline-md font-extrabold tracking-tight text-white">FERRE<span class="text-secondary-container">MAX</span></span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary-fixed-dim bg-white/10 px-1.5 py-0.5 rounded">ADMIN PANEL</span>
+<span class="font-body-sm text-body-sm text-outline-variant">v1.2-ml</span>
+</div>
+</div>
+<div class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" title="Motor en línea"></div>
+</div>
+<!-- Menú Estructurado en 3 Grupos -->
+<div class="flex-1 overflow-y-auto px-3 py-4 space-y-6 custom-scrollbar">
+<!-- GRUPO 1: PLATAFORMA -->
+<div>
+<div class="px-3 pb-2 font-label-sm text-label-sm font-bold text-outline-variant tracking-wider uppercase">
+            Plataforma
+          </div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white font-label-lg text-label-lg transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container">dashboard</span>
+<span>Resumen</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white font-label-lg text-label-lg transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container">inventory_2</span>
+<span>Productos e inventario</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white font-label-lg text-label-lg transition-colors duration-150" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container">shopping_bag</span>
+<span>Pedidos</span>
+</div>
+<span class="bg-white/15 text-white font-label-sm text-label-sm px-2 py-0.5 rounded-full">14</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white font-label-lg text-label-lg transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container">group</span>
+<span>Clientes</span>
+</a>
+</nav>
+</div>
+<!-- GRUPO 2: INTELIGENCIA ARTIFICIAL -->
+<div>
+<div class="px-3 pb-2 font-label-sm text-label-sm font-bold text-secondary-fixed-dim tracking-wider uppercase flex items-center justify-between">
+<span>Inteligencia Artificial</span>
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white font-label-lg text-label-lg transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container">memory</span>
+<span>Recomendador</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white font-label-lg text-label-lg transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container">bar_chart</span>
+<span>Evaluación</span>
+</a>
+<!-- ACTIVO -->
+<a class="flex items-center justify-between px-3 py-2 rounded-lg bg-secondary-container text-white font-label-lg text-label-lg shadow-sm" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">dataset</span>
+<span class="font-bold">Registro de eventos</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+</a>
+</nav>
+</div>
+<!-- GRUPO 3: SISTEMA -->
+<div>
+<div class="px-3 pb-2 font-label-sm text-label-sm font-bold text-outline-variant tracking-wider uppercase">
+            Sistema
+          </div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white font-label-lg text-label-lg transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container">settings</span>
+<span>Configuración</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Pie de Barra Lateral: Usuario y Status Server -->
+<div class="p-3 border-t border-white/10 bg-primary/40">
+<!-- Indicador ML -->
+<div class="flex items-center justify-between px-2.5 py-1.5 mb-2.5 rounded bg-white/5 text-on-primary-container font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="text-white text-xs font-medium">Motor ML v1.2</span>
+</div>
+<span class="text-[10px] text-secondary-fixed bg-secondary/60 px-1.5 py-0.2 rounded font-mono">EN LÍNEA</span>
+</div>
+<!-- Tarjeta Perfil Admin -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-full bg-secondary text-white font-label-md text-label-md flex items-center justify-center font-bold ring-2 ring-white/10">
+              AD
+            </div>
+<div class="truncate">
+<div class="text-xs font-semibold text-white truncate">Admin Investigador</div>
+<div class="text-[11px] text-outline-variant truncate">admin@ferremax.pe</div>
+</div>
+</div>
+<button class="text-outline-variant hover:text-white p-1 rounded transition-colors" title="Cerrar sesión">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- CONTENEDOR PRINCIPAL DERECHO -->
+<div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+<!-- CABECERA SUPERIOR (Header Blanco) -->
+<header class="h-16 bg-surface-container-lowest border-b border-outline-variant/30 px-space-xl flex items-center justify-between flex-shrink-0 z-10 shadow-sm">
+<div>
+<div class="flex items-center gap-2.5">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">Registro de eventos</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant border border-outline-variant/30">
+<span class="material-symbols-outlined text-[14px] text-secondary-container">database</span>
+            Telemetría experimental
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Trazabilidad granular de telemetría de usuario por sesión experimental y condición algorítmica</p>
+</div>
+<div class="flex items-center gap-3">
+<!-- Acceso directo tienda en vivo -->
+<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline-variant/50 text-primary hover:bg-surface-container font-label-md text-label-md transition-colors" href="https://ferremax.pe" target="_blank">
+<span class="material-symbols-outlined text-[16px] text-secondary">storefront</span>
+<span>Tienda en Vivo: ferremax.pe</span>
+<span class="material-symbols-outlined text-[14px] text-outline">open_in_new</span>
+</a>
+<div class="h-5 w-px bg-outline-variant/40 mx-1"></div>
+<!-- Notificaciones -->
+<button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary-container"></span>
+</button>
+<!-- Perfil Usuario -->
+<div class="flex items-center gap-2 pl-1 text-on-surface font-label-md text-label-md">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-xs">
+            A
+          </div>
+<div class="hidden xl:block text-left">
+<div class="font-semibold text-xs leading-none">Administrador</div>
+<div class="text-[11px] text-on-surface-variant mt-0.5 leading-none">admin@ferremax.pe</div>
+</div>
+</div>
+</div>
+</header>
+<!-- ÁREA DE CONTENIDO CON SCROLL (PANELES Y TABLA) -->
+<main class="flex-1 overflow-y-auto px-space-xl py-6 space-y-6 custom-scrollbar bg-surface">
+<!-- 1. BARRA DE FILTROS Y ACCIONES RÁPIDAS -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 p-4 shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<!-- Filtros de Entrada -->
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 flex-1">
+<!-- Selector de Sesión -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 font-semibold">Sesión de prueba</label>
+<div class="relative">
+<select class="w-full h-9 pl-2.5 pr-7 rounded-lg border border-outline-variant/50 text-xs font-semibold text-primary focus:border-primary-container focus:ring-1 focus:ring-primary-container bg-white appearance-none cursor-pointer">
+<option selected="" value="CLI-007-S2">CLI-007-S2 (ML)</option>
+<option value="CLI-007-S1">CLI-007-S1 (CONV)</option>
+<option value="CLI-012-S1">CLI-012-S1 (CONV)</option>
+<option value="CLI-019-S2">CLI-019-S2 (ML)</option>
+<option value="TODAS">Todas las sesiones</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Cliente -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 font-semibold">Cliente ID</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 pl-2.5 pr-16 rounded-lg border border-outline-variant/50 text-xs font-mono font-bold text-primary bg-surface-container-low cursor-default" readonly="" type="text" value="CLI-007"/>
+<span class="absolute right-1.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold px-1.5 py-0.5 rounded">Activo</span>
+</div>
+</div>
+<!-- Escenario Experimental -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 font-semibold">Escenario experimental</label>
+<div class="relative">
+<select class="w-full h-9 pl-2.5 pr-7 rounded-lg border border-outline-variant/50 text-xs font-medium text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container bg-white appearance-none cursor-pointer">
+<option selected="">Pintura Dormitorio 12 m²</option>
+<option>Reparación Tubería Sanitaria</option>
+<option>Instalación Drywall Techo</option>
+<option>Vaciado de Techo 35 m²</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Condición Algorítmica -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 font-semibold">Condición del modelo</label>
+<div class="relative">
+<select class="w-full h-9 pl-2.5 pr-7 rounded-lg border border-secondary-container/60 bg-secondary-fixed/30 text-xs font-bold text-on-secondary-fixed-variant focus:ring-1 focus:ring-secondary appearance-none cursor-pointer">
+<option>Todas las condiciones</option>
+<option>Convencional (Heurístico)</option>
+<option selected="">Machine Learning (ML)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 text-[18px] text-secondary pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Tipo de Evento -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 font-semibold">Tipo de evento</label>
+<div class="relative">
+<select class="w-full h-9 pl-2.5 pr-7 rounded-lg border border-outline-variant/50 text-xs text-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container bg-white appearance-none cursor-pointer">
+<option selected="">Todos los eventos (14)</option>
+<option>INICIO_BUSQUEDA</option>
+<option>CONSULTA</option>
+<option>RECOM_MOSTRADA</option>
+<option>PRODUCTO_AGREGADO</option>
+<option>PRODUCTO_RETIRADO</option>
+<option>CONFIRMACION_CARRITO</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 text-[18px] text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Rango de Fechas -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-1 font-semibold">Fecha de registro</label>
+<div class="relative">
+<input class="w-full h-9 pl-8 pr-2 rounded-lg border border-outline-variant/50 text-xs font-medium text-on-surface bg-white" type="text" value="22 Sep 2026"/>
+<span class="material-symbols-outlined absolute left-2 top-2 text-[18px] text-outline pointer-events-none">calendar_today</span>
+</div>
+</div>
+</div>
+<!-- Botones de Acción -->
+<div class="flex items-center gap-2.5 self-end lg:self-center border-t lg:border-t-0 pt-3 lg:pt-0 border-outline-variant/20 flex-shrink-0">
+<button class="h-9 px-3.5 rounded-lg border border-outline-variant/60 hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Exportar CSV</span>
+</button>
+<button class="h-9 px-4 rounded-lg bg-primary-container text-white hover:bg-primary font-label-md text-label-md flex items-center gap-2 shadow-sm transition-all active:scale-98">
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">query_stats</span>
+<span>Calcular indicadores</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 2. TARJETA RESUMEN DE LA SESIÓN SELECCIONADA -->
+<section class="bg-surface-container-lowest rounded-xl border border-secondary-container/40 p-5 shadow-sm relative overflow-hidden">
+<!-- Barra de acento sutil superior -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary-container via-secondary to-primary-container"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-4 border-b border-outline-variant/20 gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-white font-label-sm text-label-sm font-bold tracking-wider">SESIÓN ACTIVA</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Métricas calculadas para sesión CLI-007-S2</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Escenario asignado: <strong class="text-primary font-semibold">Pintura Dormitorio 12m²</strong> · Modo Algorítmico: <strong class="text-secondary font-semibold">Machine Learning (K-NN Cosine + Matriz Compatibilidad)</strong>
+</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tesis UPN 2026</span>
+<span class="w-1 h-1 rounded-full bg-outline"></span>
+<span class="font-mono text-xs text-on-surface font-bold bg-surface-container px-2 py-1 rounded">Grupo Exp. B</span>
+</div>
+</div>
+<!-- 4 KPIs Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- KPI 1 -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-semibold">Tiempo de selección</span>
+<span class="material-symbols-outlined text-[20px] text-primary">timer</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-price-lg text-price-lg text-primary">96.2 <span class="text-lg font-bold">s</span></span>
+</div>
+<div class="mt-2.5 flex items-center gap-1.5">
+<span class="inline-flex items-center text-[11px] font-bold text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">trending_down</span>
+                -55.1%
+              </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">vs Convencional (214.3 s)</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-semibold">Recomendaciones mostradas</span>
+<span class="material-symbols-outlined text-[20px] text-secondary">recommend</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-price-lg text-price-lg text-on-surface">5</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">ítems recomendados</span>
+</div>
+<div class="mt-2.5 font-body-sm text-body-sm text-[11px] text-on-surface-variant">
+              Top-K=5 generado en <span class="font-mono font-semibold text-primary">375 ms</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-semibold">Aceptadas (agregadas)</span>
+<span class="material-symbols-outlined text-[20px] text-emerald-600">shopping_cart_checkout</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-price-lg text-price-lg text-emerald-700">3</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">de 5 sugeridas</span>
+</div>
+<div class="mt-2.5 font-body-sm text-body-sm text-[11px] text-on-surface-variant truncate" title="Rodillo antigoteo 9', Brocha profesional 2', Cinta masking tape 2'">
+              Rodillo 9", Brocha 2", Cinta masking
+            </div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-semibold">Precision@5 de la sesión</span>
+<span class="material-symbols-outlined text-[20px] text-primary-container">ads_click</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-price-lg text-price-lg text-secondary">0.60</span>
+<span class="font-label-md text-label-md font-bold text-secondary-container">(60.0%)</span>
+</div>
+<div class="mt-2.5 flex items-center gap-1.5 font-body-sm text-body-sm text-[11px] text-emerald-700 font-medium">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>Supera umbral mínimo (0.40)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. TABLA COMPLETA DE EVENTOS DE TELEMETRÍA -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden flex flex-col">
+<!-- Encabezado de la Sección de Tabla -->
+<div class="px-5 py-4 border-b border-outline-variant/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-lowest">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[22px] text-primary-container">table_view</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Eventos registrados de la sesión</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm font-bold text-primary">14 filas detalladas</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+              CLI-007-S1 (Convencional) vs CLI-007-S2 (Machine Learning)
+            </span>
+</div>
+</div>
+<!-- Tabla con Scroll Horizontal Responsivo -->
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-3 font-bold whitespace-nowrap">id_evento</th>
+<th class="py-3 px-3 font-bold whitespace-nowrap">id_sesion</th>
+<th class="py-3 px-3 font-bold whitespace-nowrap">codigo_cliente</th>
+<th class="py-3 px-3 font-bold whitespace-nowrap">escenario</th>
+<th class="py-3 px-3 font-bold whitespace-nowrap">condicion</th>
+<th class="py-3 px-3 font-bold whitespace-nowrap">tipo_evento</th>
+<th class="py-3 px-4 font-bold min-w-[200px]">texto_consulta</th>
+<th class="py-3 px-4 font-bold min-w-[220px]">sku / detalle</th>
+<th class="py-3 px-3 font-bold whitespace-nowrap">posicion_recom</th>
+<th class="py-3 px-3 font-bold whitespace-nowrap">origen</th>
+<th class="py-3 px-3 font-bold whitespace-nowrap text-right">timestamp</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 font-body-md text-body-md text-[13px]">
+<!-- FILA 1 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-2.5 px-3 font-mono font-semibold text-primary">EVT-89140</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007-S1</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-800">CONV</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-gray-100 text-gray-700 border border-gray-300">INICIO_BUSQUEDA</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">HEADER_SEARCH</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 09:15:10.120</td>
+</tr>
+<!-- FILA 2 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-2.5 px-3 font-mono font-semibold text-primary">EVT-89141</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007-S1</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-800">CONV</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-100 text-blue-800 border border-blue-200">CONSULTA</span>
+</td>
+<td class="py-2.5 px-4 font-medium text-on-surface">"pintura blanca para pared"</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">BUSQUEDA_TEXTUAL</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 09:15:32.450</td>
+</tr>
+<!-- FILA 3 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-2.5 px-3 font-mono font-semibold text-primary">EVT-89142</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007-S1</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-800">CONV</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">PRODUCTO_AGREGADO</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4">
+<span class="font-mono font-semibold text-primary">PIN-001</span>
+<span class="text-xs text-on-surface-variant block">Pintura látex blanca 1 galón Vencedor</span>
+</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">CATALOGO_GRID</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 09:17:28.450</td>
+</tr>
+<!-- FILA 4 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-2.5 px-3 font-mono font-semibold text-primary">EVT-89143</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007-S1</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-800">CONV</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-purple-100 text-purple-800 border border-purple-200">RECOM_MOSTRADA</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4 font-mono text-xs">PIN-004, PIN-005, BRO-001</td>
+<td class="py-2.5 px-3 text-center font-mono text-xs">pos 1, 2, 3</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">RECOM_CATEGORIA</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 09:17:30.110</td>
+</tr>
+<!-- FILA 5 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-2.5 px-3 font-mono font-semibold text-primary">EVT-89144</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007-S1</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-800">CONV</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-100 text-blue-800 border border-blue-200">CONSULTA</span>
+</td>
+<td class="py-2.5 px-4 font-medium text-on-surface">"brocha y rodillo truper"</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">BUSQUEDA_TEXTUAL</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 09:18:14.620</td>
+</tr>
+<!-- FILA 6 -->
+<tr class="hover:bg-surface-container/50 transition-colors">
+<td class="py-2.5 px-3 font-mono font-semibold text-primary">EVT-89145</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007-S1</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-800">CONV</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">PRODUCTO_AGREGADO</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4">
+<span class="font-mono font-semibold text-primary">TRU-809</span>
+<span class="text-xs text-on-surface-variant block">Rodillo antigoteo 9" Truper</span>
+</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">BUSQUEDA_GRID</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 09:18:45.300</td>
+</tr>
+<!-- FILA 7 -->
+<tr class="hover:bg-surface-container/50 transition-colors bg-slate-50/70">
+<td class="py-2.5 px-3 font-mono font-semibold text-primary">EVT-89146</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007-S1</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-slate-200 text-slate-800">CONV</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-amber-800 border border-amber-200">CONFIRMACION_CARRITO</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4 font-semibold text-primary">2 items (S/ 61.90)</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">CHECKOUT</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 09:18:46.320</td>
+</tr>
+<!-- FILA 8 (INICIA SESION ML CLI-007-S2) -->
+<tr class="hover:bg-secondary-fixed/20 transition-colors bg-secondary-fixed/5">
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">EVT-89201</td>
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">CLI-007-S2</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-container text-white">ML</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-gray-100 text-gray-700 border border-gray-300">INICIO_BUSQUEDA</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">HEADER_SEARCH</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 10:32:07.418</td>
+</tr>
+<!-- FILA 9 -->
+<tr class="hover:bg-secondary-fixed/20 transition-colors bg-secondary-fixed/5">
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">EVT-89202</td>
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">CLI-007-S2</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-container text-white">ML</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-100 text-blue-800 border border-blue-200">CONSULTA</span>
+</td>
+<td class="py-2.5 px-4 font-semibold text-secondary">"pintar un dormitorio de 12 m²"</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">BUSQUEDA_NL</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 10:32:19.002</td>
+</tr>
+<!-- FILA 10 -->
+<tr class="hover:bg-secondary-fixed/20 transition-colors bg-secondary-fixed/5">
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">EVT-89203</td>
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">CLI-007-S2</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-container text-white">ML</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-purple-100 text-purple-800 border border-purple-200">RECOM_MOSTRADA</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4 font-mono text-xs text-primary font-medium">TRU-809, TRU-402, NOR-200, NOR-120, VEN-501</td>
+<td class="py-2.5 px-3 text-center font-mono text-xs text-secondary font-bold">pos 1 a 5</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">GRID_ML_PREDICT</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 10:32:19.377</td>
+</tr>
+<!-- FILA 11 -->
+<tr class="hover:bg-secondary-fixed/20 transition-colors bg-secondary-fixed/5">
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">EVT-89204</td>
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">CLI-007-S2</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-container text-white">ML</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">PRODUCTO_AGREGADO</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4">
+<span class="font-mono font-semibold text-primary">PIN-001</span>
+<span class="text-xs text-on-surface-variant block">Pintura látex blanca 1 galón Vencedor</span>
+</td>
+<td class="py-2.5 px-3 text-center font-mono text-xs font-bold text-emerald-700">pos 1</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">RECOMENDACION</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 10:32:41.910</td>
+</tr>
+<!-- FILA 12 -->
+<tr class="hover:bg-secondary-fixed/20 transition-colors bg-secondary-fixed/5">
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">EVT-89205</td>
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">CLI-007-S2</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-container text-white">ML</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">PRODUCTO_AGREGADO</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4">
+<span class="font-mono font-semibold text-primary">TRU-809</span>
+<span class="text-xs text-on-surface-variant block">Rodillo antigoteo 9" Truper</span>
+</td>
+<td class="py-2.5 px-3 text-center font-mono text-xs font-bold text-emerald-700">pos 1</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">RECOMENDACION</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 10:32:55.130</td>
+</tr>
+<!-- FILA 13 -->
+<tr class="hover:bg-secondary-fixed/20 transition-colors bg-secondary-fixed/5">
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">EVT-89206</td>
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">CLI-007-S2</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-container text-white">ML</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-red-100 text-red-800 border border-red-200">PRODUCTO_RETIRADO</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4">
+<span class="font-mono font-semibold text-red-800">NOR-120</span>
+<span class="text-xs text-on-surface-variant block">Lija para pared grano 120 Norton</span>
+</td>
+<td class="py-2.5 px-3 text-center font-mono text-xs text-red-700 font-semibold">pos 4</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">CARRITO_DRAWER</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 10:33:12.644</td>
+</tr>
+<!-- FILA 14 -->
+<tr class="hover:bg-secondary-fixed/20 transition-colors bg-secondary-fixed/10">
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">EVT-89208</td>
+<td class="py-2.5 px-3 font-mono font-semibold text-secondary">CLI-007-S2</td>
+<td class="py-2.5 px-3 font-mono text-on-surface-variant">CLI-007</td>
+<td class="py-2.5 px-3 whitespace-nowrap text-on-surface">Pintura Dormitorio 12m²</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-secondary-container text-white">ML</span>
+</td>
+<td class="py-2.5 px-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-600 text-white shadow-xs">CONFIRMACION_CARRITO</span>
+</td>
+<td class="py-2.5 px-4 text-outline">—</td>
+<td class="py-2.5 px-4 font-bold text-primary">
+                  4 items (S/ 125.40)
+                  <span class="block text-[11px] font-normal text-emerald-700 font-sans">Checkout completado</span>
+</td>
+<td class="py-2.5 px-3 text-outline text-center">—</td>
+<td class="py-2.5 px-3 font-mono text-xs text-on-surface-variant">CHECKOUT_MODAL</td>
+<td class="py-2.5 px-3 font-mono text-xs text-right text-on-surface-variant whitespace-nowrap">22/09/2026 10:33:43.590</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Paginación al Pie de la Tabla -->
+<div class="px-5 py-3 border-t border-outline-variant/20 flex flex-col sm:flex-row items-center justify-between gap-3 bg-surface-container-lowest">
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+            Mostrando <span class="font-semibold text-on-surface">14</span> de <span class="font-semibold text-on-surface">184</span> eventos registrados en el protocolo
+          </div>
+<div class="flex items-center gap-1.5">
+<button class="h-8 px-2.5 rounded border border-outline-variant/50 text-xs font-medium text-on-surface hover:bg-surface-container transition-colors disabled:opacity-40 flex items-center gap-1" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span>Anterior</span>
+</button>
+<div class="flex items-center gap-1 px-1">
+<button class="w-8 h-8 rounded bg-primary-container text-white font-label-md text-label-md font-bold flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center">3</button>
+<span class="text-xs text-outline px-1">...</span>
+<button class="w-8 h-8 rounded hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center">14</button>
+</div>
+<button class="h-8 px-2.5 rounded border border-outline-variant/50 text-xs font-medium text-on-surface hover:bg-surface-container transition-colors flex items-center gap-1">
+<span>Siguiente</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- PIE DE PÁGINA INSTITUCIONAL DEL PANEL -->
+<footer class="pt-4 pb-2 border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between text-xs text-on-surface-variant gap-2">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-primary">FerreMax</span>
+<span>·</span>
+<span>Módulo de Auditoría y Telemetría Experimental</span>
+</div>
+<div class="text-right">
+          Tesis UPN 2026 · Sistema Web de Recomendación con Machine Learning
+        </div>
+</footer>
+</main>
+</div>
+</body></html>

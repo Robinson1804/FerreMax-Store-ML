@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440, initial-scale=1.0">
+  <title>FerreMax - Panel de Administración · Pedidos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              navy: '#0F2A4A',
+              navyDark: '#0A1C32',
+              navyLight: '#183B63',
+              orange: '#F26B1D',
+              orangeHover: '#DE5D12',
+              bg: '#F5F6F8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F5F6F8;
+      color: #1F2937;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      vertical-align: middle;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F1F3F5;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex bg-[#F5F6F8] text-slate-800 antialiased overflow-x-hidden">
+
+  <!-- SIDEBAR IZQUIERDA (260px fijo, #0F2A4A) -->
+  <aside class="w-[260px] bg-[#0F2A4A] text-white flex-shrink-0 min-h-screen flex flex-col justify-between select-none">
+    <div>
+      <!-- Logo Brand -->
+      <div class="h-20 px-6 flex items-center gap-3 border-b border-white/10">
+        <div class="w-10 h-10 rounded-lg bg-[#F26B1D] flex items-center justify-center font-extrabold text-white text-xl shadow-md">
+          F
+        </div>
+        <div>
+          <div class="flex items-center text-xl font-black tracking-tight leading-none">
+            <span class="text-white">FERRE</span>
+            <span class="text-[#F26B1D]">MAX</span>
+          </div>
+          <span class="text-[10px] tracking-wider uppercase text-slate-300 font-semibold mt-1 block">Panel de Control</span>
+        </div>
+      </div>
+
+      <!-- Menú de Navegación por Grupos -->
+      <nav class="px-4 py-5 space-y-6 text-sm">
+        
+        <!-- Grupo: PLATAFORMA -->
+        <div>
+          <p class="px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Plataforma</p>
+          <ul class="space-y-1">
+            <li>
+              <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                <span class="font-medium">Resumen</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+                <span class="font-medium">Productos e inventario</span>
+              </a>
+            </li>
+            <li>
+              <!-- Ítem activo: Pedidos -->
+              <a href="#" class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#F26B1D] text-white font-semibold shadow-sm transition-all">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+                  <span>Pedidos</span>
+                </div>
+                <span class="text-[11px] bg-white/20 text-white font-bold px-2 py-0.5 rounded-full">48</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">group</span>
+                <span class="font-medium">Clientes</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Grupo: INTELIGENCIA ARTIFICIAL -->
+        <div>
+          <p class="px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Inteligencia Artificial</p>
+          <ul class="space-y-1">
+            <li>
+              <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                <span class="font-medium">Recomendador</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">equalizer</span>
+                <span class="font-medium">Evaluación</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">timeline</span>
+                <span class="font-medium">Registro de eventos</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Grupo: SISTEMA -->
+        <div>
+          <p class="px-3 text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Sistema</p>
+          <ul class="space-y-1">
+            <li>
+              <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                <span class="font-medium">Configuración</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Info de sesión / Servidor activo -->
+    <div class="p-4 border-t border-white/10 text-xs">
+      <div class="bg-black/25 rounded-lg p-3 text-slate-300 flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-medium text-[11px]">Motor ML v1.2</span>
+        </div>
+        <span class="text-[10px] bg-white/10 px-1.5 py-0.5 rounded text-slate-200">En línea</span>
+      </div>
+      <div class="flex items-center justify-between px-1">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-[#183B63] border border-white/20 flex items-center justify-center font-bold text-xs text-white">
+            AD
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-white leading-tight">Admin Investigador</p>
+            <p class="text-[10px] text-slate-400">admin@ferremax.pe</p>
+          </div>
+        </div>
+        <button title="Cerrar sesión" class="text-slate-400 hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[18px]">logout</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- CABECERA SUPERIOR BLANCA -->
+    <header class="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between flex-shrink-0">
+      <div class="flex items-center gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <h1 class="text-2xl font-bold text-[#0F2A4A] tracking-tight">Gestión de Pedidos</h1>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              Sincronización en vivo
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 mt-0.5">Control de despachos, trazabilidad omnicanal y validación de compras asistidas por Machine Learning</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Acceso directo tienda pública -->
+        <a href="#" class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-xs font-medium text-slate-700 transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-slate-500">storefront</span>
+          <span>Tienda en vivo: <strong class="text-[#0F2A4A]">ferremax.pe</strong></span>
+        </a>
+
+        <!-- Notificaciones -->
+        <button class="relative p-2 text-slate-500 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors">
+          <span class="material-symbols-outlined text-[22px]">notifications</span>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#F26B1D]"></span>
+        </button>
+
+        <div class="h-8 w-px bg-slate-200"></div>
+
+        <!-- Usuario Administrador -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-[#0F2A4A] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+            AD
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-sm font-bold text-slate-800 leading-tight">Administrador</span>
+              <span class="text-[10px] font-semibold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded border border-slate-200">Principal</span>
+            </div>
+            <p class="text-[11px] text-slate-500">admin@ferremax.pe</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ÁREA DE CONTENIDO -->
+    <main class="flex-1 p-8 overflow-y-auto">
+      <div class="max-w-[1600px] mx-auto space-y-6">
+
+        <!-- FILA DE MÉTRICAS RÁPIDAS DE DESPACHO -->
+        <div class="grid grid-cols-4 gap-4">
+          <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs font-medium text-slate-500 uppercase tracking-wide">Pedidos del Turno</p>
+              <p class="text-2xl font-black text-[#0F2A4A] mt-1">48</p>
+              <p class="text-[11px] text-emerald-600 font-semibold mt-0.5 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">trending_up</span> +14.6% vs día anterior
+              </p>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-[#0F2A4A] flex items-center justify-center">
+              <span class="material-symbols-outlined text-[24px]">receipt_long</span>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs font-medium text-slate-500 uppercase tracking-wide">Pendientes de Armado</p>
+              <p class="text-2xl font-black text-amber-600 mt-1">8 <span class="text-xs font-normal text-slate-400">pedidos</span></p>
+              <p class="text-[11px] text-slate-500 mt-0.5">3 registrados · 5 en preparación</p>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[24px]">pending_actions</span>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs font-medium text-slate-500 uppercase tracking-wide">Volumen Facturado</p>
+              <p class="text-2xl font-black text-slate-800 mt-1">S/ 18,420.80</p>
+              <p class="text-[11px] text-slate-500 mt-0.5">Ticket promedio: S/ 383.76</p>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[24px]">payments</span>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex items-center justify-between">
+            <div>
+              <p class="text-xs font-medium text-slate-500 uppercase tracking-wide">Impacto Recomendaciones ML</p>
+              <p class="text-2xl font-black text-[#F26B1D] mt-1">68.4%</p>
+              <p class="text-[11px] text-slate-500 mt-0.5">33 pedidos con ítems sugeridos</p>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-orange-50 text-[#F26B1D] flex items-center justify-center">
+              <span class="material-symbols-outlined text-[24px]">smart_toy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENEDOR SPLIT: TABLA (IZQUIERDA) Y PANEL DETALLE (DERECHA) -->
+        <div class="grid grid-cols-12 gap-6 items-start">
+          
+          <!-- COLUMNA PRINCIPAL: TABLA DE PEDIDOS (8 de 12 cols) -->
+          <div class="col-span-8 bg-white rounded-xl border border-slate-200/80 shadow-sm overflow-hidden">
+            
+            <!-- PESTAÑAS DE ESTADO CON CONTADORES -->
+            <div class="border-b border-slate-200 px-6 pt-4 pb-0 bg-slate-50/50 flex items-center gap-2 overflow-x-auto">
+              <button class="px-4 py-2.5 text-xs font-bold text-[#F26B1D] border-b-2 border-[#F26B1D] flex items-center gap-2 whitespace-nowrap">
+                <span>Todos</span>
+                <span class="bg-[#F26B1D]/10 text-[#F26B1D] px-2 py-0.5 rounded-full text-[11px]">48</span>
+              </button>
+              <button class="px-4 py-2.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap transition-colors">
+                <span>Registrado</span>
+                <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-[11px]">3</span>
+              </button>
+              <button class="px-4 py-2.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap transition-colors">
+                <span>En preparación</span>
+                <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full text-[11px]">5</span>
+              </button>
+              <button class="px-4 py-2.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap transition-colors">
+                <span>Listo para recojo</span>
+                <span class="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full text-[11px]">2</span>
+              </button>
+              <button class="px-4 py-2.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap transition-colors">
+                <span>Entregado</span>
+                <span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full text-[11px]">36</span>
+              </button>
+              <button class="px-4 py-2.5 text-xs font-medium text-slate-600 hover:text-slate-900 border-b-2 border-transparent flex items-center gap-2 whitespace-nowrap transition-colors">
+                <span>Cancelado</span>
+                <span class="bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full text-[11px]">2</span>
+              </button>
+            </div>
+
+            <!-- BARRA DE ACCIONES Y FILTROS -->
+            <div class="p-5 border-b border-slate-100 flex items-center justify-between gap-4">
+              <div class="flex items-center gap-3 flex-1">
+                <!-- Buscador por número o cliente -->
+                <div class="relative flex-1 max-w-sm">
+                  <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+                  <input type="text" placeholder="Buscar por N° pedido (ej. 000245) o cliente..." value="" class="w-full pl-10 pr-4 py-2 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0F2A4A]/20 focus:border-[#0F2A4A] bg-white transition-all">
+                </div>
+
+                <!-- Filtro de fechas -->
+                <div class="flex items-center gap-2 px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors">
+                  <span class="material-symbols-outlined text-[16px] text-slate-500">calendar_today</span>
+                  <span class="font-medium">Hoy, 22 Sep 2026</span>
+                  <span class="material-symbols-outlined text-[16px] text-slate-400">expand_more</span>
+                </div>
+
+                <!-- Filtro canal opcional -->
+                <div class="flex items-center gap-2 px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors">
+                  <span class="material-symbols-outlined text-[16px] text-slate-500">filter_alt</span>
+                  <span>Canal: Todos</span>
+                  <span class="material-symbols-outlined text-[16px] text-slate-400">expand_more</span>
+                </div>
+              </div>
+
+              <!-- Botón Exportar -->
+              <button class="inline-flex items-center gap-2 px-3.5 py-2 border border-slate-200 hover:border-slate-300 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 transition-colors shadow-sm">
+                <span class="material-symbols-outlined text-[16px]">file_download</span>
+                <span>Exportar CSV</span>
+              </button>
+            </div>
+
+            <!-- TABLA DE PEDIDOS (10 filas verosímiles 000236 a 000245) -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-slate-50/75 border-b border-slate-200 text-slate-500 uppercase text-[10px] font-bold tracking-wider">
+                    <th class="py-3 px-4">N° Pedido</th>
+                    <th class="py-3 px-4">Fecha y hora</th>
+                    <th class="py-3 px-4">Cliente</th>
+                    <th class="py-3 px-4">Canal</th>
+                    <th class="py-3 px-3 text-center">Productos</th>
+                    <th class="py-3 px-4 text-right">Total S/</th>
+                    <th class="py-3 px-4">Entrega</th>
+                    <th class="py-3 px-4 text-center">Estado</th>
+                    <th class="py-3 px-4 text-center">Acción</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 font-normal">
+
+                  <!-- Fila 1: Pedido 000245 (ACTIVO / SELECCIONADO) -->
+                  <tr class="bg-orange-50/40 hover:bg-orange-50/70 border-l-4 border-l-[#F26B1D] transition-colors font-medium">
+                    <td class="py-3.5 px-4 font-bold text-[#0F2A4A] whitespace-nowrap">
+                      <div class="flex items-center gap-1.5">
+                        <span class="text-[#F26B1D] font-black">#000245</span>
+                        <span class="text-[9px] bg-[#F26B1D] text-white px-1.5 py-0.2 rounded font-bold">ACTUAL</span>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4 text-slate-600 whitespace-nowrap">Hoy, 10:33 AM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-800 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">CLI-007</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-blue-600">language</span> Web
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center font-semibold text-slate-700">4 ítems</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-[#0F2A4A]">S/ 125.40</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">local_shipping</span> Delivery Lima
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span> Registrado
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded bg-[#0F2A4A] text-white hover:bg-[#183B63] font-semibold text-[11px] transition-colors shadow-xs">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 2: Pedido 000244 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000244</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Hoy, 10:15 AM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-012</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-blue-600">language</span> Web
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">2 ítems</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 240.00</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">store</span> Recojo en tienda
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> En preparación
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 3: Pedido 000243 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000243</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Hoy, 09:48 AM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-031</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-slate-500">point_of_sale</span> Mostrador
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">6 ítems</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 485.50</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">local_shipping</span> Delivery Lima
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> En preparación
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 4: Pedido 000242 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000242</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Hoy, 09:20 AM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-019</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-blue-600">language</span> Web
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">8 ítems</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 1,120.00</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">local_shipping</span> Delivery Lima
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Listo para recojo
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 5: Pedido 000241 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000241</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Hoy, 08:50 AM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-005</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-blue-600">language</span> Web
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">1 ítem</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 48.00</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">store</span> Recojo en tienda
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Entregado
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 6: Pedido 000240 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000240</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Ayer, 18:40 PM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-028</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-blue-600">language</span> Web
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">5 ítems</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 365.80</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">local_shipping</span> Delivery Lima
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Entregado
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 7: Pedido 000239 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000239</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Ayer, 17:15 PM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-044</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-slate-500">point_of_sale</span> Mostrador
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">12 ítems</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 1,250.00</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">local_shipping</span> Delivery Lima
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Entregado
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 8: Pedido 000238 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000238</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Ayer, 16:02 PM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-016</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-blue-600">language</span> Web
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">1 ítem</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 45.00</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">store</span> Recojo en tienda
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Cancelado
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 9: Pedido 000237 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000237</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Ayer, 14:30 PM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-053</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-blue-600">language</span> Web
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">3 ítems</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 189.90</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">local_shipping</span> Delivery Lima
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Entregado
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Fila 10: Pedido 000236 -->
+                  <tr class="hover:bg-slate-50/80 transition-colors">
+                    <td class="py-3.5 px-4 font-bold text-slate-800 whitespace-nowrap">#000236</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap">Ayer, 11:10 AM</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="font-mono font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">CLI-009</span>
+                    </td>
+                    <td class="py-3.5 px-4 whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 text-slate-700">
+                        <span class="material-symbols-outlined text-[15px] text-blue-600">language</span> Web
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-3 text-center text-slate-600">4 ítems</td>
+                    <td class="py-3.5 px-4 text-right font-bold text-slate-800">S/ 315.00</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap text-slate-600">
+                      <span class="inline-flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[15px] text-slate-400">local_shipping</span> Delivery Lima
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Entregado
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center whitespace-nowrap">
+                      <button class="px-2.5 py-1 rounded border border-slate-200 text-slate-700 hover:bg-slate-100 font-medium text-[11px] transition-colors">
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+            <!-- PAGINACIÓN INFERIOR DE TABLA -->
+            <div class="p-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500 bg-slate-50/50">
+              <p>Mostrando <strong>10</strong> de <strong>48</strong> pedidos registrados</p>
+              <div class="flex items-center gap-1">
+                <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-400 cursor-not-allowed">Anterior</button>
+                <button class="px-2.5 py-1 rounded border border-[#0F2A4A] bg-[#0F2A4A] text-white font-bold">1</button>
+                <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-100">2</button>
+                <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-100">3</button>
+                <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-100">4</button>
+                <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-100">5</button>
+                <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-700 hover:bg-slate-100">Siguiente</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- COLUMNA LATERAL: DETALLE DEL PEDIDO 000245 (4 de 12 cols) -->
+          <div class="col-span-4 bg-white rounded-xl border border-slate-200/80 shadow-md p-6 space-y-6">
+            
+            <!-- Encabezado de detalle -->
+            <div class="flex items-start justify-between pb-4 border-b border-slate-100">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Orden seleccionada</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">
+                    REGISTRADO
+                  </span>
+                </div>
+                <h2 class="text-xl font-extrabold text-[#0F2A4A] mt-1">Pedido #000245</h2>
+                <p class="text-xs text-slate-500 mt-0.5">Emitido hoy a las 10:33:43 AM · Canal Tienda Web</p>
+              </div>
+              <div class="w-10 h-10 rounded-lg bg-orange-50 text-[#F26B1D] flex items-center justify-center">
+                <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+              </div>
+            </div>
+
+            <!-- Ficha del Cliente y Despacho -->
+            <div class="grid grid-cols-2 gap-3 p-3.5 rounded-lg bg-slate-50 border border-slate-200/70 text-xs">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-400">Cliente (Anonimizado)</span>
+                <p class="font-mono font-bold text-slate-800 mt-0.5 text-sm">CLI-007</p>
+                <p class="text-[11px] text-slate-500">Sesión S2 (Pintura 12 m²)</p>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-slate-400">Método de Entrega</span>
+                <p class="font-bold text-slate-800 mt-0.5 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[15px] text-[#F26B1D]">local_shipping</span> Delivery Lima
+                </p>
+                <p class="text-[11px] text-slate-500">Lima Metropolitana (24-48h)</p>
+              </div>
+            </div>
+
+            <!-- Lista de Productos comprados en este pedido -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-600">Artículos comprados (4)</h3>
+                <span class="text-[11px] font-medium text-slate-400">Comprobante: B001-000842</span>
+              </div>
+
+              <div class="space-y-2.5">
+
+                <!-- Producto 1: Pintura látex (Iniciado por usuario) -->
+                <div class="p-3 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-md bg-slate-100 flex items-center justify-center font-bold text-slate-500 text-xs flex-shrink-0 border border-slate-200/60">
+                      <span class="material-symbols-outlined text-slate-500 text-[20px]">format_paint</span>
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold text-slate-800 leading-tight">Pintura látex blanca 1 galón</p>
+                      <div class="flex items-center gap-2 mt-1">
+                        <span class="text-[10px] font-semibold text-slate-400">VENCEDOR</span>
+                        <span class="text-[10px] text-slate-300">•</span>
+                        <span class="text-[10px] text-slate-500">Cant: 2 unid. x S/ 48.00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="text-xs font-extrabold text-slate-800 block">S/ 96.00</span>
+                    <span class="text-[9px] text-slate-400 font-medium">Búsqueda directa</span>
+                  </div>
+                </div>
+
+                <!-- Producto 2: Rodillo antigoteo (Sugerido por ML) -->
+                <div class="p-3 rounded-lg border border-orange-200 bg-orange-50/30 hover:border-orange-300 transition-colors flex items-center justify-between gap-3 relative">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-md bg-white flex items-center justify-center font-bold text-orange-600 text-xs flex-shrink-0 border border-orange-200">
+                      <span class="material-symbols-outlined text-[#F26B1D] text-[20px]">brush</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1.5">
+                        <p class="text-xs font-bold text-slate-800 leading-tight">Rodillo antigoteo 9"</p>
+                        <span class="inline-flex items-center text-[9px] font-extrabold bg-[#F26B1D] text-white px-1.5 py-0.2 rounded">ML</span>
+                      </div>
+                      <div class="flex items-center gap-2 mt-1">
+                        <span class="text-[10px] font-semibold text-slate-400">TRUPER</span>
+                        <span class="text-[10px] text-slate-300">•</span>
+                        <span class="text-[10px] text-slate-500">Cant: 1 unid. x S/ 13.90</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="text-xs font-extrabold text-slate-800 block">S/ 13.90</span>
+                    <span class="text-[9px] text-[#F26B1D] font-bold">Conf. 72% · Lift 4.8</span>
+                  </div>
+                </div>
+
+                <!-- Producto 3: Brocha profesional 2" (Sugerido por ML) -->
+                <div class="p-3 rounded-lg border border-orange-200 bg-orange-50/30 hover:border-orange-300 transition-colors flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-md bg-white flex items-center justify-center font-bold text-orange-600 text-xs flex-shrink-0 border border-orange-200">
+                      <span class="material-symbols-outlined text-[#F26B1D] text-[20px]">handyman</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1.5">
+                        <p class="text-xs font-bold text-slate-800 leading-tight">Brocha profesional 2"</p>
+                        <span class="inline-flex items-center text-[9px] font-extrabold bg-[#F26B1D] text-white px-1.5 py-0.2 rounded">ML</span>
+                      </div>
+                      <div class="flex items-center gap-2 mt-1">
+                        <span class="text-[10px] font-semibold text-slate-400">TRUPER</span>
+                        <span class="text-[10px] text-slate-300">•</span>
+                        <span class="text-[10px] text-slate-500">Cant: 1 unid. x S/ 6.50</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="text-xs font-extrabold text-slate-800 block">S/ 6.50</span>
+                    <span class="text-[9px] text-[#F26B1D] font-bold">Conf. 65% · Lift 4.1</span>
+                  </div>
+                </div>
+
+                <!-- Producto 4: Cinta masking tape 2" (Sugerido por ML) -->
+                <div class="p-3 rounded-lg border border-orange-200 bg-orange-50/30 hover:border-orange-300 transition-colors flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-md bg-white flex items-center justify-center font-bold text-orange-600 text-xs flex-shrink-0 border border-orange-200">
+                      <span class="material-symbols-outlined text-[#F26B1D] text-[20px]">panorama_horizontal</span>
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1.5">
+                        <p class="text-xs font-bold text-slate-800 leading-tight">Cinta masking tape 2"</p>
+                        <span class="inline-flex items-center text-[9px] font-extrabold bg-[#F26B1D] text-white px-1.5 py-0.2 rounded">ML</span>
+                      </div>
+                      <div class="flex items-center gap-2 mt-1">
+                        <span class="text-[10px] font-semibold text-slate-400">NORTON</span>
+                        <span class="text-[10px] text-slate-300">•</span>
+                        <span class="text-[10px] text-slate-500">Cant: 1 unid. x S/ 9.00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-right flex-shrink-0">
+                    <span class="text-xs font-extrabold text-slate-800 block">S/ 9.00</span>
+                    <span class="text-[9px] text-[#F26B1D] font-bold">Regla Apriori #4</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- INSIGHT TRAZABILIDAD ML SOLICITADO -->
+            <div class="p-3.5 rounded-xl bg-orange-50 border border-orange-200/90 text-xs">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-[#F26B1D] text-[18px] mt-0.5">auto_awesome</span>
+                <div>
+                  <p class="font-bold text-slate-900 leading-tight">
+                    Origen de los productos: 3 de 4 agregados desde recomendaciones (modo Machine Learning)
+                  </p>
+                  <p class="text-[11px] text-slate-600 mt-1">
+                    Representan S/ 29.40 adicionales generados de forma algorítmica mediante reglas de complementariedad de pintado.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- RESUMEN ECONÓMICO Y MEDIO DE PAGO -->
+            <div class="pt-3 border-t border-slate-100 space-y-2 text-xs">
+              <div class="flex items-center justify-between text-slate-500">
+                <span>Subtotal (4 productos):</span>
+                <span class="font-medium text-slate-800">S/ 125.40</span>
+              </div>
+              <div class="flex items-center justify-between text-slate-500">
+                <span>Costo de envío Lima:</span>
+                <span class="text-emerald-600 font-semibold">Gratis (Promoción Web)</span>
+              </div>
+              <div class="flex items-center justify-between text-slate-500">
+                <span>Medio de pago:</span>
+                <span class="inline-flex items-center gap-1.5 font-bold text-slate-800">
+                  <span class="w-2 h-2 rounded-full bg-purple-600"></span>
+                  Yape (Billetera digital)
+                </span>
+              </div>
+              <div class="flex items-center justify-between pt-2 border-t border-slate-200 text-sm">
+                <span class="font-bold text-[#0F2A4A]">Total Pagado:</span>
+                <span class="text-xl font-black text-[#0F2A4A]">S/ 125.40</span>
+              </div>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN SOLICITADOS -->
+            <div class="space-y-2.5 pt-2">
+              <button class="w-full py-2.5 px-4 rounded-lg bg-[#F26B1D] hover:bg-[#DE5D12] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.99]">
+                <span class="material-symbols-outlined text-[18px]">inventory</span>
+                <span>Marcar en preparación</span>
+              </button>
+              
+              <button class="w-full py-2.5 px-4 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-xs flex items-center justify-center gap-2 transition-colors">
+                <span class="material-symbols-outlined text-[18px]">print</span>
+                <span>Imprimir comprobante</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL ADMIN -->
+    <footer class="h-12 bg-white border-t border-slate-200 px-8 flex items-center justify-between text-xs text-slate-400 flex-shrink-0">
+      <p>FerreMax · Módulo de Operaciones y Despacho Omnicanal</p>
+      <p>Tesis UPN 2026 · Sistema Web de Recomendación con Machine Learning</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

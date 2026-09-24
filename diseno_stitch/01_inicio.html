@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FERREMAX - Tienda Web de Ferretería</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#ffdbcc",
+            "on-surface": "#191c1e",
+            "on-primary-fixed-variant": "#304869",
+            "surface-container": "#edeef0",
+            "outline-variant": "#c4c6cf",
+            "outline": "#74777f",
+            "on-secondary-fixed": "#351000",
+            "primary-container": "#0f2a4a",
+            "on-surface-variant": "#43474e",
+            "inverse-on-surface": "#f0f1f3",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#ffb694",
+            "tertiary-fixed-dim": "#cfc5bc",
+            "surface": "#f8f9fb",
+            "surface-variant": "#e1e2e4",
+            "surface-tint": "#485f82",
+            "surface-dim": "#d9dadc",
+            "on-primary-container": "#7a92b7",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-container": "#2e2822",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#5f2200",
+            "inverse-primary": "#b0c8f0",
+            "surface-container-high": "#e7e8ea",
+            "secondary-container": "#ff7528",
+            "surface-container-low": "#f3f4f6",
+            "tertiary-fixed": "#ece0d8",
+            "on-tertiary-fixed-variant": "#4c463f",
+            "background": "#f8f9fb",
+            "surface-container-highest": "#e1e2e4",
+            "secondary": "#a14000",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#b0c8f0",
+            "on-secondary-fixed-variant": "#7b2f00",
+            "surface-bright": "#f8f9fb",
+            "on-primary-fixed": "#001c3a",
+            "on-background": "#191c1e",
+            "primary": "#00152f",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed": "#201b15",
+            "on-tertiary": "#ffffff",
+            "tertiary": "#19140f",
+            "on-tertiary-container": "#988f87",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#2e3132",
+            "primary-fixed": "#d4e3ff",
+            "error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "margin-desktop": "2.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "margin-tablet": "2rem",
+            "gutter": "1rem",
+            "gutter-tablet": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-xl-mobile": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-xl": ["Inter"],
+            "label-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "price-md": ["Inter"],
+            "label-md": ["Inter"],
+            "price-lg": ["Inter"],
+            "label-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "price-md": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "price-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scroll-hidden::-webkit-scrollbar {
+      display: none;
+    }
+    .custom-scroll-hidden {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- 1. Barra superior fina azul marino (#0F2A4A, 36 px de alto) -->
+<aside class="bg-primary-container text-on-primary h-[36px] flex items-center select-none text-body-sm font-body-sm">
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between">
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-1.5 text-surface-container">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="location_on">location_on</span>
+<span>Envíos a todo el Perú</span>
+</div>
+<div class="h-3 w-[1px] bg-primary"></div>
+<div class="flex items-center gap-1.5 text-surface-container">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="local_shipping">local_shipping</span>
+<span>Delivery rápido en Lima Metropolitana</span>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="flex items-center gap-1.5 text-surface-container">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="headset_mic">headset_mic</span>
+<span class="font-label-md text-label-md">(01) 712 3456</span>
+</div>
+<div class="h-3 w-[1px] bg-primary"></div>
+<a class="hover:text-secondary-fixed transition-colors text-surface-container" href="#ayuda">Ayuda</a>
+<div class="h-3 w-[1px] bg-primary"></div>
+<a class="hover:text-secondary-fixed transition-colors text-surface-container" href="#seguimiento">Seguimiento de pedidos</a>
+</div>
+</div>
+</aside>
+<!-- 2. Cabecera blanca (Header principal) -->
+<header class="bg-surface-container-lowest border-b border-surface-container shadow-sm sticky top-0 z-40">
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop h-[84px] flex items-center justify-between gap-space-lg">
+<!-- Logotipo -->
+<a class="flex items-center select-none" href="/">
+<span class="text-headline-xl font-headline-xl tracking-tight leading-none text-primary-container">FERRE<span class="text-secondary-container">MAX</span></span>
+</a>
+<!-- Buscador ancho y prominente -->
+<div class="flex-1 max-w-[620px] mx-auto">
+<form class="relative flex items-center w-full" onsubmit="event.preventDefault();">
+<div class="relative w-full">
+<input class="w-full h-[46px] pl-4 pr-14 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline text-body-md font-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container shadow-sm transition-all" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text"/>
+<button class="absolute right-1 top-1 bottom-1 w-[40px] bg-primary-container hover:bg-primary text-on-primary rounded-md flex items-center justify-center transition-colors cursor-pointer" title="Buscar" type="submit">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Acciones de cabecera -->
+<div class="flex items-center gap-space-lg">
+<!-- Mi cuenta -->
+<a class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg hover:bg-surface-container transition-colors cursor-pointer group" href="#cuenta">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]" data-icon="person">person</span>
+</div>
+<div class="text-left">
+<span class="block text-body-sm font-body-sm text-outline leading-tight">Hola, Inicia sesión</span>
+<span class="block text-label-md font-label-md text-primary-container">Mi cuenta</span>
+</div>
+</a>
+<!-- Separador -->
+<div class="h-8 w-[1px] bg-surface-container"></div>
+<!-- Carrito con badge y monto -->
+<a class="flex items-center gap-3 px-3 py-1.5 rounded-lg hover:bg-surface-container transition-colors cursor-pointer" href="#carrito">
+<div class="relative flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[28px]" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1.5 -right-2 bg-secondary-container text-on-secondary text-label-sm font-label-sm px-1.5 py-0.5 rounded-full min-w-[18px] text-center leading-none">2</span>
+</div>
+<div class="text-left">
+<span class="block text-body-sm font-body-sm text-outline leading-tight">Mi Carrito</span>
+<span class="block text-label-lg font-label-lg text-primary-container font-bold">S/ 159.90</span>
+</div>
+</a>
+</div>
+</div>
+</header>
+<!-- 3. Menú de navegación inferior a la cabecera -->
+<nav class="bg-surface-container-lowest border-b border-surface-container">
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop h-[48px] flex items-center gap-space-lg">
+<!-- Botón Todas las categorías -->
+<button class="bg-primary-container hover:bg-primary text-on-primary px-4 py-2 rounded-lg flex items-center gap-2 font-label-lg text-label-lg transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="menu">menu</span>
+<span>Todas las categorías</span>
+<span class="material-symbols-outlined text-[18px] text-on-primary-container" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<!-- Enlaces de navegación -->
+<div class="flex items-center gap-space-lg h-full">
+<!-- Inicio activo -->
+<a class="h-full flex items-center px-1 text-primary-container border-b-2 border-secondary-container font-label-lg text-label-lg font-bold" href="/">
+          Inicio
+        </a>
+<!-- Productos -->
+<a class="h-full flex items-center gap-1 px-1 text-on-surface hover:text-secondary-container font-label-lg text-label-lg transition-colors" href="#productos">
+<span>Productos</span>
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</a>
+<!-- Categorías -->
+<a class="h-full flex items-center gap-1 px-1 text-on-surface hover:text-secondary-container font-label-lg text-label-lg transition-colors" href="#categorias">
+<span>Categorías</span>
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</a>
+<!-- Ofertas -->
+<a class="h-full flex items-center gap-1 px-1 text-secondary-container font-label-lg text-label-lg font-bold hover:text-secondary transition-colors" href="#ofertas">
+<span class="material-symbols-outlined text-[18px]" data-icon="local_fire_department">local_fire_department</span>
+<span>Ofertas</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Contenido Principal -->
+<main class="flex-1 flex flex-col gap-space-xl pb-space-xl">
+<!-- 4. Hero de ancho completo (360 px de alto, fondo azul marino profundo #0F2A4A) -->
+<section class="w-full bg-primary-container relative overflow-hidden select-none" style="height: 380px;">
+<!-- Contenedor general -->
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop h-full relative flex items-center">
+<!-- Mitad izquierda de contenidos -->
+<div class="z-20 max-w-[620px] flex flex-col justify-center h-full py-6">
+<h1 class="text-display-lg font-display-lg text-on-primary tracking-tight leading-tight">
+            Todo para <span class="text-secondary-container">construir y renovar</span>
+</h1>
+<p class="mt-3 text-body-lg font-body-lg text-surface-container leading-relaxed">
+            Compra productos de ferretería de forma rápida y segura.
+          </p>
+<div class="mt-6 flex items-center gap-4">
+<a class="inline-flex items-center gap-2 bg-secondary-container hover:bg-secondary text-on-secondary px-6 py-3 rounded-lg font-label-lg text-label-lg font-semibold shadow-md hover:shadow-lg transition-all cursor-pointer" href="#productos">
+<span>Ver productos</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- 3 Beneficios destacados -->
+<div class="mt-8 pt-6 border-t border-primary flex items-center gap-6">
+<!-- Beneficio 1 -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/70 flex items-center justify-center text-secondary-container border border-on-primary-container/20 shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="verified_user">verified_user</span>
+</div>
+<div class="leading-tight">
+<p class="text-label-md font-label-md text-on-primary font-bold">Compra segura</p>
+<p class="text-body-sm font-body-sm text-surface-dim">Tus pagos protegidos</p>
+</div>
+</div>
+<!-- Beneficio 2 -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/70 flex items-center justify-center text-secondary-container border border-on-primary-container/20 shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="leading-tight">
+<p class="text-label-md font-label-md text-on-primary font-bold">Envíos rápidos</p>
+<p class="text-body-sm font-body-sm text-surface-dim">A todo el Perú</p>
+</div>
+</div>
+<!-- Beneficio 3 -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/70 flex items-center justify-center text-secondary-container border border-on-primary-container/20 shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="thumb_up">thumb_up</span>
+</div>
+<div class="leading-tight">
+<p class="text-label-md font-label-md text-on-primary font-bold">Productos de calidad</p>
+<p class="text-body-sm font-body-sm text-surface-dim">Garantía asegurada</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Imagen de Hero integrada con fade out a la izquierda -->
+<div class="absolute right-0 top-0 bottom-0 w-[640px] h-full pointer-events-none z-10 overflow-hidden">
+<img alt="Herramientas profesionales y materiales de construcción sobre mesa de trabajo" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpqVaK-zKFSDtKk_wSmmuoq_a3URCXBibdwFmMt9hNQuIdagKNtGZT8rjAi7py-s0jZwquM73VL-QGvXKPrgB51WsVoH0URvdrC_nkhqd6J7TWCSCMU4KOf78GVkB04-r6PvVCb4kAfL5aGGzwjjhP7lAN_cc2toAZ2VSml3SHMl6jQVWBukb4L1de6deOr6xhGIBiY9rF4yWa5XYJkBQXCuXKnEuntAcjTPm4eJmT2z6CAVKfjHesiqbPhVSdnwkmWxWwNNWZNosl"/>
+<!-- Degradado de transición a azul marino #0F2A4A -->
+<div class="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/50 to-transparent"></div>
+</div>
+</div>
+</section>
+<!-- 5. Bloque '¿Qué necesitas hacer hoy?' -->
+<section class="w-full max-w-[1360px] mx-auto px-margin-desktop -mt-4 z-20">
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container shadow-sm p-6">
+<div class="flex items-center gap-2 text-primary-container mb-3">
+<span class="material-symbols-outlined text-[24px] text-secondary-container" data-icon="lightbulb">lightbulb</span>
+<h2 class="text-headline-md font-headline-md font-bold text-primary-container">¿Qué necesitas hacer hoy?</h2>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-4">
+          Describe tu proyecto o reparación para encontrar al instante los materiales, herramientas y cantidades recomendadas.
+        </p>
+<!-- Input grande con botón de búsqueda -->
+<div class="flex flex-col sm:flex-row gap-3 items-stretch">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[22px]" data-icon="build">build</span>
+<input class="w-full h-[48px] pl-11 pr-4 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline text-body-md font-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container shadow-inner" placeholder="Escribe tu necesidad, por ejemplo: pintar un dormitorio, instalar un lavatorio, colgar repisas" type="text"/>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-6 h-[48px] rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+<span>Buscar productos</span>
+</button>
+</div>
+<!-- 4 Chips interactivos -->
+<div class="mt-4 flex flex-wrap items-center gap-2">
+<span class="text-body-sm font-body-sm text-outline mr-2 font-medium">Búsquedas frecuentes:</span>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-primary-container border border-surface-container-highest text-body-sm font-body-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="format_paint">format_paint</span>
+<span>Pintar una pared</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-primary-container border border-surface-container-highest text-body-sm font-body-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="water_drop">water_drop</span>
+<span>Instalar punto de agua</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-primary-container border border-surface-container-highest text-body-sm font-body-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="bolt">bolt</span>
+<span>Cambiar un tomacorriente</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-primary-container border border-surface-container-highest text-body-sm font-body-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="foundation">foundation</span>
+<span>Vaciar una losa pequeña</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 6. Sección 'Categorías principales' -->
+<section class="w-full max-w-[1360px] mx-auto px-margin-desktop">
+<div class="flex items-center justify-between mb-5">
+<div>
+<h2 class="text-headline-lg font-headline-lg font-bold text-primary-container">Categorías principales</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Explora los rubros más solicitados para proyectos residenciales e industriales</p>
+</div>
+<a class="text-secondary-container hover:text-secondary font-label-lg text-label-lg font-semibold flex items-center gap-1 transition-colors" href="#categorias">
+<span>Ver catálogo completo</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Layout con 6 tarjetas de categoría y tarjeta lateral de confianza -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-space-md">
+<!-- 6 tarjetas en sub-grid de 3 columnas -->
+<div class="lg:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-space-md">
+<!-- Cat 1: Pinturas y Acabados -->
+<a class="group bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-outline-variant transition-all cursor-pointer" href="#cat-pinturas">
+<div class="w-full h-28 rounded-lg bg-surface-container-low flex items-center justify-center mb-3 overflow-hidden p-2">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A clean product shot of an industrial white paint bucket with silver metal handle set against a soft neutral studio backdrop. The lighting is crisp and diffuse, accentuating the clean contours and subtle gloss of the commercial container. The visual tone aligns with modern industrial hardware stores." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4dV7wsp-VxSi6Vpq2mnTi2I3OYAikudgD-rD5TneVvsy1OoD8PYQP_dCvQDgUmsmdE5xwqsq6ANO5P0r7RM5sdouCks9D6CLjnLJMcJ76g8F-Qa6H-VijI7F1UZMJPxNzpaSIznNt1wDagC8jzUdqKP48X-aVyetInt5N988c51fMviQYK0e5LjGT8EktuRGNeIUPWXmbbpr_KBG6e7kS3dEkV4YNWg5zM9E_9Q9V-quaaTQSjRoYO6iy2CXgzSUUCXsOBgVZqrV8"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary-container group-hover:text-secondary-container transition-colors">Pinturas y Acabados</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">Látex, esmaltes y rodillos</span>
+</a>
+<!-- Cat 2: Construcción y Estructuras -->
+<a class="group bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-outline-variant transition-all cursor-pointer" href="#cat-construccion">
+<div class="w-full h-28 rounded-lg bg-surface-container-low flex items-center justify-center mb-3 overflow-hidden p-2">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A durable 42.5kg heavy duty commercial cement sack lying diagonally in a brightly lit professional industrial catalog setting. Clear textures of heavy kraft paper packaging and authentic Peruvian construction branding. High quality studio lighting emphasizes rugged reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpm8Dr3qPq5BcMekrPE-MLI2e7M_ALvXvphP0QYk33O_DHS5w8bgpFT-XxOH4i-59QyyDTqUq-eganH8kdIU4lYXlVapb_2vdB01F1HqzvNpQyhQw-OFrW1zBjrLZ2HTV_QuYkc8WoYjSRkgkjEHsC9io3DQJsHNwf5n9MOzqXboqBoS0wcjdttriYNdC_dVmHwz6dyN-AqYIq8gZ_8zR3GP1Cdl_MhbmlsmLrDZlF4pzjzT9rRn_BOEUAr0tTN6gawc5QNUc5Bnec"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary-container group-hover:text-secondary-container transition-colors">Construcción y Estructuras</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">Cemento, fierros y agregados</span>
+</a>
+<!-- Cat 3: Gasfitería -->
+<a class="group bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-outline-variant transition-all cursor-pointer" href="#cat-gasfiteria">
+<div class="w-full h-28 rounded-lg bg-surface-container-low flex items-center justify-center mb-3 overflow-hidden p-2">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Organized stack of clean gray and orange PVC pipes alongside plumbing elbows and fittings arranged neatly in a studio setup. Bright high-key light highlights smooth industrial plastic surfaces and standardized pipe measurements. Professional hardware commerce style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlst57lEFlQrLys5R_KtddiCYG0DiE05Gbb5yWtP4zgBPEx42oUlxhMclLR0OW0ErN1jB5U84e45W12W2W5Qgddt_cadZSAdcwevYVWQwA6bXj2VzxgU7gp8mk1WJhlGAgA0flDIOyWG3GpYYbkkTdiYO5h9Hqt2z5rpiLU2rIwPf5XHOEK2e3ziPjKVPvsqA9F1DwBcaTYWGdWzmKatNYyzk-ApVVKw1iax0NHW8SeCUOZsQQPYdnK2qKqNuS4OQl4ZWlfSsth4vn"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary-container group-hover:text-secondary-container transition-colors">Gasfitería</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">Tubos PVC, llaves y válvulas</span>
+</a>
+<!-- Cat 4: Electricidad -->
+<a class="group bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-outline-variant transition-all cursor-pointer" href="#cat-electricidad">
+<div class="w-full h-28 rounded-lg bg-surface-container-low flex items-center justify-center mb-3 overflow-hidden p-2">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A neat coil roll of bright red electrical wire cable resting next to safety breakers in a clean hardware photography environment. Crisp modern lighting, sharp edges showing copper conductor wire core, vibrant insulation tone matching civil engineering standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkEj1lnl9Q-NEwqTPJhDTSpF_ycpwtn7SFTwfeh5qN8tEriSjLTqvEFvVsrbaW41p6ectUn0Wtw9_SI26FNPo6EKIGRAFw_C0842x6_6HHI23RcgDUpy7oSCoALsJqXxbHsnorhcyFhJDKNAO32aiNz8AfD-OElK3nml270woeQS4jTaMH6tM2o87JWnWgSiLpB6Fd_nh4XeKhblJDzQ50-olZpRpbiUqnz8bzZhSf5awfwHnFXkpgU6Au_p_3YR1Sq7Jv9GH6tcLy"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary-container group-hover:text-secondary-container transition-colors">Electricidad</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">Cables, placas y térmicos</span>
+</a>
+<!-- Cat 5: Herramientas -->
+<a class="group bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-outline-variant transition-all cursor-pointer" href="#cat-herramientas">
+<div class="w-full h-28 rounded-lg bg-surface-container-low flex items-center justify-center mb-3 overflow-hidden p-2">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="An ergonomic heavy duty compact yellow and black power drill standing upright on a pale neutral surface. Modern power tool design with metallic chuck and rubber grip highlights, illuminated by soft balanced studio photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv1tk1S2vtmrvK_vc1dbl2cicL4quuPJXyJvSDPZtaPX_bkuXR2Gg_-ZFnqjk0Nj1tu4cVgOmCdrNAZtviXaA9IfRaVrp4C7X60xVp3nogsgrYxdyTEbQJ3GQxZSHTo7tnMAzfXJeXdoDxYCQTx-Dj7P-I-tgQ7S4YcELPe2-zFbzPSyYR397n1EdaUHfTvSwaWPDFFue83-CtXWSopGoW_9JteG9yM9VwlJ8xdVWiyR12vKA2KiPX3SirIAb5TMAvuupqx_BUuR_t"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary-container group-hover:text-secondary-container transition-colors">Herramientas</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">Eléctricas y manuales</span>
+</a>
+<!-- Cat 6: Ferretería General -->
+<a class="group bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-outline-variant transition-all cursor-pointer" href="#cat-ferreteria">
+<div class="w-full h-28 rounded-lg bg-surface-container-low flex items-center justify-center mb-3 overflow-hidden p-2">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A clean arrangement of zinc-plated industrial steel screws, bolts, and threaded fasteners gleaming under bright commercial studio lighting. Precision threads and sharp points displayed on a neutral cool light gray surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRU0F_7OLcxEQQFHAOXZUsvMChWghOlrXjG7SiLzCfMLV0lYpjjjsuPYOAokSkytdfncRaVCd6-iMQeEqZiFTLemYRUpLHeTysh0S2vwv4tdL_xzrBtN504eF8qcMkGrtLzcs8o1lqiqJZuwm4J1xUlHZziK4bGTorPbo7SweS1bE5wDg7vvrR2rpvM2rymx0DaSvJC7Ocd7QCWjRaAo6THXrvZq-J-tp-bUZTvWNQWkYegR9QQwR-V-lb31sBbRIxcFa37OdZnSS7"/>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary-container group-hover:text-secondary-container transition-colors">Ferretería General</span>
+<span class="text-body-sm font-body-sm text-outline mt-0.5">Tornillería, cerraduras y fijaciones</span>
+</a>
+</div>
+<!-- Tarjeta lateral de destaque / confianza -->
+<div class="bg-surface-container rounded-xl border border-surface-container-highest p-6 flex flex-col justify-between">
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container text-on-primary text-label-sm font-label-sm mb-4">
+<span class="material-symbols-outlined text-[14px]" data-icon="store">store</span>
+<span>VENTA DIRECTA &amp; MAYORISTA</span>
+</span>
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary-container mb-2">Abastecimiento Integral para Obra</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+              Atendemos proyectos de construcción civil, remodelaciones residenciales y compras corporativas con precios preferenciales por volumen.
+            </p>
+</div>
+<div class="mt-6 pt-6 border-t border-surface-container-highest space-y-4">
+<!-- Indicador 1 -->
+<div class="flex items-start gap-3 bg-surface-container-lowest p-3 rounded-lg border border-surface-container shadow-2xs">
+<div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="inventory_2">inventory_2</span>
+</div>
+<div class="text-left">
+<p class="text-label-md font-label-md text-primary-container font-bold">En stock</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Miles de productos disponibles</p>
+</div>
+</div>
+<!-- Indicador 2 -->
+<div class="flex items-start gap-3 bg-surface-container-lowest p-3 rounded-lg border border-surface-container shadow-2xs">
+<div class="w-8 h-8 rounded-full bg-blue-100 text-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="text-left">
+<p class="text-label-md font-label-md text-primary-container font-bold">Delivery rápido</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Recibe tu pedido en 24-48 h</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Sección 'Productos destacados' -->
+<section class="w-full max-w-[1360px] mx-auto px-margin-desktop">
+<div class="flex items-center justify-between mb-5">
+<div>
+<h2 class="text-headline-lg font-headline-lg font-bold text-primary-container">Productos destacados</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Los insumos y herramientas más solicitados por maestros de obra y contratistas</p>
+</div>
+<a class="text-secondary-container hover:text-secondary font-label-lg text-label-lg font-semibold flex items-center gap-1 transition-colors" href="#destacados">
+<span>Ver todos</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Fila/grilla uniforme de 8 tarjetas de producto de igual altura (4 cols en desktop) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-md">
+<!-- P1: Pintura látex blanca 1 galón | Vencedor | S/ 48.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A commercial one gallon bucket of matte white architectural wall paint with clean label design, centered on a neutral gray background. Sharp detailed studio photography highlighting the sealed lid, durable plastic pail, and high opacity finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIv4-rIck-2vF2eNhdmgjkvTLi2GgeE_rY_XuL9HRvTgVrpEbB9k0zNJ86BjZFXf5kJ5MI8iQyMzBnqtCKWNSPUPQOTMP58kLviqpWis8IFG2J3RTU9VdFu3gTy7R_GjNQyt-_7c8zJudwLnCv5UoLe6YV8dB4S6_zDv41g9lmFagg_AGITD90J6_RBVEUKDEhRTMB7Vif6QYyOljmhLxg6Dp1QaDuxp2mI-QBAahw0Tat_Kj1dIXNJJdnTToW6cDu8jMmOsCcS2uh"/>
+<span class="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">Comprado junto</span>
+</div>
+<div class="mt-3">
+<span class="text-body-sm font-body-sm text-outline font-medium">Vencedor</span>
+<h3 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                Pintura látex blanca 1 galón
+              </h3>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
+<span class="text-price-md font-price-md text-primary-container">S/ 48.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- P2: Cemento Sol Tipo I 42.5 kg | Aceros Arequipa | S/ 30.50 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A heavy 42.5 kilogram sack of Portland Type I construction cement, photographed in a pristine commercial hardware studio with realistic paper fiber texture and red-orange industrial brand typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAFOD4m8kjPeYFMeJWIXBIOSeaRhy5s4Xa3M_n7KGyu4UkCR-x1zmFm1CEkMZ99331RAVXjAfgpZa8kspus5EH_3tNp3wJcYnmmZO5gYGkYnUsQEoVMFhXCmF3WTz9PMl1FgXzf0YO6s9mfaNfSZFC4WpAROUzQEEKMb9C0BUSgAWXUB1nMgzU23bwoqNS2d_7cj-2Q40GwzJokDQzCql_Rk_WI_vfrgKsoGtsSStLkAMCnzuYXaa_xOJ3adcfJBYRGLeVDnYXr5UZ"/>
+<span class="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">Comprado junto</span>
+</div>
+<div class="mt-3">
+<span class="text-body-sm font-body-sm text-outline font-medium">Aceros Arequipa</span>
+<h3 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                Cemento Sol Tipo I 42.5 kg
+              </h3>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
+<span class="text-price-md font-price-md text-primary-container">S/ 30.50</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- P3: Taladro percutor 1/2" 650 W | Makita | S/ 240.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A professional electric hammer drill with teal blue casing and black rubber grip, featuring metallic half-inch keyed chuck. Studio light captures the textured handle and precision engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAieZIqKLI1i1nKUQbSTO8w8-rIS3StZynPrYUcGTL24uU1WNdFaS4lFkMYKkipudwg-Rh32m4-2mCXgB_dsTEtWhePDpbC2niDjhYq2wkesdKvIHHVZ0T6Ik4w8bzweVhEAXgT9dT2nAeLTC-3ivr5o8ZvCXD3vhzwKQfxV7_FCcm-FLhXIskpRALm0hZi50TBgtY_IjK0WG3euNmesArjR5a7mLdUu0kG1o4KEoS6PBq3DCRl14dte6kP2bn1W4Fr1IFVXWK-b_1F"/>
+<span class="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">Comprado junto</span>
+</div>
+<div class="mt-3">
+<span class="text-body-sm font-body-sm text-outline font-medium">Makita</span>
+<h3 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                Taladro percutor 1/2" 650 W
+              </h3>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
+<span class="text-price-md font-price-md text-primary-container">S/ 240.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- P4: Tubo PVC SAP 1/2" x 5 m | Pavco | S/ 22.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Rigid gray PVC plumbing pressure pipe with bell end, photographed horizontally against a minimal studio background. Clear blue printed technical specifications along the side of the industrial pipe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrSw8HXMmqhhmOB7Kf_TnXczfWnuhkPDvNn7cWU76ZgKpi8f8e-uA2PXdAxC0jHlDDinUBZpoElD6g0YhjGfL1MljKqEiN1-SAGQYu95YFf6nvTW6VHDaHjci8OL6f0mHY51bRQvQq2VDqHh_7g3SMTayWmAcpGWz3Z8atu_E6ZOD7DeRpYps6oe8o-mPXhbJdebMH8mnPimrgn-Ca6rr_vyLje2LhD1_5doRYqaXcSqfaJYyYSSxoPVZviuOeGqtNMegL7u6jXo8h"/>
+<span class="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">Comprado junto</span>
+</div>
+<div class="mt-3">
+<span class="text-body-sm font-body-sm text-outline font-medium">Pavco</span>
+<h3 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                Tubo PVC SAP 1/2" x 5 m
+              </h3>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
+<span class="text-price-md font-price-md text-primary-container">S/ 22.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- P5: Cable THW 14 AWG x 100 m | Indura | S/ 115.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A shrink-wrapped 100 meter roll spool of blue single-core THW electrical copper building wire, shown in clean high-contrast catalog photography with crisp reflection on smooth surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-nzS4kQT4pSiNthk5ZJ770YSxupcr5gI3kTwYLRogMRQW5oLR7l_rqbGPIQMooef0BcaspwlkhCcalTkVfW_kLqWxC586N9up0dtPjaJ-0s1adyTpkDO0Re8JsFCzc64J8xfVVatZkeQI4EY0LEsR6C80xCYgwpp0hXXpZV2UmHUg234YQXvgR2s48f8Ikz9tT_GwMI850crHUFdMANMZMyD92dSbJo8aiQ_KIxqW97EG30k7p_-tp2LkOvydhOlEQHYn8XjWugRe"/>
+<span class="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">Comprado junto</span>
+</div>
+<div class="mt-3">
+<span class="text-body-sm font-body-sm text-outline font-medium">Indura</span>
+<h3 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                Cable THW 14 AWG x 100 m
+              </h3>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
+<span class="text-price-md font-price-md text-primary-container">S/ 115.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- P6: Martillo uña de acero 16 oz | Truper | S/ 34.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A 16-ounce forged steel claw hammer with orange and black anti-slip fiberglass handle, positioned diagonally on a soft light studio background. Balanced clean commercial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhHOSn9N5plFoxCtHd5FP4gILVwMJrCmxEadEW241U7eiiGN1RKISFNmt4Wi6bOjmSnph2FP4LGYwOm2I8GGibrHOzgg97rBGen-z15kxgQYPo52sQ0tp4G8f0Hj-BvgEFa0JfckeRQR-y4dGe7_reFTnNEtLqbxsrZFt_Sf1DQXAXYL0nfPnC9To-srO-Roo5FVW5lqTtRuc7xwPGJoQC0SBD3i164njr6gRFNjKxEy28BiiCVGhUMGY-nhAd6Er1Y4l1WW_xY9uV"/>
+<span class="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">Comprado junto</span>
+</div>
+<div class="mt-3">
+<span class="text-body-sm font-body-sm text-outline font-medium">Truper</span>
+<h3 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                Martillo uña de acero 16 oz
+              </h3>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
+<span class="text-price-md font-price-md text-primary-container">S/ 34.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- P7: Esmalte sintético negro 1 galón | CPP | S/ 68.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A commercial metal paint can of high gloss black synthetic enamel paint, featuring authentic Peruvian industrial branding, isolated neatly with delicate reflections on a white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW6UTmpl71kPffjlGs2WkJLaDRwihyZnKNP9RVtAA4mBGVmOy9hBfWUwNfzGiat7DPl9s--QvZAT8yNAGDKM8rEPExFA0FMy1vsHmvITzMynA8UcV85Mjl3A0-jlM7U9TBeyz2QrlekvrTwpHmI2x5XVX3sh_bzCCF04cQi7jUgLYjOIT6KduOFi4S6cbZjQ9AGu91X8juKsJ0nSaXNlowzeSZL-EJ_vsgDof9glUZbABrQSsDl6uOVK6f2yeeZ5KSR0TPueH1YUDq"/>
+<span class="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">Comprado junto</span>
+</div>
+<div class="mt-3">
+<span class="text-body-sm font-body-sm text-outline font-medium">CPP</span>
+<h3 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                Esmalte sintético negro 1 galón
+              </h3>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
+<span class="text-price-md font-price-md text-primary-container">S/ 68.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- P8: Tomacorriente doble con tierra | Bosch | S/ 15.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A modern modular white double electrical wall outlet with grounded three-prong slots and sleek screwless wall plate. High clarity macro studio photography showcasing immaculate plastic surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfrlslV33V-Yve2axckdcOhpKco6VsjCeaGiQAPd-7taOY0JupdB89-NIYQD8_coRvrG7bpCzASwWu0KynS_8TIExxkIHOZpa490qaTWa5Qk9PZt2i2-gk0a6M3Bs6jXgZdVxAODQlPc9iRi2n8_10rQOqHkNNfokid7Mr9Nlfx9TdT6yoObzNAtQriLdL7qwPzv2an659guBqTDS1DG5X87ieV-CQGD17ZaFVliOSSzu5frdlr1ZoNnYuUJg8a_EROeOTk25jfgbx"/>
+<span class="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">Comprado junto</span>
+</div>
+<div class="mt-3">
+<span class="text-body-sm font-body-sm text-outline font-medium">Bosch</span>
+<h3 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                Tomacorriente doble con tierra
+              </h3>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
+<span class="text-price-md font-price-md text-primary-container">S/ 15.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. Bloque 'Recomendados para ti' con fondo naranja muy claro (#FFF3EA) y Machine Learning -->
+<section class="w-full max-w-[1360px] mx-auto px-margin-desktop">
+<div class="rounded-xl border border-[#FDBA74]/40 bg-[#FFF3EA] p-6 shadow-sm">
+<!-- Cabecera del bloque IA / Machine Learning -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#FBD7C0]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[22px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-headline-md font-headline-md font-bold text-primary-container">Recomendados para ti</h2>
+<a class="text-secondary-container hover:text-secondary font-label-sm text-label-sm font-bold ml-2 transition-colors" href="#todos-recomendados">
+                  Ver todos →
+                </a>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Basado en tus intereses y compras</p>
+</div>
+</div>
+<!-- Etiqueta/Badge Machine Learning -->
+<div class="flex items-center">
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest border border-outline-variant/60 shadow-2xs text-primary-container">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="memory">memory</span>
+<span class="text-label-sm font-label-sm font-semibold tracking-wide">Modo: Machine Learning</span>
+</div>
+</div>
+</div>
+<!-- 8 tarjetas de productos recomendados de igual altura (grid 4 cols x 2 filas) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-md">
+<!-- Rec 1: Rodillo antigoteo 9" | Truper | S/ 13.90 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A 9-inch professional microfiber anti-drip paint roller with metal cage and orange ergonomic handle, shown against a soft studio backdrop in high clarity hardware styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl3EJo0Xbe4duJoMiiFNPqJUYI5XYzte4J_1fF4OWGVKknCKOUm87PNMOxSppXs1kOsgp9-61QXRJeoYX8BiOuW_MUcMYM_aOMMUi3Yrfzl4aoK5HMTk74ThqAjdUsZaWGBkmcY0VHLnjgatTzRe8dhFmpS8FGumjxdB2X32H6ApAvrV_cISUBB4qklqYrQybH4pt5t2hjV31jsosC2dCcyUPhBsW5Cy-RVFVe1vwUjuuejH6pfWFwKBZjTX6uA4nZg23hOy_0VIP6"/>
+<span class="absolute top-2 left-2 inline-flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded-full text-emerald-700 text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
+                </span>
+</div>
+<div class="mt-2.5">
+<span class="text-body-sm font-body-sm text-outline font-medium">Truper</span>
+<h4 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                  Rodillo antigoteo 9"
+                </h4>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-price-md font-price-md text-primary-container">S/ 13.90</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- Rec 2: Brocha profesional 2" | Truper | S/ 6.50 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A 2-inch wide paintbrush with natural smooth bristles, stainless ferrule, and varnished wooden handle on a pale neutral backdrop. Clean product photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFjTvyKBDuvfYv1b9GSHxgyQLHYQ8Ds72aKE6MpkB37aogfMfg8CwDODtEWkrSqRrVuOD6pBHinRdoS86uSi0I4OWGKxcBkZ9Aqjn4QWJS3JrWredAxhEAILe0DdkI5o05AbkqL0M19Pd7qZwPEkV6pLpdbaqMqh9MJ_iothlryqlLgQRoXY8I4Xec16SmZOoOubllESKjDxfYjUinF7y2avuuuXI8PPe-4hXmITL-VzHrSIJtXLQObrUwkhuWNBPJdJfNGchDzlZ2"/>
+<span class="absolute top-2 left-2 inline-flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded-full text-emerald-700 text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
+                </span>
+</div>
+<div class="mt-2.5">
+<span class="text-body-sm font-body-sm text-outline font-medium">Truper</span>
+<h4 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                  Brocha profesional 2"
+                </h4>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-price-md font-price-md text-primary-container">S/ 6.50</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- Rec 3: Lija para pared grano 120 | Norton | S/ 6.90 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="Sheets of fine 120 grit wall sandpaper pack neatly displayed with visible abrasive silicon carbide texture against a minimal studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5XOr77Eij2sVqd6Hb2zM_pIr2IZRGXzkhCxGqg7Yp1px9-iAUn2AFfAhZRVPEUg5pJNkNZug6SOrEPgrHPjJkKjaqJfwDtPj07rqnkstkpI2_LooaRQnU2ApnoQVQI3wiVwF77pz-940cBhV6JAqTIZZfXAD4qrQGs_qPOohx9xwZcUug06KYQFt1880Wg7Fj-6sAka2FSdyYxfEL9MOJtHXCQSkDM_memJ0TudTyJR5mFL95qjYlzyWzEvU2lXuAU4AP2HYEo4ef"/>
+<span class="absolute top-2 left-2 inline-flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded-full text-emerald-700 text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
+                </span>
+</div>
+<div class="mt-2.5">
+<span class="text-body-sm font-body-sm text-outline font-medium">Norton</span>
+<h4 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                  Lija para pared grano 120
+                </h4>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-price-md font-price-md text-primary-container">S/ 6.90</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- Rec 4: Cinta masking tape 2" | Norton | S/ 9.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A clean roll of wide 2-inch beige masking tape for painters, shown standing on end on an off-white reflective surface with sharp edges and clear paper texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-CZQ0eFhyathpB5Z3TpJoAG9oUSQEZy08NfNMG8dyq5oUkkQKyo_GrxeX45qX5wk0WF2_qYpMSeg1HjThpAc4KUpMBLfBEPDnQWOySG8fMQ4ia6NsEoPjAvTtv5jVt1BBhsGOjXSs5ERIBOSU5k6o3YUILqNBkc783lSROWXM0n3TVSc5RIEb1Ed4SywCvVIS8ND0NFi32iTxbnL7cgP-crpEP8lz7ToeyxEb0fEEvQqlHUrBDzJukQtyTDif84j3gw12Z7F9S5Fy"/>
+<span class="absolute top-2 left-2 inline-flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded-full text-emerald-700 text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
+                </span>
+</div>
+<div class="mt-2.5">
+<span class="text-body-sm font-body-sm text-outline font-medium">Norton</span>
+<h4 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                  Cinta masking tape 2"
+                </h4>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-price-md font-price-md text-primary-container">S/ 9.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- Rec 5: Bandeja para pintura | Truper | S/ 8.90 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A durable black plastic painter's roller tray with textured ramp and deep reservoir, captured in professional studio product lighting on a neutral surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOV45XmgC_agND-qd_EqCnMf3TYbFlTxJu_Wd6wyor6gdsHFIqgEmn30Ll-e3hM_RAergL_R_cPZYE8G4w89-DnKGK17EHHduqkYvMcaPwkolEM4dk-Zz1yh5-vqNsJG__upu0yVXIw6ZsNh0k-F-aO53E7oh8kM5JzHYmF-yJteC7FoFPjQ03iVznHRhn6HU6HeXXTQJnamQT0IlqUGbmHTgo09Nl8hRr8miBjf_60c1mV7E4abVXU2xwWc8oUdU0BjHUI77pNiq1"/>
+<span class="absolute top-2 left-2 inline-flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded-full text-emerald-700 text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
+                </span>
+</div>
+<div class="mt-2.5">
+<span class="text-body-sm font-body-sm text-outline font-medium">Truper</span>
+<h4 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                  Bandeja para pintura
+                </h4>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-price-md font-price-md text-primary-container">S/ 8.90</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- Rec 6: Imprimante para paredes 1 galón | Vencedor | S/ 34.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A 1-gallon plastic container pail of white wall primer sealant with commercial typography and carrying handle, photographed in clean high-key illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnxufJSxlNdFAFMxhn2LMJywj3AVbVBqD0QFgJTm_jNoDR8jocTvXndVgpmdY6x5tYI4i70KttEqgh9ZJVhhDmDhdDegftYqWDqUAoMUlTQ5oxMdrg5jbTjZfuWFxPtHRTJbM8brEaRvhkBQcsFLRyOMqQ1npWH26re8i4CjZ2eUCUteD3HNPXWGa0Xp1Jwgcd0Qd6Ta_dES-FXrKpD2qkFVslseUS7kyFdaJKAZZBcEZNpUUurbBP9pSg5dy1qu3I3DoaKp4pkwfJ"/>
+<span class="absolute top-2 left-2 inline-flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded-full text-emerald-700 text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
+                </span>
+</div>
+<div class="mt-2.5">
+<span class="text-body-sm font-body-sm text-outline font-medium">Vencedor</span>
+<h4 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                  Imprimante para paredes 1 galón
+                </h4>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-price-md font-price-md text-primary-container">S/ 34.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- Rec 7: Thinner acrílico 1 L | CPP | S/ 15.90 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A 1 liter metal industrial can container of clear paint thinner and solvent with screw cap, displayed on a clean reflective studio floor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAODwfF9dytWIOXFuFVwrd2qaA6F57Co3agg5khIg4MN5Q1S6h26uCldHUAdVQnkR52Ddh5SIzPaeSdH6JCHEyP6_SmVNNTXaZP1-WfgLrIN2UFa3e2wZ6xn8-IXTxWij4K_XGxYYFLv1eVoGw3XHaxEqAsdODD9DrJl3wiIvhOU3_4rHGd3VmeCy_8LdheANOi9I3W3eBbs-oJanZZPH-LtvsHJWTOuQ6GRU9Nl96Vm1t6-QMiHjUgdzwmcsQmOfK1ydIy4kBE0O5s"/>
+<span class="absolute top-2 left-2 inline-flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded-full text-emerald-700 text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
+                </span>
+</div>
+<div class="mt-2.5">
+<span class="text-body-sm font-body-sm text-outline font-medium">CPP</span>
+<h4 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                  Thinner acrílico 1 L
+                </h4>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-price-md font-price-md text-primary-container">S/ 15.90</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+<!-- Rec 8: Wincha 5 metros | Stanley | S/ 22.00 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div>
+<div class="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
+<img class="h-full object-contain group-hover:scale-105 transition-transform duration-300" data-alt="A durable yellow 5-meter measuring tape with black rubberized edges and metal belt clip, resting on a clean surface in studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnGTlU1ggNF8aRuhBr-gZv0zP1nE3l4TOfK8IM37WC430xc02tsd7Uhy4EbFnOXTyjFXrCOGdL6qKo_r4RRqPNSzyUs__2ApPYRy0uSZiKSmFxMF5zS-uE2o0xdmQB7FVanvtU8WhyqOSHUvTJmOr45HnB4eyZPBQ8eBOGHuWTPNut0DRF__qX6xl9YFz-5j8r_v7X2AfCu4iVZ7VPVRLUR6iw_YaS0BlnLByeYfP4Ahs0SmEiPB0zDEGhByYBtGjk0eCO53iAJMsJ"/>
+<span class="absolute top-2 left-2 inline-flex items-center gap-1 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded-full text-emerald-700 text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
+                </span>
+</div>
+<div class="mt-2.5">
+<span class="text-body-sm font-body-sm text-outline font-medium">Stanley</span>
+<h4 class="font-label-lg text-label-lg text-primary-container font-semibold line-clamp-2 mt-0.5 group-hover:text-secondary-container transition-colors">
+                  Wincha 5 metros
+                </h4>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div>
+<span class="text-price-md font-price-md text-primary-container">S/ 22.00</span>
+</div>
+<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Agregar</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- 9. Pie de página azul marino (#0F2A4A, texto claro) -->
+<footer class="bg-primary-container text-on-primary">
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-xl">
+<!-- 4 Columnas principales -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg mb-10">
+<!-- Col 1: Sobre FerreMax -->
+<div>
+<a class="inline-block select-none mb-4" href="/">
+<span class="text-headline-md font-headline-md font-extrabold tracking-tight text-on-primary">FERRE<span class="text-secondary-container">MAX</span></span>
+</a>
+<p class="text-body-sm font-body-sm text-surface-container leading-relaxed mb-4">
+            Líderes en abastecimiento de herramientas, materiales de construcción y acabados para obras residenciales y proyectos de gran envergadura en todo el Perú.
+          </p>
+<div class="space-y-1.5 text-body-sm font-body-sm text-surface-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="call">call</span>
+<span>Central: (01) 712 3456</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="mail">mail</span>
+<span>contacto@ferremax.pe</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="schedule">schedule</span>
+<span>Lun - Sáb: 7:00 am - 7:00 pm</span>
+</div>
+</div>
+</div>
+<!-- Col 2: Categorías -->
+<div>
+<h4 class="text-label-lg font-label-lg font-bold text-on-primary mb-4 pb-1 border-b border-primary">
+            Categorías
+          </h4>
+<ul class="space-y-2 text-body-sm font-body-sm text-surface-container">
+<li><a class="hover:text-secondary-fixed transition-colors" href="#cat-pinturas">Pinturas y Acabados</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#cat-construccion">Construcción y Estructuras</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#cat-gasfiteria">Gasfitería y Tuberías</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#cat-electricidad">Electricidad e Iluminación</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#cat-herramientas">Herramientas Eléctricas y Manuales</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#cat-ferreteria">Ferretería General y Cerrajería</a></li>
+</ul>
+</div>
+<!-- Col 3: Ayuda y Soporte -->
+<div>
+<h4 class="text-label-lg font-label-lg font-bold text-on-primary mb-4 pb-1 border-b border-primary">
+            Ayuda y Soporte
+          </h4>
+<ul class="space-y-2 text-body-sm font-body-sm text-surface-container">
+<li><a class="hover:text-secondary-fixed transition-colors" href="#seguimiento">Seguimiento de pedidos</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#politicas-envio">Políticas de Envío Nacional</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#preguntas">Preguntas Frecuentes (FAQ)</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#soporte-tecnico">Soporte Técnico</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors flex items-center gap-1.5" href="#libro-reclamaciones">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="menu_book">menu_book</span>
+<span>Libro de Reclamaciones</span>
+</a></li>
+</ul>
+</div>
+<!-- Col 4: Empresa -->
+<div>
+<h4 class="text-label-lg font-label-lg font-bold text-on-primary mb-4 pb-1 border-b border-primary">
+            Empresa
+          </h4>
+<ul class="space-y-2 text-body-sm font-body-sm text-surface-container">
+<li><a class="hover:text-secondary-fixed transition-colors" href="#corporativa">Venta Corporativa y Obra</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#terminos">Términos y Condiciones</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#privacidad">Políticas de Privacidad</a></li>
+<li><a class="hover:text-secondary-fixed transition-colors" href="#nosotros">Nuestra Red de Tiendas</a></li>
+</ul>
+<div class="mt-6 pt-4 border-t border-primary">
+<span class="block text-label-sm font-label-sm text-surface-dim uppercase tracking-wider mb-2">Medios de pago seguros</span>
+<div class="flex items-center gap-2 text-surface-container">
+<span class="material-symbols-outlined text-[20px]" data-icon="credit_card">credit_card</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance">account_balance</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="qr_code_2">qr_code_2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Línea final divisoria con mención de Tesis y derechos reservados -->
+<div class="border-t border-primary pt-6 flex flex-col md:flex-row items-center justify-between text-body-sm font-body-sm text-surface-dim gap-4 text-center md:text-left">
+<div>
+<p class="font-medium text-surface-container">Tesis: Sistema web basado en Machine Learning para la recomendación de productos · UPN 2026</p>
+<p class="text-label-sm font-label-sm text-outline mt-0.5">© 2026 FerreMax Perú S.A. - Proyecto de Tesis UPN. Todos los derechos reservados.</p>
+</div>
+<div class="flex items-center gap-4 text-body-sm font-body-sm">
+<a class="hover:text-on-primary transition-colors" href="#privacidad">Privacidad</a>
+<span>·</span>
+<a class="hover:text-on-primary transition-colors" href="#terminos">Términos</a>
+<span>·</span>
+<a class="hover:text-on-primary transition-colors" href="#seguridad">Seguridad de Datos</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

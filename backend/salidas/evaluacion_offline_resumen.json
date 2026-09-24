@@ -1,0 +1,116 @@
+{
+  "fecha_corrida": "2026-09-24 18:14:08",
+  "semilla": 42,
+  "k": 5,
+  "particion": "temporal 80/20 por fecha de comprobante",
+  "n_comprobantes": 420,
+  "n_entrenamiento": 336,
+  "n_prueba_total": 84,
+  "n_prueba_evaluados": 80,
+  "periodo_entrenamiento": [
+    "2026-01-02",
+    "2026-05-25"
+  ],
+  "periodo_prueba": [
+    "2026-05-25",
+    "2026-06-30"
+  ],
+  "umbrales": {
+    "soporte_min": 0.01,
+    "confianza_min": 0.15,
+    "lift_min": 1.2
+  },
+  "peso_contenido": 1.0,
+  "reglas_entrenadas": 566,
+  "cf_productos": 59,
+  "cf_clientes": 132,
+  "reordenador": {
+    "tipo": "lightgbm",
+    "n_ejemplos": 18794,
+    "n_positivos": 1031,
+    "n_contextos": 1109,
+    "cobertura_candidatos": 0.9297,
+    "ap_validacion": {
+      "regresion_logistica": 0.258,
+      "lightgbm": 0.3147
+    },
+    "validacion": "temporal: último 10 % de las boletas de entrenamiento"
+  },
+  "cobertura_candidatos_prueba": 0.8625,
+  "modos": [
+    "CONV",
+    "ML_REGLAS",
+    "ML_COMPLETO"
+  ],
+  "por_modo": {
+    "CONV": {
+      "precision5": {
+        "n": 80,
+        "media": 0.1025,
+        "mediana": 0.2,
+        "de": 0.1006
+      },
+      "recall5": {
+        "n": 80,
+        "media": 0.5125,
+        "mediana": 1.0,
+        "de": 0.503
+      },
+      "aciertos": 41
+    },
+    "ML_REGLAS": {
+      "precision5": {
+        "n": 80,
+        "media": 0.1325,
+        "mediana": 0.2,
+        "de": 0.0952
+      },
+      "recall5": {
+        "n": 80,
+        "media": 0.6625,
+        "mediana": 1.0,
+        "de": 0.4758
+      },
+      "aciertos": 53
+    },
+    "ML_COMPLETO": {
+      "precision5": {
+        "n": 80,
+        "media": 0.155,
+        "mediana": 0.2,
+        "de": 0.084
+      },
+      "recall5": {
+        "n": 80,
+        "media": 0.775,
+        "mediana": 1.0,
+        "de": 0.4202
+      },
+      "aciertos": 62
+    }
+  },
+  "mcnemar_exacto": {
+    "CONV_vs_ML_COMPLETO": {
+      "ambos": 40,
+      "solo_primero": 1,
+      "solo_segundo": 22,
+      "ninguno": 17,
+      "p_valor": 6e-06
+    },
+    "ML_REGLAS_vs_ML_COMPLETO": {
+      "ambos": 52,
+      "solo_primero": 1,
+      "solo_segundo": 10,
+      "ninguno": 17,
+      "p_valor": 0.011719
+    },
+    "CONV_vs_ML_REGLAS": {
+      "ambos": 37,
+      "solo_primero": 4,
+      "solo_segundo": 16,
+      "ninguno": 23,
+      "p_valor": 0.011818
+    }
+  },
+  "csv": "salidas/evaluacion_offline.csv"
+}

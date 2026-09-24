@@ -1,0 +1,24 @@
+# Secretos y configuración local de agentes
+.agents/mcp_config.json
+.agents/*.log
+.agents/*.nohup
+.agents/status.txt
+.agents/generate_all.json
+frontend/.env
+backend/.env
+
+# Entornos y dependencias
+backend/.venv/
+frontend/node_modules/
+**/__pycache__/
+*.pyc
+
+# Artefactos generados
+frontend/dist/
+backend/ferremax.db
+backend/*.db-journal
+backend/modelos/*.joblib
+
+# Sistema
+.DS_Store
+Thumbs.db

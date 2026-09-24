@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de administración · Evaluación - FerreMax</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              navy: '#0F2A4A',
+              navyDark: '#0A1C32',
+              navyLight: '#18385E',
+              orange: '#F26B1D',
+              orangeHover: '#DC5B12',
+              bgLight: '#F5F6F8',
+              cardBorder: '#E5E7EB',
+            }
+          },
+          borderRadius: {
+            'custom': '12px',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F5F6F8;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex bg-[#F5F6F8]">
+
+  <!-- SIDEBAR (260px) -->
+  <aside class="w-[260px] bg-[#0F2A4A] text-white flex-shrink-0 flex flex-col justify-between min-h-screen sticky top-0 h-screen select-none z-20 shadow-xl">
+    <div>
+      <!-- Brand Logo Header -->
+      <div class="px-6 py-6 border-b border-[#18385E] flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-[#F26B1D] flex items-center justify-center font-bold text-white shadow-md text-lg tracking-wider">
+            F
+          </div>
+          <div>
+            <span class="text-xl font-extrabold tracking-wider text-white">FERRE<span class="text-[#F26B1D]">MAX</span></span>
+            <span class="block text-[10px] uppercase font-semibold text-slate-400 tracking-widest -mt-1">Admin Panel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="p-4 space-y-1">
+        <div class="px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">Plataforma</div>
+        
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-[#18385E] transition-colors">
+          <i data-lucide="layout-dashboard" class="w-4 h-4 text-slate-400"></i>
+          <span>Resumen</span>
+        </a>
+
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-[#18385E] transition-colors">
+          <i data-lucide="package" class="w-4 h-4 text-slate-400"></i>
+          <span>Productos e inventario</span>
+        </a>
+
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-[#18385E] transition-colors">
+          <i data-lucide="shopping-cart" class="w-4 h-4 text-slate-400"></i>
+          <span>Pedidos</span>
+          <span class="ml-auto bg-slate-700 text-slate-200 text-xs px-2 py-0.5 rounded-full font-semibold">12</span>
+        </a>
+
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-[#18385E] transition-colors">
+          <i data-lucide="users" class="w-4 h-4 text-slate-400"></i>
+          <span>Clientes</span>
+        </a>
+
+        <div class="pt-4 px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">Inteligencia Artificial</div>
+
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-[#18385E] transition-colors">
+          <i data-lucide="sparkles" class="w-4 h-4 text-slate-400"></i>
+          <span>Recomendador</span>
+        </a>
+
+        <!-- Evaluacion (ACTIVO, RESALTADO EN NARANJA) -->
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-[#F26B1D] text-white shadow-md transition-all">
+          <i data-lucide="bar-chart-2" class="w-4 h-4 text-white"></i>
+          <span>Evaluación</span>
+          <span class="ml-auto flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+          </span>
+        </a>
+
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-[#18385E] transition-colors">
+          <i data-lucide="activity" class="w-4 h-4 text-slate-400"></i>
+          <span>Registro de eventos</span>
+        </a>
+
+        <div class="pt-4 px-3 py-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">Sistema</div>
+
+        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-[#18385E] transition-colors">
+          <i data-lucide="settings" class="w-4 h-4 text-slate-400"></i>
+          <span>Configuración</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Bottom User Info -->
+    <div class="p-4 border-t border-[#18385E] bg-[#0A1C32]">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-slate-600 border border-slate-500 flex items-center justify-center font-bold text-xs text-white">
+          AD
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-semibold text-white truncate">Admin Investigador</p>
+          <p class="text-xs text-slate-400 truncate">admin@ferremax.pe</p>
+        </div>
+        <button class="text-slate-400 hover:text-white p-1 rounded transition-colors" title="Cerrar sesión">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN WRAPPER -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- CABECERA BLANCA -->
+    <header class="h-20 bg-white border-b border-gray-200 px-8 flex items-center justify-between sticky top-0 z-10 shadow-sm">
+      <div>
+        <div class="flex items-center gap-3">
+          <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Evaluación del recomendador</h1>
+          
+        </div>
+        <p class="text-xs text-slate-500 mt-0.5">Comparación de indicadores entre el modo convencional y el modo Machine Learning · datos simulados para la demostración</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Date Selector Filter -->
+        <div class="flex items-center gap-2 bg-[#F5F6F8] px-3 py-1.5 rounded-lg border border-gray-200 text-xs font-medium text-slate-700">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span>Sesiones de evaluación</span>
+        </div>
+
+        <button class="flex items-center gap-2 bg-[#0F2A4A] text-white hover:bg-[#18385E] px-4 py-2 rounded-lg text-xs font-semibold shadow-sm transition-all">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Recalcular métricas</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT BODY -->
+    <main class="flex-1 p-8 space-y-7 max-w-[1180px] w-full mx-auto">
+
+      <!-- (1) FILA DE CUATRO TARJETAS DE INDICADOR -->
+      <section>
+        <div class="grid grid-cols-4 gap-5">
+          
+          <!-- Indicador 1: Precision@5 -->
+          <div class="bg-white rounded-[12px] p-5 border border-gray-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+              <span>Precision@5</span>
+              <span class="p-1 rounded bg-orange-50 text-[#F26B1D]">
+                <i data-lucide="target" class="w-4 h-4"></i>
+              </span>
+            </div>
+            
+            <div class="my-1">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl font-extrabold text-[#F26B1D] tracking-tight">0.14</span>
+                <span class="text-sm font-semibold text-emerald-600 flex items-center bg-emerald-50 px-1.5 py-0.5 rounded">
+                  <i data-lucide="trending-up" class="w-3.5 h-3.5 mr-0.5"></i> +250%
+                </span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#0F2A4A]"></span>
+                <span class="text-slate-500">Convencional: <strong class="text-slate-700">0.04</strong></span>
+              </div>
+              <div class="text-slate-400 font-bold">→</div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#F26B1D]"></span>
+                <span class="text-slate-700 font-semibold">ML: <strong class="text-[#F26B1D]">0.14</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indicador 2: Recall@5 -->
+          <div class="bg-white rounded-[12px] p-5 border border-gray-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+              <span>Recall@5</span>
+              <span class="p-1 rounded bg-blue-50 text-[#0F2A4A]">
+                <i data-lucide="pie-chart" class="w-4 h-4"></i>
+              </span>
+            </div>
+            
+            <div class="my-1">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl font-extrabold text-[#F26B1D] tracking-tight">0.70</span>
+                <span class="text-sm font-semibold text-emerald-600 flex items-center bg-emerald-50 px-1.5 py-0.5 rounded">
+                  <i data-lucide="trending-up" class="w-3.5 h-3.5 mr-0.5"></i> +233%
+                </span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#0F2A4A]"></span>
+                <span class="text-slate-500">Convencional: <strong class="text-slate-700">0.21</strong></span>
+              </div>
+              <div class="text-slate-400 font-bold">→</div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#F26B1D]"></span>
+                <span class="text-slate-700 font-semibold">ML: <strong class="text-[#F26B1D]">0.70</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indicador 3: Tiempo de selección promedio -->
+          <div class="bg-white rounded-[12px] p-5 border border-gray-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+              <span>Tiempo de selección prom.</span>
+              <span class="p-1 rounded bg-amber-50 text-amber-600">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+              </span>
+            </div>
+            
+            <div class="my-1">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl font-extrabold text-[#F26B1D] tracking-tight">96 s</span>
+                <span class="text-sm font-semibold text-emerald-600 flex items-center bg-emerald-50 px-1.5 py-0.5 rounded">
+                  <i data-lucide="arrow-down-right" class="w-3.5 h-3.5 mr-0.5"></i> -55.1%
+                </span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#0F2A4A]"></span>
+                <span class="text-slate-500">Convencional: <strong class="text-slate-700">214 s</strong></span>
+              </div>
+              <div class="text-slate-400 font-bold">→</div>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#F26B1D]"></span>
+                <span class="text-slate-700 font-semibold">ML: <strong class="text-[#F26B1D]">96 s</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Indicador 4: Sesiones registradas -->
+          <div class="bg-white rounded-[12px] p-5 border border-gray-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+              <span>Sesiones registradas</span>
+              <span class="p-1 rounded bg-slate-100 text-slate-600">
+                <i data-lucide="layers" class="w-4 h-4"></i>
+              </span>
+            </div>
+            
+            <div class="my-1">
+              <div class="flex items-baseline gap-2">
+                <span class="text-3xl font-extrabold text-slate-900 tracking-tight">48 <span class="text-lg font-normal text-slate-500">/ 120</span></span>
+                <span class="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">
+                  40.0% meta
+                </span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100">
+              <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                <div class="bg-[#F26B1D] h-full rounded-full" style="width: 40%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-slate-500 mt-1.5">
+                <span>48 completadas</span>
+                <span>Objetivo: 120</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- NOTA PEQUEÑA GRIS DEBAJO -->
+        <p class="text-xs text-slate-500 italic mt-2.5 flex items-center gap-1.5 pl-1">
+          <i data-lucide="info" class="w-3.5 h-3.5 text-slate-400"></i>
+          <span>Datos simulados para la demostración del prototipo</span>
+        </p>
+      </section>
+
+      <!-- (2) TARJETA CON GRÁFICO DE BARRAS AGRUPADAS -->
+      <section class="bg-white rounded-[12px] p-6 border border-gray-200 shadow-sm">
+        <div class="flex items-center justify-between pb-5 border-b border-gray-100">
+          <div>
+            <h2 class="text-base font-bold text-slate-900">Comparativa de Desempeño: Convencional vs. Machine Learning</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Evaluación de eficacia de recomendación e impacto en agilidad de compra del usuario</p>
+          </div>
+
+          <!-- LEYENDA -->
+          <div class="flex items-center gap-6 bg-[#F5F6F8] px-4 py-2 rounded-lg border border-gray-200 text-xs font-medium">
+            <div class="flex items-center gap-2">
+              <span class="w-3.5 h-3.5 rounded bg-[#0F2A4A] inline-block shadow-xs"></span>
+              <span class="text-slate-800 font-semibold">Convencional (Heurístico)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-3.5 h-3.5 rounded bg-[#F26B1D] inline-block shadow-xs"></span>
+              <span class="text-[#F26B1D] font-bold">Machine Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENEDOR DEL GRÁFICO DE BARRAS AGRUPADAS -->
+        <div class="pt-6 pb-2">
+          <div class="h-64 flex items-end justify-between px-16 relative">
+            <!-- Y-Axis Grid Lines -->
+            <div class="absolute inset-x-8 top-0 border-b border-dashed border-gray-200 flex justify-between text-[11px] text-slate-400">
+              <span>1.00 (100%)</span>
+            </div>
+            <div class="absolute inset-x-8 top-1/4 border-b border-dashed border-gray-200 flex justify-between text-[11px] text-slate-400">
+              <span>0.75 (75%)</span>
+            </div>
+            <div class="absolute inset-x-8 top-2/4 border-b border-dashed border-gray-200 flex justify-between text-[11px] text-slate-400">
+              <span>0.50 (50%)</span>
+            </div>
+            <div class="absolute inset-x-8 top-3/4 border-b border-dashed border-gray-200 flex justify-between text-[11px] text-slate-400">
+              <span>0.25 (25%)</span>
+            </div>
+            <div class="absolute inset-x-8 bottom-0 border-b border-slate-300 flex justify-between text-[11px] text-slate-400">
+              <span>0.00 (0%)</span>
+            </div>
+
+            <!-- Grupo 1: Precision@5 -->
+            <div class="relative z-10 flex flex-col items-center w-60">
+              <div class="flex items-end gap-3 h-52">
+                <!-- Barra Convencional: 0.04 (4% de altura) -->
+                <div class="flex flex-col items-center">
+                  <span class="text-xs font-bold text-slate-700 mb-1.5">0.04</span>
+                  <div class="w-14 bg-[#0F2A4A] rounded-t-md transition-all duration-500 hover:brightness-110 flex items-start justify-center pt-1 shadow-sm" style="height: 18px;">
+                  </div>
+                </div>
+                <!-- Barra ML: 0.14 (14% de altura = escala gráfica calibrada x2.5 para legibilidad = 35% relativo) -->
+                <div class="flex flex-col items-center">
+                  <span class="text-xs font-bold text-[#F26B1D] mb-1.5">0.14</span>
+                  <div class="w-14 bg-[#F26B1D] rounded-t-md transition-all duration-500 hover:brightness-110 flex items-start justify-center pt-1 shadow-sm" style="height: 64px;">
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-3">
+                <span class="text-xs font-bold text-slate-800 block">Precision@5</span>
+                <span class="text-[11px] text-emerald-600 font-semibold">+250% mejora</span>
+              </div>
+            </div>
+
+            <!-- Grupo 2: Recall@5 -->
+            <div class="relative z-10 flex flex-col items-center w-60">
+              <div class="flex items-end gap-3 h-52">
+                <!-- Barra Convencional: 0.21 (21% altura) -->
+                <div class="flex flex-col items-center">
+                  <span class="text-xs font-bold text-slate-700 mb-1.5">0.21</span>
+                  <div class="w-14 bg-[#0F2A4A] rounded-t-md transition-all duration-500 hover:brightness-110 shadow-sm" style="height: 54px;"></div>
+                </div>
+                <!-- Barra ML: 0.70 (70% altura) -->
+                <div class="flex flex-col items-center">
+                  <span class="text-xs font-bold text-[#F26B1D] mb-1.5">0.70</span>
+                  <div class="w-14 bg-[#F26B1D] rounded-t-md transition-all duration-500 hover:brightness-110 shadow-sm" style="height: 168px;"></div>
+                </div>
+              </div>
+              <div class="text-center mt-3">
+                <span class="text-xs font-bold text-slate-800 block">Recall@5</span>
+                <span class="text-[11px] text-emerald-600 font-semibold">+233% cobertura</span>
+              </div>
+            </div>
+
+            <!-- Grupo 3: Tiempo de selección normalizado -->
+            <div class="relative z-10 flex flex-col items-center w-60">
+              <div class="flex items-end gap-3 h-52">
+                <!-- Barra Convencional: 214s normalizado como 1.0 (base) -->
+                <div class="flex flex-col items-center">
+                  <span class="text-xs font-bold text-slate-700 mb-1.5">1.00 <span class="font-normal text-[10px] text-slate-500">(214s)</span></span>
+                  <div class="w-14 bg-[#0F2A4A] rounded-t-md transition-all duration-500 hover:brightness-110 shadow-sm" style="height: 195px;"></div>
+                </div>
+                <!-- Barra ML: 96s normalizado = 96/214 = 0.45 (45% altura) -->
+                <div class="flex flex-col items-center">
+                  <span class="text-xs font-bold text-[#F26B1D] mb-1.5">0.45 <span class="font-normal text-[10px] text-slate-500">(96s)</span></span>
+                  <div class="w-14 bg-[#F26B1D] rounded-t-md transition-all duration-500 hover:brightness-110 shadow-sm" style="height: 88px;"></div>
+                </div>
+              </div>
+              <div class="text-center mt-3">
+                <span class="text-xs font-bold text-slate-800 block">Tiempo de selección norm.</span>
+                <span class="text-[11px] text-emerald-600 font-semibold">-55% tiempo invertido</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-slate-500">
+          <span>* Tiempo normalizado respecto al tiempo base convencional (214 s = 1.00). Un valor menor indica mayor rapidez de checkout.</span>
+          
+        </div>
+      </section>
+
+      <!-- (3) TARJETA "REGISTRO DE EVENTOS" -->
+      <section class="bg-white rounded-[12px] p-6 border border-gray-200 shadow-sm">
+        
+        <!-- Header & Filtros -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-gray-100">
+          <div>
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>Registro de eventos</span>
+              <span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600">10 eventos recientes</span>
+            </h2>
+            <p class="text-xs text-slate-500 mt-0.5">Trazabilidad granular de telemetría de usuario por sesión y condición experimental</p>
+          </div>
+
+          <!-- Filtros arriba y botón Exportar CSV -->
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Filtro Sesión -->
+            <div class="flex items-center gap-2">
+              <label class="text-xs font-semibold text-slate-600">Sesión:</label>
+              <select class="text-xs bg-[#F5F6F8] border border-gray-200 rounded-lg px-2.5 py-1.5 text-slate-700 font-medium focus:ring-1 focus:ring-[#F26B1D] focus:outline-none">
+                <option value="TODAS">Todas las sesiones</option>
+                <option value="CLI-007-S2" selected>CLI-007-S2 (ML)</option>
+                <option value="CLI-007-S1">CLI-007-S1 (CONV)</option>
+                <option value="CLI-006-S2">CLI-006-S2 (ML)</option>
+              </select>
+            </div>
+
+            <!-- Filtro Condición -->
+            <div class="flex items-center gap-2">
+              <label class="text-xs font-semibold text-slate-600">Condición:</label>
+              <select class="text-xs bg-[#F5F6F8] border border-gray-200 rounded-lg px-2.5 py-1.5 text-slate-700 font-medium focus:ring-1 focus:ring-[#F26B1D] focus:outline-none">
+                <option value="TODAS">Todas</option>
+                <option value="ML" selected>Machine Learning (ML)</option>
+                <option value="CONV">Convencional (CONV)</option>
+              </select>
+            </div>
+
+            <!-- Filtro Tipo de evento -->
+            <div class="flex items-center gap-2">
+              <label class="text-xs font-semibold text-slate-600">Tipo de evento:</label>
+              <select class="text-xs bg-[#F5F6F8] border border-gray-200 rounded-lg px-2.5 py-1.5 text-slate-700 font-medium focus:ring-1 focus:ring-[#F26B1D] focus:outline-none">
+                <option value="TODOS">Todos los tipos</option>
+                <option value="PRODUCTO_AGREGADO">PRODUCTO_AGREGADO</option>
+                <option value="RECOM_MOSTRADA">RECOM_MOSTRADA</option>
+                <option value="CONSULTA">CONSULTA</option>
+                <option value="CONFIRMACION_CARRITO">CONFIRMACION_CARRITO</option>
+              </select>
+            </div>
+
+            <!-- Botón Exportar CSV -->
+            <button class="flex items-center gap-1.5 bg-white border border-gray-300 hover:bg-gray-50 text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-xs transition-colors ml-2">
+              <i data-lucide="download" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Exportar CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TABLA DE EVENTOS -->
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-gray-200 bg-[#F5F6F8] text-slate-600 font-semibold uppercase text-[10px] tracking-wider">
+                <th class="py-3 px-3.5">id_evento</th>
+                <th class="py-3 px-3">id_sesion</th>
+                <th class="py-3 px-3">cliente</th>
+                <th class="py-3 px-3">escenario</th>
+                <th class="py-3 px-2.5 text-center">condición</th>
+                <th class="py-3 px-3">tipo de evento</th>
+                <th class="py-3 px-3">SKU</th>
+                <th class="py-3 px-2.5">origen</th>
+                <th class="py-3 px-3 text-right">marca de tiempo</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 font-mono text-[11px]">
+              
+              <!-- FILA 1 (ML) -->
+              <tr class="hover:bg-orange-50/40 transition-colors">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89201</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S2</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200">ML</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-slate-800">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                    INICIO_BUSQUEDA
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 text-slate-400 font-sans italic">—</td>
+                <td class="py-2.5 px-2.5 font-sans text-slate-600">HEADER_SEARCH</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-700">10:32:07.418</td>
+              </tr>
+
+              <!-- FILA 2 (ML) -->
+              <tr class="hover:bg-orange-50/40 transition-colors">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89202</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S2</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200">ML</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-slate-800">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                    CONSULTA <span class="font-normal text-slate-500 text-[10px]">"pintar dormitorio"</span>
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 text-slate-400 font-sans italic">—</td>
+                <td class="py-2.5 px-2.5 font-sans text-slate-600">BUSQUEDA_NL</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-700">10:32:19.002</td>
+              </tr>
+
+              <!-- FILA 3 (ML) -->
+              <tr class="hover:bg-orange-50/40 transition-colors">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89203</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S2</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200">ML</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-purple-700">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                    RECOM_MOSTRADA
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-semibold text-slate-700 font-mono">KIT-PIN-12M</td>
+                <td class="py-2.5 px-2.5 font-sans text-slate-600">GRID_ML_PREDICT</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-700">10:32:19.377</td>
+              </tr>
+
+              <!-- FILA 4 (ML) -->
+              <tr class="hover:bg-orange-50/40 transition-colors">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89204</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S2</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200">ML</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-emerald-700">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    PRODUCTO_AGREGADO
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-bold text-slate-900 font-mono">PIN-001</td>
+                <td class="py-2.5 px-2.5 font-sans text-[#F26B1D] font-semibold">RECOMENDACION</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-700">10:32:41.910</td>
+              </tr>
+
+              <!-- FILA 5 (ML) -->
+              <tr class="hover:bg-orange-50/40 transition-colors">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89205</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S2</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200">ML</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-emerald-700">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    PRODUCTO_AGREGADO
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-bold text-slate-900 font-mono">HER-011</td>
+                <td class="py-2.5 px-2.5 font-sans text-[#F26B1D] font-semibold">RECOMENDACION</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-700">10:32:55.130</td>
+              </tr>
+
+              <!-- FILA 6 (ML) -->
+              <tr class="hover:bg-orange-50/40 transition-colors">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89206</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S2</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200">ML</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-emerald-700">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    PRODUCTO_AGREGADO
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-bold text-slate-900 font-mono">FER-003</td>
+                <td class="py-2.5 px-2.5 font-sans text-[#F26B1D] font-semibold">RECOMENDACION</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-700">10:33:12.644</td>
+              </tr>
+
+              <!-- FILA 7 (ML) -->
+              <tr class="hover:bg-orange-50/40 transition-colors">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89207</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S2</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200">ML</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-emerald-700">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    PRODUCTO_AGREGADO
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-bold text-slate-900 font-mono">HER-020</td>
+                <td class="py-2.5 px-2.5 font-sans text-slate-600">BUSQUEDA</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-700">10:33:38.201</td>
+              </tr>
+
+              <!-- FILA 8 (ML) -->
+              <tr class="hover:bg-orange-50/40 transition-colors bg-orange-50/20">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89208</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S2</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-[#F26B1D] border border-orange-200">ML</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-extrabold text-[#F26B1D]">
+                  <span class="inline-flex items-center gap-1.5">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#F26B1D]"></i>
+                    CONFIRMACION_CARRITO
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-sans text-slate-500">4 items (S/ 72.30)</td>
+                <td class="py-2.5 px-2.5 font-sans text-slate-600">CHECKOUT_MODAL</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-700">10:33:43.590</td>
+              </tr>
+
+              <!-- FILA 9 (CONV) -->
+              <tr class="hover:bg-blue-50/40 transition-colors bg-slate-50/50">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89140</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S1</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-[#0F2A4A] border border-slate-300">CONV</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-slate-700">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                    INICIO_BUSQUEDA
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 text-slate-400 font-sans italic">—</td>
+                <td class="py-2.5 px-2.5 font-sans text-slate-600">HEADER_SEARCH</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-600">09:15:10.120</td>
+              </tr>
+
+              <!-- FILA 10 (CONV) -->
+              <tr class="hover:bg-blue-50/40 transition-colors bg-slate-50/50">
+                <td class="py-2.5 px-3.5 text-slate-500 font-normal">EVT-89141</td>
+                <td class="py-2.5 px-3 font-semibold text-slate-800">CLI-007-S1</td>
+                <td class="py-2.5 px-3 font-sans text-slate-700">CLI-007</td>
+                <td class="py-2.5 px-3 font-sans text-slate-600">Pintura Dormitorio 12m²</td>
+                <td class="py-2.5 px-2.5 text-center">
+                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-[#0F2A4A] border border-slate-300">CONV</span>
+                </td>
+                <td class="py-2.5 px-3 font-sans font-semibold text-emerald-700">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    PRODUCTO_AGREGADO
+                  </span>
+                </td>
+                <td class="py-2.5 px-3 font-bold text-slate-900 font-mono">PIN-001</td>
+                <td class="py-2.5 px-2.5 font-sans text-slate-600">CATALOGO_GRID</td>
+                <td class="py-2.5 px-3 text-right font-medium text-slate-600">09:17:28.450</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Footer Tabla -->
+        <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-slate-500">
+          <div class="flex items-center gap-2">
+            <span>Mostrando 10 de 184 eventos registrados</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <button class="px-2.5 py-1 rounded border border-gray-200 text-slate-400 hover:text-slate-600 disabled:opacity-50" disabled>Anterior</button>
+            <button class="px-2.5 py-1 rounded bg-[#0F2A4A] text-white font-semibold">1</button>
+            <button class="px-2.5 py-1 rounded border border-gray-200 text-slate-600 hover:bg-gray-50">2</button>
+            <button class="px-2.5 py-1 rounded border border-gray-200 text-slate-600 hover:bg-gray-50">3</button>
+            <span class="px-1 text-slate-400">...</span>
+            <button class="px-2.5 py-1 rounded border border-gray-200 text-slate-600 hover:bg-gray-50">19</button>
+            <button class="px-2.5 py-1 rounded border border-gray-200 text-slate-600 hover:bg-gray-50">Siguiente</button>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Footer institucional pequeño -->
+    <footer class="px-8 py-4 border-t border-gray-200 bg-white text-xs text-slate-500 flex items-center justify-between">
+      <span>FerreMax · Módulo de Validación y Experimentación Algorítmica</span>
+      <span>Tesis UPN 2026 · Sistema Web de Recomendación con Machine Learning</span>
+    </footer>
+
+  </div>
+
+  <script>
+    // Inicializar iconos de Lucide
+    lucide.createIcons();
+  </script>
+</body>
+</html>

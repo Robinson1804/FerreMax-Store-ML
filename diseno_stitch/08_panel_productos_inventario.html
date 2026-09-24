@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#F5F6F8]" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FerreMax - Panel de administración · Productos e inventario</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#00152f",
+            "on-error": "#ffffff",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#351000",
+            "on-secondary-container": "#5f2200",
+            "outline-variant": "#c4c6cf",
+            "surface-container-highest": "#e1e2e4",
+            "secondary-fixed": "#ffdbcc",
+            "on-primary-fixed": "#001c3a",
+            "inverse-surface": "#2e3132",
+            "inverse-primary": "#b0c8f0",
+            "tertiary-fixed": "#ece0d8",
+            "secondary-container": "#ff7528",
+            "primary-fixed": "#d4e3ff",
+            "surface-variant": "#e1e2e4",
+            "on-secondary-fixed-variant": "#7b2f00",
+            "on-primary": "#ffffff",
+            "on-tertiary-fixed-variant": "#4c463f",
+            "surface": "#f8f9fb",
+            "on-primary-fixed-variant": "#304869",
+            "surface-container-lowest": "#ffffff",
+            "background": "#f8f9fb",
+            "surface-container-low": "#f3f4f6",
+            "surface-container-high": "#e7e8ea",
+            "secondary": "#a14000",
+            "on-primary-container": "#7a92b7",
+            "secondary-fixed-dim": "#ffb694",
+            "tertiary": "#19140f",
+            "outline": "#74777f",
+            "on-tertiary-fixed": "#201b15",
+            "on-secondary": "#ffffff",
+            "primary-fixed-dim": "#b0c8f0",
+            "on-tertiary-container": "#988f87",
+            "on-surface": "#191c1e",
+            "inverse-on-surface": "#f0f1f3",
+            "surface-bright": "#f8f9fb",
+            "on-tertiary": "#ffffff",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#2e2822",
+            "surface-container": "#edeef0",
+            "surface-tint": "#485f82",
+            "primary-container": "#0f2a4a",
+            "tertiary-fixed-dim": "#cfc5bc",
+            "on-error-container": "#93000a",
+            "on-background": "#191c1e",
+            "surface-dim": "#d9dadc",
+            "on-surface-variant": "#43474e"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-tablet": "1.25rem",
+            "gutter-desktop": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "margin-tablet": "2rem",
+            "gutter": "1rem",
+            "margin": "1rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "2.5rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "price-md": ["Inter"],
+            "price-lg": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-lg": ["Inter"],
+            "label-lg": ["Inter"],
+            "headline-xl": ["Inter"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "price-md": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "price-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="h-full font-body-md text-body-md text-on-surface bg-[#F5F6F8] flex overflow-hidden antialiased">
+<!-- ========================================================================= -->
+<!-- LEFT SIDEBAR: Brand, Platform, AI, System & User Widget (w-[260px])        -->
+<!-- ========================================================================= -->
+<aside class="w-[260px] bg-primary-container text-white flex-shrink-0 flex flex-col justify-between h-full select-none z-20 shadow-md">
+<div class="flex flex-col flex-1 overflow-y-auto custom-scrollbar">
+<!-- Brand Header -->
+<div class="p-5 flex items-center gap-3 border-b border-[#1b3a60]">
+<div class="w-10 h-10 rounded-lg bg-[#F26B1D] flex items-center justify-center font-extrabold text-white text-xl shadow-sm tracking-tight">
+          F
+        </div>
+<div class="flex flex-col">
+<span class="text-white font-headline-md font-extrabold text-lg tracking-tight leading-none">FERREMAX</span>
+<span class="text-[10px] font-label-sm uppercase tracking-widest text-[#a8c5eb] mt-1">ADMIN PANEL</span>
+</div>
+</div>
+<!-- Navigation Hierarchy -->
+<nav class="p-3 space-y-6">
+<!-- SECTION 1: PLATAFORMA -->
+<div>
+<span class="px-3 text-[11px] font-label-sm uppercase tracking-wider text-[#7a92b7] font-semibold">Plataforma</span>
+<ul class="mt-2 space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors font-label-lg text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+<span>Resumen</span>
+</a>
+</li>
+<li>
+<!-- ACTIVE STATE HIGHLIGHT -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[#F26B1D] text-white font-label-lg text-sm shadow-sm transition-transform active:scale-[0.98]" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-medium">Productos e inventario</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors font-label-lg text-sm" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="shopping_cart">shopping_cart</span>
+<span>Pedidos</span>
+</div>
+<span class="bg-[#1e4472] text-[#ffdbcc] text-[11px] font-bold px-2 py-0.5 rounded-full border border-[#2b5891]">14</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors font-label-lg text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="group">group</span>
+<span>Clientes</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- SECTION 2: INTELIGENCIA ARTIFICIAL -->
+<div>
+<span class="px-3 text-[11px] font-label-sm uppercase tracking-wider text-[#7a92b7] font-semibold">Inteligencia Artificial</span>
+<ul class="mt-2 space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors font-label-lg text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="psychology">psychology</span>
+<span>Recomendador</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors font-label-lg text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="analytics">analytics</span>
+<span>Evaluación</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors font-label-lg text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="event_note">event_note</span>
+<span>Registro de eventos</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- SECTION 3: SISTEMA -->
+<div>
+<span class="px-3 text-[11px] font-label-sm uppercase tracking-wider text-[#7a92b7] font-semibold">Sistema</span>
+<ul class="mt-2 space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#c4d6ed] hover:text-white hover:bg-[#16355b] transition-colors font-label-lg text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<span>Configuración</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+<!-- Bottom User Profile Widget -->
+<div class="p-3 border-t border-[#1b3a60] bg-[#0c223c]">
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-[#16355b] transition-colors cursor-pointer">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-full bg-[#1b4372] border border-[#3b6ea8] flex items-center justify-center font-bold text-xs text-white">
+            AD
+          </div>
+<div class="flex flex-col text-left">
+<span class="text-xs font-semibold text-white leading-tight">Admin Investigador</span>
+<span class="text-[11px] text-[#8ea8cc] leading-tight mt-0.5">admin@ferremax.pe</span>
+</div>
+</div>
+<button class="text-[#7a92b7] hover:text-white p-1 rounded transition-colors" title="Cerrar Sesión">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- ========================================================================= -->
+<!-- MAIN LAYOUT WRAPPER                                                       -->
+<!-- ========================================================================= -->
+<div class="flex-1 flex flex-col h-full overflow-hidden">
+<!-- TOP HEADER -->
+<header class="bg-white border-b border-gray-200 px-8 py-3.5 flex items-center justify-between flex-shrink-0 z-10">
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-gray-900 leading-tight">Productos e inventario</h1>
+<p class="text-body-sm font-body-sm text-gray-500 mt-0.5">Catálogo maestro, control de existencias y trazabilidad de movimientos kardex</p>
+</div>
+<!-- Right Action Items -->
+<div class="flex items-center gap-4">
+<!-- Live Store Link -->
+<a class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 transition-colors text-xs font-semibold" href="https://ferremax.pe" target="_blank">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>Tienda en Vivo: ferremax.pe</span>
+<span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+</a>
+<!-- Notifications -->
+<button class="relative p-2 rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#F26B1D]"></span>
+</button>
+<!-- Profile Pill -->
+<div class="flex items-center gap-2.5 pl-3 border-l border-gray-200">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center text-xs font-bold shadow-sm">
+            AD
+          </div>
+<div class="hidden xl:flex flex-col text-left">
+<span class="text-xs font-semibold text-gray-800">Administrador</span>
+<span class="text-[10px] text-gray-500 font-medium">UPN - Tesis 2026</span>
+</div>
+</div>
+</div>
+</header>
+<!-- SCROLLABLE MAIN CANVAS -->
+<main class="flex-1 overflow-y-auto p-8 space-y-6 custom-scrollbar">
+<!-- 1. SUMMARY METRIC CARDS -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Card 1 -->
+<div class="bg-white rounded-xl p-5 border border-gray-200/90 shadow-sm flex items-center justify-between">
+<div class="space-y-1">
+<span class="text-xs font-label-md text-gray-500 uppercase tracking-wider">Productos Activos</span>
+<div class="text-3xl font-extrabold text-gray-900 tracking-tight">62</div>
+<div class="flex items-center gap-1.5 text-xs font-semibold text-emerald-600">
+<span class="material-symbols-outlined text-sm font-bold" data-icon="trending_up">trending_up</span>
+<span>+4 este mes</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-100">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white rounded-xl p-5 border border-gray-200/90 shadow-sm flex items-center justify-between">
+<div class="space-y-1">
+<span class="text-xs font-label-md text-gray-500 uppercase tracking-wider">Stock Crítico</span>
+<div class="text-3xl font-extrabold text-rose-600 tracking-tight">6</div>
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 text-[11px] font-semibold border border-rose-200">
+<span class="material-symbols-outlined text-xs" data-icon="warning">warning</span>
+<span>Requiere reposición</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center border border-rose-100">
+<span class="material-symbols-outlined text-2xl" data-icon="error_outline">error_outline</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white rounded-xl p-5 border border-gray-200/90 shadow-sm flex items-center justify-between">
+<div class="space-y-1">
+<span class="text-xs font-label-md text-gray-500 uppercase tracking-wider">Valor del Inventario</span>
+<div class="text-3xl font-extrabold text-primary-container tracking-tight">S/ 48,920<span class="text-xl font-semibold text-gray-500">.00</span></div>
+<p class="text-xs text-gray-500">Costo valorizado promedio ponderado</p>
+</div>
+<div class="w-12 h-12 rounded-xl bg-orange-50 text-[#F26B1D] flex items-center justify-center border border-orange-100">
+<span class="material-symbols-outlined text-2xl" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+</div>
+</section>
+<!-- 2. FILTER & ACTION BAR -->
+<section class="bg-white rounded-xl p-4 border border-gray-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
+<!-- Filters Group (Left) -->
+<div class="flex flex-wrap items-center gap-3 flex-1 min-w-[320px]">
+<!-- Search SKU/Name -->
+<div class="relative min-w-[260px] flex-1 max-w-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg" data-icon="search">search</span>
+<input class="w-full pl-9 pr-3 py-2 text-sm bg-gray-50/50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] focus:bg-white transition-all" placeholder="Buscar por SKU o nombre..." type="text"/>
+</div>
+<!-- Select Categoria -->
+<div class="relative">
+<select class="appearance-none bg-white border border-gray-200 rounded-lg pl-3 pr-8 py-2 text-sm text-gray-700 font-medium hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] cursor-pointer">
+<option>Todas las categorías</option>
+<option>Pinturas y Acabados</option>
+<option>Construcción y Estructuras</option>
+<option>Gasfitería y Tuberías</option>
+<option>Electricidad</option>
+<option>Herramientas</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Select Marca -->
+<div class="relative">
+<select class="appearance-none bg-white border border-gray-200 rounded-lg pl-3 pr-8 py-2 text-sm text-gray-700 font-medium hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] cursor-pointer">
+<option>Todas las marcas</option>
+<option>Vencedor</option>
+<option>CPP</option>
+<option>Aceros Arequipa</option>
+<option>Sika</option>
+<option>Pavco</option>
+<option>Stanley</option>
+<option>Indura</option>
+<option>Bosch</option>
+<option>Makita</option>
+<option>Truper</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Toggle Solo Stock Bajo -->
+<label class="flex items-center gap-2 cursor-pointer ml-1 select-none">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#F26B1D] relative"></div>
+<span class="text-xs font-semibold text-gray-700">Solo stock bajo</span>
+</label>
+</div>
+<!-- Action Buttons (Right) -->
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center gap-2 px-3.5 py-2 border border-gray-300 rounded-lg text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined text-base" data-icon="file_upload">file_upload</span>
+<span>Importar Excel</span>
+</button>
+<button class="inline-flex items-center gap-2 px-4 py-2 bg-[#F26B1D] hover:bg-[#DE5A10] active:scale-95 text-white font-semibold rounded-lg text-sm transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span>Nuevo producto</span>
+</button>
+</div>
+</section>
+<!-- 3. MAIN WORKSPACE: SPLIT GRID -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- ========================================== -->
+<!-- LEFT: PRODUCTS TABLE (Approx 70% / 8 cols) -->
+<!-- ========================================== -->
+<div class="lg:col-span-8 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left text-sm border-collapse">
+<thead>
+<tr class="bg-gray-50/80 border-b border-gray-200 text-[11px] font-label-sm uppercase tracking-wider text-gray-500">
+<th class="py-3 px-4 font-semibold">SKU</th>
+<th class="py-3 px-4 font-semibold">Producto</th>
+<th class="py-3 px-3 font-semibold">Marca</th>
+<th class="py-3 px-3 font-semibold">Categoría</th>
+<th class="py-3 px-2 text-center font-semibold">Und</th>
+<th class="py-3 px-3 text-right font-semibold">Precio S/</th>
+<th class="py-3 px-2 text-center font-semibold">Stock</th>
+<th class="py-3 px-2 text-center font-semibold">Mín</th>
+<th class="py-3 px-3 text-center font-semibold">Estado</th>
+<th class="py-3 px-3 text-center font-semibold">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 text-xs">
+<!-- ROW 1: PIN-001 (ACTIVE KARDEX INSPECTED) -->
+<tr class="bg-orange-50/40 hover:bg-orange-50/70 transition-colors border-l-4 border-l-[#F26B1D]">
+<td class="py-3 px-4 font-mono font-bold text-gray-800">PIN-001</td>
+<td class="py-3 px-4 font-medium text-gray-900">Pintura látex blanca 1 galón</td>
+<td class="py-3 px-3 text-gray-600">Vencedor</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Pinturas y Acabados</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Und</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 48.00</td>
+<td class="py-3 px-2 text-center font-bold text-gray-900 font-mono">25</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">5</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      OK
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded bg-[#F26B1D] text-white shadow-sm transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 2: PIN-004 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-gray-800">PIN-004</td>
+<td class="py-3 px-4 font-medium text-gray-900">Esmalte sintético negro 1 galón</td>
+<td class="py-3 px-3 text-gray-600">CPP</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Pinturas y Acabados</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Und</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 68.00</td>
+<td class="py-3 px-2 text-center font-bold text-gray-900 font-mono">18</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">4</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      OK
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 3: CON-001 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-gray-800">CON-001</td>
+<td class="py-3 px-4 font-medium text-gray-900">Cemento Sol Tipo I 42.5 kg</td>
+<td class="py-3 px-3 text-gray-600">Aceros Arequipa</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Construcción y Estructuras</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Bolsa</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 30.50</td>
+<td class="py-3 px-2 text-center font-bold text-gray-900 font-mono">120</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">20</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      OK
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 4: CON-003 (CRITICAL STOCK) -->
+<tr class="bg-rose-50/30 hover:bg-rose-50/50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-rose-800">CON-003</td>
+<td class="py-3 px-4 font-medium text-gray-900">Aditivo Sika Latex 1 galón</td>
+<td class="py-3 px-3 text-gray-600">Sika</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Construcción y Estructuras</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Und</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 95.00</td>
+<td class="py-3 px-2 text-center font-bold text-rose-600 font-mono">3</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">3</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                      Bajo
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 5: FIE-001 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-gray-800">FIE-001</td>
+<td class="py-3 px-4 font-medium text-gray-900">Fierro corrugado 3/8" x 9 m</td>
+<td class="py-3 px-3 text-gray-600">Aceros Arequipa</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Construcción y Estructuras</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Var</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 29.50</td>
+<td class="py-3 px-2 text-center font-bold text-gray-900 font-mono">150</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">30</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      OK
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 6: ALA-001 (CRITICAL STOCK) -->
+<tr class="bg-rose-50/30 hover:bg-rose-50/50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-rose-800">ALA-001</td>
+<td class="py-3 px-4 font-medium text-gray-900">Alambre N° 16 rollo 50 kg</td>
+<td class="py-3 px-3 text-gray-600">Aceros Arequipa</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Construcción y Estructuras</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Rollo</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 255.00</td>
+<td class="py-3 px-2 text-center font-bold text-rose-600 font-mono">2</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">2</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                      Bajo
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 7: TUB-001 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-gray-800">TUB-001</td>
+<td class="py-3 px-4 font-medium text-gray-900">Tubo PVC SAP 1/2" x 5 m</td>
+<td class="py-3 px-3 text-gray-600">Pavco</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Gasfitería y Tuberías</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Und</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 22.00</td>
+<td class="py-3 px-2 text-center font-bold text-gray-900 font-mono">40</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">10</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      OK
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 8: VAL-001 (CRITICAL STOCK) -->
+<tr class="bg-rose-50/30 hover:bg-rose-50/50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-rose-800">VAL-001</td>
+<td class="py-3 px-4 font-medium text-gray-900">Válvula esférica 1/2"</td>
+<td class="py-3 px-3 text-gray-600">Stanley</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Gasfitería y Tuberías</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Und</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 28.00</td>
+<td class="py-3 px-2 text-center font-bold text-rose-600 font-mono">4</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">15</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                      Bajo
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 9: ELE-001 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-gray-800">ELE-001</td>
+<td class="py-3 px-4 font-medium text-gray-900">Cable THW 14 AWG x 100 m</td>
+<td class="py-3 px-3 text-gray-600">Indura</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Electricidad</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Rollo</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 115.00</td>
+<td class="py-3 px-2 text-center font-bold text-gray-900 font-mono">12</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">12</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      OK
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 10: ELE-005 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-gray-800">ELE-005</td>
+<td class="py-3 px-4 font-medium text-gray-900">Tomacorriente doble</td>
+<td class="py-3 px-3 text-gray-600">Bosch</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Electricidad</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Und</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 15.00</td>
+<td class="py-3 px-2 text-center font-bold text-gray-900 font-mono">50</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">10</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      OK
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 11: HER-006 -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-gray-800">HER-006</td>
+<td class="py-3 px-4 font-medium text-gray-900">Taladro percutor 650 W</td>
+<td class="py-3 px-3 text-gray-600">Makita</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Herramientas</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Und</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 240.00</td>
+<td class="py-3 px-2 text-center font-bold text-gray-900 font-mono">6</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">6</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      OK
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- ROW 12: HER-011 (CRITICAL STOCK) -->
+<tr class="bg-rose-50/30 hover:bg-rose-50/50 transition-colors">
+<td class="py-3 px-4 font-mono font-bold text-rose-800">HER-011</td>
+<td class="py-3 px-4 font-medium text-gray-900">Brocha profesional 2"</td>
+<td class="py-3 px-3 text-gray-600">Truper</td>
+<td class="py-3 px-3 text-gray-500 text-[11px]">Pinturas y Acabados</td>
+<td class="py-3 px-2 text-center text-gray-600 font-mono">Und</td>
+<td class="py-3 px-3 text-right font-semibold text-gray-900 font-mono">S/ 6.50</td>
+<td class="py-3 px-2 text-center font-bold text-rose-600 font-mono">3</td>
+<td class="py-3 px-2 text-center text-gray-400 font-mono">10</td>
+<td class="py-3 px-3 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                      Bajo
+                    </span>
+</td>
+<td class="py-3 px-3 text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Editar">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+<button class="p-1 rounded text-gray-400 hover:text-[#0F2A4A] hover:bg-blue-50 transition-colors" title="Ver Kardex">
+<span class="material-symbols-outlined text-base" data-icon="query_stats">query_stats</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-5 py-3.5 border-t border-gray-200 bg-gray-50/60 flex items-center justify-between text-xs text-gray-600 select-none">
+<span>Mostrando <span class="font-bold text-gray-900">12</span> de <span class="font-bold text-gray-900">62</span> productos</span>
+<div class="flex items-center gap-1 font-medium">
+<button class="px-2.5 py-1 rounded border border-gray-200 bg-white text-gray-500 hover:bg-gray-100 disabled:opacity-50" disabled="">
+                Anterior
+              </button>
+<button class="w-7 h-7 rounded border border-[#0F2A4A] bg-[#0F2A4A] text-white font-bold flex items-center justify-center shadow-sm">
+                1
+              </button>
+<button class="w-7 h-7 rounded border border-gray-200 bg-white text-gray-700 hover:bg-gray-100 flex items-center justify-center">
+                2
+              </button>
+<button class="w-7 h-7 rounded border border-gray-200 bg-white text-gray-700 hover:bg-gray-100 flex items-center justify-center">
+                3
+              </button>
+<span class="px-1 text-gray-400">...</span>
+<button class="w-7 h-7 rounded border border-gray-200 bg-white text-gray-700 hover:bg-gray-100 flex items-center justify-center">
+                6
+              </button>
+<button class="px-2.5 py-1 rounded border border-gray-200 bg-white text-gray-700 hover:bg-gray-100">
+                Siguiente
+              </button>
+</div>
+</div>
+</div>
+<!-- ========================================== -->
+<!-- RIGHT: KARDEX INSPECTOR PANEL (Approx 30%) -->
+<!-- ========================================== -->
+<div class="lg:col-span-4 bg-white rounded-xl p-5 border border-orange-200 shadow-sm flex flex-col space-y-5">
+<!-- Kardex Header -->
+<div class="border-b border-gray-100 pb-4">
+<div class="flex items-center justify-between">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded font-mono font-bold text-xs bg-slate-100 text-slate-800 border border-slate-200">
+                SKU: PIN-001
+              </span>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Stock actual: 25 Und
+              </span>
+</div>
+<h2 class="text-base font-bold text-gray-900 mt-2">Pintura látex blanca 1 galón</h2>
+<div class="flex items-center gap-2 text-xs text-gray-500 mt-0.5">
+<span>Marca: <strong class="text-gray-700">Vencedor</strong></span>
+<span>•</span>
+<span>Cat: <strong class="text-gray-700">Pinturas</strong></span>
+</div>
+</div>
+<!-- Quick Stats Cards Inside Kardex -->
+<div class="grid grid-cols-3 gap-2 bg-[#F8F9FB] p-3 rounded-lg border border-gray-200/80 text-center">
+<div>
+<span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Entradas Mes</span>
+<span class="text-sm font-bold text-emerald-600 font-mono">+30 Und</span>
+</div>
+<div class="border-x border-gray-200">
+<span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Salidas Mes</span>
+<span class="text-sm font-bold text-rose-600 font-mono">-12 Und</span>
+</div>
+<div>
+<span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Rotación</span>
+<span class="text-xs font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded inline-block mt-0.5">Alta (A)</span>
+</div>
+</div>
+<!-- Kardex Activity Rows -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-gray-900 uppercase tracking-wide">Movimientos recientes</span>
+<span class="text-[11px] text-gray-400">Método PEPS</span>
+</div>
+<div class="space-y-2 text-xs">
+<!-- Kardex Item 1 -->
+<div class="p-2.5 rounded-lg bg-gray-50 border border-gray-100 flex items-start justify-between">
+<div>
+<div class="text-[10px] font-mono text-gray-400">24/09/2026 14:20</div>
+<div class="font-medium text-gray-800 mt-0.5">Venta web (Pedido #4821)</div>
+<span class="inline-block text-[11px] font-bold text-rose-600 font-mono">Salida -2 Und</span>
+</div>
+<div class="text-right">
+<div class="text-[10px] text-gray-400 uppercase">Saldo</div>
+<span class="font-mono font-bold text-gray-900 text-sm">25 Und</span>
+</div>
+</div>
+<!-- Kardex Item 2 -->
+<div class="p-2.5 rounded-lg bg-gray-50 border border-gray-100 flex items-start justify-between">
+<div>
+<div class="text-[10px] font-mono text-gray-400">23/09/2026 11:05</div>
+<div class="font-medium text-gray-800 mt-0.5">Venta tienda (Boleta B01-382)</div>
+<span class="inline-block text-[11px] font-bold text-rose-600 font-mono">Salida -1 Und</span>
+</div>
+<div class="text-right">
+<div class="text-[10px] text-gray-400 uppercase">Saldo</div>
+<span class="font-mono font-bold text-gray-900 text-sm">27 Und</span>
+</div>
+</div>
+<!-- Kardex Item 3 -->
+<div class="p-2.5 rounded-lg bg-emerald-50/50 border border-emerald-100 flex items-start justify-between">
+<div>
+<div class="text-[10px] font-mono text-gray-400">21/09/2026 16:40</div>
+<div class="font-medium text-gray-800 mt-0.5">Ingreso prov. Vencedor (Guía G04-912)</div>
+<span class="inline-block text-[11px] font-bold text-emerald-700 font-mono">Entrada +20 Und</span>
+</div>
+<div class="text-right">
+<div class="text-[10px] text-gray-400 uppercase">Saldo</div>
+<span class="font-mono font-bold text-emerald-800 text-sm">28 Und</span>
+</div>
+</div>
+<!-- Kardex Item 4 -->
+<div class="p-2.5 rounded-lg bg-gray-50 border border-gray-100 flex items-start justify-between">
+<div>
+<div class="text-[10px] font-mono text-gray-400">18/09/2026 10:15</div>
+<div class="font-medium text-gray-800 mt-0.5">Venta web (Pedido #4790)</div>
+<span class="inline-block text-[11px] font-bold text-rose-600 font-mono">Salida -4 Und</span>
+</div>
+<div class="text-right">
+<div class="text-[10px] text-gray-400 uppercase">Saldo</div>
+<span class="font-mono font-bold text-gray-900 text-sm">8 Und</span>
+</div>
+</div>
+<!-- Kardex Item 5 -->
+<div class="p-2.5 rounded-lg bg-emerald-50/50 border border-emerald-100 flex items-start justify-between">
+<div>
+<div class="text-[10px] font-mono text-gray-400">15/09/2026 09:30</div>
+<div class="font-medium text-gray-800 mt-0.5">Ajuste de inventario periódico</div>
+<span class="inline-block text-[11px] font-bold text-emerald-700 font-mono">Entrada +2 Und</span>
+</div>
+<div class="text-right">
+<div class="text-[10px] text-gray-400 uppercase">Saldo</div>
+<span class="font-mono font-bold text-emerald-800 text-sm">12 Und</span>
+</div>
+</div>
+<!-- Kardex Item 6 -->
+<div class="p-2.5 rounded-lg bg-gray-50 border border-gray-100 flex items-start justify-between">
+<div>
+<div class="text-[10px] font-mono text-gray-400">12/09/2026 15:50</div>
+<div class="font-medium text-gray-800 mt-0.5">Venta mostrador (Factura F01-119)</div>
+<span class="inline-block text-[11px] font-bold text-rose-600 font-mono">Salida -6 Und</span>
+</div>
+<div class="text-right">
+<div class="text-[10px] text-gray-400 uppercase">Saldo</div>
+<span class="font-mono font-bold text-gray-900 text-sm">10 Und</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Kardex Action Footer -->
+<div class="pt-2 border-t border-gray-100 space-y-2">
+<button class="w-full py-2 px-3 border border-[#0F2A4A] text-[#0F2A4A] hover:bg-blue-50 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="history">history</span>
+<span>Ver historial completo</span>
+</button>
+<button class="w-full py-2 px-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+<span>Descargar Kardex (PDF/Excel)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- FOOTER NOTE -->
+<footer class="pt-4 pb-2 text-center text-xs text-gray-400 border-t border-gray-200/60 select-none">
+<p>FerreMax · Módulo de Control de Inventario y Almacén · Tesis UPN 2026 · Sistema Web de Comercio Electrónico Ferretero</p>
+</footer>
+</main>
+</div>
+</body></html>

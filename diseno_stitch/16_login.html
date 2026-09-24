@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Iniciar sesión / Crear cuenta | FERREMAX Perú</title>
+<!-- Inter Google Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#cfc5bc",
+            "on-error": "#ffffff",
+            "error": "#ba1a1a",
+            "on-primary-container": "#7a92b7",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#ece0d8",
+            "surface-variant": "#e1e2e4",
+            "surface-dim": "#d9dadc",
+            "primary": "#00152f",
+            "on-background": "#191c1e",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#b0c8f0",
+            "surface": "#f8f9fb",
+            "on-primary-fixed-variant": "#304869",
+            "background": "#f8f9fb",
+            "error-container": "#ffdad6",
+            "on-primary-fixed": "#001c3a",
+            "surface-tint": "#485f82",
+            "secondary": "#a14000",
+            "on-surface-variant": "#43474e",
+            "surface-container-high": "#e7e8ea",
+            "surface-container": "#edeef0",
+            "on-surface": "#191c1e",
+            "secondary-container": "#ff7528",
+            "primary-fixed-dim": "#b0c8f0",
+            "on-secondary-fixed": "#351000",
+            "surface-container-low": "#f3f4f6",
+            "outline": "#74777f",
+            "on-tertiary-container": "#988f87",
+            "inverse-on-surface": "#f0f1f3",
+            "tertiary-container": "#2e2822",
+            "secondary-fixed-dim": "#ffb694",
+            "primary-fixed": "#d4e3ff",
+            "on-tertiary-fixed-variant": "#4c463f",
+            "tertiary": "#19140f",
+            "surface-bright": "#f8f9fb",
+            "primary-container": "#0f2a4a",
+            "inverse-surface": "#2e3132",
+            "on-tertiary-fixed": "#201b15",
+            "outline-variant": "#c4c6cf",
+            "surface-container-highest": "#e1e2e4",
+            "on-secondary-container": "#5f2200",
+            "secondary-fixed": "#ffdbcc",
+            "on-secondary-fixed-variant": "#7b2f00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "gutter": "1rem",
+            "gutter-tablet": "1.25rem",
+            "margin-desktop": "2.5rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Inter"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "headline-sm": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "price-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "price-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-xl": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "price-md": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "price-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- 1. TOP ANNOUNCEMENT BAR (Azul marino oscuro) -->
+<aside class="bg-primary text-on-primary text-body-sm py-2 px-margin-desktop border-b border-primary-container">
+<div class="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+<!-- Izquierda: Despacho a todo el Perú -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">local_shipping</span>
+<span class="font-medium">Envíos a todo el Perú</span>
+<span class="text-on-primary-container">|</span>
+<span class="material-symbols-outlined text-secondary-container text-[18px]">bolt</span>
+<span class="text-on-primary">Delivery rápido en Lima Metropolitana</span>
+</div>
+<!-- Derecha: Atención, Ayuda, Tracking -->
+<div class="flex items-center gap-6 text-label-md">
+<div class="flex items-center gap-1.5 hover:text-secondary-fixed transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[16px]">headset_mic</span>
+<span>Atención: <strong class="text-on-primary">(01) 712 3456</strong></span>
+</div>
+<a class="hover:text-secondary-fixed transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">help</span>
+          Ayuda
+        </a>
+<a class="hover:text-secondary-fixed transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">pin_drop</span>
+          Seguimiento de pedidos
+        </a>
+</div>
+</div>
+</aside>
+<!-- 2. CABECERA PRINCIPAL (TopNavBar Shared Anchor) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-40">
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop h-20 flex items-center justify-between gap-6">
+<!-- Brand Logo -->
+<a class="flex items-center gap-2 select-none group flex-shrink-0" href="#">
+<div class="text-headline-md font-headline-md font-extrabold tracking-tight">
+<span class="text-primary-container">FERRE</span><span class="text-secondary-container">MAX</span>
+</div>
+<span class="text-label-sm font-label-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant font-semibold">PERÚ</span>
+</a>
+<!-- Large Center Search Bar -->
+<div class="flex-1 max-w-2xl relative">
+<form class="flex items-center" onsubmit="event.preventDefault();">
+<div class="relative w-full">
+<input class="w-full h-11 pl-4 pr-12 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text"/>
+<button aria-label="Buscar" class="absolute right-1 top-1 bottom-1 w-10 bg-primary-container hover:bg-primary text-on-primary rounded-md flex items-center justify-center transition-colors" type="submit">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Trailing Action Icons & Account State -->
+<div class="flex items-center gap-5 flex-shrink-0">
+<!-- Mi Cuenta (Activo en esta vista) -->
+<a class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-primary-container transition-all" href="#">
+<div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<div class="text-left hidden lg:block leading-tight">
+<span class="text-label-sm text-secondary-container font-semibold uppercase tracking-wider block">Estás en</span>
+<span class="text-label-lg font-bold text-primary-container">Mi Cuenta</span>
+</div>
+</a>
+<!-- Soporte rápido icono -->
+<a class="w-10 h-10 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface transition-colors" href="#" title="Soporte Técnico">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+</a>
+<!-- Carrito de Compras -->
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg border border-outline-variant hover:border-primary-container text-on-surface transition-all" href="#">
+<div class="relative flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-[24px]">shopping_cart</span>
+<span class="absolute -top-1.5 -right-2 bg-secondary-container text-on-primary text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">0</span>
+</div>
+<div class="hidden xl:flex flex-col text-left">
+<span class="text-label-sm text-outline">Carrito</span>
+<span class="text-label-md font-bold text-primary-container">S/ 0.00</span>
+</div>
+</a>
+</div>
+</div>
+<!-- 3. BARRA DE NAVEGACIÓN SECUNDARIA -->
+<nav class="bg-surface-container-lowest border-t border-outline-variant/40">
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between text-body-md h-11">
+<div class="flex items-center gap-8 h-full">
+<!-- Botón Desplegable Todas las Categorías -->
+<button class="bg-primary-container text-on-primary hover:bg-primary px-4 h-full flex items-center gap-2 font-label-lg font-semibold transition-colors">
+<span class="material-symbols-outlined text-[20px]">menu</span>
+<span>Todas las categorías</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<!-- Enlaces de navegación con Casing Exacto del JSON -->
+<div class="flex items-center gap-6 h-full font-label-lg">
+<a class="text-on-surface hover:text-secondary flex items-center h-full transition-colors" href="#">Inicio</a>
+<a class="text-on-surface hover:text-secondary flex items-center h-full transition-colors" href="#">Productos</a>
+<a class="text-on-surface hover:text-secondary flex items-center h-full transition-colors" href="#">Categorías</a>
+<a class="text-on-surface hover:text-secondary flex items-center gap-1.5 h-full transition-colors" href="#">
+              Ofertas
+              <span class="bg-secondary-container text-on-primary text-[10px] font-extrabold px-1.5 py-0.5 rounded tracking-wide">HOT</span>
+</a>
+</div>
+</div>
+<!-- Venta Corporativa y Mayoristas -->
+<a class="flex items-center gap-1.5 text-primary-container hover:text-secondary font-label-md font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px] text-secondary-container">domain</span>
+<span>Venta Corporativa &amp; Mayoristas</span>
+</a>
+</div>
+</nav>
+</header>
+<!-- MIGA DE PAN (BREADCRUMB) -->
+<div class="bg-surface-container-low border-b border-outline-variant/40">
+<div class="max-w-[1360px] mx-auto px-margin-desktop py-3">
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 text-body-sm text-outline">
+<a class="hover:text-primary-container transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+<span>Inicio</span>
+</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary-container transition-colors" href="#">Mi cuenta</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary-container font-semibold">Iniciar sesión o Registrarse</span>
+</nav>
+</div>
+</div>
+<!-- MAIN CANVAS -->
+<main class="flex-grow bg-background py-10">
+<div class="max-w-[1240px] mx-auto px-4 md:px-margin-desktop">
+<!-- ENCABEZADO DE SECCIÓN -->
+<div class="text-center max-w-2xl mx-auto mb-10">
+<h1 class="text-headline-xl font-headline-xl text-primary-container tracking-tight mb-2">
+          Accede a tu cuenta FerreMax
+        </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">
+          Inicia sesión para gestionar tus pedidos o regístrate para disfrutar de beneficios exclusivos y recomendaciones personalizadas.
+        </p>
+</div>
+<!-- CONTENEDOR DUAL DE AUTENTICACIÓN (2 COLUMNAS) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- TARJETA IZQUIERDA: INICIAR SESIÓN (5 COLUMNAS) -->
+<section class="lg:col-span-5 bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
+<div class="mb-6">
+<h2 class="text-headline-md font-headline-md font-bold text-primary-container">Iniciar sesión</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Si ya tienes cuenta en FerreMax, ingresa tus datos.</p>
+</div>
+<form class="space-y-5" onsubmit="event.preventDefault();">
+<!-- Campo 1: Correo o teléfono -->
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5" for="login-identifier">
+                Correo electrónico o teléfono móvil <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-primary-container placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" id="login-identifier" name="identifier" placeholder="ej. usuario@correo.com o 987654321" required="" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline text-[20px] pointer-events-none">mail</span>
+</div>
+</div>
+<!-- Campo 2: Contraseña -->
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5" for="login-password">
+                Contraseña <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 pl-3.5 pr-11 bg-surface-container-lowest border border-outline-variant rounded-lg text-primary-container placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" id="login-password" name="password" placeholder="••••••••" required="" type="password"/>
+<button aria-label="Alternar visibilidad de contraseña" class="absolute right-2 top-2 bottom-2 px-2 text-outline hover:text-primary-container flex items-center justify-center transition-colors" onclick="const input = document.getElementById('login-password'); const icon = this.querySelector('span'); if (input.type === 'password') { input.type = 'text'; icon.innerText = 'visibility_off'; } else { input.type = 'password'; icon.innerText = 'visibility'; }" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Fila de opciones: Recordar y Recuperar -->
+<div class="flex items-center justify-between text-body-sm pt-1">
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input class="w-4 h-4 rounded border-outline-variant text-primary-container focus:ring-primary-container focus:ring-offset-0 transition-colors" type="checkbox"/>
+<span class="text-on-surface">Recordar mi sesión</span>
+</label>
+<a class="text-secondary-container hover:underline font-label-md font-semibold transition-colors" href="#">
+                ¿Olvidaste tu contraseña?
+              </a>
+</div>
+<!-- Botón Principal: Ingresar -->
+<button class="w-full h-11 bg-secondary-container hover:bg-secondary text-on-primary font-label-lg font-bold rounded-lg shadow-sm active:scale-[0.99] transition-all flex items-center justify-center gap-2" type="submit">
+<span>Ingresar</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<!-- Separador -->
+<div class="relative py-2 flex items-center justify-center">
+<div class="w-full border-t border-outline-variant"></div>
+<span class="absolute bg-surface-container-lowest px-3 text-body-sm text-outline font-medium">o continuar con</span>
+</div>
+<!-- Botón Continuar con Google -->
+<button class="w-full h-11 border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-lg font-semibold rounded-lg flex items-center justify-center gap-3 transition-colors shadow-none" type="button">
+<!-- Google G Logo SVG -->
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z" fill="#4285F4"></path>
+<path d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.36 24 12 24z" fill="#34A853"></path>
+<path d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z" fill="#FBBC05"></path>
+<path d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.36 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z" fill="#EA4335"></path>
+</svg>
+<span>Continuar con Google</span>
+</button>
+</form>
+<!-- Banner Informativo Maestro Constructor -->
+<div class="mt-8 p-4 rounded-lg bg-surface-container-low border border-outline-variant/60 flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary-container text-[22px] flex-shrink-0 mt-0.5">engineering</span>
+<div>
+<p class="text-label-md font-bold text-primary-container">¿Eres Maestro de Obra o Contratista?</p>
+<p class="text-body-sm text-on-surface-variant mt-0.5">Accede a cotizaciones por volumen en cemento, fierro Arequipa y tuberías con despacho directo a obra.</p>
+</div>
+</div>
+</section>
+<!-- TARJETA DERECHA: CREAR CUENTA (7 COLUMNAS) -->
+<section class="lg:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
+<div class="mb-6">
+<h2 class="text-headline-md font-headline-md font-bold text-primary-container">Crear cuenta</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">Regístrate en menos de un minuto y compra con mayor rapidez.</p>
+</div>
+<!-- Selector de Tipo de Cuenta -->
+<div class="mb-6">
+<label class="block text-label-md font-label-md text-on-surface mb-2">Tipo de comprobante y perfil:</label>
+<div class="grid grid-cols-2 gap-3" id="account-type-toggle">
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border-2 border-primary-container bg-primary-container text-on-primary font-label-lg font-semibold transition-all shadow-sm" id="btn-persona" onclick="setAccountType('persona')" type="button">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span>Persona Natural (Boleta)</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container-low font-label-lg font-semibold transition-all" id="btn-empresa" onclick="setAccountType('empresa')" type="button">
+<span class="material-symbols-outlined text-[20px]">domain</span>
+<span>Empresa (Factura con RUC)</span>
+</button>
+</div>
+</div>
+<form class="space-y-4" onsubmit="event.preventDefault();">
+<!-- Fila 1: Nombres y DNI -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5" for="reg-name" id="label-name">
+                  Nombres y Apellidos completos <span class="text-error">*</span>
+</label>
+<input class="w-full h-11 px-3.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-primary-container placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" id="reg-name" placeholder="Ej. Juan Pérez Ramos" required="" type="text"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5" for="reg-doc" id="label-doc">
+                  DNI / Carné de Extranjería <span class="text-error">*</span>
+</label>
+<input class="w-full h-11 px-3.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-primary-container placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all font-mono" id="reg-doc" maxlength="11" placeholder="8 dígitos" required="" type="text"/>
+</div>
+</div>
+<!-- Fila 2: Celular y Correo -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5" for="reg-phone">
+                  Teléfono celular <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="absolute left-3.5 top-3 text-body-md font-semibold text-outline">+51</span>
+<input class="w-full h-11 pl-12 pr-3.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-primary-container placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all font-mono" id="reg-phone" placeholder="987 654 321" required="" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5" for="reg-email">
+                  Correo electrónico <span class="text-error">*</span>
+</label>
+<input class="w-full h-11 px-3.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-primary-container placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" id="reg-email" placeholder="juan.perez@empresa.com" required="" type="email"/>
+</div>
+</div>
+<!-- Fila 3: Contraseña -->
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-1.5" for="reg-password">
+                Contraseña <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 pl-3.5 pr-11 bg-surface-container-lowest border border-outline-variant rounded-lg text-primary-container placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-all" id="reg-password" placeholder="Mínimo 8 caracteres, incluye letras y números" required="" type="password"/>
+<button aria-label="Alternar visibilidad" class="absolute right-2 top-2 bottom-2 px-2 text-outline hover:text-primary-container flex items-center justify-center transition-colors" onclick="const input = document.getElementById('reg-password'); const icon = this.querySelector('span'); if (input.type === 'password') { input.type = 'text'; icon.innerText = 'visibility_off'; } else { input.type = 'password'; icon.innerText = 'visibility'; }" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+<!-- Indicador de Fortaleza de contraseña -->
+<div class="mt-2 flex items-center gap-2">
+<div class="grid grid-cols-4 gap-1.5 flex-1">
+<div class="h-1.5 rounded-full bg-secondary-container"></div>
+<div class="h-1.5 rounded-full bg-secondary-container"></div>
+<div class="h-1.5 rounded-full bg-surface-container-high"></div>
+<div class="h-1.5 rounded-full bg-surface-container-high"></div>
+</div>
+<span class="text-label-sm font-semibold text-secondary">Seguridad media</span>
+</div>
+</div>
+<!-- Casillas Legales y Privacidad -->
+<div class="space-y-3 pt-3">
+<label class="flex items-start gap-2.5 cursor-pointer">
+<input class="mt-1 w-4 h-4 rounded border-outline-variant text-primary-container focus:ring-primary-container focus:ring-offset-0 transition-colors" required="" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant leading-relaxed">
+                  Acepto los <a class="text-primary-container font-semibold hover:underline" href="#">Términos y Condiciones</a> y la <a class="text-primary-container font-semibold hover:underline" href="#">Política de Privacidad</a> de FerreMax (cumplimiento Ley N° 29733 de Protección de Datos Personales en el Perú).
+                </span>
+</label>
+<label class="flex items-start gap-2.5 cursor-pointer">
+<input class="mt-1 w-4 h-4 rounded border-outline-variant text-primary-container focus:ring-primary-container focus:ring-offset-0 transition-colors" type="checkbox"/>
+<span class="text-body-sm text-on-surface-variant leading-relaxed">
+                  Deseo recibir ofertas exclusivas, novedades y recomendaciones de materiales para obra.
+                </span>
+</label>
+</div>
+<!-- Botón Institucional: Registrarme -->
+<div class="pt-2">
+<button class="w-full h-11 bg-primary-container hover:bg-primary text-on-primary font-label-lg font-bold rounded-lg shadow-sm active:scale-[0.99] transition-all flex items-center justify-center gap-2" type="submit">
+<span>Registrarme</span>
+<span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+</button>
+</div>
+<p class="text-center text-label-sm text-outline pt-1">
+              Tus datos están protegidos por encriptación TLS 256 bits y servidores certificados en Perú.
+            </p>
+</form>
+</section>
+</div>
+<!-- FRANJA INFERIOR DE BENEFICIOS (3 COLUMNAS) -->
+<section class="mt-10 bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Beneficio 1: Guarda tu carrito -->
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center flex-shrink-0 text-secondary-container">
+<span class="material-symbols-outlined text-[26px]">shopping_basket</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary-container">Guarda tu carrito</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1.5 leading-relaxed">
+                Conserva tus materiales y listas de obra para continuar tu compra en cualquier momento o dispositivo sin perder tus avances.
+              </p>
+</div>
+</div>
+<!-- Beneficio 2: Sigue tus pedidos -->
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center flex-shrink-0 text-secondary-container">
+<span class="material-symbols-outlined text-[26px]">local_shipping</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary-container">Sigue tus pedidos</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1.5 leading-relaxed">
+                Conoce el estado en tiempo real del despacho a domicilio o fecha programada de retiro en nuestro almacén central de Lima.
+              </p>
+</div>
+</div>
+<!-- Beneficio 3: Machine Learning Recommendations -->
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center flex-shrink-0 text-secondary-container">
+<span class="material-symbols-outlined text-[26px]">smart_toy</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary-container">Recomendaciones ML</h3>
+<span class="bg-secondary text-on-secondary text-[10px] font-extrabold px-1.5 py-0.5 rounded tracking-wider">TESIS UPN</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1.5 leading-relaxed">
+                Sugerencias inteligentes de herramientas y complementos calculadas para la envergadura y dosificación precisa de tu proyecto.
+              </p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- PIE DE PÁGINA (Footer Shared Component Anchor) -->
+<footer class="bg-primary text-on-primary border-t border-primary-container mt-auto">
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-xl">
+<!-- Grid de 4 Columnas Institucionales -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-primary-container/80">
+<!-- Columna 1: FerreMax Corporativo -->
+<div>
+<div class="text-headline-md font-headline-md font-extrabold tracking-tight mb-3">
+<span class="text-on-primary">FERRE</span><span class="text-secondary-container">MAX</span>
+</div>
+<p class="text-body-sm text-on-primary-container mb-4 leading-relaxed">
+            Distribuidora líder en materiales de construcción, acabados y ferretería industrial a nivel nacional. Cotizaciones rápidas para proyectos civiles y maestros de obra.
+          </p>
+<div class="text-body-sm text-on-primary-container space-y-1">
+<p><strong>RUC:</strong> 20601234567</p>
+<p><strong>Sede Central:</strong> Av. Materiales 1820, Lima, Perú</p>
+</div>
+</div>
+<!-- Columna 2: Categorías Principales -->
+<div>
+<h4 class="text-headline-sm font-headline-sm font-semibold text-on-primary mb-4">Categorías Principales</h4>
+<ul class="space-y-2 text-body-sm text-on-primary-container">
+<li><a class="hover:text-on-primary transition-colors" href="#">Cemento, Yeso y Cal</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Fierro Corrugado y Alambres</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Tuberías Sanitarias y Conexiones</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Herramientas Eléctricas Bosch &amp; Dewalt</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Pinturas, Selladores e Impermeabilizantes</a></li>
+</ul>
+</div>
+<!-- Columna 3: Enlaces Shared JSON & Ayuda -->
+<div>
+<h4 class="text-headline-sm font-headline-sm font-semibold text-on-primary mb-4">Servicio al Cliente</h4>
+<ul class="space-y-2 text-body-sm">
+<!-- Exact Links from Shared Components JSON -->
+<li><a class="text-on-primary-container hover:text-on-primary transition-colors" href="#">Términos y Condiciones</a></li>
+<li><a class="text-on-primary-container hover:text-on-primary transition-colors" href="#">Políticas de Envío Nacional</a></li>
+<li><a class="text-on-primary-container hover:text-on-primary transition-colors" href="#">Libro de Reclamaciones</a></li>
+<li><a class="text-on-primary-container hover:text-on-primary transition-colors" href="#">Venta Corporativa</a></li>
+<li><a class="text-on-primary-container hover:text-on-primary transition-colors" href="#">Soporte Técnico</a></li>
+</ul>
+</div>
+<!-- Columna 4: Garantía, Seguridad y Medios de Pago -->
+<div>
+<h4 class="text-headline-sm font-headline-sm font-semibold text-on-primary mb-4">Seguridad y Pagos</h4>
+<p class="text-body-sm text-on-primary-container mb-3">
+            Transacciones 100% cifradas y autorizadas con comprobantes válidos ante SUNAT.
+          </p>
+<!-- Badges de métodos de pago -->
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-surface-container-lowest text-primary text-[11px] font-bold rounded">VISA</span>
+<span class="px-2 py-1 bg-surface-container-lowest text-primary text-[11px] font-bold rounded">Mastercard</span>
+<span class="px-2 py-1 bg-[#742284] text-white text-[11px] font-bold rounded">YAPE</span>
+<span class="px-2 py-1 bg-[#00A896] text-white text-[11px] font-bold rounded">PLIN</span>
+<span class="px-2 py-1 bg-surface-container-lowest text-primary text-[11px] font-bold rounded">Transferencia BCP/BBVA</span>
+</div>
+<!-- Libro de reclamaciones botón -->
+<a class="inline-flex items-center gap-2 px-3 py-2 bg-primary-container rounded border border-outline-variant/30 text-on-primary hover:border-secondary-container transition-colors text-label-sm" href="#">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">menu_book</span>
+<span>Libro de Reclamaciones Virtual</span>
+</a>
+</div>
+</div>
+<!-- Copyright y Legal Banner SUNAT / UPN -->
+<div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-label-sm text-on-primary-container">
+<div class="flex items-center gap-2 text-center md:text-left">
+<span class="material-symbols-outlined text-secondary-container text-[18px]">lock</span>
+<!-- Immutable Copyright String from Shared Components JSON with Academic Note -->
+<span>© 2026 FerreMax Perú S.A. - Proyecto de Tesis UPN. Todos los derechos reservados.</span>
+</div>
+<div class="flex items-center gap-4 text-label-sm">
+<span class="text-on-primary">Sistema Web ML para Recomendación de Materiales de Construcción</span>
+<span class="text-outline">|</span>
+<span>Emisión Electrónica SUNAT</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Micro-interactions Script for Account Switcher -->
+<script>
+    function setAccountType(type) {
+      const btnPersona = document.getElementById('btn-persona');
+      const btnEmpresa = document.getElementById('btn-empresa');
+      const labelName = document.getElementById('label-name');
+      const labelDoc = document.getElementById('label-doc');
+      const inputName = document.getElementById('reg-name');
+      const inputDoc = document.getElementById('reg-doc');
+
+      if (type === 'empresa') {
+        // Active Empresa
+        btnEmpresa.className = "flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border-2 border-primary-container bg-primary-container text-on-primary font-label-lg font-semibold transition-all shadow-sm";
+        btnPersona.className = "flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container-low font-label-lg font-semibold transition-all";
+        
+        labelName.innerHTML = 'Razón Social de la Empresa <span class="text-error">*</span>';
+        labelDoc.innerHTML = 'Número de RUC (11 dígitos) <span class="text-error">*</span>';
+        inputName.placeholder = 'Ej. Constructora San Martín S.A.C.';
+        inputDoc.placeholder = '20123456789';
+        inputDoc.maxLength = 11;
+      } else {
+        // Active Persona
+        btnPersona.className = "flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border-2 border-primary-container bg-primary-container text-on-primary font-label-lg font-semibold transition-all shadow-sm";
+        btnEmpresa.className = "flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface hover:bg-surface-container-low font-label-lg font-semibold transition-all";
+        
+        labelName.innerHTML = 'Nombres y Apellidos completos <span class="text-error">*</span>';
+        labelDoc.innerHTML = 'DNI / Carné de Extranjería <span class="text-error">*</span>';
+        inputName.placeholder = 'Ej. Juan Pérez Ramos';
+        inputDoc.placeholder = '8 dígitos';
+        inputDoc.maxLength = 8;
+      }
+    }
+  </script>
+</body></html>

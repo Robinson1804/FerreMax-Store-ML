@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FerreMax - Panel de administración · Configuración</title>
+<!-- Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-container": "#0f2a4a",
+            "on-secondary-fixed": "#351000",
+            "surface-container-highest": "#e1e2e4",
+            "tertiary-fixed": "#ece0d8",
+            "on-tertiary-fixed-variant": "#4c463f",
+            "error": "#ba1a1a",
+            "tertiary-container": "#2e2822",
+            "surface-container": "#edeef0",
+            "surface-bright": "#f8f9fb",
+            "inverse-primary": "#b0c8f0",
+            "on-tertiary-container": "#988f87",
+            "error-container": "#ffdad6",
+            "primary-fixed": "#d4e3ff",
+            "tertiary-fixed-dim": "#cfc5bc",
+            "tertiary": "#19140f",
+            "on-primary-fixed": "#001c3a",
+            "outline-variant": "#c4c6cf",
+            "on-error": "#ffffff",
+            "on-background": "#191c1e",
+            "surface-container-low": "#f3f4f6",
+            "on-primary-fixed-variant": "#304869",
+            "on-secondary-container": "#5f2200",
+            "secondary-fixed-dim": "#ffb694",
+            "surface-variant": "#e1e2e4",
+            "background": "#f8f9fb",
+            "surface-container-high": "#e7e8ea",
+            "primary-fixed-dim": "#b0c8f0",
+            "primary": "#00152f",
+            "on-surface": "#191c1e",
+            "inverse-on-surface": "#f0f1f3",
+            "surface-dim": "#d9dadc",
+            "on-secondary-fixed-variant": "#7b2f00",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#74777f",
+            "secondary-container": "#ff7528",
+            "secondary-fixed": "#ffdbcc",
+            "on-error-container": "#93000a",
+            "secondary": "#a14000",
+            "on-tertiary-fixed": "#201b15",
+            "on-primary-container": "#7a92b7",
+            "surface": "#f8f9fb",
+            "on-primary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#2e3132",
+            "on-surface-variant": "#43474e",
+            "surface-tint": "#485f82"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin-tablet": "2rem",
+            "gutter": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-desktop": "1.5rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "margin-desktop": "2.5rem",
+            "margin": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-tablet": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "price-lg": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "price-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "label-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "headline-xl": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "price-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "price-md": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col">
+<!-- ==================== SIDEBAR FIJA IZQUIERDA (260px) ==================== -->
+<aside class="fixed top-0 left-0 h-screen w-64 flex flex-col shrink-0 z-40 bg-primary-container border-r border-outline-variant/20 shadow-md">
+<!-- Header Logo -->
+<div class="h-16 flex items-center gap-3 px-5 border-b border-outline-variant/15">
+<div class="w-9 h-9 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary font-extrabold text-headline-sm shadow-sm">
+        F
+      </div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-extrabold text-on-primary tracking-wider">FERREMAX</span>
+<span class="text-label-sm font-label-sm text-on-primary-container tracking-wider font-semibold">ADMIN PANEL</span>
+</div>
+</div>
+<!-- Navigation Groups -->
+<div class="flex-1 overflow-y-auto py-5 px-3 space-y-6">
+<!-- Grupo PLATAFORMA -->
+<div>
+<span class="px-3 text-label-sm font-label-sm text-on-primary-container uppercase tracking-wider font-bold block mb-2">Plataforma</span>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-primary-container hover:text-on-primary hover:bg-primary/50 transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span>Resumen</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-primary-container hover:text-on-primary hover:bg-primary/50 transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="inventory_2">inventory_2</span>
+<span>Productos e inventario</span>
+</a>
+<a class="flex items-center justify-between px-4 py-2.5 rounded-lg text-on-primary-container hover:text-on-primary hover:bg-primary/50 transition-all font-label-lg text-label-lg" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_cart">shopping_cart</span>
+<span>Pedidos</span>
+</div>
+<span class="bg-secondary-container text-on-secondary text-label-sm font-label-sm px-2 py-0.5 rounded-full font-bold">14</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-primary-container hover:text-on-primary hover:bg-primary/50 transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+<span>Clientes</span>
+</a>
+</nav>
+</div>
+<!-- Grupo INTELIGENCIA ARTIFICIAL -->
+<div>
+<span class="px-3 text-label-sm font-label-sm text-on-primary-container uppercase tracking-wider font-bold block mb-2">Inteligencia Artificial</span>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-primary-container hover:text-on-primary hover:bg-primary/50 transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="auto_awesome">auto_awesome</span>
+<span>Recomendador</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-primary-container hover:text-on-primary hover:bg-primary/50 transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="bar_chart">bar_chart</span>
+<span>Evaluación</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-primary-container hover:text-on-primary hover:bg-primary/50 transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span>Registro de eventos</span>
+</a>
+</nav>
+</div>
+<!-- Grupo SISTEMA -->
+<div>
+<span class="px-3 text-label-sm font-label-sm text-on-primary-container uppercase tracking-wider font-bold block mb-2">Sistema</span>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-secondary-container text-on-secondary font-label-lg text-label-lg font-semibold shadow-sm transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings" data-weight="fill" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span>Configuración</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-on-primary-container hover:text-on-primary hover:bg-primary/50 transition-all font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span>Usuarios y Roles</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Footer Sidebar -->
+<div class="p-3 border-t border-outline-variant/15 space-y-3 bg-primary/40">
+<!-- Motor Status Chip -->
+<div class="flex items-center gap-2 bg-primary/60 px-3 py-2 rounded-lg border border-outline-variant/15">
+<span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="text-body-sm font-body-sm text-on-primary font-medium">Motor ML v1.2 · En línea</span>
+</div>
+<!-- User Profile Card -->
+<div class="flex items-center justify-between px-2 py-1.5">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary flex items-center justify-center font-bold text-label-md">
+            AD
+          </div>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md text-on-primary leading-tight font-semibold">Administrador</span>
+<span class="text-[11px] text-on-primary-container leading-tight">admin@ferremax.pe</span>
+</div>
+</div>
+<button class="text-on-primary-container hover:text-on-primary p-1.5 rounded transition-colors" title="Cerrar Sesión" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- ==================== CONTENEDOR PRINCIPAL (CON MARGEN DE SIDEBAR) ==================== -->
+<div class="ml-64 flex flex-col flex-1 min-h-screen bg-surface">
+<!-- ==================== HEADER SUPERIOR BLANCO ==================== -->
+<header class="sticky top-0 z-30 h-16 bg-surface-container-lowest border-b border-surface-container-high px-8 flex items-center justify-between shadow-sm">
+<div>
+<h1 class="text-headline-md font-headline-md text-primary font-bold">Configuración del Sistema</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Parámetros operacionales, ajuste de hiperparámetros del recomendador ML y gestión de accesos</p>
+</div>
+<div class="flex items-center gap-4">
+<!-- Live Store Link -->
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-outline-variant/40 hover:bg-surface-container-low text-primary text-label-md font-label-md transition-colors" href="https://ferremax.pe" target="_blank">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="open_in_new">open_in_new</span>
+<span>Tienda en vivo: <span class="font-semibold underline">ferremax.pe</span></span>
+</a>
+<!-- Notifications -->
+<button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary-container"></span>
+</button>
+<div class="h-6 w-px bg-surface-container-highest"></div>
+<!-- Admin Profile Top -->
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-label-md">
+            AD
+          </div>
+<div class="flex flex-col text-left">
+<span class="text-label-md font-label-md font-semibold text-primary">Administrador</span>
+<span class="text-body-sm font-body-sm text-outline">admin@ferremax.pe</span>
+</div>
+<span class="ml-1 px-2 py-0.5 rounded text-label-sm font-label-sm bg-primary/10 text-primary font-bold border border-primary/20">
+            UPN - Tesis 2026
+          </span>
+</div>
+</div>
+</header>
+<!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+<main class="flex-1 p-8 space-y-6">
+<!-- BANNER INFORMATIVO TESIS / AMBIENTE PILOTO -->
+<div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+</div>
+<div>
+<h2 class="text-label-lg font-label-lg text-primary font-bold">Entorno Experimental Activo · Tesis de Ingeniería de Sistemas UPN 2026</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Los parámetros del algoritmo Apriori y el componente colaborativo afectan directamente las métricas de precisión y recall de la prueba piloto.</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-sm font-label-sm font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Servicio Online
+          </span>
+</div>
+</div>
+<!-- BENTO GRID SECTION: Datos de la Empresa & Modo por Defecto -->
+<div class="grid grid-cols-12 gap-6">
+<!-- 1. DATOS DE LA EMPRESA (7 Cols) -->
+<section class="col-span-12 lg:col-span-7 bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-4 mb-5 border-b border-surface-container-high">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary-container" data-icon="store">store</span>
+<h3 class="text-headline-sm font-headline-sm text-primary">Datos de la empresa</h3>
+</div>
+<span class="text-label-sm font-label-sm text-outline font-medium">Información Fiscal Sunat</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Razón social</label>
+<input class="w-full h-11 px-3 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-primary text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" type="text" value="FerreMax Perú S.A."/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">RUC</label>
+<input class="w-full h-11 px-3 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-primary text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary font-mono" type="text" value="20601234567"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Dirección fiscal</label>
+<input class="w-full h-11 px-3 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-primary text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" type="text" value="Av. Nicolás Arriola 1420, San Luis, Lima"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Teléfono de contacto</label>
+<input class="w-full h-11 px-3 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-primary text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" type="text" value="(01) 712 3456"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-1">Horario de atención</label>
+<input class="w-full h-11 px-3 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-primary text-body-md font-body-md focus:border-primary focus:ring-1 focus:ring-primary" type="text" value="Lun - Sáb: 7:00 am - 7:00 pm"/>
+</div>
+</div>
+</div>
+<div class="pt-5 mt-5 border-t border-surface-container-high flex justify-end">
+<button class="h-11 px-6 bg-secondary-container hover:bg-[#DE5A10] active:scale-[0.98] text-on-secondary font-label-lg text-label-lg rounded-lg shadow-sm transition-all flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
+<span>Guardar cambios</span>
+</button>
+</div>
+</section>
+<!-- 2. MODO POR DEFECTO DE LA TIENDA (5 Cols) -->
+<section class="col-span-12 lg:col-span-5 bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-4 mb-4 border-b border-surface-container-high">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary-container" data-icon="tune">tune</span>
+<h3 class="text-headline-sm font-headline-sm text-primary">Modo por defecto de la tienda</h3>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">
+              Define la experiencia inicial para visitantes nuevos antes de registrar eventos de sesión.
+            </p>
+<!-- Selector visual interactivo -->
+<div class="space-y-3">
+<!-- Opción Machine Learning (Seleccionada) -->
+<label class="relative flex p-4 rounded-xl border-2 border-secondary-container bg-secondary-fixed/20 cursor-pointer transition-all">
+<input checked="" class="mt-1 text-secondary-container focus:ring-secondary-container" name="store_mode" type="radio" value="ml"/>
+<div class="ml-3 flex-1">
+<div class="flex items-center justify-between">
+<span class="text-label-lg font-label-lg font-bold text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="smart_toy">smart_toy</span>
+                      Machine Learning
+                    </span>
+<span class="bg-secondary-container text-on-secondary text-label-sm font-label-sm font-bold px-2 py-0.5 rounded">Recomendado</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1.5">
+                    Búsqueda por necesidad del proyecto y reglas de asociación minadas con Apriori / FP-Growth.
+                  </p>
+</div>
+</label>
+<!-- Opción Convencional -->
+<label class="relative flex p-4 rounded-xl border border-outline-variant/50 hover:border-outline bg-surface-container-lowest cursor-pointer transition-all">
+<input class="mt-1 text-primary focus:ring-primary" name="store_mode" type="radio" value="standard"/>
+<div class="ml-3 flex-1">
+<span class="text-label-lg font-label-lg font-bold text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-outline text-[20px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+                    Convencional
+                  </span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1.5">
+                    Recomendación estándar basada únicamente en los más vendidos y productos de la misma categoría fija.
+                  </p>
+</div>
+</label>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-outline">
+<span>Último cambio aplicado: Hoy 09:12 AM</span>
+<span class="text-secondary font-semibold">Activo global</span>
+</div>
+</section>
+</div>
+<!-- 3. PARÁMETROS DEL RECOMENDADOR ML (CARD PRINCIPAL CON CONTENEDOR TEMÁTICO) -->
+<section class="bg-surface-container-lowest border border-[#FBD7C0] rounded-xl p-6 shadow-sm relative overflow-hidden">
+<!-- Accent Top Bar -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-secondary-container"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-6 border-b border-surface-container-high gap-3">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]" data-icon="psychology">psychology</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Parámetros del recomendador</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Hiperparámetros de inferencia algorítmica y filtrado de catálogo en tiempo real</p>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container/10 text-secondary text-label-sm font-label-sm font-bold border border-secondary-container/30 self-start md:self-auto">
+            Motor Apriori + Filtrado Colaborativo
+          </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- K de recomendaciones -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-surface-container-high">
+<div class="flex justify-between items-center mb-1">
+<label class="text-label-lg font-label-lg text-primary font-bold">K de recomendaciones</label>
+<span class="text-label-md font-label-md font-bold px-2 py-0.5 rounded bg-primary-container text-on-primary">5 items</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-3">Cantidad de sugerencias proyectadas por lista o carrusel.</p>
+<input class="w-full accent-secondary-container cursor-pointer" max="10" min="3" type="range" value="5"/>
+<div class="flex justify-between text-label-sm font-label-sm text-outline mt-1 font-mono">
+<span>min: 3</span>
+<span>def: 5</span>
+<span>max: 10</span>
+</div>
+</div>
+<!-- Soporte mínimo (Min Support) -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-surface-container-high">
+<div class="flex justify-between items-center mb-1">
+<label class="text-label-lg font-label-lg text-primary font-bold">Soporte mínimo (Min Support)</label>
+<span class="text-label-md font-label-md font-bold text-secondary">0.01 (1.0%)</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">Frecuencia mínima relativa de co-ocurrencia en canastas.</p>
+<input class="w-full h-10 px-3 rounded-lg border border-outline-variant/60 bg-surface-container-lowest text-primary font-mono text-body-md font-body-md focus:border-primary" step="0.005" type="number" value="0.010"/>
+</div>
+<!-- Confianza mínima (Min Confidence) -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-surface-container-high">
+<div class="flex justify-between items-center mb-1">
+<label class="text-label-lg font-label-lg text-primary font-bold">Confianza mínima (Min Confidence)</label>
+<span class="text-label-md font-label-md font-bold text-secondary">0.15 (15.0%)</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">Probabilidad condicional P(B|A) requerida para la regla.</p>
+<input class="w-full h-10 px-3 rounded-lg border border-outline-variant/60 bg-surface-container-lowest text-primary font-mono text-body-md font-body-md focus:border-primary" step="0.01" type="number" value="0.15"/>
+</div>
+<!-- Lift mínimo -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-surface-container-high">
+<div class="flex justify-between items-center mb-1">
+<label class="text-label-lg font-label-lg text-primary font-bold">Lift mínimo (Min Lift)</label>
+<span class="text-label-md font-label-md font-bold text-secondary font-mono">1.20</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">Fuerza de la asociación por encima de la independencia estocástica.</p>
+<input class="w-full h-10 px-3 rounded-lg border border-outline-variant/60 bg-surface-container-lowest text-primary font-mono text-body-md font-body-md focus:border-primary" step="0.05" type="number" value="1.20"/>
+</div>
+<!-- Peso del componente de contenido (α hibridación) -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-surface-container-high">
+<div class="flex justify-between items-center mb-1">
+<label class="text-label-lg font-label-lg text-primary font-bold">Peso hibridación (α)</label>
+<span class="text-label-md font-label-md font-bold text-primary font-mono">α = 0.50</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-3">Balance entre filtrado basado en contenido y transaccional.</p>
+<input class="w-full accent-secondary-container cursor-pointer" max="1" min="0" step="0.05" type="range" value="0.50"/>
+<div class="flex justify-between text-label-sm font-label-sm text-outline mt-1 font-mono">
+<span>0.0 (Reglas puras)</span>
+<span>0.50</span>
+<span>1.0 (Contenido puro)</span>
+</div>
+</div>
+<!-- Frecuencia de reentrenamiento automático -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-surface-container-high flex flex-col justify-between">
+<div>
+<label class="block text-label-lg font-label-lg text-primary font-bold mb-1">Frecuencia de reentrenamiento</label>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-2">Ejecución del pipeline ETL y recálculo de reglas.</p>
+</div>
+<select class="w-full h-10 px-3 rounded-lg border border-outline-variant/60 bg-surface-container-lowest text-primary text-body-md font-body-md focus:border-primary">
+<option selected="">Semanal (Cada domingo a las 02:00 hrs)</option>
+<option>Diario (Madrugada 03:00 hrs)</option>
+<option>Quincenal (Días 1 y 15)</option>
+<option>Manual (Solo bajo demanda)</option>
+</select>
+</div>
+</div>
+<!-- Toggle Switch: Filtrar sin stock -->
+<div class="mt-6 pt-5 border-t border-surface-container-high flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<!-- Switch toggled ON -->
+<button aria-checked="true" class="w-12 h-6 bg-secondary-container rounded-full relative p-0.5 transition-colors focus:outline-none" role="switch" type="button">
+<span class="w-5 h-5 bg-surface-container-lowest rounded-full block shadow transform translate-x-6 transition-transform"></span>
+</button>
+<div>
+<span class="text-label-lg font-label-lg font-bold text-primary">Filtrar productos sin stock en recomendaciones</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Evita generar frustración recomendando SKUs con inventario en cero en los almacenes de Lima.</p>
+</div>
+</div>
+<button class="h-11 px-5 border-2 border-primary hover:bg-primary/5 active:scale-[0.98] text-primary font-label-lg text-label-lg font-bold rounded-lg transition-all flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+<span>Guardar parámetros de inferencia</span>
+</button>
+</div>
+</section>
+<!-- 4. EVALUACIÓN EXPERIMENTAL (TESIS UPN 2026) -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between pb-4 mb-5 border-b border-surface-container-high">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary-container" data-icon="analytics">analytics</span>
+<h3 class="text-headline-sm font-headline-sm text-primary">Evaluación experimental</h3>
+</div>
+<span class="text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant px-2.5 py-1 rounded font-semibold">
+            Protocolo de Contrastación de Hipótesis
+          </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+<!-- Duración de sesión -->
+<div class="border border-surface-container-high rounded-xl p-4 bg-surface-container-lowest">
+<span class="text-body-sm font-body-sm text-on-surface-variant block mb-1">Duración máxima de sesión</span>
+<div class="flex items-baseline gap-1.5">
+<span class="text-price-lg font-price-lg text-primary font-bold">20</span>
+<span class="text-body-md font-body-md text-outline">minutos</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline mt-2 block">Tiempo límite por prueba de usuario</span>
+</div>
+<!-- Orden de Alternancia -->
+<div class="border border-surface-container-high rounded-xl p-4 bg-surface-container-lowest">
+<span class="text-body-sm font-body-sm text-on-surface-variant block mb-1">Orden de alternancia</span>
+<div class="text-headline-sm font-headline-sm text-primary font-bold">Automático</div>
+<span class="text-label-sm font-label-sm text-emerald-600 font-semibold mt-2 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> A/B intercalado aleatorio
+            </span>
+</div>
+<!-- Muestreo de Sesiones -->
+<div class="border border-surface-container-high rounded-xl p-4 bg-surface-container-lowest lg:col-span-2">
+<div class="flex justify-between items-center mb-1">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Muestreo de sesiones evaluadas</span>
+<span class="text-label-lg font-label-lg text-primary font-bold">48 / 120 sesiones (40%)</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2.5 my-2">
+<div class="bg-secondary-container h-2.5 rounded-full" style="width: 40%"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-outline">
+<span>Grupo Control: 24 sesiones</span>
+<span>Grupo Experimental: 24 sesiones</span>
+<span>Meta: 120 sesiones</span>
+</div>
+</div>
+</div>
+<!-- Badges Escenarios Activos -->
+<div class="mt-5 pt-4 border-t border-surface-container-high">
+<span class="text-label-md font-label-md text-primary font-bold block mb-2.5">Escenarios experimentales activos en el piloto (ESC-01 al ESC-08):</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-primary text-label-md font-label-md font-semibold border border-surface-container-highest">ESC-01: Cemento y Agregados</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-primary text-label-md font-label-md font-semibold border border-surface-container-highest">ESC-02: Fierro Corrugado y Alambre</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-primary text-label-md font-label-md font-semibold border border-surface-container-highest">ESC-03: Fontanería PVC Agua y Desagüe</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-primary text-label-md font-label-md font-semibold border border-surface-container-highest">ESC-04: Pinturas e Impermeabilizantes</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-primary text-label-md font-label-md font-semibold border border-surface-container-highest">ESC-05: Drywall y Perfilería Galvanizada</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-primary text-label-md font-label-md font-semibold border border-surface-container-highest">ESC-06: Instalaciones Eléctricas Monofásicas</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-primary text-label-md font-label-md font-semibold border border-surface-container-highest">ESC-07: Herramientas Eléctricas Percutoras</span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-primary text-label-md font-label-md font-semibold border border-surface-container-highest">ESC-08: Acabados y Adhesivos Cerámicos</span>
+</div>
+</div>
+</section>
+<!-- 5. USUARIOS DEL PANEL -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-6 shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-surface-container-high gap-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary-container" data-icon="admin_panel_settings">admin_panel_settings</span>
+<h3 class="text-headline-sm font-headline-sm text-primary">Usuarios del panel</h3>
+</div>
+<button class="h-10 px-4 bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded-lg shadow-sm transition-all flex items-center gap-2 self-start sm:self-auto" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="person_add">person_add</span>
+<span>+ Agregar nuevo usuario</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-container-high text-label-md font-label-md text-on-surface-variant bg-surface-container-low/50">
+<th class="py-3 px-4">Usuario</th>
+<th class="py-3 px-4">Correo electrónico</th>
+<th class="py-3 px-4">Rol en el sistema</th>
+<th class="py-3 px-4">Estado</th>
+<th class="py-3 px-4">Último acceso</th>
+<th class="py-3 px-4 text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high text-body-md font-body-md">
+<!-- Usuario 1 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-primary flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary text-label-sm font-label-sm flex items-center justify-center font-bold">
+                    AD
+                  </div>
+<span>Administrador</span>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-mono text-body-sm">admin@ferremax.pe</td>
+<td class="py-3.5 px-4 text-primary font-medium">Administrador General</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Activo
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-outline text-body-sm">Hoy, 10:45 AM</td>
+<td class="py-3.5 px-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span></button>
+</td>
+</tr>
+<!-- Usuario 2 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-primary flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed text-secondary text-label-sm font-label-sm flex items-center justify-center font-bold">
+                    I1
+                  </div>
+<span>Investigador 1</span>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-mono text-body-sm">tesista1@ferremax.pe</td>
+<td class="py-3.5 px-4 text-primary font-medium">Investigador / Evaluador ML</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Activo
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-outline text-body-sm">Ayer, 18:20 PM</td>
+<td class="py-3.5 px-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span></button>
+</td>
+</tr>
+<!-- Usuario 3 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-primary flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm flex items-center justify-center font-bold">
+                    I2
+                  </div>
+<span>Investigador 2</span>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant font-mono text-body-sm">tesista2@ferremax.pe</td>
+<td class="py-3.5 px-4 text-primary font-medium">Investigador / Evaluador ML</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Activo
+                  </span>
+</td>
+<td class="py-3.5 px-4 text-outline text-body-sm">21/09/2026</td>
+<td class="py-3.5 px-4 text-right">
+<button class="text-on-surface-variant hover:text-primary p-1" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 6. RESPALDO Y EXPORTACIÓN DE DATOS -->
+<section class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-6 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-4 border-b border-surface-container-high gap-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary-container" data-icon="database">database</span>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Respaldo y Exportación de datos</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Generación de copias completas de la base relacional y transacciones para reproducibilidad académica</p>
+</div>
+</div>
+<div class="text-body-sm font-body-sm text-outline flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-emerald-600" data-icon="check_circle">check_circle</span>
+<span>Último respaldo: <strong class="text-primary">22/09/2026 03:00 AM</strong> (SQLite/PostgreSQL + Dataset Apriori)</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<!-- Botón Primario de Exportación -->
+<button class="h-11 px-5 bg-secondary-container hover:bg-[#DE5A10] active:scale-[0.98] text-on-secondary font-label-lg text-label-lg font-bold rounded-lg shadow-sm transition-all flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+<span>Exportar base de datos (.SQL / .ZIP)</span>
+</button>
+<!-- Botón Secundario de Exportación -->
+<button class="h-11 px-5 border-2 border-primary-container hover:bg-primary-container/5 active:scale-[0.98] text-primary-container font-label-lg text-label-lg font-bold rounded-lg transition-all flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="table_chart">table_chart</span>
+<span>Descargar dataset de transacciones (.CSV)</span>
+</button>
+<span class="text-label-sm font-label-sm text-outline">Incluye matriz binaria de co-ocurrencia y logs de navegación anónimos.</span>
+</div>
+</section>
+</main>
+<!-- ==================== PIE DE PÁGINA INSTITUCIONAL DEL PANEL ==================== -->
+<footer class="mt-auto bg-surface-container-lowest border-t border-surface-container-high px-8 py-4 flex flex-col sm:flex-row justify-between items-center text-body-sm font-body-sm text-on-surface-variant">
+<div>
+<span>FerreMax · Módulo de Configuración y Parámetros del Sistema · <strong>Tesis UPN 2026 - Sistema Web de Recomendación con Machine Learning</strong></span>
+</div>
+<div class="flex items-center gap-4 mt-2 sm:mt-0 text-label-sm font-label-sm text-outline">
+<span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Base de Datos: Conectada</span>
+<span>·</span>
+<span>Recomendador ML: Activo (99.8% precisión)</span>
+<span>·</span>
+<span>v2.4.0</span>
+</div>
+</footer>
+</div>
+</body></html>

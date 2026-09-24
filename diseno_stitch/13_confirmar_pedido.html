@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Confirmar Pedido | FerreMax Perú</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline": "#74777f",
+            "on-primary-fixed-variant": "#304869",
+            "on-primary-fixed": "#001c3a",
+            "on-primary-container": "#7a92b7",
+            "tertiary-fixed-dim": "#cfc5bc",
+            "on-secondary-fixed": "#351000",
+            "on-secondary-fixed-variant": "#7b2f00",
+            "on-tertiary-fixed": "#201b15",
+            "tertiary": "#19140f",
+            "primary-fixed": "#d4e3ff",
+            "error-container": "#ffdad6",
+            "secondary": "#a14000",
+            "inverse-primary": "#b0c8f0",
+            "surface-container-highest": "#e1e2e4",
+            "primary-container": "#0f2a4a",
+            "inverse-on-surface": "#f0f1f3",
+            "surface-dim": "#d9dadc",
+            "secondary-container": "#ff7528",
+            "surface-bright": "#f8f9fb",
+            "inverse-surface": "#2e3132",
+            "secondary-fixed": "#ffdbcc",
+            "primary": "#00152f",
+            "surface-variant": "#e1e2e4",
+            "on-tertiary-container": "#988f87",
+            "background": "#f8f9fb",
+            "on-tertiary-fixed-variant": "#4c463f",
+            "on-primary": "#ffffff",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "surface-container-low": "#f3f4f6",
+            "surface-container": "#edeef0",
+            "outline-variant": "#c4c6cf",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#5f2200",
+            "error": "#ba1a1a",
+            "surface-tint": "#485f82",
+            "surface-container-high": "#e7e8ea",
+            "on-tertiary": "#ffffff",
+            "surface": "#f8f9fb",
+            "tertiary-fixed": "#ece0d8",
+            "tertiary-container": "#2e2822",
+            "surface-container-lowest": "#ffffff",
+            "on-background": "#191c1e",
+            "primary-fixed-dim": "#b0c8f0",
+            "on-surface-variant": "#43474e",
+            "on-surface": "#191c1e",
+            "secondary-fixed-dim": "#ffb694"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter": "1rem",
+            "margin-tablet": "2rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "margin": "1rem",
+            "space-md": "1rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-desktop": "2.5rem",
+            "gutter-tablet": "1.25rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter"],
+            "headline-xl": ["Inter"],
+            "body-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "headline-sm": ["Inter"],
+            "display-lg": ["Inter"],
+            "label-md": ["Inter"],
+            "label-lg": ["Inter"],
+            "price-md": ["Inter"],
+            "headline-md": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "price-lg": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "price-md": ["20px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "price-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- 1. Barra superior institucional azul marino (#0F2A4A) -->
+<header class="w-full bg-primary-container text-on-primary">
+<div class="max-w-[1360px] mx-auto px-margin-desktop py-1.5 flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[16px] text-secondary-container" data-icon="local_shipping">local_shipping</span>
+<span class="font-medium text-surface-container-lowest">Envíos a todo el Perú | Delivery rápido en Lima Metropolitana</span>
+</div>
+<div class="flex items-center space-x-6 text-on-primary-container">
+<div class="flex items-center space-x-1.5 hover:text-on-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[16px]" data-icon="support_agent">support_agent</span>
+<span>Atención: <strong class="text-on-primary font-semibold">(01) 712 3456</strong></span>
+</div>
+<a class="hover:text-on-primary transition-colors" href="#">Ayuda</a>
+<a class="flex items-center space-x-1 hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="inventory_2">inventory_2</span>
+<span>Seguimiento de pedidos</span>
+</a>
+</div>
+</div>
+</header>
+<!-- 2. Cabecera principal blanca -->
+<nav class="w-full bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-40">
+<div class="max-w-[1360px] mx-auto px-margin-desktop py-space-sm flex items-center justify-between gap-6">
+<!-- Logo Brand -->
+<a class="flex items-center tracking-tight cursor-pointer" href="#">
+<span class="text-headline-md font-headline-md font-extrabold text-primary-container">FERRE</span><span class="text-headline-md font-headline-md font-extrabold text-secondary-container">MAX</span>
+</a>
+<!-- Search Bar -->
+<div class="flex-1 max-w-2xl relative">
+<div class="relative flex items-center">
+<input class="w-full h-11 pl-4 pr-12 text-body-md font-body-md rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all placeholder:text-outline" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text"/>
+<button class="absolute right-1 top-1 bottom-1 px-3.5 bg-primary-container text-on-primary rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</button>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center space-x-5">
+<!-- Mi cuenta -->
+<a class="flex items-center space-x-2.5 text-on-surface hover:text-secondary-container transition-colors py-1 cursor-pointer" href="#">
+<div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[22px]" data-icon="person">person</span>
+</div>
+<div class="flex flex-col text-left">
+<span class="text-label-sm font-label-sm text-outline">Hola, inicia sesión</span>
+<span class="text-label-md font-label-md font-bold text-primary-container">Mi cuenta</span>
+</div>
+</a>
+<div class="h-8 w-px bg-outline-variant"></div>
+<!-- Carrito -->
+<a class="flex items-center space-x-2.5 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant hover:border-secondary-container transition-colors cursor-pointer" href="#">
+<div class="relative flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[24px]" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1.5 -right-2 bg-secondary-container text-on-secondary text-label-sm font-label-sm font-bold w-4 h-4 rounded-full flex items-center justify-center">4</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="text-label-sm font-label-sm text-outline">Carrito</span>
+<span class="text-label-md font-label-md font-bold text-secondary-container">S/ 125.40</span>
+</div>
+</a>
+</div>
+</div>
+<!-- 3. Submenú y navegación inferior -->
+<div class="border-t border-surface-container bg-surface-bright">
+<div class="max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between">
+<div class="flex items-center space-x-8">
+<!-- Todas las categorías button -->
+<button class="bg-primary-container text-on-primary px-4 py-2.5 rounded-t-lg flex items-center space-x-2 text-label-md font-label-md font-bold hover:bg-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[18px]" data-icon="menu">menu</span>
+<span>Todas las categorías</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+<!-- Links -->
+<div class="flex items-center space-x-6 text-label-md font-label-md font-medium text-on-surface">
+<a class="hover:text-secondary-container transition-colors py-2" href="#">Inicio</a>
+<a class="hover:text-secondary-container transition-colors py-2" href="#">Productos</a>
+<a class="hover:text-secondary-container transition-colors py-2" href="#">Categorías</a>
+<a class="flex items-center space-x-1.5 text-secondary-container font-bold hover:opacity-90 py-2" href="#">
+<span>Ofertas</span>
+<span class="bg-secondary-container text-on-secondary text-label-sm font-label-sm px-1.5 py-0.5 rounded-full uppercase tracking-wider font-extrabold">HOT</span>
+</a>
+</div>
+</div>
+<div>
+<a class="text-label-md font-label-md font-semibold text-primary-container hover:text-secondary-container transition-colors flex items-center space-x-1 py-2" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="apartment">apartment</span>
+<span>Venta Corporativa &amp; Mayoristas</span>
+</a>
+</div>
+</div>
+</div>
+</nav>
+<!-- 4. Breadcrumb & Status -->
+<main class="flex-grow bg-surface pb-space-xl">
+<div class="max-w-[1360px] mx-auto px-margin-desktop pt-space-md">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center space-x-2 text-body-sm font-body-sm text-outline mb-space-sm">
+<a class="hover:text-primary-container transition-colors" href="#">Inicio</a>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<a class="hover:text-primary-container transition-colors" href="#">Carrito de compras</a>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="font-semibold text-primary-container">Confirmar pedido</span>
+</nav>
+<!-- 5. Título de página con SSL Badge -->
+<div class="flex items-center justify-between pb-space-lg border-b border-outline-variant">
+<div>
+<h1 class="text-headline-xl font-headline-xl text-primary-container font-extrabold tracking-tight">Confirmar pedido</h1>
+<p class="text-body-md font-body-md text-outline mt-0.5">Completa los datos para coordinar el despacho seguro de tu orden.</p>
+</div>
+<div class="flex items-center space-x-2 bg-surface-container-lowest px-3.5 py-2 rounded-xl border border-outline-variant shadow-sm text-label-md font-label-md text-primary-container">
+<span class="material-symbols-outlined text-secondary-container text-[20px]" data-icon="lock" data-weight="fill">lock</span>
+<span class="font-bold text-on-surface">Proceso de Pago Seguro SSL 256-bit</span>
+</div>
+</div>
+<!-- Main Layout: 2 Columns (Formulario 8 cols + Resumen 4 cols) -->
+<div class="mt-space-lg grid grid-cols-12 gap-gutter-desktop">
+<!-- COLUMNA IZQUIERDA: Formulario por pasos (Paso 1, 2 y 3) -->
+<div class="col-span-12 lg:col-span-8 space-y-space-lg">
+<!-- PASO 1: Datos del cliente -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center space-x-3 mb-space-md pb-space-sm border-b border-surface-container">
+<span class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary font-headline-sm flex items-center justify-center font-bold text-[15px]">1</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary-container font-bold">Datos del cliente</h2>
+<p class="text-body-sm font-body-sm text-outline">Elige el tipo de comprobante que requieres para tu compra</p>
+</div>
+</div>
+<!-- Selector Persona Natural / Empresa Tabs -->
+<div class="inline-flex p-1 bg-surface-container-low rounded-lg border border-outline-variant mb-space-md">
+<button class="px-5 py-2 text-label-md font-label-md font-bold rounded-md bg-surface-container-lowest text-primary-container shadow-sm border border-outline-variant/60 flex items-center space-x-2" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="person">person</span>
+<span>Persona Natural (Boleta)</span>
+</button>
+<button class="px-5 py-2 text-label-md font-label-md font-medium text-outline hover:text-primary-container transition-colors flex items-center space-x-2" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="domain">domain</span>
+<span>Empresa (Factura con RUC)</span>
+</button>
+</div>
+<!-- Campos en Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div>
+<label class="block text-label-md font-label-md font-semibold text-primary-container mb-1.5">Nombres y Apellidos completos *</label>
+<input class="w-full h-11 px-3.5 text-body-md font-body-md text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" type="text" value="Carlos Mendoza Paredes"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md font-semibold text-primary-container mb-1.5">DNI / Documento de Identidad *</label>
+<input class="w-full h-11 px-3.5 text-body-md font-body-md text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" maxlength="8" type="text" value="45892174"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md font-semibold text-primary-container mb-1.5">Teléfono móvil (avisos de despacho) *</label>
+<div class="relative">
+<span class="absolute left-3.5 top-2.5 text-body-md font-body-md text-outline font-medium">+51</span>
+<input class="w-full h-11 pl-12 pr-3.5 text-body-md font-body-md text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" type="tel" value="987 654 321"/>
+</div>
+</div>
+<div>
+<label class="block text-label-md font-label-md font-semibold text-primary-container mb-1.5">Correo electrónico (envío de comprobante) *</label>
+<input class="w-full h-11 px-3.5 text-body-md font-body-md text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" type="email" value="carlos.mendoza@gmail.com"/>
+</div>
+</div>
+</div>
+<!-- PASO 2: Método de entrega -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center space-x-3 mb-space-md pb-space-sm border-b border-surface-container">
+<span class="w-8 h-8 rounded-full bg-primary-container text-on-primary font-headline-sm flex items-center justify-center font-bold text-[15px]">2</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary-container font-bold">Método de entrega</h2>
+<p class="text-body-sm font-body-sm text-outline">Selecciona cómo deseas recibir tus materiales</p>
+</div>
+</div>
+<!-- Opciones de Entrega -->
+<div class="space-y-4">
+<!-- Opción A: Recojo en Tienda (Seleccionada) -->
+<label class="block relative border-2 border-primary-container bg-surface-bright p-space-md rounded-xl cursor-pointer transition-all shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-start space-x-3.5">
+<input checked="" class="mt-1 h-5 w-5 text-primary-container border-outline focus:ring-primary-container" name="metodo_entrega" type="radio"/>
+<div>
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary-container text-[22px]" data-icon="store">store</span>
+<span class="text-headline-sm font-headline-sm font-bold text-primary-container">Recojo en tienda · Sin costo</span>
+<span class="bg-surface-container px-2.5 py-0.5 rounded text-label-sm font-label-sm font-bold text-primary-container">GRATIS</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">Disponible para recoger hoy mismo presentando tu DNI y código de compra.</p>
+<!-- Sedes disponibles -->
+<div class="mt-3.5 bg-surface-container-lowest p-3 rounded-lg border border-outline-variant">
+<span class="text-label-sm font-label-sm font-bold uppercase text-outline block mb-1.5">Sede seleccionada para retiro:</span>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-secondary-container text-[18px]" data-icon="location_on">location_on</span>
+<span class="text-label-md font-label-md font-bold text-primary-container">Sede Principal Surquillo (Av. Tomás Marsano 1420)</span>
+</div>
+<span class="text-label-sm font-label-sm text-outline hover:text-primary-container font-semibold cursor-pointer underline">Cambiar a Sede Ate</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant block mt-1 pl-6">Horario de retiro hoy: 8:00 am - 7:30 pm (Stock confirmado)</span>
+</div>
+</div>
+</div>
+<span class="text-label-lg font-label-lg font-bold text-primary-container">S/ 0.00</span>
+</div>
+</label>
+<!-- Opción B: Delivery en Lima Metropolitana -->
+<label class="block border border-outline-variant hover:border-outline bg-surface-container-lowest p-space-md rounded-xl cursor-pointer transition-all">
+<div class="flex items-start justify-between">
+<div class="flex items-start space-x-3.5">
+<input class="mt-1 h-5 w-5 text-primary-container border-outline focus:ring-primary-container" name="metodo_entrega" type="radio"/>
+<div>
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-outline text-[22px]" data-icon="local_shipping">local_shipping</span>
+<span class="text-headline-sm font-headline-sm font-bold text-on-surface">Delivery programado en Lima Metropolitana</span>
+</div>
+<p class="text-body-sm font-body-sm text-outline mt-1">Entrega especializada en obra o domicilio en 24 a 48 horas hábiles.</p>
+<!-- Campos complementarios Delivery (visual state mockup) -->
+<div class="mt-3 pt-3 border-t border-surface-container grid grid-cols-1 md:grid-cols-3 gap-3">
+<div>
+<label class="block text-label-sm font-label-sm font-medium text-outline mb-1">Distrito</label>
+<select class="w-full h-9 px-2 text-body-sm bg-surface-container-low border border-outline-variant rounded text-outline cursor-not-allowed" disabled="">
+<option>Surquillo</option>
+<option>San Borja</option>
+<option>Miraflores</option>
+<option>La Molina</option>
+</select>
+</div>
+<div class="md:col-span-2">
+<label class="block text-label-sm font-label-sm font-medium text-outline mb-1">Dirección y Referencia</label>
+<input class="w-full h-9 px-2 text-body-sm bg-surface-container-low border border-outline-variant rounded text-outline cursor-not-allowed" disabled="" placeholder="Av. Principal 123, dpto 402"/>
+</div>
+</div>
+</div>
+</div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface">S/ 12.00</span>
+</div>
+</label>
+</div>
+</div>
+<!-- PASO 3: Método de pago -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center space-x-3 mb-space-md pb-space-sm border-b border-surface-container">
+<span class="w-8 h-8 rounded-full bg-primary-container text-on-primary font-headline-sm flex items-center justify-center font-bold text-[15px]">3</span>
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary-container font-bold">Método de pago</h2>
+<p class="text-body-sm font-body-sm text-outline">Transacciones 100% encriptadas y protegidas</p>
+</div>
+</div>
+<!-- Opciones de Pago Grid -->
+<div class="space-y-3">
+<!-- Yape / Plin -->
+<label class="block border-2 border-primary-container bg-surface-bright p-4 rounded-xl cursor-pointer">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<input checked="" class="h-5 w-5 text-primary-container border-outline focus:ring-primary-container" name="metodo_pago" type="radio"/>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-extrabold text-[13px] text-secondary-container tracking-wider">
+                        QR
+                      </div>
+<div>
+<span class="text-label-lg font-label-lg font-bold text-primary-container block">Billeteras Digitales (Yape / Plin)</span>
+<span class="text-body-sm font-body-sm text-outline">Sin comisiones, confirmación automática al instante</span>
+</div>
+</div>
+</div>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm font-bold px-2 py-0.5 rounded">Rápido</span>
+</div>
+</label>
+<!-- Tarjeta Débito / Crédito -->
+<label class="block border border-outline-variant hover:border-outline bg-surface-container-lowest p-4 rounded-xl cursor-pointer transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<input class="h-5 w-5 text-primary-container border-outline focus:ring-primary-container" name="metodo_pago" type="radio"/>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[24px]" data-icon="credit_card">credit_card</span>
+</div>
+<div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface block">Tarjeta de Débito o Crédito</span>
+<span class="text-body-sm font-body-sm text-outline">Visa, Mastercard, American Express, Diners Club</span>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-1.5 text-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified_user">verified_user</span>
+<span class="text-label-sm font-label-sm font-semibold">Cifrado 256-bit</span>
+</div>
+</div>
+</label>
+<!-- Contraentrega / Efectivo al recoger -->
+<label class="block border border-outline-variant hover:border-outline bg-surface-container-lowest p-4 rounded-xl cursor-pointer transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<input class="h-5 w-5 text-primary-container border-outline focus:ring-primary-container" name="metodo_pago" type="radio"/>
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[24px]" data-icon="payments">payments</span>
+</div>
+<div>
+<span class="text-label-lg font-label-lg font-bold text-on-surface block">Efectivo al recoger en tienda</span>
+<span class="text-body-sm font-body-sm text-outline">Paga en ventanilla de caja al verificar tus productos</span>
+</div>
+</div>
+</div>
+<span class="text-label-sm font-label-sm font-medium text-outline">En Caja</span>
+</div>
+</label>
+</div>
+<!-- Caja de Cifrado Bancario -->
+<div class="mt-4 p-3 bg-surface-container-low rounded-lg border border-outline-variant flex items-center space-x-2.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="security">security</span>
+<span>Tus datos de facturación y pago están protegidos por estándares de seguridad financiera bancaria tokenizada.</span>
+</div>
+</div>
+<!-- BOTÓN PRINCIPAL DE ACCIÓN -->
+<div class="space-y-3 pt-2">
+<button class="w-full h-14 bg-secondary-container hover:bg-secondary text-on-secondary rounded-xl text-headline-sm font-headline-sm font-bold flex items-center justify-center space-x-3 shadow-md active:scale-98 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[24px]" data-icon="lock" data-weight="fill">lock</span>
+<span>Realizar pedido · S/ 125.40</span>
+<span class="material-symbols-outlined text-[22px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<p class="text-center text-body-sm font-body-sm text-outline">
+              Al hacer clic en "Realizar pedido", aceptas nuestros <a class="underline hover:text-primary-container font-medium" href="#">Términos y Condiciones</a> y <a class="underline hover:text-primary-container font-medium" href="#">Política de Privacidad</a> de FerreMax Perú.
+            </p>
+</div>
+</div>
+<!-- COLUMNA DERECHA: Sticky Resumen de Compra (4 cols) -->
+<div class="col-span-12 lg:col-span-4">
+<div class="sticky top-28 space-y-space-md">
+<!-- Card Resumen -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-space-md">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container mb-space-md">
+<h3 class="text-headline-sm font-headline-sm font-bold text-primary-container">Resumen de compra</h3>
+<span class="bg-surface-container px-2 py-0.5 rounded text-label-sm font-label-sm font-bold text-primary-container">4 productos</span>
+</div>
+<!-- Lista detallada de productos -->
+<div class="divide-y divide-surface-container max-h-80 overflow-y-auto pr-1">
+<!-- Item 1: Pintura látex blanca 1 galón (Vencedor) -->
+<div class="py-3 flex items-start space-x-3">
+<div class="w-14 h-14 bg-surface-container-low rounded-lg border border-outline-variant shrink-0 flex items-center justify-center p-1">
+<img class="w-full h-full object-contain" data-alt="Product photography of a professional one gallon white latex paint bucket from Vencedor brand for interior wall construction, isolated with clean studio illumination on neutral gray background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXN_8xLz2Ha-3FNGJlkGsyeKewlmhh90dmE9Zf_J29ij2M58YZ-hn-RHbCIn4l6uN3HQDMzl7nwL7X-zMLuF-HAsU4beDLPQaExPqUJdScK8XeHsOhDBRLGkjNH37BBeny9SQ2U7rLiajmzKFDUzA0qPNwmtnqU798GwO3axJvmjFpJinvBSxn5Ycog7WepnLaSl5qFcD1TcJwVaHXP1lD00kw010ExzRiNhq9kWgE3ThbX8_9RX5D-_s90y2MFFeIxSEkw4RGbSjp"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-body-md font-body-md font-semibold text-primary-container truncate">Pintura látex blanca 1 galón</h4>
+<p class="text-body-sm font-body-sm text-outline">Vencedor · Cant: 2</p>
+<span class="text-body-md font-body-md font-bold text-primary-container">S/ 96.00</span>
+</div>
+</div>
+<!-- Item 2: Rodillo antigoteo 9" (Truper) -->
+<div class="py-3 flex items-start space-x-3">
+<div class="w-14 h-14 bg-surface-container-low rounded-lg border border-outline-variant shrink-0 flex items-center justify-center p-1">
+<img class="w-full h-full object-contain" data-alt="High quality paint roller with orange Truper handle and anti-drip fabric cylinder, nine inches size for house painting and civil construction, commercial studio light photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASnTAgmuspj3Buycfl72roNCO594dvWjOMAcQMrTwejIVfeyYj7wHoyYoWIsiWbQjJor6gB0sOlCCMXlaC2vTXonCyMtUTbt8kHPMa4w76FNx25RgPz-9AHh53VMvLugNISJ_tWPw9X9rwhKlElHyk9AeX04xWo1yv7HWVASEC3BFunoLMX6V0RTIb9EwmPg5sEesOBzrSAXlNVk_alrzVGLv1iL5UO1xTMw2hS83RsB-NrFcKreaGcnB_gxPckI9q6i4veDq944Cm"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-body-md font-body-md font-semibold text-primary-container truncate">Rodillo antigoteo 9"</h4>
+<p class="text-body-sm font-body-sm text-outline">Truper · Cant: 1</p>
+<span class="text-body-md font-body-md font-bold text-primary-container">S/ 13.90</span>
+</div>
+</div>
+<!-- Item 3: Brocha profesional 2" (Truper) -->
+<div class="py-3 flex items-start space-x-3">
+<div class="w-14 h-14 bg-surface-container-low rounded-lg border border-outline-variant shrink-0 flex items-center justify-center p-1">
+<img class="w-full h-full object-contain" data-alt="Two inch professional bristle paintbrush with varnished wooden ergonomic handle and stainless steel ferrule, hardware tools product photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA95R__PYqZzx_RQWfxgRwqjVl5BZIkzjogc9VUWdGS53TrOxrcwsdZ7o_1abc05f2kYUTjkEHCGzDRxdBQeRcu6ohfvVW1g-F5MpjS_MAyOZxW7tskVl4dQh3xG-cmaP-4jUtSKaiZBxb7S0qI9FE394iI2cyKODmmM0G2FVtPXYA4kYW6zq7KjB2r2UoqIW_H_cC7x8-9jUanp651cw6iDIWX8VOKWqezA8O5uN7vjZA8fO-G36kJw14mK8PI4i2gfdwcdYAPVDSr"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-body-md font-body-md font-semibold text-primary-container truncate">Brocha profesional 2"</h4>
+<p class="text-body-sm font-body-sm text-outline">Truper · Cant: 1</p>
+<span class="text-body-md font-body-md font-bold text-primary-container">S/ 6.50</span>
+</div>
+</div>
+<!-- Item 4: Cinta masking tape 2" (Norton) -->
+<div class="py-3 flex items-start space-x-3">
+<div class="w-14 h-14 bg-surface-container-low rounded-lg border border-outline-variant shrink-0 flex items-center justify-center p-1">
+<img class="w-full h-full object-contain" data-alt="Adhesive painter masking tape roll two inches width by Norton brand, high adhesion paper tape for wall painting masking, clean hardware catalog studio shot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6I4bLc4suVISdkjYGRTCadMy0ltqL99vM0drs42n7QP8rymditgzOPIZpeqCd68pioEswBeSKLaNfcKaD8it6YrBDbRd-rf2X_9IZLbEqf6kWLirMkDvpch8Xn8jmtttmhX1DSFJtqOPJxx68EgJsHq98iND5hd8UdKmi6EFnzS2yTgishlIY4hf8jIhBLqmrd0EioWDM6gMEnCqPoBNa0tSxGf1VBcH6EIlW1dhjUO_Hbb7c-u6QwyNuCVHatXuRNyy8pxlzoDW_"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-body-md font-body-md font-semibold text-primary-container truncate">Cinta masking tape 2"</h4>
+<p class="text-body-sm font-body-sm text-outline">Norton · Cant: 1</p>
+<span class="text-body-md font-body-md font-bold text-primary-container">S/ 9.00</span>
+</div>
+</div>
+</div>
+<!-- Desglose Financiero -->
+<div class="mt-4 pt-4 border-t border-surface-container space-y-2.5">
+<div class="flex justify-between text-body-md font-body-md text-on-surface-variant">
+<span>Subtotal productos</span>
+<span class="font-medium text-on-surface">S/ 125.40</span>
+</div>
+<div class="flex justify-between text-body-md font-body-md text-on-surface-variant">
+<span>Costo de envío</span>
+<span class="font-semibold text-secondary-container">S/ 0.00 (Gratis)</span>
+</div>
+<div class="flex justify-between text-body-md font-body-md text-on-surface-variant">
+<span>Descuento aplicado</span>
+<span class="text-on-surface">- S/ 0.00</span>
+</div>
+<!-- TOTAL DESTACADO -->
+<div class="pt-3 border-t-2 border-surface-container-highest flex items-baseline justify-between">
+<div>
+<span class="text-headline-md font-headline-md font-extrabold text-primary-container block">TOTAL A PAGAR</span>
+<span class="text-label-sm font-label-sm text-outline block">Incluye I.G.V. (18%)</span>
+</div>
+<div class="text-right">
+<span class="text-price-lg font-price-lg text-secondary-container font-extrabold">S/ 125.40</span>
+</div>
+</div>
+</div>
+<!-- Nota al pie del resumen -->
+<div class="mt-4 p-2.5 bg-surface-container-low rounded-lg text-label-sm font-label-sm text-outline flex items-center space-x-1.5">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="info">info</span>
+<span>Pedido sujeto a confirmación de stock en almacén central.</span>
+</div>
+</div>
+<!-- Beneficios de Confianza -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-4 space-y-3 shadow-sm">
+<div class="flex items-center space-x-3 text-body-sm font-body-sm text-primary-container">
+<span class="material-symbols-outlined text-secondary-container text-[20px]" data-icon="verified" data-weight="fill">verified</span>
+<span><strong>Pago 100% Seguro</strong> certificado SSL bancario</span>
+</div>
+<div class="flex items-center space-x-3 text-body-sm font-body-sm text-primary-container">
+<span class="material-symbols-outlined text-secondary-container text-[20px]" data-icon="receipt_long">receipt_long</span>
+<span><strong>Boleta o Factura SUNAT</strong> emitida al instante</span>
+</div>
+<div class="flex items-center space-x-3 text-body-sm font-body-sm text-primary-container">
+<span class="material-symbols-outlined text-secondary-container text-[20px]" data-icon="call">call</span>
+<span><strong>Soporte telefónico:</strong> (01) 712 3456</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- PIE DE PÁGINA INSTITUCIONAL AZUL MARINO (#0F2A4A) -->
+<footer class="bg-primary-container text-on-primary border-t border-primary-container dark:border-outline mt-auto">
+<div class="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop mb-space-lg">
+<!-- Columna 1: Brand & Misión -->
+<div class="space-y-3">
+<div class="flex items-center tracking-tight">
+<span class="text-headline-md font-headline-md font-extrabold text-on-primary">FERRE</span><span class="text-headline-md font-headline-md font-extrabold text-secondary-container">MAX</span>
+</div>
+<p class="text-body-md font-body-md text-on-primary-container">
+            Líder en distribución ferretera y materiales de construcción para grandes obras y proyectos del hogar en todo el Perú.
+          </p>
+<div class="text-body-sm font-body-sm text-on-primary-container">
+<p><strong>RUC:</strong> 20601234567</p>
+<p><strong>Razón Social:</strong> FERREMAX PERÚ S.A.</p>
+</div>
+</div>
+<!-- Columna 2: Categorías Rápidas -->
+<div class="space-y-2">
+<h4 class="text-label-lg font-label-lg font-bold text-on-primary">Categorías Destacadas</h4>
+<ul class="space-y-1.5 text-body-md font-body-md text-on-primary-container">
+<li><a class="hover:text-on-primary transition-colors" href="#">Pinturas y Acabados</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Herramientas Eléctricas</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Fierros y Cementos</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Gasfitería y Tuberías</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Electricidad e Iluminación</a></li>
+</ul>
+</div>
+<!-- Columna 3: Ayuda & Enlaces Legales -->
+<div class="space-y-2">
+<h4 class="text-label-lg font-label-lg font-bold text-on-primary">Servicio al Cliente</h4>
+<ul class="space-y-1.5 text-body-md font-body-md text-on-primary-container">
+<li><a class="hover:text-on-primary transition-colors" href="#">Términos y Condiciones</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Políticas de Envío Nacional</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Venta Corporativa</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Soporte Técnico</a></li>
+<li><a class="hover:text-on-primary transition-colors" href="#">Preguntas Frecuentes</a></li>
+</ul>
+</div>
+<!-- Columna 4: Atención & Libro de Reclamaciones -->
+<div class="space-y-3">
+<h4 class="text-label-lg font-label-lg font-bold text-on-primary">Atención y Garantía</h4>
+<p class="text-body-sm font-body-sm text-on-primary-container">Central Telefónica: (01) 712 3456<br/>Lunes a Sábado: 7:30 am - 8:00 pm</p>
+<!-- Libro de reclamaciones badge -->
+<a class="inline-flex items-center space-x-2.5 bg-surface-container-lowest/10 border border-on-primary-container/30 px-3.5 py-2 rounded-lg hover:bg-surface-container-lowest/20 transition-all text-on-primary" href="#">
+<span class="material-symbols-outlined text-[24px] text-secondary-container" data-icon="menu_book">menu_book</span>
+<div class="text-left leading-tight">
+<span class="text-label-sm font-label-sm font-bold block uppercase tracking-wider">Libro de</span>
+<span class="text-label-md font-label-md font-semibold block">Reclamaciones</span>
+</div>
+</a>
+</div>
+</div>
+<!-- Barra de Copyright inferior y Tesis UPN -->
+<div class="pt-space-md border-t border-on-primary-container/20 flex flex-col md:flex-row items-center justify-between text-label-sm font-label-sm text-on-primary-container gap-4">
+<p>© 2026 FerreMax Perú S.A. - Tesis: Sistema web basado en Machine Learning para la recomendación de productos - UPN 2026. Todos los derechos reservados.</p>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified_user">verified_user</span>
+<span>Transacciones autorizadas por SUNAT y pasarelas peruanas certificadas.</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

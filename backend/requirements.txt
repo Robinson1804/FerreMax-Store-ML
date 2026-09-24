@@ -1,0 +1,13 @@
+# Versiones verificadas el 24/09/2026 (Python 3.13.3 en backend/.venv; compatible con 3.12)
+fastapi[standard]==0.141.1
+uvicorn==0.53.0
+SQLAlchemy==2.1.0
+pydantic==2.13.5
+scikit-learn==1.9.1
+mlxtend==0.25.0
+pandas==3.0.6
+numpy==2.5.3
+python-dotenv==1.2.3
+scipy==1.18.1
+joblib==1.6.0
+lightgbm==4.7.0
