@@ -17,7 +17,7 @@ from models import (Producto, Configuracion, Regla, SesionEvaluacion, RegistroEv
 from recommender import RecommenderService, obtener_config
 import reordenador
 from evaluacion_offline import run_offline_evaluation, ultimo_resumen
-from autenticacion import ProteccionAdmin, credenciales_validas, emitir_token, token_valido
+from autenticacion import ProteccionAdmin, credenciales_validas, emitir_token
 
 @asynccontextmanager
 async def lifespan(_app):
@@ -451,8 +451,9 @@ def admin_login(req: LoginRequest):
 
 
 @app.get("/api/admin/verificar")
-def verificar_token(token: str):
-    return {"valid": token_valido(token)}
+def verificar_token():
+    """El token viaja en la cabecera Authorization; si llega aquí, el middleware ya lo validó."""
+    return {"valid": True}
 
 
 @app.get("/api/admin/dashboard")

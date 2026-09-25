@@ -5,7 +5,7 @@ Autenticación simple del panel (rol único: admin).
 - El token es firmado con HMAC-SHA256 y caduca en 12 h: no se guarda en memoria, así que sobrevive a
   reinicios del servidor. La clave de firma sale de ADMIN_SECRET; si no está definida, se genera una
   por proceso (los tokens se invalidan al reiniciar, pero nada se rompe).
-- Todo /api/admin/* exige "Authorization: Bearer <token>", salvo el login, la verificación y la
+- Todo /api/admin/* exige "Authorization: Bearer <token>", salvo el login y la
   lectura de la configuración (la tienda necesita GET /api/admin/config para mostrar el modo activo).
 """
 import hashlib
@@ -21,7 +21,7 @@ DURACION_S = 12 * 3600
 _CLAVE = (os.getenv("ADMIN_SECRET") or secrets.token_hex(32)).encode()
 
 # (método, ruta) públicas dentro de /api/admin
-RUTAS_PUBLICAS = {("POST", "/api/admin/login"), ("GET", "/api/admin/verificar"), ("GET", "/api/admin/config")}
+RUTAS_PUBLICAS = {("POST", "/api/admin/login"), ("GET", "/api/admin/config")}
 
 
 def credenciales_validas(usuario: str, clave: str) -> bool:

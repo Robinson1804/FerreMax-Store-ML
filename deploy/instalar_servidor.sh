@@ -38,13 +38,17 @@ else
 fi
 
 echo "== Variables de entorno del backend (/etc/ferremax.env)"
+# Contraseña del panel: variable ADMIN_PASS (p. ej. ADMIN_PASS='...' bash instalar_servidor.sh <dominio>);
+# si no se da, se genera una aleatoria y se muestra una sola vez.
 if [ ! -f /etc/ferremax.env ]; then
+  CLAVE_PANEL="${ADMIN_PASS:-$(openssl rand -base64 18)}"
   cat > /etc/ferremax.env <<EOF
-ADMIN_USER=admin
-ADMIN_PASS=admin123
+ADMIN_USER=${ADMIN_USER:-admin}
+ADMIN_PASS=${CLAVE_PANEL}
 ADMIN_SECRET=$(openssl rand -hex 32)
 EOF
   chmod 640 /etc/ferremax.env && chown root:"$USUARIO" /etc/ferremax.env
+  [ -z "${ADMIN_PASS:-}" ] && echo "IMPORTANTE: contraseña del panel generada: ${CLAVE_PANEL} (guárdala ahora; está en /etc/ferremax.env)"
 fi
 
 echo "== Backend: entorno virtual, dependencias, datos y modelo"
