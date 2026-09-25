@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { api, soles } from "../lib/api";
 import { useTienda, useRecomendaciones } from "../lib/tienda";
 import EtiquetaModo from "../components/EtiquetaModo";
+import ImagenProducto from "../components/ImagenProducto";
 
 // No hay imágenes de productos en el backend: se usa un ícono por categoría.
 const ICONO_CATEGORIA = {
@@ -238,7 +239,7 @@ export default function Detalle() {
               {producto.subcategoria}
             </span>
 )}
-<span className="material-symbols-outlined text-primary-container opacity-80" style={{ fontSize: "180px" }}>{iconoDe(producto.categoria)}</span>
+<ImagenProducto producto={producto} icono={iconoDe(producto.categoria)} className="h-full w-full max-h-[380px]" iconoClassName="text-primary-container opacity-80" iconoStyle={{ fontSize: "180px" }} />
 </div>
 </div>
 {/*  Columna Derecha: Información y Compra  */}
@@ -401,7 +402,7 @@ export default function Detalle() {
 <span className="text-label-sm font-label-sm text-outline">SKU: {p.sku}</span>
 </div>
 <button type="button" onClick={() => irADetalle(p, "RECOMENDACION", p.posicion)} className="h-24 w-full my-2 bg-surface-bright rounded flex items-center justify-center p-1">
-<span className="material-symbols-outlined text-primary-container text-[48px]">{iconoDe(p.categoria)}</span>
+<ImagenProducto producto={p} icono={iconoDe(p.categoria)} className="h-full w-full" iconoClassName="text-primary-container text-[48px]" />
 </button>
 <div>
 <button type="button" onClick={() => irADetalle(p, "RECOMENDACION", p.posicion)} className="text-left text-label-md font-label-md text-primary font-semibold line-clamp-2 h-8 hover:text-secondary-container">{p.nombre}</button>
@@ -443,7 +444,7 @@ export default function Detalle() {
 <div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-outline-variant p-space-md flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all duration-200">
 <button type="button" className="text-left" onClick={() => irADetalle(p, "CATEGORIA")}>
 <div className="aspect-square bg-surface-bright rounded-lg p-space-md flex items-center justify-center mb-space-md">
-<span className="material-symbols-outlined text-primary-container text-[72px]">{iconoDe(p.categoria)}</span>
+<ImagenProducto producto={p} icono={iconoDe(p.categoria)} className="h-full w-full" iconoClassName="text-primary-container text-[72px]" />
 </div>
 <span className="text-label-sm font-label-sm text-outline uppercase font-semibold">{p.marca}</span>
 <h4 className="text-headline-sm font-headline-sm text-primary font-semibold mt-1">{p.nombre}</h4>

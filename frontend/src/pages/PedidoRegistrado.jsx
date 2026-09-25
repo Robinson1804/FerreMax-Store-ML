@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { soles } from "../lib/api";
 import { useTienda } from "../lib/tienda";
+import ImagenProducto from "../components/ImagenProducto";
 
 // No hay imágenes de productos en el backend: se usa un ícono por categoría.
 const ICONO_CATEGORIA = {
@@ -201,7 +202,7 @@ export default function PedidoRegistrado() {
 <div key={i.sku} className="py-2.5 flex items-center justify-between gap-3">
 <div className="flex items-center gap-3">
 <div className="w-10 h-10 rounded bg-[#F5F6F8] border border-slate-200 flex-shrink-0 flex items-center justify-center overflow-hidden">
-<span className="material-symbols-outlined text-[22px] text-[#0F2A4A]">{iconoDe(i.categoria)}</span>
+<ImagenProducto producto={i} icono={iconoDe(i.categoria)} className="h-full w-full" iconoClassName="text-[22px] text-[#0F2A4A]" />
 </div>
 <div>
 <h4 className="font-semibold text-slate-800 text-[13px] leading-snug">{i.nombre}</h4>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { soles } from "../lib/api";
 import { useTienda, useRecomendaciones } from "../lib/tienda";
 import EtiquetaModo from "../components/EtiquetaModo";
+import ImagenProducto from "../components/ImagenProducto";
 
 // No hay imágenes de productos en el backend: se usa un ícono por categoría.
 const ICONO_CATEGORIA = {
@@ -46,7 +47,7 @@ function RecomendadoCarrito({ skus }) {
 <div key={p.sku} className="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-4 flex flex-col justify-between hover:shadow-md transition-all group">
 <button type="button" className="text-left" onClick={() => navigate(`/detalle/${encodeURIComponent(p.sku)}?origen=RECOMENDACION&pos=${p.posicion}`)}>
 <div className="h-28 bg-surface-container-low rounded-lg p-2 mb-3 flex items-center justify-center border border-surface-container-high">
-<span className="material-symbols-outlined text-primary-container text-[56px] group-hover:scale-105 transition-transform duration-200">{iconoDe(p.categoria)}</span>
+<ImagenProducto producto={p} icono={iconoDe(p.categoria)} className="h-full w-full group-hover:scale-105 transition-transform duration-300" iconoClassName="text-primary-container text-[56px] group-hover:scale-105 transition-transform duration-200" />
 </div>
 <span className="text-label-sm font-label-sm font-bold text-outline uppercase">{p.marca}</span>
 <h4 className="text-body-md font-body-md font-bold text-primary-container leading-tight mt-0.5 line-clamp-2">{p.nombre}</h4>
@@ -196,7 +197,7 @@ export default function Carrito() {
 <div key={i.sku} className="p-6 transition-colors hover:bg-surface-container-lowest/60 flex flex-col sm:grid sm:grid-cols-12 gap-4 items-center">
 <div className="col-span-6 flex items-center gap-4 w-full">
 <Link to={`/detalle/${encodeURIComponent(i.sku)}`} className="w-20 h-20 bg-surface-container-low rounded-lg p-1.5 flex items-center justify-center shrink-0 border border-outline-variant/30">
-<span className="material-symbols-outlined text-primary-container text-[40px]">{iconoDe(i.categoria)}</span>
+<ImagenProducto producto={i} icono={iconoDe(i.categoria)} className="h-full w-full" iconoClassName="text-primary-container text-[40px]" />
 </Link>
 <div className="flex-1">
 <span className="text-label-sm font-label-sm font-bold text-outline uppercase tracking-wider">{i.marca}</span>

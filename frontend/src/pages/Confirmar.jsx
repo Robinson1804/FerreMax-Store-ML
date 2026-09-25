@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { soles } from "../lib/api";
 import { useTienda } from "../lib/tienda";
+import ImagenProducto from "../components/ImagenProducto";
 
 // No hay imágenes de productos en el backend: se usa un ícono por categoría.
 const ICONO_CATEGORIA = {
@@ -281,7 +282,7 @@ export default function Confirmar() {
 {carrito.map((i) => (
 <div key={i.sku} className="py-3 flex items-start space-x-3">
 <div className="w-14 h-14 bg-surface-container-low rounded-lg border border-outline-variant shrink-0 flex items-center justify-center p-1">
-<span className="material-symbols-outlined text-primary-container text-[28px]">{iconoDe(i.categoria)}</span>
+<ImagenProducto producto={i} icono={iconoDe(i.categoria)} className="h-full w-full" iconoClassName="text-primary-container text-[28px]" />
 </div>
 <div className="flex-1 min-w-0">
 <h4 className="text-body-md font-body-md font-semibold text-primary-container truncate">{i.nombre}</h4>

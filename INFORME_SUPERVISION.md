@@ -226,3 +226,15 @@ powershell -ExecutionPolicy Bypass -File .\demo.ps1 -Resembrar -Evaluar
 - Para detener: `.\demo.ps1 -Detener`
 
 Al cierre de este informe la demostración queda **corriendo** en esos puertos, con la base recién sembrada y sin sesiones de prueba.
+
+## 9. Estado al 24/09/2026 (pausa por reinicio de la PC)
+
+**Hecho (commit local, aún sin push):**
+- Componente `ImagenProducto`: foto real en `frontend/public/img/productos/<SKU>.webp`, con el ícono como respaldo si falta. Se usa en Inicio, Búsqueda, Detalle, Carrito, Confirmar y Pedido registrado.
+- Las 7 imágenes del diseño Stitch se descargaron a `frontend/public/img/categorias/` (antes dependían de URL externas).
+- 12 fotos de producto generadas con IA, en el mismo estilo que el diseño.
+
+**Pendiente:**
+- El usuario debe aprobar 50 fotos de catálogo de tiendas (en `revision_imagenes/`, fuera de git).
+- Decidir si se reemplazan también las 12 generadas con IA, para que el catálogo sea uniforme.
+- Luego se instalan las fotos aprobadas, se hace el push y se pasa al despliegue.

@@ -10,6 +10,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { api, soles } from "../lib/api";
 import { useTienda, useRecomendaciones } from "../lib/tienda";
 import EtiquetaModo from "../components/EtiquetaModo";
+import ImagenProducto from "../components/ImagenProducto";
 
 // No hay fotos de productos en el backend: cada producto se ilustra con un ícono de su categoría
 const ICONO_CATEGORIA = {
@@ -83,7 +84,7 @@ function BloqueComplementos({ base }) {
 <div key={p.sku} className="bg-surface-container-lowest rounded-lg border border-[#FED7AA] p-3 flex flex-col justify-between hover:shadow-sm transition-shadow">
 <Link to={`/detalle/${p.sku}`} className="block">
 <div className="w-full h-24 bg-surface rounded flex items-center justify-center mb-2 overflow-hidden">
-<span className="material-symbols-outlined text-[48px] text-outline" aria-hidden="true">{iconoProducto(p)}</span>
+<ImagenProducto producto={p} icono={iconoProducto(p)} className="h-full w-full" iconoClassName="text-[48px] text-outline" />
 </div>
 <span className="text-[10px] uppercase font-bold text-outline">{p.marca}</span>
 <h4 className="text-xs font-semibold text-primary line-clamp-1 mb-1 hover:text-secondary transition-colors" title={p.nombre}>
@@ -571,7 +572,7 @@ Ningún resultado cumple los filtros elegidos. <button type="button" onClick={li
                 </span>
 )}
 <span className="absolute top-2 right-2 text-[11px] font-bold text-primary bg-white/90 px-1.5 py-0.5 rounded border border-outline-variant">SKU: {p.sku}</span>
-<span className="material-symbols-outlined text-[80px] text-outline group-hover:scale-105 transition-transform duration-200" aria-hidden="true">{iconoProducto(p)}</span>
+<ImagenProducto producto={p} icono={iconoProducto(p)} className="h-full w-full group-hover:scale-105 transition-transform duration-300" iconoClassName="text-[80px] text-outline group-hover:scale-105 transition-transform duration-200" />
 </div>
 <div className="text-[11px] font-bold uppercase tracking-wider text-outline mb-1">{p.marca}</div>
 <h3 className="text-sm font-semibold text-primary group-hover:text-secondary transition-colors line-clamp-2 min-h-[40px]">

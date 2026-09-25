@@ -7,15 +7,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { api, soles } from "../lib/api";
 import { useTienda, useRecomendaciones } from "../lib/tienda";
 import EtiquetaModo from "../components/EtiquetaModo";
+import ImagenProducto from "../components/ImagenProducto";
 
 // Imágenes del diseño que representan cada categoría (no a un producto concreto)
 const IMAGEN_CATEGORIA = {
-  "Pinturas y Acabados": "https://lh3.googleusercontent.com/aida-public/AB6AXuC4dV7wsp-VxSi6Vpq2mnTi2I3OYAikudgD-rD5TneVvsy1OoD8PYQP_dCvQDgUmsmdE5xwqsq6ANO5P0r7RM5sdouCks9D6CLjnLJMcJ76g8F-Qa6H-VijI7F1UZMJPxNzpaSIznNt1wDagC8jzUdqKP48X-aVyetInt5N988c51fMviQYK0e5LjGT8EktuRGNeIUPWXmbbpr_KBG6e7kS3dEkV4YNWg5zM9E_9Q9V-quaaTQSjRoYO6iy2CXgzSUUCXsOBgVZqrV8",
-  "Construcción y Estructuras": "https://lh3.googleusercontent.com/aida-public/AB6AXuCpm8Dr3qPq5BcMekrPE-MLI2e7M_ALvXvphP0QYk33O_DHS5w8bgpFT-XxOH4i-59QyyDTqUq-eganH8kdIU4lYXlVapb_2vdB01F1HqzvNpQyhQw-OFrW1zBjrLZ2HTV_QuYkc8WoYjSRkgkjEHsC9io3DQJsHNwf5n9MOzqXboqBoS0wcjdttriYNdC_dVmHwz6dyN-AqYIq8gZ_8zR3GP1Cdl_MhbmlsmLrDZlF4pzjzT9rRn_BOEUAr0tTN6gawc5QNUc5Bnec",
-  "Gasfitería": "https://lh3.googleusercontent.com/aida-public/AB6AXuBlst57lEFlQrLys5R_KtddiCYG0DiE05Gbb5yWtP4zgBPEx42oUlxhMclLR0OW0ErN1jB5U84e45W12W2W5Qgddt_cadZSAdcwevYVWQwA6bXj2VzxgU7gp8mk1WJhlGAgA0flDIOyWG3GpYYbkkTdiYO5h9Hqt2z5rpiLU2rIwPf5XHOEK2e3ziPjKVPvsqA9F1DwBcaTYWGdWzmKatNYyzk-ApVVKw1iax0NHW8SeCUOZsQQPYdnK2qKqNuS4OQl4ZWlfSsth4vn",
-  "Electricidad": "https://lh3.googleusercontent.com/aida-public/AB6AXuBkEj1lnl9Q-NEwqTPJhDTSpF_ycpwtn7SFTwfeh5qN8tEriSjLTqvEFvVsrbaW41p6ectUn0Wtw9_SI26FNPo6EKIGRAFw_C0842x6_6HHI23RcgDUpy7oSCoALsJqXxbHsnorhcyFhJDKNAO32aiNz8AfD-OElK3nml270woeQS4jTaMH6tM2o87JWnWgSiLpB6Fd_nh4XeKhblJDzQ50-olZpRpbiUqnz8bzZhSf5awfwHnFXkpgU6Au_p_3YR1Sq7Jv9GH6tcLy",
-  "Herramientas": "https://lh3.googleusercontent.com/aida-public/AB6AXuAv1tk1S2vtmrvK_vc1dbl2cicL4quuPJXyJvSDPZtaPX_bkuXR2Gg_-ZFnqjk0Nj1tu4cVgOmCdrNAZtviXaA9IfRaVrp4C7X60xVp3nogsgrYxdyTEbQJ3GQxZSHTo7tnMAzfXJeXdoDxYCQTx-Dj7P-I-tgQ7S4YcELPe2-zFbzPSyYR397n1EdaUHfTvSwaWPDFFue83-CtXWSopGoW_9JteG9yM9VwlJ8xdVWiyR12vKA2KiPX3SirIAb5TMAvuupqx_BUuR_t",
-  "Ferretería General": "https://lh3.googleusercontent.com/aida-public/AB6AXuBRU0F_7OLcxEQQFHAOXZUsvMChWghOlrXjG7SiLzCfMLV0lYpjjjsuPYOAokSkytdfncRaVCd6-iMQeEqZiFTLemYRUpLHeTysh0S2vwv4tdL_xzrBtN504eF8qcMkGrtLzcs8o1lqiqJZuwm4J1xUlHZziK4bGTorPbo7SweS1bE5wDg7vvrR2rpvM2rymx0DaSvJC7Ocd7QCWjRaAo6THXrvZq-J-tp-bUZTvWNQWkYegR9QQwR-V-lb31sBbRIxcFa37OdZnSS7",
+  "Pinturas y Acabados": "/img/categorias/pinturas-y-acabados.webp",
+  "Construcción y Estructuras": "/img/categorias/construccion-y-estructuras.webp",
+  "Gasfitería": "/img/categorias/gasfiteria.webp",
+  "Electricidad": "/img/categorias/electricidad.webp",
+  "Herramientas": "/img/categorias/herramientas.webp",
+  "Ferretería General": "/img/categorias/ferreteria-general.webp",
 };
 
 // No hay fotos de productos en el backend: cada producto se ilustra con un ícono de su categoría
@@ -258,7 +259,7 @@ export default function Inicio() {
 </div>
 {/*  Imagen de Hero integrada con fade out a la izquierda  */}
 <div className="absolute right-0 top-0 bottom-0 w-[640px] h-full pointer-events-none z-10 overflow-hidden">
-<img alt="Herramientas profesionales y materiales de construcción sobre mesa de trabajo" className="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpqVaK-zKFSDtKk_wSmmuoq_a3URCXBibdwFmMt9hNQuIdagKNtGZT8rjAi7py-s0jZwquM73VL-QGvXKPrgB51WsVoH0URvdrC_nkhqd6J7TWCSCMU4KOf78GVkB04-r6PvVCb4kAfL5aGGzwjjhP7lAN_cc2toAZ2VSml3SHMl6jQVWBukb4L1de6deOr6xhGIBiY9rF4yWa5XYJkBQXCuXKnEuntAcjTPm4eJmT2z6CAVKfjHesiqbPhVSdnwkmWxWwNNWZNosl"/>
+<img alt="Herramientas profesionales y materiales de construcción sobre mesa de trabajo" className="w-full h-full object-cover object-center" src="/img/categorias/portada-1.webp"/>
 {/*  Degradado de transición a azul marino #0F2A4A  */}
 <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/50 to-transparent"></div>
 </div>
@@ -385,7 +386,7 @@ export default function Inicio() {
 <div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
 <Link to={`/detalle/${p.sku}`} className="block">
 <div className="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
-<span className="material-symbols-outlined text-[72px] text-outline group-hover:scale-105 transition-transform duration-300" aria-hidden="true">{iconoProducto(p)}</span>
+<ImagenProducto producto={p} icono={iconoProducto(p)} className="h-full w-full group-hover:scale-105 transition-transform duration-300" iconoClassName="text-[72px] text-outline group-hover:scale-105 transition-transform duration-300" />
 <span className="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">{p.subcategoria || p.categoria}</span>
 </div>
 <div className="mt-3">
@@ -447,7 +448,7 @@ export default function Inicio() {
 <div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
 <Link to={`/detalle/${p.sku}`} className="block">
 <div className="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
-<span className="material-symbols-outlined text-[60px] text-outline group-hover:scale-105 transition-transform duration-300" aria-hidden="true">{iconoProducto(p)}</span>
+<ImagenProducto producto={p} icono={iconoProducto(p)} className="h-full w-full group-hover:scale-105 transition-transform duration-300" iconoClassName="text-[60px] text-outline group-hover:scale-105 transition-transform duration-300" />
 <EstadoStock stock={p.stock} />
 </div>
 <div className="mt-2.5">
