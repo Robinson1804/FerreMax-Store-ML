@@ -139,7 +139,7 @@ Antigravity no se colgó en esta corrida (el monitor de más de 15 min sin activ
 
 1. **La regla pintura → rodillo existe pero queda sexta.** La regla PIN-001 → HER-012 tiene confianza 0.19 y lift 3.39. Al ordenar por confianza × lift (criterio del BRIEF) queda sexta, así que no entra en el top 5 de PIN-001 sola. Sí entra por búsqueda por necesidad. Son los datos, no un error.
 2. **Efecto de la definición de P@5 de sesión:** las listas que se muestran tras agregar productos (las del carrito excluyen lo que ya está en él) tienden a aportar 0. El ajuste final excluye las mostradas después de la última adición, pero las intermedias siguen entrando al promedio. La tienda tiene cuatro bloques que registran listas: Inicio "Recomendados", pie de Búsqueda ("también llevan"), Detalle "Complementa tu compra" y Carrito. Conviene que el diseño de los escenarios ESC-01…08 lo tenga en cuenta.
-3. **Seguridad del panel:** los endpoints `/api/admin/*` no validan el token en el backend; solo el frontend protege las rutas. Queda pendiente por prioridad acordada.
+3. **Seguridad del panel:** resuelto. `/api/admin/*` exige un token firmado con HMAC que caduca en 12 h (`backend/autenticacion.py`). La única excepción es `GET /api/admin/config`, que la tienda necesita para mostrar el modo.
 4. **Diseño del panel:** Resumen, Inventario, Pedidos, Clientes, Eventos y Configuración funcionan, pero no reproducen fielmente su diseño de Stitch.
 5. **`peso_contenido`:** resuelto en la versión 2 (ver sección 8).
 6. **Versión de Python:** el entorno usa Python 3.13.3 (el BRIEF pide 3.12); todas las dependencias funcionan.

@@ -27,6 +27,17 @@ Deja corriendo el backend en http://localhost:8000 (documentación en `/docs`) y
 
 En Git Bash, Linux o Mac: `./demo.sh --resembrar`.
 
+## Despliegue en producción (DigitalOcean)
+
+Publicado en **https://ferremax.elfukintorbe.space**: droplet Ubuntu 24.04 de 2 GB; Nginx sirve la tienda compilada y pasa `/api` al backend (uvicorn como servicio `ferremax-api`); HTTPS con Let's Encrypt.
+
+- Instalación en un droplet limpio (como root): `bash deploy/instalar_servidor.sh ferremax.elfukintorbe.space`
+- Actualizar con lo último de GitHub: `bash /opt/ferremax/app/deploy/actualizar.sh` (no toca la base ni `/etc/ferremax.env`)
+- Credenciales del panel y clave de firma de tokens: `/etc/ferremax.env` (`ADMIN_USER`, `ADMIN_PASS`, `ADMIN_SECRET`); tras cambiarlas: `systemctl restart ferremax-api`
+- Registros del backend: `journalctl -u ferremax-api -f`
+
+Los endpoints `/api/admin/*` exigen `Authorization: Bearer <token>` (se obtiene con `POST /api/admin/login`), salvo `GET /api/admin/config`, que la tienda usa para mostrar el modo activo.
+
 ## Arquitectura
 
 ```
@@ -127,6 +138,5 @@ Comprueba, sobre una copia temporal de la base:
 
 ## Pendientes conocidos
 
-- Los endpoints `/api/admin/*` no validan el token en el backend; solo el frontend protege las rutas del panel.
 - Las pantallas de panel Resumen, Inventario, Pedidos, Clientes, Eventos y Configuración son funcionales pero no reproducen fielmente su diseño de Stitch (sí lo hacen Recomendador y Evaluación, además de toda la tienda).
 - `peso_contenido` multiplica la variable `similitud_contenido` del reordenador solo al predecir (1 = neutro, el modelo tal como se entrenó).

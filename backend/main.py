@@ -17,6 +17,7 @@ from models import (Producto, Configuracion, Regla, SesionEvaluacion, RegistroEv
 from recommender import RecommenderService, obtener_config
 import reordenador
 from evaluacion_offline import run_offline_evaluation, ultimo_resumen
+from autenticacion import ProteccionAdmin, credenciales_validas, emitir_token, token_valido
 
 @asynccontextmanager
 async def lifespan(_app):
@@ -33,6 +34,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# Exige token en /api/admin/* (salvo login, verificación y lectura de configuración)
+app.add_middleware(ProteccionAdmin)
 
 TIPOS_EVENTO = ("INICIO_BUSQUEDA", "CONSULTA", "RECOM_MOSTRADA", "PRODUCTO_AGREGADO",
                 "PRODUCTO_RETIRADO", "CONFIRMACION_CARRITO")
@@ -440,21 +443,16 @@ class LoginRequest(BaseModel):
     password: str
 
 
-ACTIVE_TOKENS: set[str] = set()
-
-
 @app.post("/api/admin/login")
 def admin_login(req: LoginRequest):
-    if req.username == os.getenv("ADMIN_USER", "admin") and req.password == os.getenv("ADMIN_PASS", "admin123"):
-        token = secrets.token_hex(16)
-        ACTIVE_TOKENS.add(token)
-        return {"token": token, "role": "admin"}
+    if credenciales_validas(req.username, req.password):
+        return {"token": emitir_token(req.username), "role": "admin"}
     raise HTTPException(status_code=401, detail="Credenciales inválidas")
 
 
 @app.get("/api/admin/verificar")
 def verificar_token(token: str):
-    return {"valid": token in ACTIVE_TOKENS}
+    return {"valid": token_valido(token)}
 
 
 @app.get("/api/admin/dashboard")

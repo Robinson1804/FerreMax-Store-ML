@@ -21,6 +21,14 @@ from main import app  # noqa: E402
 
 c = TestClient(app)
 fallas = []
+# Sin token, /api/admin/* debe rechazarse (salvo la lectura de configuración que usa la tienda)
+sin_token = c.put("/api/admin/config", json={}).status_code
+publica = c.get("/api/admin/config").status_code
+eventos_sin_token = c.get("/api/admin/eventos").status_code
+malo = c.post("/api/admin/login", json={"username": "admin", "password": "x"}).status_code
+token = c.post("/api/admin/login", json={"username": os.getenv("ADMIN_USER", "admin"),
+                                          "password": os.getenv("ADMIN_PASS", "admin123")}).json()["token"]
+c.headers["Authorization"] = f"Bearer {token}"
 
 
 def comprobar(nombre, condicion, detalle=""):
@@ -33,6 +41,11 @@ def cfg(modo):
     c.put("/api/admin/config", json={"modo_activo": modo, "k": 5, "soporte_min": 0.01, "confianza_min": 0.15,
                                      "lift_min": 1.2, "peso_contenido": 0.5})
 
+
+comprobar("admin sin token rechazado (401) y config pública (200)",
+          sin_token == 401 and eventos_sin_token == 401 and publica == 200, f"{sin_token}/{eventos_sin_token}/{publica}")
+comprobar("login con clave incorrecta rechazado", malo == 401)
+comprobar("con token, endpoints admin accesibles", c.get("/api/admin/eventos").status_code == 200)
 
 # 1. Datos sembrados
 db = sqlite3.connect(copia)
