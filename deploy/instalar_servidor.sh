@@ -11,8 +11,13 @@ DIR="/opt/ferremax/app"
 
 echo "== Paquetes del sistema"
 export DEBIAN_FRONTEND=noninteractive
-apt-get update -q
-apt-get install -y -q python3-venv python3-pip git nginx certbot python3-certbot-nginx libgomp1 ufw curl
+# En un droplet recién creado, las actualizaciones automáticas del primer arranque bloquean apt: esperar
+for i in $(seq 1 60); do
+  pgrep -x apt-get >/dev/null || pgrep -f unattended-upgrade$ >/dev/null || pgrep -x dpkg >/dev/null || break
+  echo "  esperando a que termine apt del sistema ($i)..."; sleep 10
+done
+apt-get -o DPkg::Lock::Timeout=600 update -q
+apt-get -o DPkg::Lock::Timeout=600 install -y -q python3-venv python3-pip git nginx certbot python3-certbot-nginx libgomp1 ufw curl
 if ! command -v node >/dev/null || [ "$(node -v | cut -c2- | cut -d. -f1)" -lt 20 ]; then
   curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
   apt-get install -y -q nodejs
