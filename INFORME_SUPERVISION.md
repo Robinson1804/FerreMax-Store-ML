@@ -227,14 +227,14 @@ powershell -ExecutionPolicy Bypass -File .\demo.ps1 -Resembrar -Evaluar
 
 Al cierre de este informe la demostración queda **corriendo** en esos puertos, con la base recién sembrada y sin sesiones de prueba.
 
-## 9. Estado al 24/09/2026 (pausa por reinicio de la PC)
+## 9. Imágenes de productos (24/09/2026)
 
-**Hecho (commit local, aún sin push):**
-- Componente `ImagenProducto`: foto real en `frontend/public/img/productos/<SKU>.webp`, con el ícono como respaldo si falta. Se usa en Inicio, Búsqueda, Detalle, Carrito, Confirmar y Pedido registrado.
-- Las 7 imágenes del diseño Stitch se descargaron a `frontend/public/img/categorias/` (antes dependían de URL externas).
-- 12 fotos de producto generadas con IA, en el mismo estilo que el diseño.
-
-**Pendiente:**
-- El usuario debe aprobar 50 fotos de catálogo de tiendas (en `revision_imagenes/`, fuera de git).
-- Decidir si se reemplazan también las 12 generadas con IA, para que el catálogo sea uniforme.
-- Luego se instalan las fotos aprobadas, se hace el push y se pasa al despliegue.
+- **Componente `ImagenProducto`:** muestra la foto de `frontend/public/img/productos/<SKU>.webp` y, si falta, el ícono de la categoría. Se usa en Inicio, Búsqueda, Detalle, Carrito, Confirmar y Pedido registrado.
+- **Fotos de producto:** los **62 productos** tienen foto de catálogo sobre fondo blanco, convertida a WebP de 600×600 px (855 KB en total).
+  - Casi todas son la foto principal de la ficha pública del producto en promart.pe. El lavatorio viene de celima-trebol.com, y un par de fotos de fabricantes (truper.com, CPP).
+  - Unas 20 son de un producto equivalente del mismo tipo (otra marca, presentación o medida). El origen y una nota de cada foto están en `revision_imagenes/tiendas/fuentes_grupo*.csv` (carpeta local, no versionada).
+- **Imágenes del diseño Stitch:** las de categorías y la portada están en `frontend/public/img/categorias/`, en lugar de URL externas de Google.
+- **Intentos descartados:**
+  - Imágenes generadas con Antigravity: la cuota del modelo de imágenes se agotó después de 13, y su fondo gris no combinaba con el blanco del catálogo.
+  - Fotos de Openverse: rechazadas por la calidad.
+- **Pendiente:** la portada del banner quedó a 512 px de ancho.
