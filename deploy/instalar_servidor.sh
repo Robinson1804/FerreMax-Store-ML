@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Instalación de FerreMax en un droplet Ubuntu 24.04 limpio (ejecutar como root).
-#   bash instalar_servidor.sh ferremax.elfukintorbe.space
+#   bash instalar_servidor.sh sosdigital.lat www.sosdigital.lat
 # Deja: backend FastAPI como servicio systemd (127.0.0.1:8000), frontend compilado servido por Nginx,
 # /api pasado al backend, HTTPS con Let's Encrypt y firewall con solo SSH/HTTP/HTTPS.
 set -euo pipefail
-DOMINIO="${1:?Uso: instalar_servidor.sh <dominio>}"
+DOMINIOS="${*:?Uso: instalar_servidor.sh <dominio> [otros dominios...]}"
+DOMINIO="$1"   # dominio principal
 REPO="https://github.com/Robinson1804/FerreMax-Store-ML.git"
 USUARIO="ferremax"
 DIR="/opt/ferremax/app"
@@ -69,7 +70,7 @@ systemctl enable --now ferremax-api
 systemctl restart ferremax-api
 
 echo "== Nginx"
-sed "s/__DOMINIO__/$DOMINIO/g" "$DIR/deploy/nginx-ferremax.conf" > /etc/nginx/sites-available/ferremax
+sed "s/__DOMINIO__/$DOMINIOS/g" "$DIR/deploy/nginx-ferremax.conf" > /etc/nginx/sites-available/ferremax
 ln -sf /etc/nginx/sites-available/ferremax /etc/nginx/sites-enabled/ferremax
 rm -f /etc/nginx/sites-enabled/default
 chmod o+x /opt/ferremax /opt/ferremax/app /opt/ferremax/app/frontend
@@ -79,7 +80,7 @@ echo "== Firewall"
 ufw allow OpenSSH >/dev/null && ufw allow "Nginx Full" >/dev/null && ufw --force enable >/dev/null
 
 echo "== HTTPS (Let's Encrypt)"
-certbot --nginx -d "$DOMINIO" --non-interactive --agree-tos --register-unsafely-without-email --redirect || \
-  echo "AVISO: certbot falló (¿el DNS aún no apunta a este servidor?). Reintentar: certbot --nginx -d $DOMINIO --redirect"
+certbot --nginx $(printf -- "-d %s " $DOMINIOS) --non-interactive --agree-tos --register-unsafely-without-email --redirect || \
+  echo "AVISO: certbot falló (¿el DNS aún no apunta a este servidor?). Reintentar: certbot --nginx $(printf -- "-d %s " $DOMINIOS)--redirect"
 
 echo "== Listo: https://$DOMINIO"

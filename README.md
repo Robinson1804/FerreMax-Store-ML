@@ -29,9 +29,9 @@ En Git Bash, Linux o Mac: `./demo.sh --resembrar`.
 
 ## Despliegue en producción (DigitalOcean)
 
-Publicado en **https://ferremax.elfukintorbe.space**: droplet Ubuntu 24.04 de 2 GB; Nginx sirve la tienda compilada y pasa `/api` al backend (uvicorn como servicio `ferremax-api`); HTTPS con Let's Encrypt.
+Publicado en **https://sosdigital.lat** (y www.sosdigital.lat): droplet Ubuntu 24.04 de 2 GB; Nginx sirve la tienda compilada y pasa `/api` al backend (uvicorn como servicio `ferremax-api`); HTTPS con Let's Encrypt.
 
-- Instalación en un droplet limpio (como root): `bash deploy/instalar_servidor.sh ferremax.elfukintorbe.space`
+- Instalación en un droplet limpio (como root): `bash deploy/instalar_servidor.sh sosdigital.lat www.sosdigital.lat`
 - Actualizar con lo último de GitHub: `bash /opt/ferremax/app/deploy/actualizar.sh` (no toca la base ni `/etc/ferremax.env`)
 - Credenciales del panel y clave de firma de tokens: `/etc/ferremax.env` (`ADMIN_USER`, `ADMIN_PASS`, `ADMIN_SECRET`); tras cambiarlas: `systemctl restart ferremax-api`
 - Registros del backend: `journalctl -u ferremax-api -f`
