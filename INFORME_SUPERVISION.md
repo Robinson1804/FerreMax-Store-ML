@@ -238,3 +238,16 @@ Al cierre de este informe la demostración queda **corriendo** en esos puertos, 
   - Imágenes generadas con Antigravity: la cuota del modelo de imágenes se agotó después de 13, y su fondo gris no combinaba con el blanco del catálogo.
   - Fotos de Openverse: rechazadas por la calidad.
 - **Pendiente:** la portada del banner quedó a 512 px de ancho.
+
+## 10. Despliegue en producción (25/09/2026)
+
+- **URL:** https://sosdigital.lat (también www.sosdigital.lat). Certificado Let's Encrypt con renovación automática; http redirige a https.
+- **Servidor:** droplet DigitalOcean `ferremax-prod` (161.35.7.130, nyc1, 2 GB, Ubuntu 24.04, Python 3.12).
+- **Servicios:**
+  - Nginx sirve la tienda compilada y pasa `/api` al servicio `ferremax-api` (uvicorn).
+  - La base SQLite y el modelo quedan en el disco del servidor.
+  - El firewall ufw solo deja pasar SSH, HTTP y HTTPS.
+- **Seguridad:** los endpoints `/api/admin/*` exigen token (HMAC, 12 h). Las credenciales están en `/etc/ferremax.env`.
+- **Reproducibilidad:** en el servidor, la evaluación offline dio los mismos valores que en Windows (Recall@5: CONV 0.5125, ML_REGLAS 0.6625, ML_COMPLETO 0.775).
+- **Actualizar:** `bash /opt/ferremax/app/deploy/actualizar.sh`, que no toca la base ni la configuración.
+- **Pendiente:** cambiar la contraseña del panel (hoy `admin123`, que figura en el README público) antes de las sesiones reales con clientes.
