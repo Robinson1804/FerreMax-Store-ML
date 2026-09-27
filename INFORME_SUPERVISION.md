@@ -251,3 +251,18 @@ Al cierre de este informe la demostración queda **corriendo** en esos puertos, 
 - **Reproducibilidad:** en el servidor, la evaluación offline dio los mismos valores que en Windows (Recall@5: CONV 0.5125, ML_REGLAS 0.6625, ML_COMPLETO 0.775).
 - **Actualizar:** `bash /opt/ferremax/app/deploy/actualizar.sh`, que no toca la base ni la configuración.
 - **Pendiente:** cambiar la contraseña del panel (hoy `admin123`, que figura en el README público) antes de las sesiones reales con clientes.
+
+## 11. Adaptación a celulares (27/09/2026)
+
+- **Antes:** a 390 px de ancho (iPhone), 16 de las 18 pantallas desbordaban en horizontal, hasta 665 px. Además, la barra lateral del panel ocupaba 260 px fijos.
+- **Cambios en la tienda:**
+  - Cabecera en dos filas, con el buscador a todo el ancho.
+  - Productos en 2 columnas y filtros plegables.
+  - Carrito en tarjetas y botones a todo el ancho.
+  - Campos con letra de 16 px en móvil, para evitar el zoom automático de iOS.
+- **Cambios en el panel:** la barra lateral pasa a ser un cajón con botón de hamburguesa por debajo de 1024 px. Las tablas tienen scroll horizontal propio.
+- **Íconos:** mientras carga la fuente de íconos, ya no se desborda la página (`display=block` y ancho de 1em).
+- **Verificación:**
+  - Auditoría automática a 360, 390, 768 y 1280 px en local y en producción: 18/18 pantallas sin desborde.
+  - El escritorio quedó igual que antes.
+  - Sesión E2E en viewport móvil: registra los 6 tipos de evento.
