@@ -37,7 +37,7 @@ export default function Resumen() {
         {tarjetas.map(([t, v, icono, to]) => (
           <Link key={t} to={to} className="bg-white rounded-[12px] p-5 border border-[#E2E6EB] shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider">
-              <span>{t}</span>
+              <span className="min-w-0">{t}</span>
               <span className="material-symbols-outlined text-[20px] text-[#0F2A4A]">{icono}</span>
             </div>
             <div className="text-3xl font-extrabold text-[#0F2A4A] mt-2">{dash ? v ?? 0 : '—'}</div>
@@ -45,8 +45,8 @@ export default function Resumen() {
         ))}
       </div>
 
-      <section className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm">
-        <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm">
+        <div className="flex flex-wrap lg:flex-nowrap items-center justify-between gap-2 lg:gap-0 pb-4 mb-4 border-b border-slate-100">
           <div>
             <h2 className="text-base font-bold text-[#0F2A4A]">Indicadores de las sesiones de evaluación</h2>
             <p className="text-xs text-slate-500">Agregados por condición de GET /api/admin/indicadores</p>

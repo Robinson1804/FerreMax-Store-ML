@@ -14,7 +14,7 @@ export default function Clientes() {
   return (
     <PanelLayout titulo="Clientes" subtitulo="Clientes anonimizados por código (sin datos personales)">
       {error && <Aviso tipo="error">No se pudieron cargar los clientes: {error}</Aviso>}
-      <section className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm">
         <p className="text-xs text-slate-500 mb-3">{clientes ? `${clientes.length} clientes` : 'Cargando…'}</p>
         <div className="overflow-auto max-h-[65vh] rounded-lg border border-[#E2E6EB]">
           <table className="w-full text-left border-collapse text-xs">

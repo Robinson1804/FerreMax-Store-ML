@@ -106,8 +106,8 @@ export default function Detalle() {
     <>
 
 {/*  1. BARRA SUPERIOR CORPORATIVA  */}
-<section className="bg-primary-container text-on-primary py-space-xs text-label-md font-label-md border-b border-primary">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between">
+<section className="hidden md:block bg-primary-container text-on-primary py-space-xs text-label-md font-label-md border-b border-primary">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop flex items-center justify-between">
 <div className="flex items-center space-x-space-lg">
 <span className="flex items-center gap-1.5 opacity-90">
 <span className="material-symbols-outlined text-[16px] text-secondary-container" data-icon="local_shipping">local_shipping</span>
@@ -133,19 +133,19 @@ export default function Detalle() {
 </section>
 {/*  2. CABECERA PRINCIPAL  */}
 <header className="bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-50">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-md flex items-center justify-between gap-space-lg">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-3 md:py-space-md flex flex-wrap md:flex-nowrap items-center justify-between gap-3 md:gap-space-lg">
 {/*  Brand Logo  */}
 <Link className="text-headline-md font-headline-md font-extrabold text-primary tracking-tight flex items-center shrink-0" to="/">
 <span>FERRE</span><span className="text-secondary-container">MAX</span>
 </Link>
 {/*  Search Bar  */}
-<form className="flex-1 max-w-2xl relative" onSubmit={buscar}>
+<form className="order-last basis-full md:order-none md:flex-1 max-w-2xl relative" onSubmit={buscar}>
 <div className="flex w-full items-center">
 <div className="relative w-full">
 <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-outline">
 <span className="material-symbols-outlined text-[20px]" data-icon="search">search</span>
 </span>
-<input className="w-full pl-10 pr-4 py-2 bg-surface-bright border border-outline-variant rounded-l-lg text-body-md font-body-md text-primary placeholder-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
+<input className="w-full pl-10 pr-4 py-2 bg-surface-bright border border-outline-variant rounded-l-lg text-base md:text-body-md font-body-md text-primary placeholder-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
 </div>
 <button className="bg-primary-container hover:bg-primary text-on-primary px-space-lg py-2 h-[42px] rounded-r-lg font-label-lg text-label-lg flex items-center justify-center transition-colors" type="submit">
 <span className="material-symbols-outlined text-[20px]" data-icon="search">search</span>
@@ -153,22 +153,22 @@ export default function Detalle() {
 </div>
 </form>
 {/*  User & Cart cluster  */}
-<div className="flex items-center space-x-space-lg shrink-0">
-<Link className="flex items-center gap-2.5 p-1.5 rounded-lg hover:bg-surface-container transition-colors group" to="/mi-cuenta">
+<div className="flex items-center space-x-2 md:space-x-space-lg shrink-0">
+<Link aria-label="Mi cuenta" className="flex items-center gap-2.5 p-1.5 rounded-lg hover:bg-surface-container transition-colors group" to="/mi-cuenta">
 <div className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
 <span className="material-symbols-outlined text-[20px]" data-icon="person">person</span>
 </div>
-<div className="flex flex-col text-left">
+<div className="hidden md:flex flex-col text-left">
 <span className="text-label-sm font-label-sm text-outline uppercase tracking-wider">{sesion?.codigo_cliente ? `Hola, ${sesion.codigo_cliente}` : "Hola, Inicia sesión"}</span>
 <span className="text-label-lg font-label-lg text-primary font-bold">Mi cuenta</span>
 </div>
 </Link>
-<Link className="flex items-center gap-3 bg-surface-bright hover:bg-surface-container border border-outline-variant px-3.5 py-2 rounded-lg transition-all group" to="/carrito">
+<Link aria-label="Carrito" className="flex items-center gap-3 bg-surface-bright hover:bg-surface-container border border-outline-variant px-3 md:px-3.5 py-2 rounded-lg transition-all group" to="/carrito">
 <div className="relative flex items-center justify-center text-primary">
 <span className="material-symbols-outlined text-[24px]" data-icon="shopping_cart">shopping_cart</span>
 <span className="absolute -top-1.5 -right-2 bg-secondary-container text-on-secondary text-label-sm font-label-sm font-bold min-w-4 h-4 px-0.5 rounded-full flex items-center justify-center">{unidades}</span>
 </div>
-<div className="flex flex-col text-left">
+<div className="hidden md:flex flex-col text-left">
 <span className="text-label-sm font-label-sm text-outline">Carrito</span>
 <span className="text-label-lg font-label-lg text-primary font-bold">{soles(subtotal)}</span>
 </div>
@@ -177,14 +177,14 @@ export default function Detalle() {
 </div>
 {/*  3. BARRA DE NAVEGACIÓN SECUNDARIA  */}
 <nav className="border-t border-outline-variant bg-surface-container-lowest">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between">
-<div className="flex items-center space-x-space-md">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop flex items-center justify-between overflow-x-auto md:overflow-visible whitespace-nowrap">
+<div className="flex items-center space-x-space-md shrink-0">
 <Link className="bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center gap-2 py-2.5 px-space-md rounded-b-none transition-colors hover:bg-primary" to="/busqueda">
 <span className="material-symbols-outlined text-[20px]" data-icon="menu">menu</span>
 <span>Todas las categorías</span>
 <span className="material-symbols-outlined text-[18px]" data-icon="expand_more">expand_more</span>
 </Link>
-<div className="flex items-center space-x-space-lg pl-space-md">
+<div className="flex items-center space-x-space-lg pl-space-md pr-4 md:pr-0">
 <Link className="text-on-surface font-label-lg text-label-lg hover:text-secondary transition-colors py-2.5" to="/">Inicio</Link>
 <Link className="text-secondary border-b-2 border-secondary font-label-lg text-label-lg font-bold py-2.5" to="/busqueda">Productos</Link>
 <Link className="text-on-surface font-label-lg text-label-lg hover:text-secondary transition-colors py-2.5" to="/busqueda">Categorías</Link>
@@ -198,7 +198,7 @@ export default function Detalle() {
 </nav>
 </header>
 {/*  MAIN CANVAS  */}
-<main className="flex-grow w-full max-w-[1360px] mx-auto px-margin-desktop py-space-lg space-y-space-xl">
+<main className="flex-grow w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-space-lg space-y-space-xl">
 {error && (
 <section className="bg-surface-container-lowest rounded-xl border border-outline-variant p-space-xl shadow-sm text-center space-y-space-md">
 <span className="material-symbols-outlined text-[48px] text-outline">search_off</span>
@@ -215,7 +215,7 @@ export default function Detalle() {
 {producto && (
 <>
 {/*  4. MIGAS DE PAN (BREADCRUMBS)  */}
-<nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-label-md font-label-md text-outline">
+<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1 text-label-md font-label-md text-outline">
 <Link className="hover:text-primary transition-colors" to="/">Inicio</Link>
 <span className="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
 <Link className="hover:text-primary transition-colors" to={`/busqueda?categoria=${encodeURIComponent(producto.categoria)}`}>{producto.categoria}</Link>
@@ -229,38 +229,38 @@ export default function Detalle() {
 <span aria-current="page" className="text-primary font-bold">{producto.nombre}</span>
 </nav>
 {/*  5. FICHA PRINCIPAL DE PRODUCTO  */}
-<section className="bg-surface-container-lowest rounded-xl border border-outline-variant p-space-xl shadow-sm">
-<div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<section className="bg-surface-container-lowest rounded-xl border border-outline-variant p-4 md:p-space-xl shadow-sm">
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-space-xl">
 {/*  Columna Izquierda: imagen por categoría  */}
-<div className="lg:col-span-6 flex flex-col gap-space-md">
-<div className="w-full aspect-square bg-surface-bright rounded-xl border border-outline-variant overflow-hidden relative flex items-center justify-center p-space-lg">
+<div className="lg:col-span-6 min-w-0 flex flex-col gap-space-md">
+<div className="w-full aspect-[4/3] md:aspect-square bg-surface-bright rounded-xl border border-outline-variant overflow-hidden relative flex items-center justify-center p-space-lg">
 {producto.subcategoria && (
 <span className="absolute top-4 left-4 bg-secondary-container text-on-secondary text-label-sm font-label-sm px-2.5 py-1 rounded-md uppercase font-bold tracking-wide">
               {producto.subcategoria}
             </span>
 )}
-<ImagenProducto producto={producto} icono={iconoDe(producto.categoria)} className="h-full w-full max-h-[380px]" iconoClassName="text-primary-container opacity-80" iconoStyle={{ fontSize: "180px" }} />
+<ImagenProducto producto={producto} icono={iconoDe(producto.categoria)} className="h-full w-full max-h-[260px] md:max-h-[380px]" iconoClassName="text-primary-container opacity-80" iconoStyle={{ fontSize: "180px" }} />
 </div>
 </div>
 {/*  Columna Derecha: Información y Compra  */}
-<div className="lg:col-span-6 flex flex-col justify-between">
+<div className="lg:col-span-6 min-w-0 flex flex-col justify-between">
 <div className="space-y-space-md">
 <div className="flex items-center justify-between">
 <span className="inline-block bg-surface-container text-on-surface-variant font-label-md text-label-md px-3 py-1 rounded tracking-wider uppercase font-bold">
                 {producto.marca}
               </span>
 </div>
-<h1 className="text-headline-xl font-headline-xl text-primary tracking-tight">
+<h1 className="text-headline-xl-mobile md:text-headline-xl font-headline-xl text-primary tracking-tight break-words">
               {producto.nombre}
             </h1>
-<div className="flex items-center gap-space-lg border-b border-outline-variant pb-space-md">
+<div className="flex flex-wrap items-center gap-x-space-lg gap-y-1 border-b border-outline-variant pb-space-md">
 <span className="text-label-md font-label-md text-outline">SKU: {producto.sku}</span>
 <span className="text-label-md font-label-md text-outline">Categoría: {producto.categoria}</span>
 </div>
 {/*  Price & Stock  */}
-<div className="py-space-sm flex items-baseline justify-between">
+<div className="py-space-sm flex flex-wrap items-baseline justify-between gap-2">
 <div className="flex items-baseline gap-2">
-<span className="text-display-lg font-display-lg text-secondary-container tracking-tight">{soles(producto.precio)}</span>
+<span className="text-[36px] md:text-display-lg font-display-lg text-secondary-container tracking-tight">{soles(producto.precio)}</span>
 <span className="text-headline-sm font-headline-sm text-outline">/ {producto.unidad}</span>
 </div>
 {stock > 0 ? (
@@ -277,21 +277,21 @@ export default function Detalle() {
 </div>
 {/*  Purchase Controls  */}
 <div className="space-y-space-md pt-space-xs">
-<div className="flex items-center gap-space-md">
-<div className="flex items-center border border-outline-variant rounded-lg bg-surface-bright h-[48px]">
+<div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-space-md">
+<div className="flex items-center justify-between border border-outline-variant rounded-lg bg-surface-bright h-[48px] w-full md:w-auto">
 <button aria-label="Disminuir cantidad" className="px-3.5 h-full text-primary hover:bg-surface-container transition-colors flex items-center justify-center font-bold" type="button" onClick={() => setCantidad((c) => Math.max(1, c - 1))}>
 <span className="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
 </button>
-<input className="w-12 text-center bg-transparent border-0 font-label-lg text-label-lg text-primary font-bold focus:ring-0" readOnly type="text" value={cantidad}/>
+<input className="w-12 text-center bg-transparent border-0 font-label-lg text-base md:text-label-lg text-primary font-bold focus:ring-0" readOnly type="text" value={cantidad}/>
 <button aria-label="Aumentar cantidad" className="px-3.5 h-full text-primary hover:bg-surface-container transition-colors flex items-center justify-center font-bold" type="button" onClick={() => setCantidad((c) => (stock > 0 ? Math.min(stock, c + 1) : c + 1))}>
 <span className="material-symbols-outlined text-[18px]" data-icon="add">add</span>
 </button>
 </div>
-<button className="flex-1 h-[48px] bg-secondary-container hover:bg-secondary text-on-secondary font-label-lg text-label-lg rounded-lg flex items-center justify-center gap-2 shadow-sm transition-all duration-150 active:scale-98 disabled:opacity-50" type="button" disabled={stock <= 0} onClick={() => agregarPrincipal(false)}>
+<button className="w-full md:w-auto md:flex-1 h-[48px] bg-secondary-container hover:bg-secondary text-on-secondary font-label-lg text-label-lg rounded-lg flex items-center justify-center gap-2 shadow-sm transition-all duration-150 active:scale-98 disabled:opacity-50" type="button" disabled={stock <= 0} onClick={() => agregarPrincipal(false)}>
 <span className="material-symbols-outlined text-[22px]" data-icon="shopping_cart">shopping_cart</span>
 <span>Agregar al carrito</span>
 </button>
-<button className="h-[48px] px-space-xl bg-surface-container-lowest border-2 border-primary-container text-primary-container hover:bg-surface-container font-label-lg text-label-lg rounded-lg transition-colors disabled:opacity-50" type="button" disabled={stock <= 0} onClick={() => agregarPrincipal(true)}>
+<button className="w-full md:w-auto h-[48px] px-space-xl bg-surface-container-lowest border-2 border-primary-container text-primary-container hover:bg-surface-container font-label-lg text-label-lg rounded-lg transition-colors disabled:opacity-50" type="button" disabled={stock <= 0} onClick={() => agregarPrincipal(true)}>
                   Comprar ahora
                 </button>
 </div>
@@ -338,16 +338,16 @@ export default function Detalle() {
 </section>
 {/*  6. PESTAÑAS DE INFORMACIÓN  */}
 <section className="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
-<div className="flex border-b border-outline-variant bg-surface-bright">
+<div className="flex overflow-x-auto border-b border-outline-variant bg-surface-bright">
 {[["descripcion", "Descripción"], ["especificaciones", "Especificaciones"], ["uso", "Uso recomendado"]].map(([id, titulo]) => (
 <button key={id} type="button" onClick={() => setPestana(id)} className={pestana === id
-  ? "py-space-md px-space-xl font-label-lg text-label-lg font-bold text-secondary-container border-b-2 border-secondary-container bg-surface-container-lowest"
-  : "py-space-md px-space-xl font-label-lg text-label-lg text-outline hover:text-primary transition-colors"}>
+  ? "shrink-0 whitespace-nowrap py-space-md px-4 md:px-space-xl font-label-lg text-label-lg font-bold text-secondary-container border-b-2 border-secondary-container bg-surface-container-lowest"
+  : "shrink-0 whitespace-nowrap py-space-md px-4 md:px-space-xl font-label-lg text-label-lg text-outline hover:text-primary transition-colors"}>
           {titulo}
         </button>
 ))}
 </div>
-<div className="p-space-xl space-y-space-lg">
+<div className="p-4 md:p-space-xl space-y-space-lg">
 <div className="max-w-4xl text-body-lg font-body-lg text-on-surface leading-relaxed">
 {pestana === "descripcion" && <>{producto.nombre}, de la marca {producto.marca}. Producto de la línea {producto.subcategoria || producto.categoria} de {producto.categoria}.</>}
 {pestana === "especificaciones" && <>Ficha técnica del catálogo FerreMax.</>}
@@ -372,10 +372,10 @@ export default function Detalle() {
 )}
 {/*  7. BLOQUE DE RECOMENDACIÓN (modo activo)  */}
 {!error && (
-<section className="bg-[#FFF3EA] border border-[#FBD7C0] rounded-xl p-space-xl shadow-sm">
+<section className="bg-[#FFF3EA] border border-[#FBD7C0] rounded-xl p-4 md:p-space-xl shadow-sm">
 <div className="flex flex-col md:flex-row md:items-center justify-between pb-space-lg border-b border-[#FBD7C0] gap-space-sm">
 <div>
-<div className="flex items-center gap-2 mb-1">
+<div className="flex flex-wrap items-center gap-2 mb-1">
 <span className="material-symbols-outlined text-secondary-container text-[24px]" data-icon="auto_awesome">auto_awesome</span>
 <h3 className="text-headline-md font-headline-md text-primary font-bold">Complementa tu compra</h3>
 <span className="bg-secondary-container text-on-secondary text-label-sm font-label-sm px-2.5 py-0.5 rounded-full uppercase tracking-wider font-bold">
@@ -388,18 +388,18 @@ export default function Detalle() {
 </div>
 </div>
 <div className="grid grid-cols-1 xl:grid-cols-12 gap-space-lg pt-space-lg items-center">
-<div className="xl:col-span-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-space-sm">
+<div className="xl:col-span-9 grid grid-cols-2 md:grid-cols-5 gap-space-sm">
 {cargandoRecom && recomendados.length === 0 && (
-<p className="md:col-span-5 text-body-md font-body-md text-outline">Cargando recomendaciones…</p>
+<p className="col-span-2 md:col-span-5 text-body-md font-body-md text-outline">Cargando recomendaciones…</p>
 )}
 {!cargandoRecom && recomendados.length === 0 && (
-<p className="md:col-span-5 text-body-md font-body-md text-outline">No hay recomendaciones para este producto.</p>
+<p className="col-span-2 md:col-span-5 text-body-md font-body-md text-outline">No hay recomendaciones para este producto.</p>
 )}
 {recomendados.map((p) => (
-<div key={p.sku} className="bg-surface-container-lowest p-space-sm rounded-lg border border-[#FBD7C0] flex flex-col justify-between hover:shadow-md transition-shadow">
-<div className="flex items-start justify-between">
-<input checked={seleccion.includes(p.sku)} onChange={() => alternar(p.sku)} aria-label={`Seleccionar ${p.nombre}`} className="w-5 h-5 rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
-<span className="text-label-sm font-label-sm text-outline">SKU: {p.sku}</span>
+<div key={p.sku} className="bg-surface-container-lowest p-space-sm rounded-lg border border-[#FBD7C0] min-w-0 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div className="flex items-start justify-between gap-1">
+<input checked={seleccion.includes(p.sku)} onChange={() => alternar(p.sku)} aria-label={`Seleccionar ${p.nombre}`} className="w-5 h-5 shrink-0 text-base rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span className="text-label-sm font-label-sm text-outline truncate">SKU: {p.sku}</span>
 </div>
 <button type="button" onClick={() => irADetalle(p, "RECOMENDACION", p.posicion)} className="h-24 w-full my-2 bg-surface-bright rounded flex items-center justify-center p-1">
 <ImagenProducto producto={p} icono={iconoDe(p.categoria)} className="h-full w-full" iconoClassName="text-primary-container text-[48px]" />
@@ -432,24 +432,24 @@ export default function Detalle() {
 {/*  8. SECCIÓN PRODUCTOS SIMILARES (misma categoría)  */}
 {producto && similares.length > 0 && (
 <section className="space-y-space-md">
-<div className="flex items-center justify-between">
+<div className="flex flex-wrap items-center justify-between gap-2">
 <h3 className="text-headline-md font-headline-md text-primary font-bold">Productos similares</h3>
 <Link className="text-secondary-container hover:text-secondary font-label-lg text-label-lg flex items-center gap-1" to={`/busqueda?categoria=${encodeURIComponent(producto.categoria)}`}>
 <span>Ver categoría {producto.categoria}</span>
 <span className="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
 </Link>
 </div>
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-lg">
+<div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-space-lg">
 {similares.map((p) => (
-<div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-outline-variant p-space-md flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all duration-200">
+<div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-outline-variant p-3 md:p-space-md min-w-0 flex flex-col justify-between hover:shadow-md hover:border-slate-300 transition-all duration-200">
 <button type="button" className="text-left" onClick={() => irADetalle(p, "CATEGORIA")}>
 <div className="aspect-square bg-surface-bright rounded-lg p-space-md flex items-center justify-center mb-space-md">
 <ImagenProducto producto={p} icono={iconoDe(p.categoria)} className="h-full w-full" iconoClassName="text-primary-container text-[72px]" />
 </div>
 <span className="text-label-sm font-label-sm text-outline uppercase font-semibold">{p.marca}</span>
-<h4 className="text-headline-sm font-headline-sm text-primary font-semibold mt-1">{p.nombre}</h4>
+<h4 className="text-body-lg md:text-headline-sm font-headline-sm text-primary font-semibold mt-1 break-words">{p.nombre}</h4>
 </button>
-<div className="mt-space-md pt-space-sm border-t border-outline-variant flex items-center justify-between">
+<div className="mt-space-md pt-space-sm border-t border-outline-variant flex items-center justify-between gap-2">
 <span className="text-price-md font-price-md text-primary font-bold">{soles(p.precio)}</span>
 <button type="button" aria-label={`Agregar ${p.nombre}`} onClick={() => { agregar(p, "CATEGORIA", null); avisar(`${p.nombre} agregado al carrito`); }} className="p-2 rounded-lg bg-surface-bright hover:bg-secondary-container hover:text-on-secondary text-primary border border-outline-variant transition-colors flex items-center justify-center">
 <span className="material-symbols-outlined text-[20px]" data-icon="add_shopping_cart">add_shopping_cart</span>
@@ -463,7 +463,7 @@ export default function Detalle() {
 </main>
 {/*  9. PIE DE PÁGINA CORPORATIVO  */}
 <footer className="bg-primary text-on-primary border-t border-primary-container mt-space-xl">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-xl">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-space-xl">
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl">
 <div className="space-y-space-md">
 <Link className="text-headline-md font-headline-md font-extrabold text-on-primary tracking-tight block" to="/">

@@ -52,7 +52,7 @@ function BloqueComplementos({ base }) {
   const { lista, cargando } = useRecomendaciones("busqueda", [base.sku], 5);
   if (!cargando && !lista.length) return null;
   return (
-<section className="mt-10 bg-[#FFF3EA] rounded-xl border border-[#FED7AA] p-6 shadow-sm">
+<section className="mt-10 bg-[#FFF3EA] rounded-xl border border-[#FED7AA] p-4 md:p-6 shadow-sm">
 {/*  Module Header  */}
 <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
 <div className="flex items-start gap-3">
@@ -81,7 +81,7 @@ function BloqueComplementos({ base }) {
 <p className="col-span-full text-xs text-on-surface-variant py-4 text-center">Cargando sugerencias…</p>
 )}
 {lista.map((p) => (
-<div key={p.sku} className="bg-surface-container-lowest rounded-lg border border-[#FED7AA] p-3 flex flex-col justify-between hover:shadow-sm transition-shadow">
+<div key={p.sku} className="bg-surface-container-lowest rounded-lg border border-[#FED7AA] p-3 min-w-0 flex flex-col justify-between hover:shadow-sm transition-shadow">
 <Link to={`/detalle/${p.sku}`} className="block">
 <div className="w-full h-24 bg-surface rounded flex items-center justify-center mb-2 overflow-hidden">
 <ImagenProducto producto={p} icono={iconoProducto(p)} className="h-full w-full" iconoClassName="text-[48px] text-outline" />
@@ -91,9 +91,9 @@ function BloqueComplementos({ base }) {
             {p.nombre}
           </h4>
 </Link>
-<div className="flex items-center justify-between mt-1 pt-1 border-t border-surface-container">
-<span className="text-xs font-bold text-primary">{soles(p.precio)}</span>
-<button type="button" onClick={() => agregar(p, "RECOMENDACION", p.posicion)} className="bg-[#F25C05] hover:bg-[#DE5A10] text-white text-[11px] font-bold px-2 py-1 rounded transition-colors flex items-center gap-0.5">
+<div className="flex flex-wrap items-center justify-between gap-1 mt-1 pt-1 border-t border-surface-container">
+<span className="text-xs font-bold text-primary whitespace-nowrap">{soles(p.precio)}</span>
+<button type="button" onClick={() => agregar(p, "RECOMENDACION", p.posicion)} className="bg-[#F25C05] hover:bg-[#DE5A10] text-white text-[11px] font-bold px-2 py-1 min-h-9 lg:min-h-0 rounded transition-colors flex items-center gap-0.5">
 <span className="material-symbols-outlined text-xs" data-icon="add">add</span>
 <span>Agregar</span>
 </button>
@@ -130,6 +130,7 @@ export default function Busqueda() {
   const [soloStock, setSoloStock] = useState(false);
   const [orden, setOrden] = useState("relevancia");
   const [vista, setVista] = useState("cuadricula");
+  const [filtrosAbiertos, setFiltrosAbiertos] = useState(false); // solo móvil: panel de filtros plegable
 
   const limpiarFiltros = () => {
     setFiltroCategorias([]);
@@ -224,7 +225,7 @@ export default function Busqueda() {
     <>
 
 {/*  TOP PROMO BANNER  */}
-<div className="bg-primary text-on-primary text-xs py-1.5 px-4 text-center tracking-wide font-medium flex items-center justify-center gap-2 border-b border-primary-container">
+<div className="bg-primary text-on-primary text-xs py-1.5 px-4 text-center tracking-wide font-medium hidden md:flex items-center justify-center gap-2 border-b border-primary-container">
 <span className="material-symbols-outlined text-secondary-container text-sm" data-icon="local_shipping">local_shipping</span>
 <span>Despacho a todo Lima y provincias.</span>
 <span className="mx-2 text-outline-variant">|</span>
@@ -233,8 +234,8 @@ export default function Busqueda() {
 </span>
 </div>
 {/*  MAIN HEADER (Shared Component JSON TopNavBar)  */}
-<header className="bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-50">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop h-20 flex items-center justify-between gap-6">
+<header className="bg-surface-container-lowest border-b border-outline-variant shadow-sm md:sticky top-0 z-50">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-3 lg:py-0 lg:h-20 flex flex-wrap lg:flex-nowrap items-center justify-between gap-x-3 gap-y-3 lg:gap-6">
 {/*  Brand Logo  */}
 <Link className="flex items-center gap-2 group flex-shrink-0" to="/">
 <div className="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-white shadow-sm group-hover:bg-primary transition-colors">
@@ -246,22 +247,22 @@ export default function Busqueda() {
 </div>
 </Link>
 {/*  Need-based Search Engine Input  */}
-<div className="flex-1 max-w-2xl relative">
+<div className="order-last w-full lg:order-none lg:w-auto lg:flex-1 max-w-2xl relative">
 <form className="relative flex items-center" onSubmit={enviarConsulta}>
 <div className="absolute left-3.5 text-secondary-container flex items-center pointer-events-none">
 <span className="material-symbols-outlined text-xl" data-icon="psychology" data-weight="fill" style={{"fontVariationSettings": "'FILL' 1"}}>psychology</span>
 </div>
-<input className="w-full pl-11 pr-28 h-11 bg-surface-container-low text-primary font-medium text-body-md rounded-lg border border-outline-variant focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 focus:bg-surface-container-lowest transition-all" placeholder="¿Qué proyecto o necesidad deseas resolver hoy?" type="text" value={entrada} onChange={(e) => setEntrada(e.target.value)} onFocus={marcarInicio}/>
+<input className="w-full pl-11 pr-28 h-11 bg-surface-container-low text-primary font-medium text-base md:text-body-md rounded-lg border border-outline-variant focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 focus:bg-surface-container-lowest transition-all" placeholder="¿Qué proyecto o necesidad deseas resolver hoy?" type="text" value={entrada} onChange={(e) => setEntrada(e.target.value)} onFocus={marcarInicio}/>
 <div className="absolute right-1.5 flex items-center gap-1">
 
-<button className="h-8 px-3.5 bg-primary-container hover:bg-primary text-white text-xs font-semibold rounded-md flex items-center justify-center transition-colors" type="submit" title="Buscar">
+<button className="h-9 lg:h-8 px-3.5 bg-primary-container hover:bg-primary text-white text-xs font-semibold rounded-md flex items-center justify-center transition-colors" type="submit" title="Buscar">
 <span className="material-symbols-outlined text-base" data-icon="search">search</span>
 </button>
 </div>
 </form>
 </div>
 {/*  Trailing Action Badges  */}
-<div className="flex items-center gap-4 flex-shrink-0">
+<div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
 <div className="h-8 w-px bg-outline-variant hidden sm:block"></div>
 {/*  Account  */}
 <Link className="flex items-center gap-2 text-on-surface hover:text-secondary p-1.5 rounded-lg transition-colors" to="/mi-cuenta">
@@ -279,7 +280,7 @@ export default function Busqueda() {
 <span className="material-symbols-outlined text-2xl text-secondary" data-icon="shopping_cart">shopping_cart</span>
 <span className="absolute -top-1.5 -right-2 bg-secondary-container text-white font-bold text-[10px] min-w-4 h-4 px-0.5 rounded-full flex items-center justify-center shadow-xs">{unidades}</span>
 </div>
-<div className="text-left leading-tight">
+<div className="text-left leading-tight hidden sm:block">
 <span className="text-[11px] text-on-surface-variant block">Carrito</span>
 <span className="text-label-md font-label-md font-bold text-primary">{soles(subtotal)}</span>
 </div>
@@ -287,14 +288,14 @@ export default function Busqueda() {
 </div>
 </div>
 {/*  Secondary Navigation Strip  */}
-<nav className="bg-surface-container-lowest border-t border-outline-variant/60 hidden md:block">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between h-11">
-<div className="flex items-center gap-6">
+<nav className="bg-surface-container-lowest border-t border-outline-variant/60">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-4 h-11">
+<div className="flex items-center gap-4 md:gap-6 min-w-0">
 {/*  All Categories Mega Button (categorías reales)  */}
-<div className="relative">
-<button type="button" onClick={() => setMenuCategorias((v) => !v)} className="flex items-center gap-2 bg-primary text-white px-4 h-11 font-label-lg text-sm font-semibold rounded-none hover:bg-primary-container transition-colors">
+<div className="relative shrink-0">
+<button type="button" onClick={() => setMenuCategorias((v) => !v)} title="Todas las categorías" className="flex items-center gap-2 bg-primary text-white px-3 sm:px-4 h-11 font-label-lg text-sm font-semibold rounded-none hover:bg-primary-container transition-colors">
 <span className="material-symbols-outlined text-lg" data-icon="menu">menu</span>
-<span>Todas las categorías</span>
+<span className="sr-only sm:not-sr-only">Todas las categorías</span>
 <span className="material-symbols-outlined text-xs ml-1" data-icon="expand_more">expand_more</span>
 </button>
 {menuCategorias && (
@@ -310,7 +311,7 @@ export default function Busqueda() {
 )}
 </div>
 {/*  Main Nav Links  */}
-<div className="flex items-center gap-6">
+<div className="flex items-center gap-6 min-w-0 overflow-x-auto whitespace-nowrap">
 <Link className="text-on-surface font-label-lg text-sm hover:text-secondary transition-colors" to="/">Inicio</Link>
 <span className="text-secondary border-b-2 border-secondary font-label-lg text-sm font-bold pb-1 pt-1 flex items-center gap-1">
 <span>Productos</span>
@@ -319,7 +320,7 @@ export default function Busqueda() {
 </div>
 </div>
 {/*  Etiqueta del modo activo (leída de /api/admin/config)  */}
-<div className="flex items-center gap-5 text-xs text-on-surface-variant font-medium">
+<div className="hidden md:flex items-center gap-5 text-xs text-on-surface-variant font-medium">
 <span className="flex items-center gap-1">
 <span className="material-symbols-outlined text-sm text-secondary-container" data-icon="memory">memory</span>
 <span><EtiquetaModo /></span>
@@ -329,19 +330,19 @@ export default function Busqueda() {
 </nav>
 </header>
 {/*  CONTENT CANVAS  */}
-<main className="flex-1 w-full max-w-[1360px] mx-auto px-margin-desktop py-6">
+<main className="flex-1 w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-6">
 {/*  1. BREADCRUMB  */}
-<nav aria-label="Migas de pan" className="flex items-center gap-2 text-body-sm font-body-sm text-outline mb-4">
+<nav aria-label="Migas de pan" className="flex items-center min-w-0 gap-2 text-body-sm font-body-sm text-outline mb-4">
 <Link className="hover:text-primary transition-colors flex items-center gap-1" to="/">
 <span className="material-symbols-outlined text-sm" data-icon="home">home</span>
 <span>Inicio</span>
 </Link>
 <span className="material-symbols-outlined text-xs text-outline-variant" data-icon="chevron_right">chevron_right</span>
-<span>{porCategoria ? "Categorías" : "Búsqueda por necesidad"}</span>
+<span className="whitespace-nowrap">{porCategoria ? "Categorías" : "Búsqueda por necesidad"}</span>
 {titulo && (
 <>
 <span className="material-symbols-outlined text-xs text-outline-variant" data-icon="chevron_right">chevron_right</span>
-<span className="text-primary font-semibold truncate max-w-md">{titulo}</span>
+<span className="text-primary font-semibold truncate min-w-0 max-w-md">{titulo}</span>
 </>
 )}
 </nav>
@@ -349,7 +350,7 @@ export default function Busqueda() {
 <section className="mb-6">
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
 {/*  Left: Query Info Header  */}
-<div className="lg:col-span-5 bg-surface-container-lowest rounded-xl p-5 border border-outline-variant flex flex-col justify-center shadow-sm">
+<div className="lg:col-span-5 bg-surface-container-lowest rounded-xl p-4 md:p-5 min-w-0 break-words border border-outline-variant flex flex-col justify-center shadow-sm">
 <div className="flex items-center gap-2 mb-1.5">
 <span className="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-secondary-fixed text-on-secondary-fixed uppercase tracking-wider flex items-center gap-1">
 <span className="material-symbols-outlined text-xs" data-icon={porCategoria ? "category" : "auto_awesome"}>{porCategoria ? "category" : "auto_awesome"}</span>
@@ -362,8 +363,8 @@ export default function Busqueda() {
 <h1 className="text-headline-md font-headline-md font-bold text-primary tracking-tight mb-1">
             {porCategoria ? "Categoría: " : "Productos para: "}<span className="text-secondary-container">{porCategoria ? categoria : `"${q}"`}</span>
 </h1>
-<p className="text-body-md font-body-md text-on-surface-variant flex items-center gap-1">
-<span className="material-symbols-outlined text-sm text-secondary" data-icon="inventory_2">inventory_2</span>
+<p className="text-body-md font-body-md text-on-surface-variant block lg:flex items-center gap-1">
+<span className="material-symbols-outlined text-sm text-secondary align-middle mr-1 lg:mr-0" data-icon="inventory_2">inventory_2</span>
             {cargando
               ? "Buscando productos…"
               : <>Encontramos <strong>{resultados.length} {resultados.length === 1 ? "producto" : "productos"}</strong> {porCategoria ? "en esta categoría." : "relacionados con tu necesidad."}</>}
@@ -377,7 +378,7 @@ export default function Busqueda() {
 )}
 </div>
 {/*  Right: cómo se obtuvieron los resultados (según el modo real de la consulta)  */}
-<div className="lg:col-span-7 bg-[#F0F7FF] rounded-xl p-5 border border-[#BFDBFE] shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div className="lg:col-span-7 bg-[#F0F7FF] rounded-xl p-4 md:p-5 min-w-0 border border-[#BFDBFE] shadow-sm flex flex-col justify-between relative overflow-hidden">
 <div className="flex items-start justify-between gap-3 mb-2">
 <div className="flex items-center gap-2">
 <span className="w-8 h-8 rounded-lg bg-[#FEF3C7] border border-[#FDE68A] flex items-center justify-center text-[#D97706] shadow-xs flex-shrink-0">
@@ -419,16 +420,25 @@ export default function Busqueda() {
 {/*  3. TWO-COLUMN MAIN WORKSPACE  */}
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 {/*  A. LEFT FILTER COLUMN  */}
-<aside className="lg:col-span-3 space-y-4">
+<aside className="lg:col-span-3 space-y-4 min-w-0">
+{/*  Botón para mostrar u ocultar los filtros (solo móvil y tableta)  */}
+<button type="button" onClick={() => setFiltrosAbiertos((v) => !v)} aria-expanded={filtrosAbiertos} className="lg:hidden w-full min-h-11 px-4 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm flex items-center justify-between text-primary font-label-lg text-label-lg font-bold">
+<span className="flex items-center gap-1.5">
+<span className="material-symbols-outlined text-lg" data-icon="tune">tune</span>
+<span>Filtros</span>
+{!!hayFiltros && <span className="w-2 h-2 rounded-full bg-secondary-container"></span>}
+</span>
+<span className="material-symbols-outlined text-xl">{filtrosAbiertos ? "expand_less" : "expand_more"}</span>
+</button>
 {/*  Filter Card  */}
-<div className="bg-surface-container-lowest rounded-xl border border-outline-variant p-4 shadow-sm">
+<div className={`${filtrosAbiertos ? "block" : "hidden"} lg:block bg-surface-container-lowest rounded-xl border border-outline-variant p-4 shadow-sm`}>
 {/*  Header  */}
 <div className="flex items-center justify-between pb-3 border-b border-outline-variant">
 <div className="flex items-center gap-1.5">
 <span className="material-symbols-outlined text-primary text-lg" data-icon="tune">tune</span>
 <span className="font-label-lg text-label-lg font-bold text-primary">Filtros</span>
 </div>
-<button type="button" onClick={limpiarFiltros} className="text-xs text-secondary hover:underline font-semibold transition-colors">Limpiar todo</button>
+<button type="button" onClick={limpiarFiltros} className="text-xs text-secondary hover:underline font-semibold transition-colors min-h-10 lg:min-h-0">Limpiar todo</button>
 </div>
 {/*  Filter Section: Categories  */}
 <div className="py-4 border-b border-outline-variant/70">
@@ -437,9 +447,9 @@ export default function Busqueda() {
 </h2>
 <div className="space-y-2.5">
 {conteoCategorias.map(([nombre, n]) => (
-<label key={nombre} className="flex items-center justify-between text-body-sm font-medium text-on-surface-variant hover:text-primary cursor-pointer group">
+<label key={nombre} className="flex items-center justify-between gap-2 py-1.5 lg:py-0 text-body-sm font-medium text-on-surface-variant hover:text-primary cursor-pointer group">
 <div className="flex items-center gap-2.5">
-<input checked={filtroCategorias.includes(nombre)} onChange={() => alternar(filtroCategorias, setFiltroCategorias, nombre)} className="w-4 h-4 rounded text-primary focus:ring-primary border-outline-variant cursor-pointer" type="checkbox"/>
+<input checked={filtroCategorias.includes(nombre)} onChange={() => alternar(filtroCategorias, setFiltroCategorias, nombre)} className="w-4 h-4 text-base rounded text-primary focus:ring-primary border-outline-variant cursor-pointer" type="checkbox"/>
 <span>{nombre}</span>
 </div>
 <span className="text-xs px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">{n}</span>
@@ -455,9 +465,9 @@ export default function Busqueda() {
 </h2>
 <div className="space-y-2.5">
 {conteoMarcas.map(([nombre, n]) => (
-<label key={nombre} className="flex items-center justify-between text-body-sm font-medium text-on-surface-variant hover:text-primary cursor-pointer">
+<label key={nombre} className="flex items-center justify-between gap-2 py-1.5 lg:py-0 text-body-sm font-medium text-on-surface-variant hover:text-primary cursor-pointer">
 <div className="flex items-center gap-2.5">
-<input checked={filtroMarcas.includes(nombre)} onChange={() => alternar(filtroMarcas, setFiltroMarcas, nombre)} className="w-4 h-4 rounded text-primary focus:ring-primary border-outline-variant cursor-pointer" type="checkbox"/>
+<input checked={filtroMarcas.includes(nombre)} onChange={() => alternar(filtroMarcas, setFiltroMarcas, nombre)} className="w-4 h-4 text-base rounded text-primary focus:ring-primary border-outline-variant cursor-pointer" type="checkbox"/>
 <span>{nombre}</span>
 </div>
 <span className="text-xs px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">{n}</span>
@@ -473,15 +483,15 @@ export default function Busqueda() {
 <div>
 <label className="text-[11px] text-on-surface-variant font-medium block mb-1" htmlFor="precio-min">Mínimo</label>
 <div className="relative">
-<span className="absolute left-2 top-2 text-outline text-xs">S/</span>
-<input id="precio-min" min="0" className="w-full pl-6 pr-1 py-1.5 text-xs font-bold border border-outline-variant rounded bg-surface text-primary focus:ring-1 focus:ring-primary focus:border-primary" type="number" value={precioMin} onChange={(e) => setPrecioMin(e.target.value)}/>
+<span className="absolute left-2 top-3 lg:top-2 text-outline text-xs">S/</span>
+<input id="precio-min" min="0" className="w-full pl-6 pr-1 py-2 lg:py-1.5 text-base lg:text-xs font-bold border border-outline-variant rounded bg-surface text-primary focus:ring-1 focus:ring-primary focus:border-primary" type="number" value={precioMin} onChange={(e) => setPrecioMin(e.target.value)}/>
 </div>
 </div>
 <div>
 <label className="text-[11px] text-on-surface-variant font-medium block mb-1" htmlFor="precio-max">Máximo</label>
 <div className="relative">
-<span className="absolute left-2 top-2 text-outline text-xs">S/</span>
-<input id="precio-max" min="0" className="w-full pl-6 pr-1 py-1.5 text-xs font-bold border border-outline-variant rounded bg-surface text-primary focus:ring-1 focus:ring-primary focus:border-primary" type="number" value={precioMax} onChange={(e) => setPrecioMax(e.target.value)}/>
+<span className="absolute left-2 top-3 lg:top-2 text-outline text-xs">S/</span>
+<input id="precio-max" min="0" className="w-full pl-6 pr-1 py-2 lg:py-1.5 text-base lg:text-xs font-bold border border-outline-variant rounded bg-surface text-primary focus:ring-1 focus:ring-primary focus:border-primary" type="number" value={precioMax} onChange={(e) => setPrecioMax(e.target.value)}/>
 </div>
 </div>
 </div>
@@ -494,7 +504,7 @@ export default function Busqueda() {
 <span className="text-[11px] text-outline">Oculta los productos agotados</span>
 </div>
 <div className="relative inline-flex items-center cursor-pointer">
-<input checked={soloStock} onChange={(e) => setSoloStock(e.target.checked)} className="sr-only peer" type="checkbox"/>
+<input checked={soloStock} onChange={(e) => setSoloStock(e.target.checked)} className="sr-only peer text-base" type="checkbox"/>
 <div className="w-11 h-6 bg-surface-container peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-600"></div>
 </div>
 </label>
@@ -505,7 +515,7 @@ export default function Busqueda() {
 <section className="lg:col-span-9 space-y-4">
 {/*  Results Top Control Strip  */}
 <div className="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant flex flex-wrap items-center justify-between gap-4 shadow-sm">
-<div className="flex items-center gap-2">
+<div className="flex flex-wrap items-center gap-2">
 <span className="text-body-md font-body-md font-bold text-primary">
 {cargando ? "Buscando…" : hayFiltros
   ? `${mostrados.length} de ${resultados.length} resultados`
@@ -516,22 +526,22 @@ export default function Busqueda() {
               <EtiquetaModo />
             </span>
 </div>
-<div className="flex items-center gap-3">
-<div className="flex items-center gap-2">
-<label className="text-xs font-medium text-on-surface-variant" htmlFor="sort">Ordenar por:</label>
-<select value={orden} onChange={(e) => setOrden(e.target.value)} className="text-xs font-semibold bg-surface border border-outline-variant rounded-lg py-1.5 pl-2.5 pr-7 focus:ring-1 focus:ring-primary focus:border-primary text-primary cursor-pointer" id="sort">
+<div className="flex items-center gap-3 w-full sm:w-auto">
+<div className="flex items-center gap-2 flex-1 min-w-0 sm:flex-initial">
+<label className="sr-only sm:not-sr-only text-xs font-medium text-on-surface-variant whitespace-nowrap" htmlFor="sort">Ordenar por:</label>
+<select value={orden} onChange={(e) => setOrden(e.target.value)} className="min-w-0 flex-1 sm:flex-initial text-base lg:text-xs font-semibold bg-surface border border-outline-variant rounded-lg py-2 lg:py-1.5 pl-2.5 pr-7 focus:ring-1 focus:ring-primary focus:border-primary text-primary cursor-pointer" id="sort">
 <option value="relevancia">{porCategoria ? "Más vendidos" : "Relevancia por necesidad"}</option>
 <option value="menor">Menor precio</option>
 <option value="mayor">Mayor precio</option>
 </select>
 </div>
-<div className="h-5 w-px bg-outline-variant"></div>
+<div className="h-5 w-px bg-outline-variant hidden sm:block"></div>
 {/*  View toggle  */}
 <div className="flex items-center border border-outline-variant rounded-lg overflow-hidden p-0.5 bg-surface-container-low">
-<button type="button" onClick={() => setVista("cuadricula")} className={vista === "cuadricula" ? "p-1 bg-surface-container-lowest text-primary rounded shadow-xs" : "p-1 text-outline hover:text-primary transition-colors"} title="Vista en cuadrícula">
+<button type="button" onClick={() => setVista("cuadricula")} className={vista === "cuadricula" ? "p-2 lg:p-1 bg-surface-container-lowest text-primary rounded shadow-xs" : "p-2 lg:p-1 text-outline hover:text-primary transition-colors"} title="Vista en cuadrícula">
 <span className="material-symbols-outlined text-base" data-icon="grid_view">grid_view</span>
 </button>
-<button type="button" onClick={() => setVista("lista")} className={vista === "lista" ? "p-1 bg-surface-container-lowest text-primary rounded shadow-xs" : "p-1 text-outline hover:text-primary transition-colors"} title="Vista en lista">
+<button type="button" onClick={() => setVista("lista")} className={vista === "lista" ? "p-2 lg:p-1 bg-surface-container-lowest text-primary rounded shadow-xs" : "p-2 lg:p-1 text-outline hover:text-primary transition-colors"} title="Vista en lista">
 <span className="material-symbols-outlined text-base" data-icon="view_list">view_list</span>
 </button>
 </div>
@@ -557,11 +567,11 @@ Ningún resultado cumple los filtros elegidos. <button type="button" onClick={li
 </div>
 )}
 {!cargando && !!mostrados.length && (
-<div className={vista === "lista" ? "grid grid-cols-1 gap-4" : "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"}>
+<div className={vista === "lista" ? "grid grid-cols-1 gap-4" : "grid grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4"}>
 {mostrados.map((p) => (
-<article key={p.sku} className="bg-surface-container-lowest rounded-xl border border-outline-variant p-4 flex flex-col justify-between hover:border-outline hover:shadow-md transition-all group">
+<article key={p.sku} className="bg-surface-container-lowest rounded-xl border border-outline-variant p-3 sm:p-4 min-w-0 break-words flex flex-col justify-between hover:border-outline hover:shadow-md transition-all group">
 <Link to={`/detalle/${p.sku}`} className="block">
-<div className="relative w-full h-44 bg-surface rounded-lg mb-3 flex items-center justify-center overflow-hidden border border-outline-variant/40">
+<div className="relative w-full h-32 sm:h-44 bg-surface rounded-lg mb-3 flex items-center justify-center overflow-hidden border border-outline-variant/40">
 {p.stock > 0 ? (
 <span className="absolute top-2 left-2 bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 z-10 border border-emerald-300">
 <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> En stock
@@ -571,7 +581,7 @@ Ningún resultado cumple los filtros elegidos. <button type="button" onClick={li
 <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span> Sin stock
                 </span>
 )}
-<span className="absolute top-2 right-2 text-[11px] font-bold text-primary bg-white/90 px-1.5 py-0.5 rounded border border-outline-variant">SKU: {p.sku}</span>
+<span className="absolute top-2 right-2 hidden sm:inline text-[11px] font-bold text-primary bg-white/90 px-1.5 py-0.5 rounded border border-outline-variant">SKU: {p.sku}</span>
 <ImagenProducto producto={p} icono={iconoProducto(p)} className="h-full w-full group-hover:scale-105 transition-transform duration-300" iconoClassName="text-[80px] text-outline group-hover:scale-105 transition-transform duration-200" />
 </div>
 <div className="text-[11px] font-bold uppercase tracking-wider text-outline mb-1">{p.marca}</div>
@@ -582,7 +592,7 @@ Ningún resultado cumple los filtros elegidos. <button type="button" onClick={li
 {!porCategoria && (
 <div className="mt-2 mb-3 flex flex-wrap gap-1.5">
 {!!(p.terminos && p.terminos.length) && (
-<span className="inline-flex items-center gap-1 text-[11px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md border border-outline-variant/50">
+<span className="inline-flex items-center gap-1 max-w-full text-[11px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md border border-outline-variant/50">
 <span className="material-symbols-outlined text-xs text-secondary-container" data-icon="search_check">search_check</span>
                   Coincide con: {p.terminos.join(", ")}
                 </span>
@@ -601,12 +611,12 @@ Ningún resultado cumple los filtros elegidos. <button type="button" onClick={li
                 </span>
 </div>
 )}
-<div className="pt-2 border-t border-outline-variant/60 flex items-center justify-between mt-auto">
+<div className="pt-2 border-t border-outline-variant/60 flex flex-wrap items-center justify-between gap-2 mt-auto">
 <div>
 <span className="text-[10px] text-outline block">Precio unitario</span>
 <span className="text-price-md font-price-md text-primary">{soles(p.precio)}</span>
 </div>
-<button type="button" disabled={p.stock <= 0} onClick={() => agregar(p, origen, null)} className="bg-[#F25C05] hover:bg-[#DE5A10] active:scale-95 text-white font-label-lg text-xs font-semibold py-2 px-3 rounded-lg flex items-center gap-1.5 shadow-xs transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+<button type="button" disabled={p.stock <= 0} onClick={() => agregar(p, origen, null)} className="bg-[#F25C05] hover:bg-[#DE5A10] active:scale-95 text-white font-label-lg text-xs font-semibold py-2 px-3 min-h-10 lg:min-h-0 w-full sm:w-auto justify-center rounded-lg flex items-center gap-1.5 shadow-xs transition-all disabled:opacity-50 disabled:cursor-not-allowed">
 <span className="material-symbols-outlined text-base" data-icon="shopping_cart">shopping_cart</span>
 <span>{p.stock > 0 ? "Agregar" : "Sin stock"}</span>
 </button>
@@ -625,7 +635,7 @@ Ningún resultado cumple los filtros elegidos. <button type="button" onClick={li
 {/*  5. CORPORATE NAVY FOOTER  */}
 <footer className="bg-[#0f2a4a] text-on-primary mt-14 border-t border-primary-container">
 {/*  Institutional Top Section (4 Columns)  */}
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop py-12">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-12">
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 {/*  Col 1: Brand & Perú Identity  */}
 <div className="space-y-3">
@@ -698,7 +708,7 @@ Ningún resultado cumple los filtros elegidos. <button type="button" onClick={li
 </div>
 {/*  Copyright Sub-Footer  */}
 <div className="border-t border-primary-container/80 bg-[#0A192F] py-4 text-xs">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop flex flex-col md:flex-row items-center justify-between gap-3 text-on-primary-container">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex flex-col md:flex-row items-center justify-between gap-3 text-on-primary-container">
 <div>
 <span>Tesis: Sistema web basado en Machine Learning para la recomendación de productos - UPN 2026. © 2026 FerreMax. Todos los derechos reservados.</span>
 </div>

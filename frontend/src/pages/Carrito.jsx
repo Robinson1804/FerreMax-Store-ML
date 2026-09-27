@@ -24,7 +24,7 @@ function RecomendadoCarrito({ skus }) {
   const { lista, cargando } = useRecomendaciones("carrito", skus, 5);
 
   return (
-<div className="bg-[#FFF3EA] border border-[#FBD7C0] rounded-xl p-space-lg shadow-sm relative overflow-hidden">
+<div className="bg-[#FFF3EA] border border-[#FBD7C0] rounded-xl p-4 sm:p-space-lg shadow-sm relative overflow-hidden">
 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-[#F5C7A9]">
 <div className="flex items-center space-x-2.5">
 <div className="w-8 h-8 rounded-lg bg-secondary-container flex items-center justify-center text-surface-container-lowest shrink-0 shadow-sm">
@@ -42,9 +42,9 @@ function RecomendadoCarrito({ skus }) {
 </div>
 {cargando && lista.length === 0 && <p className="text-body-sm text-outline">Cargando recomendaciones…</p>}
 {!cargando && lista.length === 0 && <p className="text-body-sm text-outline">No hay recomendaciones para tu carrito.</p>}
-<div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+<div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
 {lista.map((p) => (
-<div key={p.sku} className="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-4 flex flex-col justify-between hover:shadow-md transition-all group">
+<div key={p.sku} className="bg-surface-container-lowest border border-outline-variant/60 rounded-xl p-3 sm:p-4 min-w-0 flex flex-col justify-between hover:shadow-md transition-all group">
 <button type="button" className="text-left" onClick={() => navigate(`/detalle/${encodeURIComponent(p.sku)}?origen=RECOMENDACION&pos=${p.posicion}`)}>
 <div className="h-28 bg-surface-container-low rounded-lg p-2 mb-3 flex items-center justify-center border border-surface-container-high">
 <ImagenProducto producto={p} icono={iconoDe(p.categoria)} className="h-full w-full group-hover:scale-105 transition-transform duration-300" iconoClassName="text-primary-container text-[56px] group-hover:scale-105 transition-transform duration-200" />
@@ -53,7 +53,7 @@ function RecomendadoCarrito({ skus }) {
 <h4 className="text-body-md font-body-md font-bold text-primary-container leading-tight mt-0.5 line-clamp-2">{p.nombre}</h4>
 <p className="text-body-sm text-outline mt-1">{p.subcategoria || p.categoria}</p>
 </button>
-<div className="mt-4 pt-3 border-t border-surface-container-high flex items-center justify-between">
+<div className="mt-4 pt-3 border-t border-surface-container-high flex flex-wrap lg:flex-nowrap items-center justify-between gap-2 lg:gap-0">
 <span className="text-price-md font-price-md text-primary-container font-extrabold">{soles(p.precio)}</span>
 <button type="button" onClick={() => agregar(p, "RECOMENDACION", p.posicion)} className="bg-secondary-container hover:bg-secondary text-surface-container-lowest px-3 py-1.5 rounded-lg text-label-md font-label-md font-bold flex items-center gap-1 shadow-sm transition-colors active:scale-95">
 <span className="material-symbols-outlined text-base" data-icon="add_shopping_cart">add_shopping_cart</span>
@@ -84,7 +84,7 @@ export default function Carrito() {
     <>
 
 {/*  BARRA DE ANUNCIOS INSTITUCIONAL SUPERIOR  */}
-<header className="w-full bg-primary-container text-surface-container-lowest text-label-md py-1.5 px-4 tracking-normal border-b border-primary">
+<header className="hidden md:block w-full bg-primary-container text-surface-container-lowest text-label-md py-1.5 px-4 tracking-normal border-b border-primary">
 <div className="max-w-[1360px] mx-auto flex flex-wrap items-center justify-between gap-2">
 <div className="flex items-center space-x-6">
 <div className="flex items-center space-x-1.5">
@@ -104,32 +104,32 @@ export default function Carrito() {
 </header>
 {/*  CABECERA PRINCIPAL  */}
 <div className="bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-40">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop py-3.5 flex items-center justify-between gap-6">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-3 md:py-3.5 flex flex-wrap md:flex-nowrap items-center justify-between gap-3 md:gap-6">
 <Link className="flex items-center gap-1 group shrink-0" to="/">
 <span className="text-headline-lg font-headline-lg font-extrabold text-primary-container tracking-tight">FERRE</span><span className="text-headline-lg font-headline-lg font-extrabold text-secondary-container tracking-tight">MAX</span>
 </Link>
-<div className="flex-1 max-w-2xl">
+<div className="order-last basis-full md:order-none md:flex-1 max-w-2xl">
 <form className="relative flex items-center" onSubmit={buscar}>
-<input className="w-full h-11 pl-4 pr-12 text-body-md font-body-md text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
+<input className="w-full h-11 pl-4 pr-12 text-base md:text-body-md font-body-md text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container transition-all" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
 <button className="absolute right-1 top-1 bottom-1 px-3.5 bg-primary-container text-surface-container-lowest rounded hover:bg-primary transition-colors flex items-center justify-center" type="submit">
 <span className="material-symbols-outlined text-lg" data-icon="search">search</span>
 </button>
 </form>
 </div>
-<div className="flex items-center space-x-6 shrink-0">
-<Link className="flex items-center space-x-2 text-on-surface hover:text-secondary transition-colors group" to="/mi-cuenta">
+<div className="flex items-center space-x-4 md:space-x-6 shrink-0">
+<Link aria-label="Mi cuenta" className="flex items-center space-x-2 text-on-surface hover:text-secondary transition-colors group" to="/mi-cuenta">
 <span className="material-symbols-outlined text-2xl text-on-surface-variant group-hover:text-secondary" data-icon="person">person</span>
-<div className="text-left text-label-md font-label-md leading-tight">
+<div className="hidden md:block text-left text-label-md font-label-md leading-tight">
 <span className="text-outline block text-label-sm font-label-sm">{sesion?.codigo_cliente ? `Hola, ${sesion.codigo_cliente}` : "Hola, inicia sesión"}</span>
 <span className="text-primary-container font-bold">Mi cuenta</span>
 </div>
 </Link>
-<Link className="flex items-center space-x-3 bg-surface-container-low hover:bg-surface-container py-2 px-3.5 rounded-lg border border-outline-variant transition-all" to="/carrito">
+<Link aria-label="Carrito" className="flex items-center space-x-3 bg-surface-container-low hover:bg-surface-container py-2 px-3 md:px-3.5 rounded-lg border border-outline-variant transition-all" to="/carrito">
 <div className="relative flex items-center">
 <span className="material-symbols-outlined text-2xl text-primary-container" data-icon="shopping_cart">shopping_cart</span>
 <span className="absolute -top-2 -right-2 bg-secondary-container text-on-primary text-label-sm font-label-sm font-extrabold px-1.5 py-0.5 rounded-full min-w-[20px] text-center shadow-sm">{unidades}</span>
 </div>
-<div className="text-left">
+<div className="hidden md:block text-left">
 <span className="block text-label-sm font-label-sm text-outline uppercase font-semibold">Carrito</span>
 <span className="text-label-lg font-label-lg font-extrabold text-primary-container">{soles(subtotal)}</span>
 </div>
@@ -137,7 +137,7 @@ export default function Carrito() {
 </div>
 </div>
 <div className="border-t border-surface-container-high bg-surface-container-lowest">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between text-body-md">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop flex items-center justify-between text-body-md">
 <div className="flex items-center space-x-8">
 <Link className="bg-primary-container text-surface-container-lowest px-4 py-2.5 flex items-center space-x-2 font-label-lg font-semibold hover:bg-primary transition-colors" to="/busqueda">
 <span className="material-symbols-outlined text-xl" data-icon="menu">menu</span>
@@ -149,7 +149,7 @@ export default function Carrito() {
 <Link className="text-on-surface font-label-lg hover:text-secondary transition-colors" to="/busqueda">Categorías</Link>
 </nav>
 </div>
-<div className="flex items-center space-x-4 text-label-md text-on-surface-variant">
+<div className="hidden md:flex items-center space-x-4 text-label-md text-on-surface-variant">
 <span className="flex items-center gap-1 font-semibold text-primary-container">
 <span className="material-symbols-outlined text-base text-secondary-container" data-icon="store">store</span>
             Venta Corporativa &amp; Mayoristas
@@ -159,14 +159,14 @@ export default function Carrito() {
 </div>
 </div>
 {/*  CONTENIDO PRINCIPAL: CARRITO DE COMPRAS  */}
-<main className="flex-grow w-full max-w-[1360px] mx-auto px-margin-desktop py-space-lg">
-<nav className="flex items-center space-x-2 text-label-md font-label-md text-outline mb-space-md">
+<main className="flex-grow w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-space-lg">
+<nav className="flex flex-wrap items-center gap-x-2 gap-y-1 text-label-md font-label-md text-outline mb-space-md">
 <Link className="hover:text-primary-container transition-colors" to="/">Inicio</Link>
 <span className="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
 <span className="text-primary-container font-bold">Carrito de compras</span>
 </nav>
 <div className="flex items-baseline justify-between mb-space-lg border-b border-outline-variant pb-space-sm">
-<div className="flex items-baseline gap-3">
+<div className="flex flex-wrap items-baseline gap-x-3">
 <h1 className="text-headline-lg font-headline-lg font-extrabold text-primary-container">Tu carrito</h1>
 <span className="text-headline-sm font-headline-sm font-normal text-outline">({unidades} {unidades === 1 ? "producto" : "productos"})</span>
 </div>
@@ -184,7 +184,7 @@ export default function Carrito() {
 ) : (
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
 {/*  COLUMNA IZQUIERDA (Artículos + Recomendaciones)  */}
-<section className="lg:col-span-8 flex flex-col space-y-space-lg">
+<section className="lg:col-span-8 min-w-0 flex flex-col space-y-space-lg">
 <div className="bg-surface-container-lowest border border-surface-container-high rounded-xl overflow-hidden shadow-sm">
 <div className="hidden sm:grid sm:grid-cols-12 px-6 py-3 bg-surface-container-low text-label-sm font-label-sm uppercase tracking-wider text-outline border-b border-surface-container-high font-bold">
 <div className="col-span-6">Producto</div>
@@ -194,15 +194,15 @@ export default function Carrito() {
 </div>
 <div className="divide-y divide-surface-container-high">
 {carrito.map((i) => (
-<div key={i.sku} className="p-6 transition-colors hover:bg-surface-container-lowest/60 flex flex-col sm:grid sm:grid-cols-12 gap-4 items-center">
-<div className="col-span-6 flex items-center gap-4 w-full">
+<div key={i.sku} className="p-4 sm:p-6 transition-colors hover:bg-surface-container-lowest/60 flex flex-col sm:grid sm:grid-cols-12 gap-3 sm:gap-4 items-center">
+<div className="col-span-6 flex items-start sm:items-center gap-3 sm:gap-4 w-full min-w-0">
 <Link to={`/detalle/${encodeURIComponent(i.sku)}`} className="w-20 h-20 bg-surface-container-low rounded-lg p-1.5 flex items-center justify-center shrink-0 border border-outline-variant/30">
 <ImagenProducto producto={i} icono={iconoDe(i.categoria)} className="h-full w-full" iconoClassName="text-primary-container text-[40px]" />
 </Link>
-<div className="flex-1">
+<div className="flex-1 min-w-0">
 <span className="text-label-sm font-label-sm font-bold text-outline uppercase tracking-wider">{i.marca}</span>
-<h3 className="text-body-lg font-body-lg font-bold text-primary-container leading-snug">{i.nombre}</h3>
-<div className="flex items-center gap-3 mt-1">
+<h3 className="text-body-lg font-body-lg font-bold text-primary-container leading-snug break-words">{i.nombre}</h3>
+<div className="flex flex-wrap items-center gap-x-3 mt-1">
 <span className="text-body-sm font-body-sm text-outline">SKU: {i.sku}</span>
 {i.stock > 0 && (
 <span className="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-secondary-container">
@@ -211,7 +211,7 @@ export default function Carrito() {
                     </span>
 )}
 </div>
-<button type="button" onClick={() => retirar(i.sku)} className="mt-2 text-label-md font-label-md text-error hover:text-on-error-container flex items-center gap-1 transition-colors">
+<button type="button" onClick={() => retirar(i.sku)} className="mt-2 min-h-10 sm:min-h-0 text-label-md font-label-md text-error hover:text-on-error-container flex items-center gap-1 transition-colors">
 <span className="material-symbols-outlined text-base" data-icon="delete">delete</span>
 <span>Quitar</span>
 </button>
@@ -221,13 +221,14 @@ export default function Carrito() {
 <span className="sm:hidden text-body-sm text-outline">Precio:</span>
 <span className="text-body-md font-body-md font-semibold text-on-surface">{soles(i.precio)} <span className="text-body-sm font-normal text-outline">c/u</span></span>
 </div>
-<div className="col-span-2 flex justify-center w-full sm:w-auto">
+<div className="col-span-2 flex justify-between sm:justify-center items-center w-full sm:w-auto">
+<span className="sm:hidden text-body-sm text-outline">Cantidad:</span>
 <div className="flex items-center border border-outline-variant rounded-lg bg-surface-container-lowest overflow-hidden">
-<button type="button" onClick={() => retirar(i.sku, false)} aria-label="Disminuir cantidad" className="w-8 h-9 flex items-center justify-center text-primary-container hover:bg-surface-container transition-colors">
+<button type="button" onClick={() => retirar(i.sku, false)} aria-label="Disminuir cantidad" className="w-10 h-10 sm:w-8 sm:h-9 flex items-center justify-center text-primary-container hover:bg-surface-container transition-colors">
 <span className="material-symbols-outlined text-sm font-bold" data-icon="remove">remove</span>
 </button>
 <span className="w-10 text-center font-bold text-body-md font-body-md text-primary-container">{i.cantidad}</span>
-<button type="button" onClick={() => sumarUno(i.sku)} disabled={i.stock > 0 && i.cantidad >= i.stock} aria-label="Aumentar cantidad" className="w-8 h-9 flex items-center justify-center text-primary-container hover:bg-surface-container transition-colors disabled:opacity-40">
+<button type="button" onClick={() => sumarUno(i.sku)} disabled={i.stock > 0 && i.cantidad >= i.stock} aria-label="Aumentar cantidad" className="w-10 h-10 sm:w-8 sm:h-9 flex items-center justify-center text-primary-container hover:bg-surface-container transition-colors disabled:opacity-40">
 <span className="material-symbols-outlined text-sm font-bold" data-icon="add">add</span>
 </button>
 </div>
@@ -254,13 +255,13 @@ export default function Carrito() {
 <RecomendadoCarrito skus={carrito.map((i) => i.sku)} />
 </section>
 {/*  COLUMNA DERECHA (Resumen de Compra Sticky)  */}
-<aside className="lg:col-span-4 sticky top-28 space-y-space-md">
-<div className="bg-surface-container-lowest border border-surface-container-high rounded-xl p-6 shadow-sm">
+<aside className="lg:col-span-4 min-w-0 lg:sticky lg:top-28 space-y-space-md">
+<div className="bg-surface-container-lowest border border-surface-container-high rounded-xl p-4 sm:p-6 shadow-sm">
 <h2 className="text-headline-sm font-headline-sm font-extrabold text-primary-container border-b border-surface-container-high pb-4">
             Resumen de compra
           </h2>
 <div className="py-4 space-y-3">
-<div className="flex items-center justify-between text-body-md">
+<div className="flex items-center justify-between gap-2 text-body-md">
 <span className="text-on-surface-variant">Subtotal ({unidades} {unidades === 1 ? "producto" : "productos"})</span>
 <span className="font-bold text-on-surface">{soles(subtotal)}</span>
 </div>
@@ -322,7 +323,7 @@ export default function Carrito() {
 </main>
 {/*  FOOTER INSTITUCIONAL  */}
 <footer className="bg-primary-container text-surface-container-lowest mt-space-xl border-t border-primary">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-xl">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-space-xl">
 <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop mb-space-lg">
 <div className="space-y-4">
 <Link className="flex items-center gap-1" to="/">

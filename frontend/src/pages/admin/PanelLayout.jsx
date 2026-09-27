@@ -33,6 +33,16 @@ export default function PanelLayout({ titulo, subtitulo, acciones, children }) {
   const navigate = useNavigate();
   const [config, setConfig] = useState(null);
   const [conectado, setConectado] = useState(null);
+  // Cajón lateral en móvil/tableta (< lg); en lg+ la barra es fija y este estado no influye
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+  useEffect(() => { setMenuAbierto(false); }, [pathname]);
+  useEffect(() => {
+    if (!menuAbierto) return undefined;
+    const onTecla = (e) => { if (e.key === 'Escape') setMenuAbierto(false); };
+    window.addEventListener('keydown', onTecla);
+    return () => window.removeEventListener('keydown', onTecla);
+  }, [menuAbierto]);
 
   useEffect(() => {
     api.get('/api/admin/config')
@@ -53,10 +63,13 @@ export default function PanelLayout({ titulo, subtitulo, acciones, children }) {
       {/* ========================================== */}
       {/* BARRA LATERAL (260px, Azul Marino #0F2A4A) */}
       {/* ========================================== */}
-      <aside className="w-[260px] min-w-[260px] bg-[#0F2A4A] text-white flex flex-col justify-between h-screen sticky top-0 border-r border-[#1a3d66] z-30 select-none">
+      {menuAbierto && (
+        <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setMenuAbierto(false)} aria-hidden="true"></div>
+      )}
+      <aside className={`w-[260px] min-w-[260px] bg-[#0F2A4A] text-white flex flex-col justify-between h-screen overflow-y-auto lg:overflow-visible fixed inset-y-0 left-0 z-50 transition-transform duration-200 ${menuAbierto ? 'translate-x-0 shadow-2xl' : '-translate-x-full'} lg:sticky lg:top-0 lg:z-30 lg:translate-none lg:shadow-none lg:transition-none border-r border-[#1a3d66] select-none`}>
         <div>
           {/* Brand Logo & Header */}
-          <div className="px-6 py-6 border-b border-[#1b3e68] flex items-center justify-between">
+          <div className="px-6 py-6 border-b border-[#1b3e68] flex items-center justify-between gap-2">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-[#F26B1D] flex items-center justify-center font-black text-xl text-white tracking-wider shadow-md">
                 F
@@ -66,6 +79,9 @@ export default function PanelLayout({ titulo, subtitulo, acciones, children }) {
                 <span className="text-[11px] font-medium text-slate-300 uppercase tracking-widest mt-1 block">Panel de Control</span>
               </div>
             </div>
+            <button type="button" onClick={() => setMenuAbierto(false)} className="lg:hidden w-10 h-10 -mr-2 inline-flex items-center justify-center rounded-lg text-slate-300 hover:bg-[#173a63] hover:text-white" aria-label="Cerrar menú">
+              <span className="material-symbols-outlined text-[22px]">close</span>
+            </button>
           </div>
 
           {/* Navigation Menu */}
@@ -119,32 +135,35 @@ export default function PanelLayout({ titulo, subtitulo, acciones, children }) {
       {/* ========================================== */}
       <div className="flex-1 flex flex-col min-w-0 bg-[#F5F6F8]">
         {/* CABECERA SUPERIOR BLANCA */}
-        <header className="bg-white border-b border-[#E2E6EB] min-h-[72px] px-8 py-2 flex items-center justify-between gap-4 sticky top-0 z-20 shadow-sm">
-          <div className="flex items-center gap-4 min-w-0">
+        <header className="bg-white border-b border-[#E2E6EB] min-h-[64px] lg:min-h-[72px] px-3 sm:px-4 md:px-6 lg:px-8 py-2 flex items-center justify-between gap-2 sm:gap-4 sticky top-0 z-20 shadow-sm">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+            <button type="button" onClick={() => setMenuAbierto(true)} className="lg:hidden shrink-0 w-10 h-10 inline-flex items-center justify-center rounded-lg text-[#0F2A4A] hover:bg-slate-100" aria-label="Abrir menú" aria-expanded={menuAbierto}>
+              <span className="material-symbols-outlined text-[24px]">menu</span>
+            </button>
             <div className="min-w-0">
-              <h1 className="text-[22px] font-bold text-[#0F2A4A] tracking-tight leading-tight">{titulo}</h1>
-              {subtitulo && <p className="text-xs text-slate-500 font-normal">{subtitulo}</p>}
+              <h1 className="text-lg sm:text-xl lg:text-[22px] font-bold text-[#0F2A4A] tracking-tight leading-tight break-words">{titulo}</h1>
+              {subtitulo && <p className="text-xs text-slate-500 font-normal hidden sm:block">{subtitulo}</p>}
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-1.5 sm:gap-3 lg:gap-6 shrink-0 lg:shrink">
             {acciones}
             <Link to="/" className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg border border-slate-200 text-xs text-slate-600 hover:bg-slate-200">
               <span className="material-symbols-outlined text-[16px] text-[#0F2A4A]">storefront</span>
               <span className="font-medium">Ver tienda</span>
             </Link>
 
-            <div className="h-8 w-[1px] bg-slate-200"></div>
+            <div className="hidden md:block h-8 w-[1px] bg-slate-200"></div>
 
             {/* User Information (Administrador) */}
-            <div className="flex items-center gap-3 pl-1">
-              <div className="w-10 h-10 rounded-full bg-[#0F2A4A] text-white flex items-center justify-center font-bold text-sm shadow-sm ring-2 ring-slate-100">
+            <div className="flex items-center gap-1 sm:gap-3 pl-1">
+              <div className="hidden sm:flex w-10 h-10 rounded-full bg-[#0F2A4A] text-white items-center justify-center font-bold text-sm shadow-sm ring-2 ring-slate-100">
                 AD
               </div>
               <div className="text-left hidden lg:block">
                 <span className="text-sm font-semibold text-[#0F2A4A] block leading-tight">Administrador</span>
               </div>
-              <button onClick={cerrarSesion} className="text-slate-400 hover:text-slate-600 ml-1 inline-flex items-center gap-1 text-xs" title="Cerrar sesión">
+              <button onClick={cerrarSesion} className="text-slate-400 hover:text-slate-600 ml-1 inline-flex items-center justify-center gap-1 text-xs min-w-10 min-h-10 lg:min-w-auto lg:min-h-auto" title="Cerrar sesión" aria-label="Cerrar sesión">
                 <span className="material-symbols-outlined text-[18px]">logout</span>
                 <span className="hidden xl:inline">Cerrar sesión</span>
               </button>
@@ -152,7 +171,7 @@ export default function PanelLayout({ titulo, subtitulo, acciones, children }) {
           </div>
         </header>
 
-        <main className="p-8 max-w-[1400px] w-full mx-auto space-y-6">
+        <main className="p-4 md:p-6 lg:p-8 max-w-[1400px] w-full mx-auto space-y-4 md:space-y-6">
           {children}
         </main>
       </div>

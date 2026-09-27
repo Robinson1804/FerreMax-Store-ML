@@ -49,42 +49,42 @@ export default function RegistroEventos() {
     setAviso({ tipo: 'ok', texto: `CSV exportado con ${eventos.length} eventos.` });
   };
 
-  const input = 'bg-[#F8F9FA] border border-[#CBD5E1] rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#F26B1D]';
+  const input = 'bg-[#F8F9FA] border border-[#CBD5E1] rounded-lg px-3 py-2 text-base md:text-xs w-full focus:outline-none focus:ring-2 focus:ring-[#F26B1D]';
 
   return (
     <PanelLayout titulo="Registro de eventos" subtitulo="Trazabilidad de eventos por sesión y condición experimental">
       {aviso && <Aviso tipo={aviso.tipo} onCerrar={() => setAviso(null)}>{aviso.texto}</Aviso>}
-      <section className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm">
         <form
           onSubmit={(e) => { e.preventDefault(); setAplicados({ ...filtros }); }}
           className="flex flex-wrap items-end gap-3 pb-5 border-b border-slate-100"
         >
-          <label className="text-xs font-semibold text-slate-600 flex flex-col gap-1">id_sesion
+          <label className="text-xs font-semibold text-slate-600 flex flex-col gap-1 w-full sm:w-auto">id_sesion
             <input className={input} value={filtros.id_sesion} onChange={(e) => setFiltros({ ...filtros, id_sesion: e.target.value })} placeholder="SES-…" />
           </label>
-          <label className="text-xs font-semibold text-slate-600 flex flex-col gap-1">codigo_cliente
+          <label className="text-xs font-semibold text-slate-600 flex flex-col gap-1 w-full sm:w-auto">codigo_cliente
             <input className={input} value={filtros.codigo_cliente} onChange={(e) => setFiltros({ ...filtros, codigo_cliente: e.target.value.toUpperCase() })} placeholder="CLI-###" />
           </label>
-          <label className="text-xs font-semibold text-slate-600 flex flex-col gap-1">condicion
+          <label className="text-xs font-semibold text-slate-600 flex flex-col gap-1 w-full sm:w-auto">condicion
             <select className={input} value={filtros.condicion} onChange={(e) => setFiltros({ ...filtros, condicion: e.target.value })}>
               <option value="">Todas</option>
               <option value="CONV">CONV</option>
               <option value="ML">ML</option>
             </select>
           </label>
-          <label className="text-xs font-semibold text-slate-600 flex flex-col gap-1">tipo_evento
+          <label className="text-xs font-semibold text-slate-600 flex flex-col gap-1 w-full sm:w-auto">tipo_evento
             <select className={input} value={filtros.tipo_evento} onChange={(e) => setFiltros({ ...filtros, tipo_evento: e.target.value })}>
               <option value="">Todos</option>
               {TIPOS.map((t) => <option key={t} value={t}>{t}</option>)}
             </select>
           </label>
-          <button type="submit" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#0F2A4A] hover:bg-[#173a63] text-white text-xs font-semibold">
+          <button type="submit" className="flex-1 sm:flex-initial justify-center min-h-10 md:min-h-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#0F2A4A] hover:bg-[#173a63] text-white text-xs font-semibold">
             <span className="material-symbols-outlined text-[16px]">filter_alt</span> Filtrar
           </button>
-          <button type="button" onClick={() => { setFiltros(VACIO); setAplicados(VACIO); }} className="px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">
+          <button type="button" onClick={() => { setFiltros(VACIO); setAplicados(VACIO); }} className="flex-1 sm:flex-initial min-h-10 md:min-h-auto px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50">
             Limpiar
           </button>
-          <button type="button" onClick={exportCSV} disabled={!eventos.length} className="ml-auto inline-flex items-center gap-1.5 bg-white border border-gray-300 hover:bg-gray-50 text-slate-700 px-3.5 py-2 rounded-lg text-xs font-semibold disabled:opacity-50">
+          <button type="button" onClick={exportCSV} disabled={!eventos.length} className="w-full sm:w-auto sm:ml-auto justify-center min-h-10 md:min-h-auto inline-flex items-center gap-1.5 bg-white border border-gray-300 hover:bg-gray-50 text-slate-700 px-3.5 py-2 rounded-lg text-xs font-semibold disabled:opacity-50">
             <span className="material-symbols-outlined text-[16px] text-slate-500">download</span> Exportar CSV
           </button>
         </form>

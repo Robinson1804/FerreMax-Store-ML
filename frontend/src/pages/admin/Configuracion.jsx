@@ -51,10 +51,10 @@ export default function Configuracion() {
     <PanelLayout titulo="Configuración" subtitulo="Modo activo y parámetros del recomendador">
       {aviso && <Aviso tipo={aviso.tipo} onCerrar={() => setAviso(null)}>{aviso.texto}</Aviso>}
       {config && (
-        <form onSubmit={guardar} className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm max-w-xl space-y-4">
+        <form onSubmit={guardar} className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm max-w-xl space-y-4">
           <div>
             <label className="block text-xs font-semibold text-[#0F2A4A] mb-1.5 uppercase tracking-wide">Modo activo</label>
-            <select value={config.modo_activo} onChange={(e) => setConfig({ ...config, modo_activo: e.target.value })} className="w-full bg-white border border-[#CBD5E1] rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F26B1D]">
+            <select value={config.modo_activo} onChange={(e) => setConfig({ ...config, modo_activo: e.target.value })} className="w-full bg-white border border-[#CBD5E1] rounded-lg px-3 py-2.5 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-[#F26B1D]">
               <option value="CONV">CONV · Convencional</option>
               <option value="ML">ML · Machine Learning</option>
             </select>
@@ -67,12 +67,12 @@ export default function Configuracion() {
                 step={c.paso}
                 value={config[c.campo] ?? ''}
                 onChange={(e) => setConfig({ ...config, [c.campo]: e.target.value })}
-                className="w-full bg-[#F8F9FA] border border-[#CBD5E1] rounded-lg px-3 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#F26B1D]"
+                className="w-full bg-[#F8F9FA] border border-[#CBD5E1] rounded-lg px-3 py-2.5 text-base md:text-sm font-mono focus:outline-none focus:ring-2 focus:ring-[#F26B1D]"
               />
             </div>
           ))}
           <p className="text-xs text-slate-500">Los umbrales se aplican al filtrar reglas vigentes y al reentrenar el modelo (panel Recomendador).</p>
-          <button type="submit" disabled={guardando} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#0F2A4A] hover:bg-[#173a63] text-white text-sm font-bold disabled:opacity-60">
+          <button type="submit" disabled={guardando} className="w-full sm:w-auto justify-center inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#0F2A4A] hover:bg-[#173a63] text-white text-sm font-bold disabled:opacity-60">
             <span className="material-symbols-outlined text-[18px]">save</span>
             {guardando ? 'Guardando…' : 'Guardar'}
           </button>

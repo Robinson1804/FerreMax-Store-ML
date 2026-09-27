@@ -93,8 +93,8 @@ export default function Inicio() {
     <>
 
 {/*  1. Barra superior fina azul marino (#0F2A4A, 36 px de alto)  */}
-<aside className="bg-primary-container text-on-primary h-[36px] flex items-center select-none text-body-sm font-body-sm">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between">
+<aside className="bg-primary-container text-on-primary h-[36px] hidden lg:flex items-center select-none text-body-sm font-body-sm">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between">
 <div className="flex items-center gap-space-lg">
 <div className="flex items-center gap-1.5 text-surface-container">
 <span className="material-symbols-outlined text-[16px] text-secondary-container" data-icon="location_on">location_on</span>
@@ -120,16 +120,16 @@ export default function Inicio() {
 </aside>
 {/*  2. Cabecera blanca (Header principal)  */}
 <header className="bg-surface-container-lowest border-b border-surface-container shadow-sm sticky top-0 z-40">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop h-[84px] flex items-center justify-between gap-space-lg">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-3 lg:py-0 lg:h-[84px] flex flex-wrap lg:flex-nowrap items-center justify-between gap-x-3 gap-y-3 lg:gap-space-lg">
 {/*  Logotipo  */}
 <Link className="flex items-center select-none" to="/">
-<span className="text-headline-xl font-headline-xl tracking-tight leading-none text-primary-container">FERRE<span className="text-secondary-container">MAX</span></span>
+<span className="text-headline-xl-mobile md:text-headline-xl font-headline-xl tracking-tight leading-none text-primary-container">FERRE<span className="text-secondary-container">MAX</span></span>
 </Link>
 {/*  Buscador ancho y prominente  */}
-<div className="flex-1 max-w-[620px] mx-auto">
+<div className="order-last w-full lg:order-none lg:w-auto lg:flex-1 max-w-[620px] mx-auto">
 <form className="relative flex items-center w-full" onSubmit={(e) => { e.preventDefault(); enviarConsulta(textoCabecera); }}>
 <div className="relative w-full">
-<input className="w-full h-[46px] pl-4 pr-14 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline text-body-md font-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container shadow-sm transition-all" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={textoCabecera} onChange={(e) => setTextoCabecera(e.target.value)} onFocus={marcarInicio}/>
+<input className="w-full h-[46px] pl-4 pr-14 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline text-base md:text-body-md font-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container shadow-sm transition-all" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={textoCabecera} onChange={(e) => setTextoCabecera(e.target.value)} onFocus={marcarInicio}/>
 <button className="absolute right-1 top-1 bottom-1 w-[40px] bg-primary-container hover:bg-primary text-on-primary rounded-md flex items-center justify-center transition-colors cursor-pointer" title="Buscar" type="submit">
 <span className="material-symbols-outlined text-[20px]" data-icon="search">search</span>
 </button>
@@ -137,26 +137,26 @@ export default function Inicio() {
 </form>
 </div>
 {/*  Acciones de cabecera  */}
-<div className="flex items-center gap-space-lg">
+<div className="flex items-center gap-1 md:gap-space-lg">
 {/*  Mi cuenta  */}
-<Link className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg hover:bg-surface-container transition-colors cursor-pointer group" to="/mi-cuenta">
+<Link className="flex items-center gap-2.5 px-1.5 md:px-3 py-1.5 rounded-lg hover:bg-surface-container transition-colors cursor-pointer group" to="/mi-cuenta">
 <div className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
 <span className="material-symbols-outlined text-[22px]" data-icon="person">person</span>
 </div>
-<div className="text-left">
+<div className="text-left hidden md:block">
 <span className="block text-body-sm font-body-sm text-outline leading-tight">{sesion?.codigo_cliente ? `Hola, ${sesion.codigo_cliente}` : "Hola, Inicia sesión"}</span>
 <span className="block text-label-md font-label-md text-primary-container">Mi cuenta</span>
 </div>
 </Link>
 {/*  Separador  */}
-<div className="h-8 w-[1px] bg-surface-container"></div>
+<div className="h-8 w-[1px] bg-surface-container hidden md:block"></div>
 {/*  Carrito con badge y monto  */}
-<Link className="flex items-center gap-3 px-3 py-1.5 rounded-lg hover:bg-surface-container transition-colors cursor-pointer" to="/carrito">
+<Link className="flex items-center gap-3 px-3 py-1.5 min-h-12 md:min-h-0 rounded-lg hover:bg-surface-container transition-colors cursor-pointer" to="/carrito">
 <div className="relative flex items-center justify-center text-primary-container">
 <span className="material-symbols-outlined text-[28px]" data-icon="shopping_cart">shopping_cart</span>
 <span className="absolute -top-1.5 -right-2 bg-secondary-container text-on-secondary text-label-sm font-label-sm px-1.5 py-0.5 rounded-full min-w-[18px] text-center leading-none">{unidades}</span>
 </div>
-<div className="text-left">
+<div className="text-left hidden md:block">
 <span className="block text-body-sm font-body-sm text-outline leading-tight">Mi Carrito</span>
 <span className="block text-label-lg font-label-lg text-primary-container font-bold">{soles(subtotal)}</span>
 </div>
@@ -166,12 +166,12 @@ export default function Inicio() {
 </header>
 {/*  3. Menú de navegación inferior a la cabecera  */}
 <nav className="bg-surface-container-lowest border-b border-surface-container">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop h-[48px] flex items-center gap-space-lg">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop h-[48px] flex items-center gap-4 lg:gap-space-lg">
 {/*  Botón Todas las categorías (menú desplegable con las categorías reales)  */}
-<div className="relative">
-<button type="button" onClick={() => setMenuCategorias((v) => !v)} className="bg-primary-container hover:bg-primary text-on-primary px-4 py-2 rounded-lg flex items-center gap-2 font-label-lg text-label-lg transition-colors cursor-pointer">
+<div className="relative shrink-0">
+<button type="button" onClick={() => setMenuCategorias((v) => !v)} title="Todas las categorías" className="bg-primary-container hover:bg-primary text-on-primary px-3 sm:px-4 py-2 min-h-10 lg:min-h-0 rounded-lg flex items-center gap-2 font-label-lg text-label-lg transition-colors cursor-pointer">
 <span className="material-symbols-outlined text-[20px]" data-icon="menu">menu</span>
-<span>Todas las categorías</span>
+<span className="sr-only sm:not-sr-only">Todas las categorías</span>
 <span className="material-symbols-outlined text-[18px] text-on-primary-container" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
 </button>
 {menuCategorias && (
@@ -187,7 +187,7 @@ export default function Inicio() {
 )}
 </div>
 {/*  Enlaces de navegación  */}
-<div className="flex items-center gap-space-lg h-full">
+<div className="flex items-center gap-4 lg:gap-space-lg h-full min-w-0 overflow-x-auto whitespace-nowrap">
 {/*  Inicio activo  */}
 <Link className="h-full flex items-center px-1 text-primary-container border-b-2 border-secondary-container font-label-lg text-label-lg font-bold" to="/">
           Inicio
@@ -206,12 +206,12 @@ export default function Inicio() {
 {/*  Contenido Principal  */}
 <main className="flex-1 flex flex-col gap-space-xl pb-space-xl">
 {/*  4. Hero de ancho completo (360 px de alto, fondo azul marino profundo #0F2A4A)  */}
-<section className="w-full bg-primary-container relative overflow-hidden select-none" style={{"height": "380px"}}>
+<section className="w-full bg-primary-container relative overflow-hidden select-none lg:h-[380px]">
 {/*  Contenedor general  */}
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop h-full relative flex items-center">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop h-full relative flex items-center">
 {/*  Mitad izquierda de contenidos  */}
-<div className="z-20 max-w-[620px] flex flex-col justify-center h-full py-6">
-<h1 className="text-display-lg font-display-lg text-on-primary tracking-tight leading-tight">
+<div className="z-20 max-w-[620px] min-w-0 flex flex-col justify-center h-full pt-8 pb-10 lg:py-6">
+<h1 className="text-headline-xl md:text-display-lg font-display-lg text-on-primary tracking-tight leading-tight">
             Todo para <span className="text-secondary-container">construir y renovar</span>
 </h1>
 <p className="mt-3 text-body-lg font-body-lg text-surface-container leading-relaxed">
@@ -224,7 +224,7 @@ export default function Inicio() {
 </a>
 </div>
 {/*  3 Beneficios destacados  */}
-<div className="mt-8 pt-6 border-t border-primary flex items-center gap-6">
+<div className="mt-8 pt-6 border-t border-primary grid grid-cols-1 sm:flex sm:flex-wrap sm:items-center gap-4 sm:gap-6">
 {/*  Beneficio 1  */}
 <div className="flex items-center gap-3">
 <div className="w-10 h-10 rounded-full bg-primary/70 flex items-center justify-center text-secondary-container border border-on-primary-container/20 shrink-0">
@@ -258,7 +258,7 @@ export default function Inicio() {
 </div>
 </div>
 {/*  Imagen de Hero integrada con fade out a la izquierda  */}
-<div className="absolute right-0 top-0 bottom-0 w-[640px] h-full pointer-events-none z-10 overflow-hidden">
+<div className="absolute right-0 top-0 bottom-0 w-full md:w-[640px] opacity-25 md:opacity-100 h-full pointer-events-none z-10 overflow-hidden">
 <img alt="Herramientas profesionales y materiales de construcción sobre mesa de trabajo" className="w-full h-full object-cover object-center" src="/img/categorias/portada-1.webp"/>
 {/*  Degradado de transición a azul marino #0F2A4A  */}
 <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-primary-container/50 to-transparent"></div>
@@ -266,8 +266,8 @@ export default function Inicio() {
 </div>
 </section>
 {/*  5. Bloque '¿Qué necesitas hacer hoy?'  */}
-<section className="w-full max-w-[1360px] mx-auto px-margin-desktop -mt-4 z-20">
-<div className="bg-surface-container-lowest rounded-xl border border-surface-container shadow-sm p-6">
+<section className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop -mt-4 z-20">
+<div className="bg-surface-container-lowest rounded-xl border border-surface-container shadow-sm p-4 md:p-6">
 <div className="flex items-center gap-2 text-primary-container mb-3">
 <span className="material-symbols-outlined text-[24px] text-secondary-container" data-icon="lightbulb">lightbulb</span>
 <h2 className="text-headline-md font-headline-md font-bold text-primary-container">¿Qué necesitas hacer hoy?</h2>
@@ -279,7 +279,7 @@ export default function Inicio() {
 <form className="flex flex-col sm:flex-row gap-3 items-stretch" onSubmit={(e) => { e.preventDefault(); enviarConsulta(textoNecesidad); }}>
 <div className="relative flex-1">
 <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[22px]" data-icon="build">build</span>
-<input className="w-full h-[48px] pl-11 pr-4 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline text-body-md font-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container shadow-inner" placeholder="Escribe tu necesidad, por ejemplo: pintar un dormitorio, instalar un lavatorio, colgar repisas" type="text" value={textoNecesidad} onChange={(e) => setTextoNecesidad(e.target.value)} onFocus={marcarInicio}/>
+<input className="w-full h-[48px] pl-11 pr-4 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface placeholder:text-outline text-base md:text-body-md font-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container shadow-inner" placeholder="Escribe tu necesidad, por ejemplo: pintar un dormitorio, instalar un lavatorio, colgar repisas" type="text" value={textoNecesidad} onChange={(e) => setTextoNecesidad(e.target.value)} onFocus={marcarInicio}/>
 </div>
 <button type="submit" className="bg-secondary-container hover:bg-secondary text-on-secondary px-6 h-[48px] rounded-lg font-label-lg text-label-lg font-semibold flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer">
 <span className="material-symbols-outlined text-[20px]" data-icon="search">search</span>
@@ -290,7 +290,7 @@ export default function Inicio() {
 <div className="mt-4 flex flex-wrap items-center gap-2">
 <span className="text-body-sm font-body-sm text-outline mr-2 font-medium">Búsquedas frecuentes:</span>
 {BUSQUEDAS_FRECUENTES.map((b) => (
-<button key={b.texto} type="button" onClick={() => enviarConsulta(b.texto)} className="px-3.5 py-1.5 rounded-full bg-surface-container-low hover:bg-surface-container text-primary-container border border-surface-container-highest text-body-sm font-body-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5">
+<button key={b.texto} type="button" onClick={() => enviarConsulta(b.texto)} className="px-3.5 py-1.5 min-h-10 lg:min-h-0 rounded-full bg-surface-container-low hover:bg-surface-container text-primary-container border border-surface-container-highest text-body-sm font-body-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5">
 <span className="material-symbols-outlined text-[16px] text-secondary-container" data-icon={b.icono}>{b.icono}</span>
 <span>{b.texto}</span>
 </button>
@@ -299,7 +299,7 @@ export default function Inicio() {
 </div>
 </section>
 {/*  6. Sección 'Categorías principales'  */}
-<section id="categorias" className="w-full max-w-[1360px] mx-auto px-margin-desktop">
+<section id="categorias" className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
 <div className="flex items-center justify-between mb-5">
 <div>
 <h2 className="text-headline-lg font-headline-lg font-bold text-primary-container">Categorías principales</h2>
@@ -311,7 +311,7 @@ export default function Inicio() {
 {/*  Tarjetas en sub-grid de 3 columnas (categorías reales de /api/categorias)  */}
 <div className="lg:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-space-md">
 {categorias.map((c) => (
-<Link key={c.categoria} className="group bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-outline-variant transition-all cursor-pointer" to={rutaCategoria(c.categoria)}>
+<Link key={c.categoria} className="group bg-surface-container-lowest rounded-xl border border-surface-container p-3 sm:p-4 min-w-0 break-words flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-outline-variant transition-all cursor-pointer" to={rutaCategoria(c.categoria)}>
 <div className="w-full h-28 rounded-lg bg-surface-container-low flex items-center justify-center mb-3 overflow-hidden p-2">
 {IMAGEN_CATEGORIA[c.categoria] ? (
 <img className="h-full object-contain group-hover:scale-105 transition-transform duration-300" alt={c.categoria} src={IMAGEN_CATEGORIA[c.categoria]}/>
@@ -367,7 +367,7 @@ export default function Inicio() {
 </div>
 </section>
 {/*  7. Sección 'Productos destacados' (los más vendidos según /api/productos)  */}
-<section id="destacados" className="w-full max-w-[1360px] mx-auto px-margin-desktop">
+<section id="destacados" className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
 <div className="flex items-center justify-between mb-5">
 <div>
 <h2 className="text-headline-lg font-headline-lg font-bold text-primary-container">Productos destacados</h2>
@@ -375,7 +375,7 @@ export default function Inicio() {
 </div>
 </div>
 {/*  Grilla uniforme de 8 tarjetas de producto de igual altura (4 cols en desktop)  */}
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-md">
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-space-md">
 {cargandoProductos && (
 <p className="col-span-full text-body-md font-body-md text-outline py-8 text-center">Cargando productos…</p>
 )}
@@ -383,9 +383,9 @@ export default function Inicio() {
 <p className="col-span-full text-body-md font-body-md text-outline py-8 text-center">No hay productos disponibles en este momento.</p>
 )}
 {destacados.map((p) => (
-<div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
+<div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-surface-container p-3 sm:p-4 min-w-0 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-outline-variant transition-all group">
 <Link to={`/detalle/${p.sku}`} className="block">
-<div className="w-full h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
+<div className="w-full h-32 sm:h-44 rounded-lg bg-surface-container-low flex items-center justify-center p-3 relative overflow-hidden">
 <ImagenProducto producto={p} icono={iconoProducto(p)} className="h-full w-full group-hover:scale-105 transition-transform duration-300" iconoClassName="text-[72px] text-outline group-hover:scale-105 transition-transform duration-300" />
 <span className="absolute top-2 left-2 bg-slate-100 text-slate-600 border border-slate-200 text-[11px] font-medium px-2 py-0.5 rounded-full inline-block">{p.subcategoria || p.categoria}</span>
 </div>
@@ -396,12 +396,12 @@ export default function Inicio() {
               </h3>
 </div>
 </Link>
-<div className="mt-4 pt-3 border-t border-surface-container flex items-center justify-between">
+<div className="mt-4 pt-3 border-t border-surface-container flex flex-wrap lg:flex-nowrap items-center justify-between gap-2">
 <div>
 <span className="text-body-sm font-body-sm text-outline block leading-none">Precio unitario</span>
 <span className="text-price-md font-price-md text-primary-container">{soles(p.precio)}</span>
 </div>
-<button type="button" disabled={p.stock <= 0} onClick={() => agregar(p, "CATEGORIA", null)} className="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+<button type="button" disabled={p.stock <= 0} onClick={() => agregar(p, "CATEGORIA", null)} className="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-2 min-h-10 lg:min-h-0 w-full sm:w-auto justify-center rounded-lg font-label-md text-label-md flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
 <span className="material-symbols-outlined text-[18px]" data-icon="shopping_cart">shopping_cart</span>
 <span>{p.stock > 0 ? "Agregar" : "Sin stock"}</span>
 </button>
@@ -411,8 +411,8 @@ export default function Inicio() {
 </div>
 </section>
 {/*  8. Bloque 'Recomendados para ti' con fondo naranja muy claro (#FFF3EA)  */}
-<section className="w-full max-w-[1360px] mx-auto px-margin-desktop">
-<div className="rounded-xl border border-[#FDBA74]/40 bg-[#FFF3EA] p-6 shadow-sm">
+<section className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div className="rounded-xl border border-[#FDBA74]/40 bg-[#FFF3EA] p-4 md:p-6 shadow-sm">
 {/*  Cabecera del bloque  */}
 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#FBD7C0]">
 <div className="flex items-center gap-3">
@@ -437,7 +437,7 @@ export default function Inicio() {
 </div>
 </div>
 {/*  K = 5 tarjetas de productos recomendados de igual altura  */}
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-space-md">
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-space-md">
 {cargandoRecom && !recomendados.length && (
 <p className="col-span-full text-body-md font-body-md text-outline py-6 text-center">Cargando recomendaciones…</p>
 )}
@@ -445,7 +445,7 @@ export default function Inicio() {
 <p className="col-span-full text-body-md font-body-md text-outline py-6 text-center">No hay recomendaciones disponibles por ahora.</p>
 )}
 {recomendados.map((p) => (
-<div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-surface-container p-4 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
+<div key={p.sku} className="bg-surface-container-lowest rounded-xl border border-surface-container p-3 sm:p-4 min-w-0 flex flex-col justify-between shadow-2xs hover:shadow-md hover:border-outline-variant transition-all group">
 <Link to={`/detalle/${p.sku}`} className="block">
 <div className="w-full h-36 rounded-lg bg-surface-container-low flex items-center justify-center p-2 relative overflow-hidden">
 <ImagenProducto producto={p} icono={iconoProducto(p)} className="h-full w-full group-hover:scale-105 transition-transform duration-300" iconoClassName="text-[60px] text-outline group-hover:scale-105 transition-transform duration-300" />
@@ -458,11 +458,11 @@ export default function Inicio() {
                 </h4>
 </div>
 </Link>
-<div className="mt-3 pt-2.5 border-t border-surface-container flex items-center justify-between">
+<div className="mt-3 pt-2.5 border-t border-surface-container flex flex-wrap lg:flex-nowrap items-center justify-between gap-2">
 <div>
 <span className="text-price-md font-price-md text-primary-container">{soles(p.precio)}</span>
 </div>
-<button type="button" onClick={() => agregar(p, "RECOMENDACION", p.posicion)} className="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
+<button type="button" onClick={() => agregar(p, "RECOMENDACION", p.posicion)} className="bg-secondary-container hover:bg-secondary text-on-secondary px-3 py-1.5 min-h-10 lg:min-h-0 w-full sm:w-auto justify-center rounded-lg font-label-md text-label-md flex items-center gap-1 transition-colors cursor-pointer shadow-2xs">
 <span className="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
 <span>Agregar</span>
 </button>
@@ -475,7 +475,7 @@ export default function Inicio() {
 </main>
 {/*  9. Pie de página azul marino (#0F2A4A, texto claro)  */}
 <footer className="bg-primary-container text-on-primary">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-xl">
+<div className="w-full max-w-[1360px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl">
 {/*  4 Columnas principales  */}
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg mb-10">
 {/*  Col 1: Sobre FerreMax  */}

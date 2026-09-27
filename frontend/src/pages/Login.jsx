@@ -28,7 +28,7 @@ export default function Login() {
     <>
 
 {/*  1. TOP ANNOUNCEMENT BAR  */}
-<aside className="bg-primary text-on-primary text-body-sm py-2 px-margin-desktop border-b border-primary-container">
+<aside className="hidden md:block bg-primary text-on-primary text-body-sm py-2 px-margin-desktop border-b border-primary-container">
 <div className="max-w-[1360px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
 <div className="flex items-center gap-2">
 <span className="material-symbols-outlined text-secondary-container text-[18px]">local_shipping</span>
@@ -51,25 +51,25 @@ export default function Login() {
 </aside>
 {/*  2. CABECERA PRINCIPAL  */}
 <header className="bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-40">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop h-20 flex items-center justify-between gap-6">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-2.5 md:py-0 md:h-20 flex flex-wrap md:flex-nowrap items-center justify-between gap-x-3 gap-y-2.5 md:gap-6">
 <Link className="flex items-center gap-2 select-none group flex-shrink-0" to="/">
 <div className="text-headline-md font-headline-md font-extrabold tracking-tight">
 <span className="text-primary-container">FERRE</span><span className="text-secondary-container">MAX</span>
 </div>
-<span className="text-label-sm font-label-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant font-semibold">PERÚ</span>
+<span className="hidden sm:inline text-label-sm font-label-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant font-semibold">PERÚ</span>
 </Link>
-<div className="flex-1 max-w-2xl relative">
+<div className="order-last basis-full md:order-none md:basis-0 flex-1 max-w-2xl relative">
 <form className="flex items-center" onSubmit={buscar}>
 <div className="relative w-full">
-<input className="w-full h-11 pl-4 pr-12 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-outline text-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
+<input className="w-full h-11 pl-4 pr-12 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface placeholder:text-outline text-base md:text-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
 <button aria-label="Buscar" className="absolute right-1 top-1 bottom-1 w-10 bg-primary-container hover:bg-primary text-on-primary rounded-md flex items-center justify-center transition-colors" type="submit">
 <span className="material-symbols-outlined text-[20px]">search</span>
 </button>
 </div>
 </form>
 </div>
-<div className="flex items-center gap-5 flex-shrink-0">
-<Link className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-primary-container transition-all" to="/mi-cuenta">
+<div className="flex items-center gap-2 md:gap-5 flex-shrink-0">
+<Link aria-label="Mi cuenta" className="flex items-center gap-2.5 px-1.5 md:px-3 py-1 md:py-2 rounded-lg bg-surface-container-low border border-outline-variant/60 text-primary-container transition-all" to="/mi-cuenta">
 <div className="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center">
 <span className="material-symbols-outlined text-[20px]">person</span>
 </div>
@@ -78,7 +78,7 @@ export default function Login() {
 <span className="text-label-lg font-bold text-primary-container">Mi Cuenta</span>
 </div>
 </Link>
-<Link className="flex items-center gap-2 px-3 py-2 rounded-lg border border-outline-variant hover:border-primary-container text-on-surface transition-all" to="/carrito">
+<Link aria-label="Carrito" className="flex items-center gap-2 px-3 py-2 min-h-11 md:min-h-0 rounded-lg border border-outline-variant hover:border-primary-container text-on-surface transition-all" to="/carrito">
 <div className="relative flex items-center justify-center">
 <span className="material-symbols-outlined text-primary-container text-[24px]">shopping_cart</span>
 <span className="absolute -top-1.5 -right-2 bg-secondary-container text-on-primary text-[10px] font-bold min-w-4 h-4 px-0.5 rounded-full flex items-center justify-center">{unidades}</span>
@@ -92,13 +92,13 @@ export default function Login() {
 </div>
 {/*  3. BARRA DE NAVEGACIÓN SECUNDARIA  */}
 <nav className="bg-surface-container-lowest border-t border-outline-variant/40">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between text-body-md h-11">
-<div className="flex items-center gap-8 h-full">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop flex items-center justify-between text-body-md h-11 overflow-x-auto md:overflow-visible [scrollbar-width:none]">
+<div className="flex items-center gap-5 md:gap-8 h-full flex-shrink-0 whitespace-nowrap">
 <Link className="bg-primary-container text-on-primary hover:bg-primary px-4 h-full flex items-center gap-2 font-label-lg font-semibold transition-colors" to="/busqueda">
 <span className="material-symbols-outlined text-[20px]">menu</span>
 <span>Todas las categorías</span>
 </Link>
-<div className="flex items-center gap-6 h-full font-label-lg">
+<div className="flex items-center gap-5 md:gap-6 h-full font-label-lg">
 <Link className="text-on-surface hover:text-secondary flex items-center h-full transition-colors" to="/">Inicio</Link>
 <Link className="text-on-surface hover:text-secondary flex items-center h-full transition-colors" to="/busqueda">Productos</Link>
 <Link className="text-on-surface hover:text-secondary flex items-center h-full transition-colors" to="/busqueda">Categorías</Link>
@@ -109,8 +109,8 @@ export default function Login() {
 </header>
 {/*  MIGA DE PAN  */}
 <div className="bg-surface-container-low border-b border-outline-variant/40">
-<div className="max-w-[1360px] mx-auto px-margin-desktop py-3">
-<nav aria-label="Breadcrumb" className="flex items-center gap-2 text-body-sm text-outline">
+<div className="max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-3">
+<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-body-sm text-outline">
 <Link className="hover:text-primary-container transition-colors flex items-center gap-1" to="/">
 <span className="material-symbols-outlined text-[16px]">home</span>
 <span>Inicio</span>
@@ -123,19 +123,19 @@ export default function Login() {
 </div>
 </div>
 {/*  MAIN CANVAS  */}
-<main className="flex-grow bg-background py-10">
+<main className="flex-grow bg-background py-6 md:py-10">
 <div className="max-w-[1240px] mx-auto px-4 md:px-margin-desktop">
-<div className="text-center max-w-2xl mx-auto mb-10">
-<h1 className="text-headline-xl font-headline-xl text-primary-container tracking-tight mb-2">
+<div className="text-center max-w-2xl mx-auto mb-6 md:mb-10">
+<h1 className="text-headline-xl-mobile md:text-headline-xl font-headline-xl text-primary-container tracking-tight mb-2">
           Accede a tu cuenta FerreMax
         </h1>
 <p className="text-body-lg font-body-lg text-on-surface-variant">
           En este prototipo cada cliente se identifica con un código anónimo asignado a su sesión de evaluación.
         </p>
 </div>
-<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-8 items-start">
 {/*  TARJETA IZQUIERDA: INGRESAR CON CÓDIGO  */}
-<section className="lg:col-span-5 bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
+<section className="lg:col-span-5 min-w-0 bg-surface-container-lowest border border-outline-variant rounded-xl p-5 md:p-8 shadow-sm">
 <div className="mb-6">
 <h2 className="text-headline-md font-headline-md font-bold text-primary-container">Iniciar sesión</h2>
 <p className="text-body-md font-body-md text-on-surface-variant mt-1">Tu código de cliente para esta sesión.</p>
@@ -146,7 +146,7 @@ export default function Login() {
                 Código de cliente
 </label>
 <div className="relative">
-<input className="w-full h-11 px-3.5 bg-surface-container-low border border-outline-variant rounded-lg text-primary-container text-body-md font-mono focus:outline-none" id="login-codigo" readOnly type="text" value={codigo || "Sin sesión de evaluación activa"}/>
+<input className="w-full h-11 px-3.5 pr-10 md:pr-3.5 bg-surface-container-low border border-outline-variant rounded-lg text-primary-container text-base md:text-body-md font-mono focus:outline-none" id="login-codigo" readOnly type="text" value={codigo || "Sin sesión de evaluación activa"}/>
 <span className="material-symbols-outlined absolute right-3 top-3 text-outline text-[20px] pointer-events-none">badge</span>
 </div>
 </div>
@@ -164,7 +164,7 @@ export default function Login() {
 </div>
 </section>
 {/*  TARJETA DERECHA: INFORMACIÓN DEL PROTOTIPO  */}
-<section className="lg:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
+<section className="lg:col-span-7 min-w-0 bg-surface-container-lowest border border-outline-variant rounded-xl p-5 md:p-8 shadow-sm">
 <div className="mb-6">
 <h2 className="text-headline-md font-headline-md font-bold text-primary-container">Crear cuenta</h2>
 <p className="text-body-md font-body-md text-on-surface-variant mt-1">El registro de clientes no está habilitado en el prototipo.</p>
@@ -188,7 +188,7 @@ export default function Login() {
 </section>
 </div>
 {/*  FRANJA INFERIOR DE BENEFICIOS  */}
-<section className="mt-10 bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
+<section className="mt-6 md:mt-10 bg-surface-container-lowest border border-outline-variant rounded-xl p-5 md:p-8 shadow-sm">
 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div className="flex items-start gap-4">
 <div className="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center flex-shrink-0 text-secondary-container">
@@ -217,7 +217,7 @@ export default function Login() {
 <span className="material-symbols-outlined text-[26px]">smart_toy</span>
 </div>
 <div>
-<div className="flex items-center gap-2">
+<div className="flex flex-wrap items-center gap-2">
 <h3 className="text-headline-sm font-headline-sm font-bold text-primary-container">Recomendaciones</h3>
 <span className="bg-secondary text-on-secondary text-[10px] font-extrabold px-1.5 py-0.5 rounded tracking-wider">TESIS UPN</span>
 </div>
@@ -232,7 +232,7 @@ export default function Login() {
 </main>
 {/*  PIE DE PÁGINA  */}
 <footer className="bg-primary text-on-primary border-t border-primary-container mt-auto">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-xl">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-space-xl">
 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-primary-container/80">
 <div>
 <Link className="text-headline-md font-headline-md font-extrabold tracking-tight mb-3 block" to="/">

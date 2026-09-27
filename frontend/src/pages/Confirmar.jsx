@@ -25,8 +25,8 @@ const PAGOS = [
   { valor: "Efectivo", icono: "payments", titulo: "Efectivo", detalle: "Paga en caja al recoger o al recibir tu pedido" },
 ];
 
-const opcionActiva = "block relative border-2 border-primary-container bg-surface-bright p-space-md rounded-xl cursor-pointer transition-all shadow-sm";
-const opcionInactiva = "block border border-outline-variant hover:border-outline bg-surface-container-lowest p-space-md rounded-xl cursor-pointer transition-all";
+const opcionActiva = "block relative border-2 border-primary-container bg-surface-bright p-3 sm:p-space-md rounded-xl cursor-pointer transition-all shadow-sm";
+const opcionInactiva = "block border border-outline-variant hover:border-outline bg-surface-container-lowest p-3 sm:p-space-md rounded-xl cursor-pointer transition-all";
 
 export default function Confirmar() {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ export default function Confirmar() {
     <>
 
 {/*  1. Barra superior institucional  */}
-<header className="w-full bg-primary-container text-on-primary">
+<header className="hidden md:block w-full bg-primary-container text-on-primary">
 <div className="max-w-[1360px] mx-auto px-margin-desktop py-1.5 flex items-center justify-between text-body-sm font-body-sm">
 <div className="flex items-center space-x-2">
 <span className="material-symbols-outlined text-[16px] text-secondary-container" data-icon="local_shipping">local_shipping</span>
@@ -85,35 +85,35 @@ export default function Confirmar() {
 </header>
 {/*  2. Cabecera principal blanca  */}
 <nav className="w-full bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-40">
-<div className="max-w-[1360px] mx-auto px-margin-desktop py-space-sm flex items-center justify-between gap-6">
+<div className="max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-3 md:py-space-sm flex flex-wrap md:flex-nowrap items-center justify-between gap-3 md:gap-6">
 <Link className="flex items-center tracking-tight cursor-pointer" to="/">
 <span className="text-headline-md font-headline-md font-extrabold text-primary-container">FERRE</span><span className="text-headline-md font-headline-md font-extrabold text-secondary-container">MAX</span>
 </Link>
-<form className="flex-1 max-w-2xl relative" onSubmit={buscar}>
+<form className="order-last basis-full md:order-none md:flex-1 max-w-2xl relative" onSubmit={buscar}>
 <div className="relative flex items-center">
-<input className="w-full h-11 pl-4 pr-12 text-body-md font-body-md rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all placeholder:text-outline" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
+<input className="w-full h-11 pl-4 pr-12 text-base md:text-body-md font-body-md rounded-lg border border-outline-variant bg-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:bg-surface-container-lowest transition-all placeholder:text-outline" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared" type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
 <button type="submit" className="absolute right-1 top-1 bottom-1 px-3.5 bg-primary-container text-on-primary rounded-lg flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
 <span className="material-symbols-outlined text-[20px]" data-icon="search">search</span>
 </button>
 </div>
 </form>
-<div className="flex items-center space-x-5">
-<Link className="flex items-center space-x-2.5 text-on-surface hover:text-secondary-container transition-colors py-1 cursor-pointer" to="/mi-cuenta">
+<div className="flex items-center space-x-3 md:space-x-5">
+<Link aria-label="Mi cuenta" className="flex items-center space-x-2.5 text-on-surface hover:text-secondary-container transition-colors py-1 cursor-pointer" to="/mi-cuenta">
 <div className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
 <span className="material-symbols-outlined text-[22px]" data-icon="person">person</span>
 </div>
-<div className="flex flex-col text-left">
+<div className="hidden md:flex flex-col text-left">
 <span className="text-label-sm font-label-sm text-outline">{sesion?.codigo_cliente ? `Hola, ${sesion.codigo_cliente}` : "Hola, inicia sesión"}</span>
 <span className="text-label-md font-label-md font-bold text-primary-container">Mi cuenta</span>
 </div>
 </Link>
-<div className="h-8 w-px bg-outline-variant"></div>
-<Link className="flex items-center space-x-2.5 bg-surface-container-low px-3 py-1.5 rounded-lg border border-outline-variant hover:border-secondary-container transition-colors cursor-pointer" to="/carrito">
+<div className="hidden md:block h-8 w-px bg-outline-variant"></div>
+<Link aria-label="Carrito" className="flex items-center space-x-2.5 bg-surface-container-low px-3 py-2 md:py-1.5 rounded-lg border border-outline-variant hover:border-secondary-container transition-colors cursor-pointer" to="/carrito">
 <div className="relative flex items-center justify-center text-primary-container">
 <span className="material-symbols-outlined text-[24px]" data-icon="shopping_cart">shopping_cart</span>
 <span className="absolute -top-1.5 -right-2 bg-secondary-container text-on-secondary text-label-sm font-label-sm font-bold min-w-4 h-4 px-0.5 rounded-full flex items-center justify-center">{unidades}</span>
 </div>
-<div className="flex flex-col text-right">
+<div className="hidden md:flex flex-col text-right">
 <span className="text-label-sm font-label-sm text-outline">Carrito</span>
 <span className="text-label-md font-label-md font-bold text-secondary-container">{soles(subtotal)}</span>
 </div>
@@ -121,13 +121,13 @@ export default function Confirmar() {
 </div>
 </div>
 <div className="border-t border-surface-container bg-surface-bright">
-<div className="max-w-[1360px] mx-auto px-margin-desktop flex items-center justify-between">
-<div className="flex items-center space-x-8">
+<div className="max-w-[1360px] mx-auto px-4 md:px-margin-desktop flex items-center justify-between overflow-x-auto md:overflow-visible whitespace-nowrap">
+<div className="flex items-center space-x-6 md:space-x-8 shrink-0">
 <Link className="bg-primary-container text-on-primary px-4 py-2.5 rounded-t-lg flex items-center space-x-2 text-label-md font-label-md font-bold hover:bg-primary transition-colors cursor-pointer" to="/busqueda">
 <span className="material-symbols-outlined text-[18px]" data-icon="menu">menu</span>
 <span>Todas las categorías</span>
 </Link>
-<div className="flex items-center space-x-6 text-label-md font-label-md font-medium text-on-surface">
+<div className="flex items-center space-x-6 pr-4 md:pr-0 text-label-md font-label-md font-medium text-on-surface">
 <Link className="hover:text-secondary-container transition-colors py-2" to="/">Inicio</Link>
 <Link className="hover:text-secondary-container transition-colors py-2" to="/busqueda">Productos</Link>
 <Link className="hover:text-secondary-container transition-colors py-2" to="/busqueda">Categorías</Link>
@@ -137,8 +137,8 @@ export default function Confirmar() {
 </div>
 </nav>
 <main className="flex-grow bg-surface pb-space-xl">
-<div className="max-w-[1360px] mx-auto px-margin-desktop pt-space-md">
-<nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-body-sm font-body-sm text-outline mb-space-sm">
+<div className="max-w-[1360px] mx-auto px-4 md:px-margin-desktop pt-space-md">
+<nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1 text-body-sm font-body-sm text-outline mb-space-sm">
 <Link className="hover:text-primary-container transition-colors" to="/">Inicio</Link>
 <span className="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
 <Link className="hover:text-primary-container transition-colors" to="/carrito">Carrito de compras</Link>
@@ -147,7 +147,7 @@ export default function Confirmar() {
 </nav>
 <div className="flex items-center justify-between pb-space-lg border-b border-outline-variant">
 <div>
-<h1 className="text-headline-xl font-headline-xl text-primary-container font-extrabold tracking-tight">Confirmar pedido</h1>
+<h1 className="text-headline-xl-mobile md:text-headline-xl font-headline-xl text-primary-container font-extrabold tracking-tight">Confirmar pedido</h1>
 <p className="text-body-md font-body-md text-outline mt-0.5">Elige la modalidad de entrega y el medio de pago de tu pedido.</p>
 </div>
 </div>
@@ -164,11 +164,11 @@ export default function Confirmar() {
 ) : (
 <div className="mt-space-lg grid grid-cols-12 gap-gutter-desktop">
 {/*  COLUMNA IZQUIERDA: pasos  */}
-<div className="col-span-12 lg:col-span-8 space-y-space-lg">
+<div className="col-span-12 lg:col-span-8 min-w-0 space-y-space-lg">
 {/*  PASO 1: Cliente (solo código anónimo)  */}
-<div className="bg-surface-container-lowest p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<div className="bg-surface-container-lowest p-4 sm:p-space-lg rounded-xl border border-outline-variant shadow-sm">
 <div className="flex items-center space-x-3 mb-space-md pb-space-sm border-b border-surface-container">
-<span className="w-8 h-8 rounded-full bg-secondary-container text-on-secondary font-headline-sm flex items-center justify-center font-bold text-[15px]">1</span>
+<span className="w-8 h-8 shrink-0 rounded-full bg-secondary-container text-on-secondary font-headline-sm flex items-center justify-center font-bold text-[15px]">1</span>
 <div>
 <h2 className="text-headline-sm font-headline-sm text-primary-container font-bold">Datos del cliente</h2>
 <p className="text-body-sm font-body-sm text-outline">En este prototipo el cliente se identifica solo por un código anónimo</p>
@@ -177,14 +177,14 @@ export default function Confirmar() {
 <div className="grid grid-cols-1 md:grid-cols-2 gap-space-md">
 <div>
 <label className="block text-label-md font-label-md font-semibold text-primary-container mb-1.5" htmlFor="codigo-cliente">Código de cliente</label>
-<input id="codigo-cliente" className="w-full h-11 px-3.5 text-body-md font-body-md text-on-surface bg-surface-container-low border border-outline-variant rounded-lg outline-none font-mono" readOnly type="text" value={sesion?.codigo_cliente || "Sin sesión de evaluación"}/>
+<input id="codigo-cliente" className="w-full h-11 px-3.5 text-base md:text-body-md font-body-md text-on-surface bg-surface-container-low border border-outline-variant rounded-lg outline-none font-mono" readOnly type="text" value={sesion?.codigo_cliente || "Sin sesión de evaluación"}/>
 </div>
 </div>
 </div>
 {/*  PASO 2: Método de entrega  */}
-<div className="bg-surface-container-lowest p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<div className="bg-surface-container-lowest p-4 sm:p-space-lg rounded-xl border border-outline-variant shadow-sm">
 <div className="flex items-center space-x-3 mb-space-md pb-space-sm border-b border-surface-container">
-<span className="w-8 h-8 rounded-full bg-primary-container text-on-primary font-headline-sm flex items-center justify-center font-bold text-[15px]">2</span>
+<span className="w-8 h-8 shrink-0 rounded-full bg-primary-container text-on-primary font-headline-sm flex items-center justify-center font-bold text-[15px]">2</span>
 <div>
 <h2 className="text-headline-sm font-headline-sm text-primary-container font-bold">Método de entrega</h2>
 <p className="text-body-sm font-body-sm text-outline">Selecciona cómo deseas recibir tus materiales</p>
@@ -195,18 +195,18 @@ export default function Confirmar() {
   const activa = entrega === o.valor;
   return (
 <label key={o.valor} className={activa ? opcionActiva : opcionInactiva}>
-<div className="flex items-start justify-between">
-<div className="flex items-start space-x-3.5">
-<input checked={activa} onChange={() => setEntrega(o.valor)} className="mt-1 h-5 w-5 text-primary-container border-outline focus:ring-primary-container" name="metodo_entrega" type="radio"/>
-<div>
+<div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 lg:gap-0">
+<div className="flex items-start space-x-3.5 min-w-0">
+<input checked={activa} onChange={() => setEntrega(o.valor)} className="mt-1 h-5 w-5 shrink-0 text-base text-primary-container border-outline focus:ring-primary-container" name="metodo_entrega" type="radio"/>
+<div className="min-w-0">
 <div className="flex items-center space-x-2">
-<span className={`material-symbols-outlined text-[22px] ${activa ? "text-primary-container" : "text-outline"}`}>{o.icono}</span>
+<span className={`material-symbols-outlined shrink-0 text-[22px] ${activa ? "text-primary-container" : "text-outline"}`}>{o.icono}</span>
 <span className={`text-headline-sm font-headline-sm font-bold ${activa ? "text-primary-container" : "text-on-surface"}`}>{o.titulo}</span>
 </div>
 <p className="text-body-sm font-body-sm text-outline mt-1">{o.detalle}</p>
 </div>
 </div>
-<span className={`text-label-lg font-label-lg font-bold ${activa ? "text-primary-container" : "text-on-surface"}`}>{o.costo}</span>
+<span className={`pl-8 sm:pl-0 text-label-lg font-label-lg font-bold ${activa ? "text-primary-container" : "text-on-surface"}`}>{o.costo}</span>
 </div>
 </label>
   );
@@ -214,9 +214,9 @@ export default function Confirmar() {
 </div>
 </div>
 {/*  PASO 3: Método de pago  */}
-<div className="bg-surface-container-lowest p-space-lg rounded-xl border border-outline-variant shadow-sm">
+<div className="bg-surface-container-lowest p-4 sm:p-space-lg rounded-xl border border-outline-variant shadow-sm">
 <div className="flex items-center space-x-3 mb-space-md pb-space-sm border-b border-surface-container">
-<span className="w-8 h-8 rounded-full bg-primary-container text-on-primary font-headline-sm flex items-center justify-center font-bold text-[15px]">3</span>
+<span className="w-8 h-8 shrink-0 rounded-full bg-primary-container text-on-primary font-headline-sm flex items-center justify-center font-bold text-[15px]">3</span>
 <div>
 <h2 className="text-headline-sm font-headline-sm text-primary-container font-bold">Método de pago</h2>
 <p className="text-body-sm font-body-sm text-outline">Elige cómo pagarás tu pedido</p>
@@ -226,17 +226,17 @@ export default function Confirmar() {
 {PAGOS.map((o) => {
   const activa = pago === o.valor;
   return (
-<label key={o.valor} className={activa ? "block border-2 border-primary-container bg-surface-bright p-4 rounded-xl cursor-pointer" : "block border border-outline-variant hover:border-outline bg-surface-container-lowest p-4 rounded-xl cursor-pointer transition-colors"}>
+<label key={o.valor} className={activa ? "block border-2 border-primary-container bg-surface-bright p-3 sm:p-4 rounded-xl cursor-pointer" : "block border border-outline-variant hover:border-outline bg-surface-container-lowest p-3 sm:p-4 rounded-xl cursor-pointer transition-colors"}>
 <div className="flex items-center justify-between">
-<div className="flex items-center space-x-3">
-<input checked={activa} onChange={() => setPago(o.valor)} className="h-5 w-5 text-primary-container border-outline focus:ring-primary-container" name="metodo_pago" type="radio"/>
-<div className="flex items-center space-x-3">
+<div className="flex items-center space-x-3 min-w-0">
+<input checked={activa} onChange={() => setPago(o.valor)} className="h-5 w-5 shrink-0 text-base text-primary-container border-outline focus:ring-primary-container" name="metodo_pago" type="radio"/>
+<div className="flex items-center space-x-3 min-w-0">
 {o.icono ? (
-<div className="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<div className="w-10 h-10 shrink-0 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
 <span className="material-symbols-outlined text-[24px]">{o.icono}</span>
 </div>
 ) : (
-<div className="w-10 h-10 rounded-lg bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-extrabold text-[13px] text-secondary-container tracking-wider">
+<div className="w-10 h-10 shrink-0 rounded-lg bg-surface-container-lowest border border-outline-variant flex items-center justify-center font-extrabold text-[13px] text-secondary-container tracking-wider">
                         QR
                       </div>
 )}
@@ -260,10 +260,10 @@ export default function Confirmar() {
 <span>{error}</span>
 </div>
 )}
-<button type="button" onClick={realizarPedido} disabled={enviando} className="w-full h-14 bg-secondary-container hover:bg-secondary text-on-secondary rounded-xl text-headline-sm font-headline-sm font-bold flex items-center justify-center space-x-3 shadow-md active:scale-98 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-wait">
+<button type="button" onClick={realizarPedido} disabled={enviando} className="w-full min-h-14 px-4 py-2 md:px-0 md:py-0 bg-secondary-container hover:bg-secondary text-on-secondary rounded-xl text-body-lg md:text-headline-sm font-headline-sm font-bold flex items-center justify-center space-x-2 md:space-x-3 shadow-md active:scale-98 transition-all cursor-pointer disabled:opacity-60 disabled:cursor-wait">
 <span className="material-symbols-outlined text-[24px]" data-icon="lock">lock</span>
 <span>{enviando ? "Registrando pedido…" : `Realizar pedido · ${soles(subtotal)}`}</span>
-<span className="material-symbols-outlined text-[22px]" data-icon="arrow_forward">arrow_forward</span>
+<span className="hidden sm:inline material-symbols-outlined text-[22px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 <p className="text-center text-body-sm font-body-sm text-outline">
               Al hacer clic en "Realizar pedido" se registra tu pedido y la hora de cierre de tu selección.
@@ -271,8 +271,8 @@ export default function Confirmar() {
 </div>
 </div>
 {/*  COLUMNA DERECHA: resumen  */}
-<div className="col-span-12 lg:col-span-4">
-<div className="sticky top-28 space-y-space-md">
+<div className="col-span-12 lg:col-span-4 min-w-0">
+<div className="lg:sticky lg:top-28 space-y-space-md">
 <div className="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-space-md">
 <div className="flex items-center justify-between pb-space-sm border-b border-surface-container mb-space-md">
 <h3 className="text-headline-sm font-headline-sm font-bold text-primary-container">Resumen de compra</h3>
@@ -301,7 +301,7 @@ export default function Confirmar() {
 <span>Envío</span>
 <span className="font-semibold text-secondary-container">{costoEntrega}</span>
 </div>
-<div className="pt-3 border-t-2 border-surface-container-highest flex items-baseline justify-between">
+<div className="pt-3 border-t-2 border-surface-container-highest flex items-baseline justify-between gap-2">
 <div>
 <span className="text-headline-md font-headline-md font-extrabold text-primary-container block">TOTAL A PAGAR</span>
 <span className="text-label-sm font-label-sm text-outline block">Precios con I.G.V.{costoEntrega === "Por coordinar" ? " · sin envío" : ""}</span>
@@ -320,7 +320,7 @@ export default function Confirmar() {
 </main>
 {/*  PIE DE PÁGINA INSTITUCIONAL  */}
 <footer className="bg-primary-container text-on-primary border-t border-primary-container mt-auto">
-<div className="w-full max-w-[1360px] mx-auto px-margin-desktop py-space-xl">
+<div className="w-full max-w-[1360px] mx-auto px-4 md:px-margin-desktop py-space-xl">
 <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop mb-space-lg">
 <div className="space-y-3">
 <Link className="flex items-center tracking-tight" to="/">

@@ -181,20 +181,20 @@ export default function Recomendador() {
   const tarjetaModo = (valor, titulo, descripcion, icono) => {
     const sel = modo === valor;
     return sel ? (
-      <div className="flex-1 flex items-center justify-between p-4 rounded-lg bg-[#F26B1D] text-white shadow-sm ring-2 ring-[#F26B1D]/20 cursor-pointer transition-all duration-200">
+      <div className="flex-1 flex items-center justify-between gap-3 p-4 rounded-lg bg-[#F26B1D] text-white shadow-sm ring-2 ring-[#F26B1D]/20 cursor-pointer transition-all duration-200">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-white/20 text-white flex items-center justify-center">
+          <div className="shrink-0 w-8 h-8 rounded-lg bg-white/20 text-white flex items-center justify-center">
             <span className="material-symbols-outlined text-[20px] filled">{icono}</span>
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap lg:flex-nowrap items-center gap-x-2 gap-y-1">
               <span className="text-sm font-bold text-white block">{titulo}</span>
               <span className="bg-white/25 text-white text-[10px] font-extrabold uppercase px-2 py-0.5 rounded tracking-wide">Activo</span>
             </div>
             <span className="text-xs text-white/90 font-medium">{descripcion}</span>
           </div>
         </div>
-        <div className="w-6 h-6 rounded-full bg-white text-[#F26B1D] flex items-center justify-center shadow">
+        <div className="shrink-0 w-6 h-6 rounded-full bg-white text-[#F26B1D] flex items-center justify-center shadow">
           <span className="material-symbols-outlined text-[18px] font-bold">check</span>
         </div>
       </div>
@@ -203,10 +203,10 @@ export default function Recomendador() {
         type="button"
         onClick={() => cambiarModo(valor)}
         disabled={!config || !!ocupado}
-        className="flex-1 text-left flex items-center justify-between p-4 rounded-lg bg-white/50 hover:bg-white text-slate-600 border border-transparent hover:border-slate-200 cursor-pointer transition-all duration-200 disabled:opacity-60"
+        className="flex-1 text-left flex items-center justify-between gap-3 p-4 rounded-lg bg-white/50 hover:bg-white text-slate-600 border border-transparent hover:border-slate-200 cursor-pointer transition-all duration-200 disabled:opacity-60"
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center">
+          <div className="shrink-0 w-8 h-8 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center">
             <span className="material-symbols-outlined text-[20px]">{icono}</span>
           </div>
           <div>
@@ -214,7 +214,7 @@ export default function Recomendador() {
             <span className="text-xs text-slate-500 font-normal">{descripcion}</span>
           </div>
         </div>
-        <div className="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">
+        <div className="shrink-0 w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">
           {/* Radio desmarcado */}
         </div>
       </button>
@@ -228,7 +228,7 @@ export default function Recomendador() {
       {/* ========================================== */}
       {/* (1) TARJETA: MODO ACTIVO DEL SISTEMA      */}
       {/* ========================================== */}
-      <section className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-100">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-orange-50 border border-orange-200 flex items-center justify-center text-[#F26B1D]">
@@ -252,7 +252,7 @@ export default function Recomendador() {
         </div>
 
         {/* Texto explicativo requerido */}
-        <div className="mt-3.5 flex items-center gap-2 text-xs text-slate-500">
+        <div className="mt-3.5 flex items-start sm:items-center gap-2 text-xs text-slate-500">
           <span className="material-symbols-outlined text-[16px] text-[#F26B1D]">info</span>
           <span>El modo activo se aplica a toda la tienda. Al iniciar una sesión de evaluación el modo se fija en la condición de la sesión.</span>
         </div>
@@ -264,10 +264,10 @@ export default function Recomendador() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
         {/* (2) TARJETA: SESIÓN DE EVALUACIÓN (7 columnas) */}
-        <section className="lg:col-span-7 bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm flex flex-col justify-between">
+        <section className="lg:col-span-7 bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm flex flex-col justify-between">
           <form onSubmit={iniciarSesion} className="flex flex-col justify-between h-full">
             <div>
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+              <div className="flex flex-wrap lg:flex-nowrap items-center justify-between gap-2 lg:gap-0 pb-3 mb-4 border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[#0F2A4A] flex items-center justify-center">
                     <span className="material-symbols-outlined text-[20px]">assignment_turned_in</span>
@@ -314,7 +314,7 @@ export default function Recomendador() {
                       value={form.codigo_cliente}
                       onChange={(e) => setForm({ ...form, codigo_cliente: e.target.value.toUpperCase() })}
                       placeholder="CLI-###"
-                      className={`w-full bg-[#F8F9FA] border rounded-lg pl-10 pr-4 py-2.5 text-sm font-semibold text-[#0F2A4A] focus:outline-none focus:ring-2 focus:ring-[#F26B1D] ${form.codigo_cliente && !clienteValido ? 'border-red-400' : 'border-[#CBD5E1]'}`}
+                      className={`w-full bg-[#F8F9FA] border rounded-lg pl-10 pr-4 py-2.5 text-base md:text-sm font-semibold text-[#0F2A4A] focus:outline-none focus:ring-2 focus:ring-[#F26B1D] ${form.codigo_cliente && !clienteValido ? 'border-red-400' : 'border-[#CBD5E1]'}`}
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-mono">
                       {form.codigo_cliente && !clienteValido ? 'Formato CLI-###' : 'Participante'}
@@ -333,7 +333,7 @@ export default function Recomendador() {
                       <select
                         value={form.escenario}
                         onChange={(e) => setForm({ ...form, escenario: e.target.value })}
-                        className="w-full appearance-none bg-white border border-[#CBD5E1] rounded-lg pl-10 pr-10 py-2.5 text-sm font-medium text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#F26B1D]"
+                        className="w-full appearance-none bg-white border border-[#CBD5E1] rounded-lg pl-10 pr-10 py-2.5 text-base md:text-sm font-medium text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#F26B1D]"
                       >
                         {ESCENARIOS.map((e) => <option key={e} value={e}>{e}</option>)}
                       </select>
@@ -351,7 +351,7 @@ export default function Recomendador() {
                       <select
                         value={form.condicion}
                         onChange={(e) => setForm({ ...form, condicion: e.target.value })}
-                        className="w-full appearance-none bg-white border border-[#CBD5E1] rounded-lg pl-10 pr-10 py-2.5 text-sm font-medium text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#F26B1D]"
+                        className="w-full appearance-none bg-white border border-[#CBD5E1] rounded-lg pl-10 pr-10 py-2.5 text-base md:text-sm font-medium text-[#1E293B] focus:outline-none focus:ring-2 focus:ring-[#F26B1D]"
                       >
                         <option value="CONV">CONV · Convencional</option>
                         <option value="ML">ML · Machine Learning</option>
@@ -366,7 +366,7 @@ export default function Recomendador() {
                   <label className="block text-xs font-semibold text-[#0F2A4A] mb-1.5 uppercase tracking-wide">
                     Orden de condiciones (Contrabalanceo)
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {[
                       ['A', 'A: Convencional → ML', 'Grupo de control primero'],
                       ['B', 'B: ML → Convencional', 'Grupo experimental primero'],
@@ -382,7 +382,7 @@ export default function Recomendador() {
                           name="order_condition"
                           checked={form.orden === valor}
                           onChange={() => setForm({ ...form, orden: valor })}
-                          className="w-4 h-4 accent-[#F26B1D]"
+                          className="w-4 h-4 accent-[#F26B1D] shrink-0 text-base md:text-xs"
                         />
                         <div className="text-xs">
                           <span className="font-bold text-[#0F2A4A] block">{titulo}</span>
@@ -400,7 +400,7 @@ export default function Recomendador() {
               <button
                 type="submit"
                 disabled={!!ocupado || !clienteValido}
-                className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F26B1D] hover:bg-[#d95a12] text-white text-sm font-bold shadow-sm transition-all duration-150 disabled:opacity-50"
+                className="w-full sm:w-auto sm:flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-[#F26B1D] hover:bg-[#d95a12] text-white text-sm font-bold shadow-sm transition-all duration-150 disabled:opacity-50"
               >
                 <span className="material-symbols-outlined text-[19px]">play_arrow</span>
                 {ocupado === 'iniciar' ? 'Iniciando…' : 'Iniciar sesión de evaluación'}
@@ -409,7 +409,7 @@ export default function Recomendador() {
                 type="button"
                 onClick={() => finalizarSesion(true)}
                 disabled={!activa || !!ocupado}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-all duration-150 disabled:opacity-50"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-all duration-150 disabled:opacity-50"
               >
                 <span className="material-symbols-outlined text-[19px] text-emerald-600">stop</span>
                 Finalizar (válida)
@@ -418,7 +418,7 @@ export default function Recomendador() {
                 type="button"
                 onClick={() => finalizarSesion(false)}
                 disabled={!activa || !!ocupado}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-all duration-150 disabled:opacity-50"
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 hover:border-slate-400 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition-all duration-150 disabled:opacity-50"
               >
                 <span className="material-symbols-outlined text-[19px] text-red-500">block</span>
                 Finalizar (inválida)
@@ -428,9 +428,9 @@ export default function Recomendador() {
         </section>
 
         {/* (3) TARJETA: MODELO ACTUAL (5 columnas) */}
-        <section className="lg:col-span-5 bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm flex flex-col justify-between">
+        <section className="lg:col-span-5 bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+            <div className="flex flex-wrap lg:flex-nowrap items-center justify-between gap-2 lg:gap-0 pb-3 mb-4 border-b border-slate-100">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-200 text-[#0F2A4A] flex items-center justify-center">
                   <span className="material-symbols-outlined text-[20px]">schema</span>
@@ -447,7 +447,7 @@ export default function Recomendador() {
 
             {/* Resultado del último reentrenamiento en esta vista */}
             <div className="p-3 bg-slate-50 rounded-lg border border-slate-200/80 mb-4 flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2 text-xs text-slate-600">
+              <div className="flex flex-wrap lg:flex-nowrap items-center gap-x-2 gap-y-1 text-xs text-slate-600">
                 <span className="material-symbols-outlined text-[17px] text-[#F26B1D]">calendar_today</span>
                 <span>Último reentrenamiento:</span>
                 <strong className="text-[#0F2A4A] font-semibold">{ultimoEntreno ? 'en esta sesión del panel' : 'no ejecutado en esta vista'}</strong>
@@ -459,7 +459,7 @@ export default function Recomendador() {
               {/* Comprobantes */}
               <div className="p-3 rounded-lg bg-white border border-[#E2E6EB] hover:border-slate-300 transition-colors">
                 <span className="text-[11px] font-medium text-slate-400 block uppercase">Transacciones</span>
-                <div className="flex items-baseline gap-1 mt-0.5">
+                <div className="flex flex-wrap lg:flex-nowrap items-baseline gap-x-1 mt-0.5">
                   <span className="text-xl font-extrabold text-[#0F2A4A]">{ultimoEntreno?.comprobantes ?? '—'}</span>
                   <span className="text-xs text-slate-500">{ultimoEntreno ? 'comprobantes' : 'tras reentrenar'}</span>
                 </div>
@@ -468,7 +468,7 @@ export default function Recomendador() {
               {/* Reglas */}
               <div className="p-3 rounded-lg bg-white border border-[#E2E6EB] hover:border-slate-300 transition-colors">
                 <span className="text-[11px] font-medium text-slate-400 block uppercase">Reglas vigentes</span>
-                <div className="flex items-baseline gap-1 mt-0.5">
+                <div className="flex flex-wrap lg:flex-nowrap items-baseline gap-x-1 mt-0.5">
                   <span className="text-xl font-extrabold text-[#F26B1D]">{reglas ? reglas.length : '—'}</span>
                   <span className="text-xs text-slate-500">de {totalAlmacenadas ?? '—'} almacenadas</span>
                 </div>
@@ -477,19 +477,19 @@ export default function Recomendador() {
 
             {/* Umbrales y Parámetros Algorítmicos (GET /api/admin/config) */}
             <div className="space-y-2 border-t border-slate-100 pt-3">
-              <div className="flex items-center justify-between text-xs py-1">
+              <div className="flex items-center justify-between gap-2 text-xs py-1">
                 <span className="text-slate-500 font-medium">Soporte mínimo (Min Support):</span>
                 <span className="font-mono font-bold text-[#0F2A4A] bg-slate-100 px-2 py-0.5 rounded">{config ? config.soporte_min : '—'}</span>
               </div>
-              <div className="flex items-center justify-between text-xs py-1">
+              <div className="flex items-center justify-between gap-2 text-xs py-1">
                 <span className="text-slate-500 font-medium">Confianza mínima (Min Confidence):</span>
                 <span className="font-mono font-bold text-[#0F2A4A] bg-slate-100 px-2 py-0.5 rounded">{config ? config.confianza_min : '—'}</span>
               </div>
-              <div className="flex items-center justify-between text-xs py-1">
+              <div className="flex items-center justify-between gap-2 text-xs py-1">
                 <span className="text-slate-500 font-medium">Lift mínimo (Min Lift):</span>
                 <span className="font-mono font-bold text-[#0F2A4A] bg-slate-100 px-2 py-0.5 rounded">{config ? config.lift_min : '—'}</span>
               </div>
-              <div className="flex items-center justify-between text-xs py-1">
+              <div className="flex items-center justify-between gap-2 text-xs py-1">
                 <span className="text-slate-500 font-medium">Peso de contenido (reordenador):</span>
                 <span className="font-mono font-bold text-[#0F2A4A] bg-slate-100 px-2 py-0.5 rounded">{config ? config.peso_contenido : '—'}</span>
               </div>
@@ -513,12 +513,12 @@ export default function Recomendador() {
                 <span className="block text-[11px] font-bold text-slate-500 uppercase tracking-wider">Reordenador supervisado</span>
                 {config?.reordenador ? (
                   <>
-                    <div className="flex justify-between"><span className="text-slate-500">Modelo elegido:</span><span className="font-mono font-bold text-[#0F2A4A]">{config.reordenador.tipo} · v{config.reordenador.version}</span></div>
-                    <div className="flex justify-between"><span className="text-slate-500">Entrenado:</span><span className="font-mono text-[#0F2A4A]">{config.reordenador.fecha}</span></div>
-                    <div className="flex justify-between"><span className="text-slate-500">Ejemplos (positivos):</span><span className="font-mono text-[#0F2A4A]">{config.reordenador.n_ejemplos} ({config.reordenador.n_positivos})</span></div>
-                    <div className="flex justify-between"><span className="text-slate-500">Cobertura de candidatos:</span><span className="font-mono text-[#0F2A4A]">{config.reordenador.cobertura_candidatos}</span></div>
+                    <div className="flex justify-between gap-2"><span className="text-slate-500">Modelo elegido:</span><span className="font-mono font-bold text-[#0F2A4A]">{config.reordenador.tipo} · v{config.reordenador.version}</span></div>
+                    <div className="flex justify-between gap-2"><span className="text-slate-500">Entrenado:</span><span className="font-mono text-[#0F2A4A]">{config.reordenador.fecha}</span></div>
+                    <div className="flex justify-between gap-2"><span className="text-slate-500">Ejemplos (positivos):</span><span className="font-mono text-[#0F2A4A]">{config.reordenador.n_ejemplos} ({config.reordenador.n_positivos})</span></div>
+                    <div className="flex justify-between gap-2"><span className="text-slate-500">Cobertura de candidatos:</span><span className="font-mono text-[#0F2A4A]">{config.reordenador.cobertura_candidatos}</span></div>
                     {Object.entries(config.reordenador.ap_validacion || {}).map(([m, ap]) => (
-                      <div key={m} className="flex justify-between"><span className="text-slate-500">AP validación · {m}:</span><span className="font-mono text-[#0F2A4A]">{ap}</span></div>
+                      <div key={m} className="flex justify-between gap-2"><span className="text-slate-500">AP validación · {m}:</span><span className="font-mono text-[#0F2A4A]">{ap}</span></div>
                     ))}
                   </>
                 ) : (
@@ -546,9 +546,9 @@ export default function Recomendador() {
       {/* ========================================== */}
       {/* SESIONES RECIENTES (GET /api/admin/sesiones) */}
       {/* ========================================== */}
-      <section className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm">
-        <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-100">
-          <div className="flex items-center gap-2.5">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm">
+        <div className="flex flex-wrap lg:flex-nowrap items-center justify-between gap-2 sm:gap-4 mb-4 pb-3 border-b border-slate-100">
+          <div className="flex flex-wrap lg:flex-nowrap items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 text-[#0F2A4A] flex items-center justify-center">
               <span className="material-symbols-outlined text-[20px]">history</span>
             </div>
@@ -608,10 +608,10 @@ export default function Recomendador() {
       {/* ========================================== */}
       {/* (4) TABLA: REGLAS DE ASOCIACIÓN PRINCIPALES*/}
       {/* ========================================== */}
-      <section className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 pb-3 border-b border-slate-100">
-          <div>
-            <div className="flex items-center gap-2.5">
+          <div className="min-w-0">
+            <div className="flex flex-wrap lg:flex-nowrap items-center gap-2.5">
               <div className="w-8 h-8 rounded-lg bg-orange-50 border border-orange-200 text-[#F26B1D] flex items-center justify-center">
                 <span className="material-symbols-outlined text-[20px]">hub</span>
               </div>
@@ -621,18 +621,18 @@ export default function Recomendador() {
             <p className="text-xs text-slate-500 mt-1">Reglas que cumplen los umbrales configurados de soporte, confianza y lift</p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="relative">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
+            <div className="relative flex-1 sm:flex-initial">
               <span className="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
               <input
                 type="text"
                 value={filtro}
                 onChange={(e) => { setFiltro(e.target.value); setVisibles(TAM_PAGINA); }}
                 placeholder="Filtrar producto o SKU..."
-                className="bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-[#F26B1D] w-48"
+                className="bg-slate-50 border border-slate-200 rounded-lg pl-8 pr-3 py-2 md:py-1.5 text-base md:text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-[#F26B1D] w-full sm:w-48"
               />
             </div>
-            <button type="button" onClick={descargarReglas} disabled={!reglasFiltradas.length} className="p-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-700 disabled:opacity-50" title="Descargar CSV">
+            <button type="button" onClick={descargarReglas} disabled={!reglasFiltradas.length} className="shrink-0 p-2.5 md:p-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-slate-700 disabled:opacity-50" title="Descargar CSV">
               <span className="material-symbols-outlined text-[18px]">download</span>
             </button>
           </div>
@@ -640,7 +640,7 @@ export default function Recomendador() {
 
         {/* Tabla estructurada */}
         <div className="overflow-x-auto rounded-lg border border-[#E2E6EB]">
-          <table className="w-full text-left border-collapse">
+          <table className="w-full min-w-[680px] text-left border-collapse">
             <thead>
               <tr className="bg-[#F8F9FA] text-[12px] font-bold text-[#0F2A4A] uppercase tracking-wider border-b border-[#E2E6EB]">
                 <th className="py-3 px-4 w-12 text-center text-slate-400 font-mono">#</th>
@@ -693,11 +693,11 @@ export default function Recomendador() {
 
         {/* Pie de tabla */}
         <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500 pt-2">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Lift &gt; 1: complementariedad por encima del azar</span>
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-slate-300"></span> Confianza: frecuencia condicionada</span>
+          <div className="flex flex-wrap lg:flex-nowrap items-center gap-x-4 gap-y-1.5">
+            <span className="flex items-center gap-1.5"><span className="shrink-0 w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Lift &gt; 1: complementariedad por encima del azar</span>
+            <span className="flex items-center gap-1.5"><span className="shrink-0 w-2.5 h-2.5 rounded-full bg-slate-300"></span> Confianza: frecuencia condicionada</span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap lg:flex-nowrap items-center gap-3">
             <span className="text-slate-400 font-mono">
               Mostrando {Math.min(visibles, reglasFiltradas.length)} de {reglasFiltradas.length} reglas{filtro ? ' filtradas' : ' vigentes'}
             </span>

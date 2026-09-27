@@ -25,11 +25,11 @@ export default function Inventario() {
   return (
     <PanelLayout titulo="Productos e inventario" subtitulo="Catálogo y stock actual">
       {error && <Aviso tipo="error">No se pudieron cargar los productos: {error}</Aviso>}
-      <section className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm">
         <div className="flex flex-wrap items-center gap-3 pb-4 mb-4 border-b border-slate-100">
-          <input value={filtro} onChange={(e) => setFiltro(e.target.value)} placeholder="Buscar SKU, nombre, categoría o marca…" className="bg-[#F8F9FA] border border-[#CBD5E1] rounded-lg px-3 py-2 text-xs w-72 focus:outline-none focus:ring-2 focus:ring-[#F26B1D]" />
-          <label className="flex items-center gap-2 text-xs text-slate-700">
-            <input type="checkbox" checked={soloBajo} onChange={(e) => setSoloBajo(e.target.checked)} className="accent-[#F26B1D]" />
+          <input value={filtro} onChange={(e) => setFiltro(e.target.value)} placeholder="Buscar SKU, nombre, categoría o marca…" className="bg-[#F8F9FA] border border-[#CBD5E1] rounded-lg px-3 py-2 text-base md:text-xs w-full sm:w-72 focus:outline-none focus:ring-2 focus:ring-[#F26B1D]" />
+          <label className="flex items-center gap-2 text-xs text-slate-700 min-h-10 md:min-h-auto">
+            <input type="checkbox" checked={soloBajo} onChange={(e) => setSoloBajo(e.target.checked)} className="accent-[#F26B1D] text-base md:text-xs" />
             Solo stock ≤ mínimo ({bajoStock.size})
           </label>
           <span className="ml-auto text-xs text-slate-500">{productos ? `${lista.length} de ${productos.length} productos` : 'Cargando…'}</span>

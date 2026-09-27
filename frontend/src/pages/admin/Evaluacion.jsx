@@ -17,7 +17,7 @@ const fechaHora = (iso) => (iso ? String(iso).slice(0, 19).replace('T', ' ') : '
 
 function Leyenda() {
   return (
-    <div className="flex items-center gap-6 bg-[#F5F6F8] px-4 py-2 rounded-lg border border-gray-200 text-xs font-medium">
+    <div className="flex flex-wrap lg:flex-nowrap items-center gap-x-6 gap-y-1.5 bg-[#F5F6F8] px-4 py-2 rounded-lg border border-gray-200 text-xs font-medium">
       <div className="flex items-center gap-2">
         <span className="w-3.5 h-3.5 rounded bg-[#0F2A4A] inline-block"></span>
         <span className="text-slate-800 font-semibold">Convencional (CONV)</span>
@@ -35,7 +35,7 @@ function TarjetaIndicador({ titulo, icono, colorIcono, conv, ml, pie }) {
   return (
     <div className="bg-white rounded-[12px] p-5 border border-gray-200 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
       <div className="flex items-center justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
-        <span>{titulo}</span>
+        <span className="min-w-0">{titulo}</span>
         <span className={`p-1 rounded ${colorIcono}`}>
           <span className="material-symbols-outlined text-[18px]">{icono}</span>
         </span>
@@ -209,10 +209,10 @@ export default function Evaluacion() {
         type="button"
         onClick={cargar}
         disabled={cargando}
-        className="flex items-center gap-2 bg-[#0F2A4A] text-white hover:bg-[#18385E] px-4 py-2 rounded-lg text-xs font-semibold shadow-sm transition-all disabled:opacity-60"
+        title="Recalcular métricas" aria-label="Recalcular métricas" className="flex items-center justify-center gap-2 bg-[#0F2A4A] text-white hover:bg-[#18385E] min-w-10 min-h-10 px-2.5 sm:px-4 py-2 md:min-h-auto lg:min-w-auto rounded-lg text-xs font-semibold shadow-sm transition-all disabled:opacity-60"
       >
         <span className={`material-symbols-outlined text-[16px] ${cargando ? 'animate-spin' : ''}`}>refresh</span>
-        <span>Recalcular métricas</span>
+        <span className="hidden sm:inline">Recalcular métricas</span>
       </button>
     </div>
   );
@@ -228,7 +228,7 @@ export default function Evaluacion() {
       {/* ================================================= */}
       {/* (a) CAPA 2 · SESIONES CON CLIENTES                */}
       {/* ================================================= */}
-      <div className="flex items-end justify-between gap-4 pt-1">
+      <div className="flex flex-wrap lg:flex-nowrap items-end justify-between gap-4 pt-1">
         <div>
           <h2 className="text-lg font-extrabold text-slate-900 tracking-tight">Sesiones con clientes · Capa 2</h2>
           <p className="text-xs text-slate-500">Fuente: registro de eventos de las sesiones de evaluación (GET /api/admin/indicadores)</p>
@@ -272,7 +272,7 @@ export default function Evaluacion() {
       </section>
 
       {/* GRÁFICO COMPARATIVO */}
-      <section className="bg-white rounded-[12px] p-6 border border-gray-200 shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-gray-200 shadow-sm">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-gray-100">
           <div>
             <h2 className="text-base font-bold text-slate-900">Comparativa de desempeño: Convencional vs. Machine Learning</h2>
@@ -281,7 +281,7 @@ export default function Evaluacion() {
           <Leyenda />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-6">
-          <div>
+          <div className="min-w-0">
             <h3 className="text-xs font-bold text-slate-800 mb-2">Tiempo de selección (s) · media</h3>
             <GraficoCondicion
               datos={[{ indicador: 'Tiempo de selección', CONV: media('CONV', 'tiempo_seleccion_s'), ML: media('ML', 'tiempo_seleccion_s') }]}
@@ -289,7 +289,7 @@ export default function Evaluacion() {
               unidad=" s"
             />
           </div>
-          <div>
+          <div className="min-w-0">
             <h3 className="text-xs font-bold text-slate-800 mb-2">Precision@5 de sesión · media</h3>
             <GraficoCondicion
               datos={[{ indicador: 'Precision@5', CONV: media('CONV', 'precision_5'), ML: media('ML', 'precision_5') }]}
@@ -301,7 +301,7 @@ export default function Evaluacion() {
       </section>
 
       {/* ESTADÍSTICOS POR CONDICIÓN */}
-      <section className="bg-white rounded-[12px] p-6 border border-gray-200 shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-gray-200 shadow-sm">
         <div className="pb-4 mb-4 border-b border-gray-100">
           <h2 className="text-base font-bold text-slate-900">Estadísticos por condición</h2>
           <p className="text-xs text-slate-500 mt-0.5">n, media, mediana y desviación estándar muestral calculados por el backend</p>
@@ -310,7 +310,7 @@ export default function Evaluacion() {
       </section>
 
       {/* TABLA POR SESIÓN */}
-      <section className="bg-white rounded-[12px] p-6 border border-gray-200 shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-gray-200 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-gray-100">
           <div>
             <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
@@ -382,7 +382,7 @@ export default function Evaluacion() {
           type="button"
           onClick={ejecutarOffline}
           disabled={ejecutando}
-          className="inline-flex items-center gap-2 bg-[#F26B1D] hover:bg-[#DC5B12] text-white px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition-all disabled:opacity-60"
+          className="w-full md:w-auto justify-center min-h-10 md:min-h-auto inline-flex items-center gap-2 bg-[#F26B1D] hover:bg-[#DC5B12] text-white px-4 py-2 rounded-lg text-xs font-bold shadow-sm transition-all disabled:opacity-60"
         >
           <span className={`material-symbols-outlined text-[16px] ${ejecutando ? 'animate-spin' : ''}`}>{ejecutando ? 'progress_activity' : 'play_arrow'}</span>
           {ejecutando ? 'Ejecutando…' : 'Ejecutar evaluación offline'}
@@ -391,14 +391,14 @@ export default function Evaluacion() {
 
       {off === undefined && <p className="text-sm text-slate-400">Cargando…</p>}
       {off === null && (
-        <section className="bg-white rounded-[12px] p-6 border border-gray-200 shadow-sm text-sm text-slate-500">
+        <section className="bg-white rounded-[12px] p-4 md:p-6 border border-gray-200 shadow-sm text-sm text-slate-500">
           Sin datos: la evaluación offline aún no se ha ejecutado.
         </section>
       )}
       {off && (
         <>
           {/* FICHA DE LA CORRIDA */}
-          <section className="bg-white rounded-[12px] p-6 border border-gray-200 shadow-sm">
+          <section className="bg-white rounded-[12px] p-4 md:p-6 border border-gray-200 shadow-sm">
             <div className="pb-4 mb-4 border-b border-gray-100 flex items-center gap-2">
               <span className="material-symbols-outlined text-[20px] text-[#0F2A4A]">description</span>
               <h2 className="text-base font-bold text-slate-900">Ficha de la corrida</h2>
@@ -431,7 +431,7 @@ export default function Evaluacion() {
           </section>
 
           {/* GRÁFICO + TABLA OFFLINE */}
-          <section className="bg-white rounded-[12px] p-6 border border-gray-200 shadow-sm">
+          <section className="bg-white rounded-[12px] p-4 md:p-6 border border-gray-200 shadow-sm">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-gray-100">
               <div>
                 <h2 className="text-base font-bold text-slate-900">Precision@5 y Recall@5 por modo (offline)</h2>

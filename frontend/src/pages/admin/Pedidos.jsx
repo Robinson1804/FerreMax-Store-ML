@@ -14,7 +14,7 @@ export default function Pedidos() {
   return (
     <PanelLayout titulo="Pedidos" subtitulo="Pedidos registrados al confirmar el carrito">
       {error && <Aviso tipo="error">No se pudieron cargar los pedidos: {error}</Aviso>}
-      <section className="bg-white rounded-[12px] p-6 border border-[#E2E6EB] shadow-sm">
+      <section className="bg-white rounded-[12px] p-4 md:p-6 border border-[#E2E6EB] shadow-sm">
         <p className="text-xs text-slate-500 mb-3">{pedidos ? `${pedidos.length} pedidos` : 'Cargando…'}</p>
         {pedidos && pedidos.length === 0 ? <p className="text-sm text-slate-500">Sin datos: aún no hay pedidos.</p> : (
           <div className="overflow-x-auto rounded-lg border border-[#E2E6EB]">

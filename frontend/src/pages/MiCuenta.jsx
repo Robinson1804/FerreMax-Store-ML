@@ -16,7 +16,7 @@ function RecomendacionesCliente() {
   const { carrito, agregar } = useTienda();
   const { lista, cargando } = useRecomendaciones("cuenta", carrito.map((i) => i.sku), 5, { porCliente: true });
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+    <div className="bg-white border border-slate-200 rounded-xl p-4 md:p-5 shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div>
           <h3 className="text-xl font-bold text-slate-800">Recomendaciones para ti</h3>
@@ -39,10 +39,10 @@ function RecomendacionesCliente() {
                 {p.nombre}
               </Link>
               <span className="text-[11px] text-slate-500">{p.marca} · SKU {p.sku}</span>
-              <div className="mt-auto flex items-center justify-between">
+              <div className="mt-auto flex flex-wrap md:flex-nowrap items-center justify-between gap-1.5">
                 <span className="text-sm font-extrabold text-[#0F2A4A]">{soles(p.precio)}</span>
                 <button type="button" onClick={() => agregar(p, "RECOMENDACION", p.posicion)}
-                  className="bg-[#F26B1D] hover:bg-[#d95a12] text-white text-xs font-bold px-2.5 py-1.5 rounded">
+                  className="bg-[#F26B1D] hover:bg-[#d95a12] text-white text-xs font-bold px-2.5 py-2.5 md:py-1.5 rounded">
                   Agregar
                 </button>
               </div>
@@ -73,7 +73,7 @@ export default function MiCuenta() {
     <>
 
 {/*  1. Barra superior institucional azul marino  */}
-<aside className="w-full bg-[#0F2A4A] text-white text-xs border-b border-[#1E3A5F] select-none">
+<aside className="hidden md:block w-full bg-[#0F2A4A] text-white text-xs border-b border-[#1E3A5F] select-none">
 <div className="w-full max-w-[1360px] mx-auto px-4 lg:px-10 h-9 flex items-center justify-between">
 <div className="flex items-center space-x-2">
 <span className="material-symbols-outlined text-[17px] text-[#FFB694]">local_shipping</span>
@@ -94,31 +94,31 @@ export default function MiCuenta() {
 </aside>
 {/*  2. Cabecera principal blanca  */}
 <header className="sticky top-0 z-40 bg-surface-container-lowest border-b border-outline-variant/40 shadow-sm transition-shadow">
-<div className="w-full max-w-[1360px] mx-auto px-4 lg:px-10 h-20 flex items-center justify-between gap-6">
+<div className="w-full max-w-[1360px] mx-auto px-4 lg:px-10 py-2.5 md:py-0 md:h-20 flex flex-wrap md:flex-nowrap items-center justify-between gap-x-3 gap-y-2.5 md:gap-6">
 <Link className="flex items-center gap-1 flex-shrink-0 cursor-pointer select-none" to="/">
-<span className="text-3xl font-extrabold tracking-tight text-[#0F2A4A]">FERRE</span><span className="text-3xl font-extrabold tracking-tight text-[#F26B1D]">MAX</span>
-<span className="ml-2 text-[10px] font-semibold text-[#0F2A4A]/60 uppercase tracking-widest border border-slate-200 px-1.5 py-0.5 rounded">Perú</span>
+<span className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#0F2A4A]">FERRE</span><span className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#F26B1D]">MAX</span>
+<span className="hidden sm:inline ml-2 text-[10px] font-semibold text-[#0F2A4A]/60 uppercase tracking-widest border border-slate-200 px-1.5 py-0.5 rounded">Perú</span>
 </Link>
-<form className="flex-1 max-w-2xl relative" onSubmit={buscar}>
+<form className="order-last basis-full md:order-none md:basis-0 flex-1 max-w-2xl relative" onSubmit={buscar}>
 <div className="relative flex items-center">
-<input className="w-full h-11 pl-4 pr-12 bg-white border border-slate-300 rounded-lg text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] focus:border-transparent transition-all shadow-inner" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared, vaciar un techo..." type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
+<input className="w-full h-11 pl-4 pr-12 bg-white border border-slate-300 rounded-lg text-base md:text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0F2A4A] focus:border-transparent transition-all shadow-inner" placeholder="¿Qué necesitas hacer? Ej.: pintar una pared, vaciar un techo..." type="text" value={texto} onChange={(e) => setTexto(e.target.value)}/>
 <button aria-label="Buscar producto" className="absolute right-1 top-1 bottom-1 px-3.5 bg-[#0F2A4A] hover:bg-[#1E3A5F] active:bg-[#0A1D33] text-white rounded-md flex items-center justify-center transition-colors" type="submit">
 <span className="material-symbols-outlined text-[20px]">search</span>
 </button>
 </div>
 </form>
-<div className="flex items-center space-x-5 flex-shrink-0">
-<Link className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200 group" to="/mi-cuenta">
+<div className="flex items-center space-x-1 md:space-x-5 flex-shrink-0">
+<Link aria-label="Mi cuenta" className="flex items-center gap-2.5 px-1.5 md:px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200 group" to="/mi-cuenta">
 <div className="w-9 h-9 rounded-full bg-[#0F2A4A]/10 text-[#0F2A4A] flex items-center justify-center group-hover:bg-[#0F2A4A] group-hover:text-white transition-colors">
 <span className="material-symbols-outlined text-[20px]">person</span>
 </div>
-<div className="text-left leading-tight">
+<div className="hidden md:block text-left leading-tight">
 <span className="block text-[11px] text-slate-500 font-medium">{codigo ? `Hola, ${codigo}` : "Hola, inicia sesión"}</span>
 <span className="block text-sm font-bold text-[#0F2A4A] group-hover:text-[#F26B1D] transition-colors">Mi cuenta</span>
 </div>
 </Link>
-<div className="h-8 w-px bg-slate-200"></div>
-<Link className="flex items-center gap-3 px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200 group" to="/carrito">
+<div className="hidden md:block h-8 w-px bg-slate-200"></div>
+<Link aria-label="Carrito" className="flex items-center gap-3 px-2.5 md:px-3 py-2 md:py-1.5 rounded-lg hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200 group" to="/carrito">
 <div className="relative flex items-center justify-center">
 <span className="material-symbols-outlined text-[28px] text-[#0F2A4A]">shopping_cart</span>
 <span className="absolute -top-1.5 -right-2 bg-[#F26B1D] text-white font-bold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">{unidades}</span>
@@ -133,13 +133,13 @@ export default function MiCuenta() {
 </header>
 {/*  3. Menú de navegación inferior  */}
 <nav className="bg-white border-b border-slate-200 shadow-sm relative z-30">
-<div className="w-full max-w-[1360px] mx-auto px-4 lg:px-10 h-11 flex items-center justify-between">
-<div className="flex items-center space-x-6 h-full">
+<div className="w-full max-w-[1360px] mx-auto px-4 lg:px-10 h-11 flex items-center justify-between overflow-x-auto md:overflow-visible [scrollbar-width:none]">
+<div className="flex items-center space-x-4 md:space-x-6 h-full flex-shrink-0 whitespace-nowrap">
 <Link className="h-full bg-[#0F2A4A] hover:bg-[#1E3A5F] text-white px-4 flex items-center gap-2 font-label-md text-xs font-semibold rounded-t transition-colors tracking-wide" to="/busqueda">
 <span className="material-symbols-outlined text-[18px]">menu</span>
 <span>Todas las categorías</span>
 </Link>
-<div className="flex items-center space-x-6 text-sm font-medium text-slate-700">
+<div className="flex items-center space-x-4 md:space-x-6 text-sm font-medium text-slate-700">
 <Link className="hover:text-[#F26B1D] transition-colors py-2" to="/">Inicio</Link>
 <Link className="hover:text-[#F26B1D] transition-colors py-2" to="/busqueda">Productos</Link>
 <Link className="hover:text-[#F26B1D] transition-colors py-2" to="/busqueda">Categorías</Link>
@@ -149,7 +149,7 @@ export default function MiCuenta() {
 </nav>
 {/*  4. Área principal de contenido  */}
 <main className="flex-1 w-full max-w-[1360px] mx-auto px-4 lg:px-10 py-6">
-<nav aria-label="Breadcrumb" className="flex items-center space-x-2 text-xs text-slate-500 mb-4">
+<nav aria-label="Breadcrumb" className="flex flex-wrap items-center space-x-2 text-xs text-slate-500 mb-4">
 <Link className="hover:text-[#0F2A4A] transition-colors flex items-center gap-1" to="/">
 <span className="material-symbols-outlined text-[14px]">home</span>
 <span>Inicio</span>
@@ -161,12 +161,12 @@ export default function MiCuenta() {
 </nav>
 {/*  Encabezado de bienvenida  */}
 <section className="bg-white border border-slate-200 rounded-xl p-5 mb-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-<div className="flex items-center gap-4">
-<div className="w-14 h-14 rounded-full bg-[#0F2A4A] text-white flex items-center justify-center font-bold text-lg ring-4 ring-[#0F2A4A]/10">
+<div className="flex items-center gap-4 min-w-0">
+<div className="w-14 h-14 flex-shrink-0 rounded-full bg-[#0F2A4A] text-white flex items-center justify-center font-bold text-lg ring-4 ring-[#0F2A4A]/10">
 <span className="material-symbols-outlined text-[28px]">person</span>
 </div>
 <div>
-<div className="flex items-center gap-2.5">
+<div className="flex flex-wrap items-center gap-2.5">
 <h1 className="text-xl md:text-2xl font-bold text-[#0F2A4A]">{codigo ? `Hola, ${codigo}` : "Hola"}</h1>
 <span className="hidden sm:inline-flex bg-amber-50 text-amber-800 text-[11px] font-semibold px-2.5 py-0.5 rounded border border-amber-200">
               Perfil experimental · Tesis UPN 2026
@@ -181,25 +181,25 @@ export default function MiCuenta() {
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 {/*  Menú lateral  */}
 <aside className="lg:col-span-3 space-y-4">
-<div className="bg-white rounded-xl border border-slate-200 shadow-sm p-3.5 divide-y divide-slate-100">
-<div className="pb-2 space-y-1">
-<span className="flex items-center justify-between px-3.5 py-2.5 text-sm font-bold text-[#F26B1D] bg-[#FFF3EB] border-l-4 border-[#F26B1D] rounded-r-lg">
+<div className="bg-white rounded-xl border border-slate-200 shadow-sm p-2 lg:p-3.5 flex items-center gap-1 overflow-x-auto [scrollbar-width:none] lg:block lg:overflow-visible lg:divide-y divide-slate-100">
+<div className="flex items-center gap-1 flex-shrink-0 lg:block lg:pb-2 lg:space-y-1">
+<span className="flex flex-shrink-0 whitespace-nowrap items-center justify-between px-3.5 py-2.5 text-sm font-bold text-[#F26B1D] bg-[#FFF3EB] border-l-4 border-[#F26B1D] rounded-r-lg">
 <span className="flex items-center gap-3">
 <span className="material-symbols-outlined text-[20px] text-[#F26B1D]">package_2</span>
 <span>Mis pedidos</span>
 </span>
 </span>
-<Link className="flex items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0F2A4A] rounded-lg transition-colors group" to="/carrito">
+<Link className="flex flex-shrink-0 whitespace-nowrap items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0F2A4A] rounded-lg transition-colors group" to="/carrito">
 <span className="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-[#0F2A4A] transition-colors">shopping_cart</span>
 <span>Mi carrito</span>
 </Link>
-<Link className="flex items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0F2A4A] rounded-lg transition-colors group" to="/">
+<Link className="flex flex-shrink-0 whitespace-nowrap items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-[#0F2A4A] rounded-lg transition-colors group" to="/">
 <span className="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-[#0F2A4A] transition-colors">storefront</span>
 <span>Ir a la tienda</span>
 </Link>
 </div>
-<div className="pt-2">
-<Link className="flex items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors group" to="/login">
+<div className="flex-shrink-0 lg:pt-2">
+<Link className="flex whitespace-nowrap items-center gap-3 px-3.5 py-2.5 text-sm font-medium text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors group" to="/login">
 <span className="material-symbols-outlined text-[20px] text-slate-400 group-hover:text-red-600 transition-colors">logout</span>
 <span>Cerrar sesión</span>
 </Link>
@@ -220,7 +220,7 @@ export default function MiCuenta() {
 </aside>
 {/*  Mis pedidos  */}
 <section className="lg:col-span-9 space-y-6">
-<div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+<div className="bg-white rounded-xl border border-slate-200 p-4 md:p-6 shadow-sm">
 <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-slate-100 gap-4">
 <div>
 <h2 className="text-2xl font-bold text-[#0F2A4A] tracking-tight">Mis pedidos</h2>
