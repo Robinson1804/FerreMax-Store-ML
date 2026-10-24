@@ -252,12 +252,13 @@ class RecommenderService:
                  .filter(Comprobante.codigo_cliente == codigo).order_by(Comprobante.fecha).all())
         return list(dict.fromkeys(f[0] for f in filas))
 
-    def recomendar_cliente(self, codigo: str, skus_carrito: list[str] | None = None, k: int | None = None) -> dict:
+    def recomendar_cliente(self, codigo: str, skus_carrito: list[str] | None = None, k: int | None = None,
+                           usar_historial: bool = True) -> dict:
         """
         Recomendaciones para un cliente: B = historial de compras ∪ carrito actual.
         Si el cliente no tiene historial, se usa la variante REGLAS con el carrito (y popularidad).
         """
-        historial = self.historial_cliente(codigo)
+        historial = self.historial_cliente(codigo) if usar_historial else []
         carrito = list(skus_carrito or [])
         todos = self.db.query(Producto).filter(Producto.activo == True).all()
         disponibles = [p for p in todos if p.stock > 0]

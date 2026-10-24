@@ -149,10 +149,17 @@ def recomendar_carrito(req: RecomendarCarritoRequest, db: Session = Depends(get_
 
 @app.get("/api/recomendar/cliente/{codigo}")
 def recomendar_cliente(codigo: str, skus: List[str] = Query(default=[]), k: int | None = None,
-                       db: Session = Depends(get_db)):
-    """Recomendaciones con B = historial del cliente ∪ carrito (skus). Sin historial: reglas y popularidad."""
-    r = RecommenderService(db).recomendar_cliente(codigo, skus, k)
-    return {"base": r["base"], "historial": r["historial"], "resultados": _puntuados(r["resultados"])}
+                       x_sesion_evaluacion: str | None = Header(default=None), db: Session = Depends(get_db)):
+    """
+    Recomendaciones con B = historial del cliente ∪ carrito (skus).
+    El historial de compras es dato personal: solo se usa si la petición trae el token de dispositivo de la
+    sesión de evaluación activa de ESE cliente. Sin él se recomienda con el carrito (reglas y popularidad).
+    La respuesta nunca incluye el historial.
+    """
+    s = db.query(SesionEvaluacion).filter(SesionEvaluacion.fin == None).order_by(SesionEvaluacion.inicio.desc()).first()
+    autorizado = bool(s and s.codigo_cliente == codigo and token_sesion_valido(s.id_sesion, x_sesion_evaluacion))
+    r = RecommenderService(db).recomendar_cliente(codigo, skus, k, usar_historial=autorizado)
+    return {"base": r["base"], "resultados": _puntuados(r["resultados"])}
 
 
 @app.get("/api/admin/config")

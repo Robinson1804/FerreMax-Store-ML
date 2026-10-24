@@ -188,9 +188,18 @@ for variante, fuente in (("REGLAS", "REGLA"), ("COMPLETO", "REORDENADOR")):
     r = c.get("/api/recomendar?sku=TUB-001").json()
     comprobar(f"variante {variante} usa fuente {fuente}", r and r[0]["fuente"] == fuente, str([x["sku"] for x in r]))
 con_hist = comps[0].codigo_cliente
-rc = c.get(f"/api/recomendar/cliente/{con_hist}").json()
-comprobar("recomendación por cliente con historial", rc["base"] == "HISTORIAL" and len(rc["resultados"]) == 5
-          and not set(x["sku"] for x in rc["resultados"]) & set(rc["historial"]), f"{len(rc['historial'])} en historial")
+historial_real = {d.sku for x in comps if x.codigo_cliente == con_hist for d in x.detalles}
+# El historial es dato personal: sin el token de la sesión activa de ese cliente no se usa ni se devuelve
+anon = c.get(f"/api/recomendar/cliente/{con_hist}")
+comprobar("historial de cliente protegido (sin token no se usa ni se expone)",
+          anon.json()["base"] == "SIN_HISTORIAL" and "historial" not in anon.json())
+ses_c = c.post("/api/admin/sesiones", json={"codigo_cliente": con_hist, "escenario": "ESC-02", "condicion": "ML",
+                                             "orden": "A"}).json()
+rc = c.get(f"/api/recomendar/cliente/{con_hist}", headers={"X-Sesion-Evaluacion": ses_c["token_dispositivo"]}).json()
+comprobar("recomendación por cliente con historial (sesión vinculada)", rc["base"] == "HISTORIAL"
+          and len(rc["resultados"]) == 5 and not set(x["sku"] for x in rc["resultados"]) & historial_real
+          and "historial" not in rc, f"{len(historial_real)} en historial")
+c.put("/api/admin/sesiones", json={"id_sesion": ses_c["sesion"]["id_sesion"], "valida": False})
 rs = c.get("/api/recomendar/cliente/CLI-999", params={"skus": ["PIN-001"]}).json()
 comprobar("cliente sin historial cae a reglas y popularidad", rs["base"] == "SIN_HISTORIAL" and len(rs["resultados"]) == 5
           and "PIN-001" not in [x["sku"] for x in rs["resultados"]])
