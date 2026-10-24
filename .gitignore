@@ -25,3 +25,9 @@ Thumbs.db
 
 # Respaldos locales del supervisor (incluye una copia de la base de datos)
 .agents/respaldo/
+
+# Datos reales de la empresa: NUNCA se versionan (repositorio público)
+datos/datos_empresa_*.json
+datos/*mapa*
+# Detalle por boleta de la evaluación con datos reales (transacciones de la empresa): no se publica
+backend/salidas/evaluacion_offline.csv

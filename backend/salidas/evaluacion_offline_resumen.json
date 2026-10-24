@@ -1,19 +1,20 @@
 {
-  "fecha_corrida": "2026-09-24 18:17:14",
+  "fecha_corrida": "2026-10-24 11:21:27",
+  "fuente_datos": "empresa",
   "semilla": 42,
   "k": 5,
   "particion": "temporal 80/20 por fecha de comprobante",
-  "n_comprobantes": 420,
-  "n_entrenamiento": 336,
-  "n_prueba_total": 84,
-  "n_prueba_evaluados": 80,
+  "n_comprobantes": 5151,
+  "n_entrenamiento": 4120,
+  "n_prueba_total": 1031,
+  "n_prueba_evaluados": 639,
   "periodo_entrenamiento": [
     "2026-01-02",
-    "2026-05-25"
+    "2026-06-20"
   ],
   "periodo_prueba": [
-    "2026-05-25",
-    "2026-06-30"
+    "2026-06-21",
+    "2026-07-31"
   ],
   "umbrales": {
     "soporte_min": 0.01,
@@ -21,22 +22,22 @@
     "lift_min": 1.2
   },
   "peso_contenido": 1.0,
-  "reglas_entrenadas": 566,
-  "cf_productos": 59,
-  "cf_clientes": 132,
+  "reglas_entrenadas": 47,
+  "cf_productos": 52,
+  "cf_clientes": 36,
   "reordenador": {
     "tipo": "lightgbm",
-    "n_ejemplos": 18794,
-    "n_positivos": 1031,
-    "n_contextos": 1109,
-    "cobertura_candidatos": 0.9297,
+    "n_ejemplos": 115062,
+    "n_positivos": 4923,
+    "n_contextos": 6851,
+    "cobertura_candidatos": 0.7186,
     "ap_validacion": {
-      "regresion_logistica": 0.258,
-      "lightgbm": 0.3147
+      "regresion_logistica": 0.1681,
+      "lightgbm": 0.243
     },
     "validacion": "temporal: último 10 % de las boletas de entrenamiento"
   },
-  "cobertura_candidatos_prueba": 0.8625,
+  "cobertura_candidatos_prueba": 0.6995,
   "modos": [
     "CONV",
     "ML_REGLAS",
@@ -45,71 +46,71 @@
   "por_modo": {
     "CONV": {
       "precision5": {
-        "n": 80,
-        "media": 0.1025,
-        "mediana": 0.2,
-        "de": 0.1006
+        "n": 639,
+        "media": 0.0751,
+        "mediana": 0.0,
+        "de": 0.0969
       },
       "recall5": {
-        "n": 80,
-        "media": 0.5125,
-        "mediana": 1.0,
-        "de": 0.503
+        "n": 639,
+        "media": 0.3756,
+        "mediana": 0.0,
+        "de": 0.4847
       },
-      "aciertos": 41
+      "aciertos": 240
     },
     "ML_REGLAS": {
       "precision5": {
-        "n": 80,
-        "media": 0.1325,
-        "mediana": 0.2,
-        "de": 0.0952
+        "n": 639,
+        "media": 0.0814,
+        "mediana": 0.0,
+        "de": 0.0983
       },
       "recall5": {
-        "n": 80,
-        "media": 0.6625,
-        "mediana": 1.0,
-        "de": 0.4758
+        "n": 639,
+        "media": 0.4069,
+        "mediana": 0.0,
+        "de": 0.4916
       },
-      "aciertos": 53
+      "aciertos": 260
     },
     "ML_COMPLETO": {
       "precision5": {
-        "n": 80,
-        "media": 0.155,
-        "mediana": 0.2,
-        "de": 0.084
+        "n": 639,
+        "media": 0.0973,
+        "mediana": 0.0,
+        "de": 0.1
       },
       "recall5": {
-        "n": 80,
-        "media": 0.775,
-        "mediana": 1.0,
-        "de": 0.4202
+        "n": 639,
+        "media": 0.4867,
+        "mediana": 0.0,
+        "de": 0.5002
       },
-      "aciertos": 62
+      "aciertos": 311
     }
   },
   "mcnemar_exacto": {
     "CONV_vs_ML_COMPLETO": {
-      "ambos": 40,
-      "solo_primero": 1,
-      "solo_segundo": 22,
-      "ninguno": 17,
-      "p_valor": 6e-06
+      "ambos": 219,
+      "solo_primero": 21,
+      "solo_segundo": 92,
+      "ninguno": 307,
+      "p_valor": 8.69e-12
     },
     "ML_REGLAS_vs_ML_COMPLETO": {
-      "ambos": 52,
-      "solo_primero": 1,
-      "solo_segundo": 10,
-      "ninguno": 17,
-      "p_valor": 0.011719
+      "ambos": 242,
+      "solo_primero": 18,
+      "solo_segundo": 69,
+      "ninguno": 310,
+      "p_valor": 3.32e-08
     },
     "CONV_vs_ML_REGLAS": {
-      "ambos": 37,
-      "solo_primero": 4,
-      "solo_segundo": 16,
-      "ninguno": 23,
-      "p_valor": 0.011818
+      "ambos": 231,
+      "solo_primero": 9,
+      "solo_segundo": 29,
+      "ninguno": 370,
+      "p_valor": 0.00166
     }
   },
   "csv": "salidas/evaluacion_offline.csv"

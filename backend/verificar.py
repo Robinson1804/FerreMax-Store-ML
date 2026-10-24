@@ -1,20 +1,29 @@
 """
 Verificación automática del backend contra el checklist de supervisión.
-Trabaja sobre una COPIA temporal de ferremax.db (no modifica la base real).
+
+Las pruebas usan una base TEMPORAL sembrada con los datos simulados (datos de prueba fijos y
+reproducibles) y una carpeta temporal para el modelo: no modifican la base ni el modelo reales.
+Si existe datos/datos_empresa_2026.json, además se valida la siembra de las ventas reales en otra
+base temporal (sección 9).
 
 Uso:  python verificar.py
 """
 import os
-import shutil
 import sqlite3
 import sys
 import tempfile
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
-copia = os.path.join(tempfile.mkdtemp(), "verificacion.db")
-shutil.copy(os.path.join(AQUI, "ferremax.db"), copia)
+TMP = tempfile.mkdtemp()
+copia = os.path.join(TMP, "verificacion.db")
 os.environ["DATABASE_URL"] = "sqlite:///" + copia.replace("\\", "/")
+os.environ["FERREMAX_DIR_MODELOS"] = os.path.join(TMP, "modelos")
 sys.path.insert(0, AQUI)
+
+import seed  # noqa: E402
+
+seed.seed_data(reset=True, fuente="simulado")
+seed.reentrenar()
 
 from fastapi.testclient import TestClient  # noqa: E402
 from main import app  # noqa: E402
@@ -200,6 +209,59 @@ comprobar("offline: tres modos con 80 filas cada uno",
 comprobar("offline: McNemar para CONV vs ML_COMPLETO y ML_REGLAS vs ML_COMPLETO",
           {"CONV_vs_ML_COMPLETO", "ML_REGLAS_vs_ML_COMPLETO"} <= set(res["mcnemar_exacto"]))
 sdb.close()
+
+# 9. Siembra con las ventas reales de la empresa (solo si el archivo existe; no se versiona)
+RUTA_EMPRESA = os.path.join(AQUI, "..", "datos", "datos_empresa_2026.json")
+if os.path.exists(RUTA_EMPRESA):
+    import json as _json
+    import subprocess
+
+    base_real = os.path.join(TMP, "empresa.db").replace("\\", "/")
+    guion = r'''
+import json, sqlite3, sys
+import seed
+seed.seed_data(reset=True, fuente="empresa")
+d = json.load(open(seed.RUTAS["empresa"], encoding="utf-8"))
+c = sqlite3.connect(sys.argv[1])
+q = lambda s: c.execute(s).fetchone()[0]
+b = next(x for x in d["boletas"] if any(i["descuento"] for i in x["items"]))
+i = next(i for i in b["items"] if i["descuento"])
+esperado = round((i["precio"] * i["cantidad"] - i["descuento"]) / i["cantidad"], 4)
+real = c.execute("select precio_unitario from detalle_comprobante where numero=? and sku=?", (b["numero"], i["sku"])).fetchone()[0]
+from colaborativo import entrenar_cf
+compras = [(r[0], r[1].split(",")) for r in c.execute("select c.codigo_cliente, group_concat(d.sku) from comprobantes c join detalle_comprobante d on d.numero=c.numero group by c.numero")]
+print(json.dumps({
+  "boletas": [q("select count(*) from comprobantes"), len(d["boletas"])],
+  "productos": [q("select count(*) from productos"), len(d["productos"])],
+  "clientes": [q("select count(*) from clientes"), len(d["clientes"])],
+  "sin_cliente": [q("select count(*) from comprobantes where codigo_cliente is null"), sum(1 for x in d["boletas"] if not x.get("cliente"))],
+  "fechas": [q("select min(date(fecha)) from comprobantes"), q("select max(date(fecha)) from comprobantes"), d["meta"]["periodo"]],
+  "fraccionarias": q("select count(*) from detalle_comprobante where cantidad != cast(cantidad as integer)"),
+  "descuento": [real, esperado],
+  "fuente": q("select fuente_datos from configuracion"),
+  "cf_clientes": entrenar_cf(compras)["n_clientes"],
+}))
+'''
+    env = dict(os.environ, DATABASE_URL="sqlite:///" + base_real, PYTHONIOENCODING="utf-8")
+    out = subprocess.run([sys.executable, "-W", "ignore", "-c", guion, base_real], capture_output=True, text=True,
+                         env=env, cwd=AQUI, encoding="utf-8")
+    try:
+        r = _json.loads(out.stdout.strip().splitlines()[-1])
+    except Exception:
+        r = None
+        print(out.stderr[-800:])
+    comprobar("datos reales: boletas, productos y clientes sembrados completos",
+              r and r["boletas"][0] == r["boletas"][1] and r["productos"][0] == r["productos"][1]
+              and r["clientes"][0] == r["clientes"][1], str(r and (r["boletas"], r["productos"], r["clientes"])))
+    comprobar("datos reales: ventas sin cliente quedan sin código y no cuentan como cliente",
+              r and r["sin_cliente"][0] == r["sin_cliente"][1] and r["cf_clientes"] == r["clientes"][1],
+              str(r and (r["sin_cliente"], r["cf_clientes"])))
+    comprobar("datos reales: fechas reales, cantidades fraccionarias y precio con descuento",
+              r and [r["fechas"][0], r["fechas"][1]] == r["fechas"][2] and r["fraccionarias"] > 0
+              and abs(r["descuento"][0] - r["descuento"][1]) < 1e-6 and r["fuente"] == "empresa",
+              str(r and (r["fechas"][:2], r["fraccionarias"], r["descuento"])))
+else:
+    print("(sin datos/datos_empresa_2026.json: se omite la verificación de la siembra con datos reales)")
 
 print("\nResultado:", "TODO OK" if not fallas else f"{len(fallas)} fallas: {fallas}")
 sys.exit(1 if fallas else 0)

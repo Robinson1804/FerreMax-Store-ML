@@ -10,7 +10,10 @@ Prototipo de la tesis *Sistema web basado en Machine Learning para mejorar la re
   - *Por cliente:* `GET /api/recomendar/cliente/{codigo}` usa el historial de compras ∪ carrito ("Recomendados para ti" en Inicio y Mi cuenta cuando hay sesión con código).
 - Nunca se recomiendan productos con stock 0.
 
-> **Datos simulados.** Los 62 productos, 420 boletas y clientes vienen de `datos/datos_simulados_prototipo.json`; no son datos reales de la empresa.
+> **Fuentes de datos.** `backend/seed.py` siembra desde una de dos fuentes (`--fuente empresa|simulado` o la variable `FERREMAX_FUENTE`; por defecto `empresa` si el archivo existe):
+> - **empresa**: `datos/datos_empresa_2026.json`, ventas reales anonimizadas (5 151 boletas, ene–jul 2026). **No se versiona** (está en `.gitignore`): el repositorio es público.
+> - **simulado**: `datos/datos_simulados_prototipo.json` (62 productos, 420 boletas), que reproduce exactamente la corrida de validación del prototipo (`backend/salidas/simulado/`).
+> La tienda muestra "Datos simulados" o "Datos reales anonimizados" según la fuente sembrada.
 
 ## Demostración en dos comandos (Windows, PowerShell)
 

@@ -37,7 +37,8 @@ except ImportError:  # LightGBM es opcional
     LGBMClassifier = None
 
 VERSION = "3.0"
-DIR_MODELOS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "modelos")
+# FERREMAX_DIR_MODELOS permite a las pruebas usar una carpeta temporal sin tocar el modelo real
+DIR_MODELOS = os.getenv("FERREMAX_DIR_MODELOS") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "modelos")
 RUTA_MODELO = os.path.join(DIR_MODELOS, "reordenador.joblib")
 
 TOP_REGLAS, TOP_CF, TOP_POPULAR, TOP_CONTENIDO = 10, 10, 10, 5
@@ -61,10 +62,13 @@ IDX_CONTENIDO = VARIABLES.index("similitud_contenido")
 # Contexto de datos (lo que el reordenador necesita saber del catálogo y del historial)
 # ---------------------------------------------------------------------------
 class Contexto:
-    def __init__(self, productos: list, reglas: list[dict], modelo_cf: dict, conteos_popularidad: dict):
+    def __init__(self, productos: list, reglas: list[dict], modelo_cf: dict, conteos_popularidad: dict,
+                 filtrar_stock: bool = True):
         # productos: TODOS los productos (los de B pueden no tener stock); candidatos solo con stock > 0
         self.por_sku = {p.sku: p for p in productos}
-        self.disponibles = [p for p in productos if p.activo and p.stock > 0]
+        # En la tienda nunca se recomienda sin stock; la evaluación offline (boletas históricas) no filtra
+        # por el stock de hoy (filtrar_stock=False)
+        self.disponibles = [p for p in productos if p.activo and (p.stock > 0 or not filtrar_stock)]
         self.reglas = reglas
         self.modelo_cf = modelo_cf
         maximo = max(conteos_popularidad.values(), default=0) or 1
@@ -81,12 +85,13 @@ def conteos_desde_transacciones(transacciones: list[list[str]]) -> dict:
     return dict(Counter(s for t in transacciones for s in set(t)))
 
 
-def construir_contexto(productos, transacciones_con_cliente, soporte_min, confianza_min, lift_min) -> Contexto:
+def construir_contexto(productos, transacciones_con_cliente, soporte_min, confianza_min, lift_min,
+                       filtrar_stock: bool = True) -> Contexto:
     """Entrena reglas, CF y popularidad con las transacciones dadas y arma el contexto."""
     transacciones = [skus for _, skus in transacciones_con_cliente]
     reglas = entrenar_reglas(transacciones, soporte_min, confianza_min, lift_min)
     return Contexto(productos, reglas, entrenar_cf(transacciones_con_cliente),
-                    conteos_desde_transacciones(transacciones))
+                    conteos_desde_transacciones(transacciones), filtrar_stock=filtrar_stock)
 
 
 # ---------------------------------------------------------------------------
@@ -186,7 +191,8 @@ def _candidatos_modelo():
     if LGBMClassifier is not None:
         modelos["lightgbm"] = lambda: LGBMClassifier(
             n_estimators=300, learning_rate=0.05, num_leaves=15, min_child_samples=20,
-            class_weight="balanced", random_state=SEMILLA, verbose=-1)
+            class_weight="balanced", random_state=SEMILLA, verbose=-1,
+            deterministic=True, force_col_wise=True, n_jobs=1)  # resultados reproducibles
     return modelos
 
 

@@ -122,7 +122,8 @@ class ConfiguracionRequest(BaseModel):
 
 def _config_dict(config: Configuracion) -> dict:
     """Configuración + metadatos del reordenador entrenado (versión, fecha, n ejemplos, AP)."""
-    campos = ("id", "modo_activo", "k", "soporte_min", "confianza_min", "lift_min", "peso_contenido", "variante_ml")
+    campos = ("id", "modo_activo", "k", "soporte_min", "confianza_min", "lift_min", "peso_contenido", "variante_ml",
+              "fuente_datos")
     return {**{c: getattr(config, c) for c in campos}, "reordenador": reordenador.metadatos()}
 
 

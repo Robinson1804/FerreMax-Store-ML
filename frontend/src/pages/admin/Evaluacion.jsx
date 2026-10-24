@@ -376,7 +376,7 @@ export default function Evaluacion() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pt-4 border-t border-gray-200">
         <div>
           <h2 className="text-lg font-extrabold text-slate-900 tracking-tight">Evaluación offline · Capa 1</h2>
-          <p className="text-xs text-slate-500">Fuente: comprobantes históricos simulados con partición temporal (GET/POST /api/admin/evaluacion-offline)</p>
+          <p className="text-xs text-slate-500">Fuente: comprobantes históricos {off?.fuente_datos === 'empresa' ? 'reales de la empresa (anonimizados)' : 'simulados'} con partición temporal (GET/POST /api/admin/evaluacion-offline)</p>
         </div>
         <button
           type="button"
@@ -420,6 +420,7 @@ export default function Evaluacion() {
                 ['AP validación temporal', off.reordenador ? Object.entries(off.reordenador.ap_validacion || {}).map(([m, v]) => `${m} ${v}`).join(' · ') : '—'],
                 ['Cobertura de candidatos (prueba)', off.cobertura_candidatos_prueba ?? '—'],
                 ['Peso de contenido', off.peso_contenido ?? '—'],
+                ['Fuente de datos', off.fuente_datos === 'empresa' ? 'Ventas reales de la empresa (anonimizadas)' : 'Datos simulados del prototipo'],
                 ['Archivo CSV', off.csv],
               ].map(([k, v]) => (
                 <div key={k} className="min-w-0">
@@ -482,7 +483,7 @@ export default function Evaluacion() {
             )}
             <p className="mt-3 text-xs text-slate-500 italic flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[16px] text-slate-400">info</span>
-              Datos simulados para la demostración del prototipo. Aciertos = comprobantes de prueba en que el producto oculto apareció en el top-5.
+              {off?.fuente_datos === 'empresa' ? 'Ventas reales de la empresa, anonimizadas.' : 'Datos simulados para la demostración del prototipo.'} Aciertos = comprobantes de prueba en que el producto oculto apareció en el top-5.
             </p>
           </section>
         </>

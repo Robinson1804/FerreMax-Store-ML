@@ -42,7 +42,7 @@ class DetalleComprobante(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     numero = Column(String, ForeignKey('comprobantes.numero'))
     sku = Column(String, ForeignKey('productos.sku'))
-    cantidad = Column(Integer)
+    cantidad = Column(Float)  # decimal: hay ventas fraccionarias (p. ej. 0.5 kg)
     precio_unitario = Column(Float)
     
     comprobante = relationship("Comprobante", back_populates="detalles")
@@ -111,3 +111,4 @@ class Configuracion(Base):
     lift_min = Column(Float, default=1.2)
     peso_contenido = Column(Float, default=1.0)  # multiplicador de similitud_contenido en el reordenador
     variante_ml = Column(String, default="COMPLETO")  # REGLAS | COMPLETO (candidatos + CF + reordenador)
+    fuente_datos = Column(String, default="simulado")  # simulado | empresa (la fija seed.py; la tienda la muestra)

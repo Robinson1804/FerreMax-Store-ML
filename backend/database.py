@@ -21,6 +21,9 @@ def init_db():
         with engine.begin() as con:
             con.execute(text("ALTER TABLE configuracion ADD COLUMN variante_ml VARCHAR DEFAULT 'COMPLETO'"))
             con.execute(text("UPDATE configuracion SET variante_ml = 'COMPLETO' WHERE variante_ml IS NULL"))
+    if "fuente_datos" not in columnas:
+        with engine.begin() as con:
+            con.execute(text("ALTER TABLE configuracion ADD COLUMN fuente_datos VARCHAR DEFAULT 'simulado'"))
 
 def get_db():
     db = SessionLocal()

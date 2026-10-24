@@ -23,6 +23,8 @@ def entrenar_cf(compras: list[tuple[str, list[str]]], n_vecinos: int = N_VECINOS
     """
     por_cliente: dict[str, set] = defaultdict(set)
     for cliente, skus in compras:
+        if not cliente:  # ventas sin cliente identificado: no aportan historial de cliente
+            continue
         por_cliente[cliente].update(skus)
     clientes = sorted(por_cliente)
     productos = sorted({s for skus in por_cliente.values() for s in skus})
@@ -49,7 +51,7 @@ def puntajes_cf(modelo_cf: dict, canasta: list[str]) -> dict[str, tuple[float, f
     en_canasta = set(canasta)
     suma: dict[str, float] = defaultdict(float)
     maximo: dict[str, float] = defaultdict(float)
-    for i in en_canasta:
+    for i in sorted(en_canasta):  # orden fijo: la suma de decimales no depende del hash de Python
         for j, s in modelo_cf.get("vecinos", {}).get(i, []):
             if j in en_canasta:
                 continue

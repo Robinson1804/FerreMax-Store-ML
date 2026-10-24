@@ -57,7 +57,8 @@ def mcnemar_exacto(aciertos_a: dict, aciertos_b: dict) -> dict:
     ambos = sum(1 for x in claves if aciertos_a[x] == 1 and aciertos_b[x] == 1)
     ninguno = len(claves) - b - c - ambos
     p = binomtest(b, b + c, 0.5).pvalue if b + c > 0 else 1.0
-    return {"ambos": ambos, "solo_primero": b, "solo_segundo": c, "ninguno": ninguno, "p_valor": round(float(p), 6)}
+    # p con 3 cifras significativas: un redondeo a decimales fijos mostraría 0.0 para valores muy pequeños
+    return {"ambos": ambos, "solo_primero": b, "solo_segundo": c, "ninguno": ninguno, "p_valor": float(f"{float(p):.3g}")}
 
 
 def run_offline_evaluation(db: Session) -> dict:
@@ -75,11 +76,13 @@ def run_offline_evaluation(db: Session) -> dict:
     trans_train = [skus for _, skus in con_cliente]
     popularidad = popularidad_desde_transacciones(trans_train)
     todos = db.query(Producto).filter(Producto.activo == True).all()
-    ctx = reordenador.construir_contexto(todos, con_cliente, config.soporte_min, config.confianza_min, config.lift_min)
+    ctx = reordenador.construir_contexto(todos, con_cliente, config.soporte_min, config.confianza_min, config.lift_min,
+                                         filtrar_stock=False)
     reglas = ctx.reglas  # FP-Growth sobre el 80 %, mismos umbrales
     entrenado = reordenador.entrenar_reordenador(ctx, trans_train)
 
-    productos = [p for p in todos if p.stock > 0]  # filtro de stock de la tienda (igual para todos los modos)
+    # Boletas históricas: no se filtra por el stock de hoy (solo productos activos), igual para todos los modos
+    productos = list(todos)
     en_catalogo = {p.sku for p in productos}
 
     rng = random.Random(SEMILLA)
@@ -132,6 +135,7 @@ def run_offline_evaluation(db: Session) -> dict:
 
     resumen = {
         "fecha_corrida": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "fuente_datos": getattr(config, "fuente_datos", None) or "simulado",
         "semilla": SEMILLA,
         "k": K,
         "particion": "temporal 80/20 por fecha de comprobante",
