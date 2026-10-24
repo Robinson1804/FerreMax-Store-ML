@@ -1,6 +1,7 @@
 {
-  "fecha": "2026-10-24 11:23:58",
+  "fecha": "2026-10-24 11:46:43",
   "fuente_datos": "empresa",
+  "palabras_clave": "enriquecidas (datos/kw_enriquecidas.json v1.1)",
   "parametros_fijos": {
     "confianza_min": 0.15,
     "lift_min": 1.2,
@@ -14,125 +15,125 @@
     {
       "sop": 0.005,
       "reglas": 109,
-      "cob": 0.7074,
+      "cob": 0.7058,
       "rd": "lightgbm",
       "ap": {
-        "regresion_logistica": 0.1955,
-        "lightgbm": 0.2598
+        "regresion_logistica": 0.1975,
+        "lightgbm": 0.2592
       },
       "ac": {
         "CONV": 240,
         "ML_REGLAS": 273,
-        "ML_COMPLETO": 316
+        "ML_COMPLETO": 308
       },
       "r5": {
         "CONV": 0.3756,
         "ML_REGLAS": 0.4272,
-        "ML_COMPLETO": 0.4945
+        "ML_COMPLETO": 0.482
       },
       "p": {
-        "CONV_vs_ML_COMPLETO": 7.27e-13,
-        "ML_REGLAS_vs_ML_COMPLETO": 1.27e-06,
+        "CONV_vs_ML_COMPLETO": 2.43e-09,
+        "ML_REGLAS_vs_ML_COMPLETO": 0.000313,
         "CONV_vs_ML_REGLAS": 1.92e-05
       }
     },
     {
       "sop": 0.0075,
       "reglas": 67,
-      "cob": 0.7058,
+      "cob": 0.7042,
       "rd": "lightgbm",
       "ap": {
-        "regresion_logistica": 0.1799,
-        "lightgbm": 0.254
+        "regresion_logistica": 0.18,
+        "lightgbm": 0.255
       },
       "ac": {
         "CONV": 240,
         "ML_REGLAS": 265,
-        "ML_COMPLETO": 317
+        "ML_COMPLETO": 314
       },
       "r5": {
         "CONV": 0.3756,
         "ML_REGLAS": 0.4147,
-        "ML_COMPLETO": 0.4961
+        "ML_COMPLETO": 0.4914
       },
       "p": {
-        "CONV_vs_ML_COMPLETO": 7.41e-13,
-        "ML_REGLAS_vs_ML_COMPLETO": 2.08e-08,
+        "CONV_vs_ML_COMPLETO": 5.26e-12,
+        "ML_REGLAS_vs_ML_COMPLETO": 3.64e-08,
         "CONV_vs_ML_REGLAS": 0.00102
       }
     },
     {
       "sop": 0.01,
       "reglas": 47,
-      "cob": 0.6995,
+      "cob": 0.698,
       "rd": "lightgbm",
       "ap": {
-        "regresion_logistica": 0.1681,
-        "lightgbm": 0.243
+        "regresion_logistica": 0.1696,
+        "lightgbm": 0.246
       },
       "ac": {
         "CONV": 240,
         "ML_REGLAS": 260,
-        "ML_COMPLETO": 311
+        "ML_COMPLETO": 306
       },
       "r5": {
         "CONV": 0.3756,
         "ML_REGLAS": 0.4069,
-        "ML_COMPLETO": 0.4867
+        "ML_COMPLETO": 0.4789
       },
       "p": {
-        "CONV_vs_ML_COMPLETO": 8.69e-12,
-        "ML_REGLAS_vs_ML_COMPLETO": 3.32e-08,
+        "CONV_vs_ML_COMPLETO": 5.31e-10,
+        "ML_REGLAS_vs_ML_COMPLETO": 9.2e-07,
         "CONV_vs_ML_REGLAS": 0.00166
       }
     },
     {
       "sop": 0.015,
       "reglas": 23,
-      "cob": 0.687,
+      "cob": 0.6854,
       "rd": "lightgbm",
       "ap": {
-        "regresion_logistica": 0.1566,
-        "lightgbm": 0.2332
+        "regresion_logistica": 0.1588,
+        "lightgbm": 0.2341
       },
       "ac": {
         "CONV": 240,
         "ML_REGLAS": 237,
-        "ML_COMPLETO": 298
+        "ML_COMPLETO": 299
       },
       "r5": {
         "CONV": 0.3756,
         "ML_REGLAS": 0.3709,
-        "ML_COMPLETO": 0.4664
+        "ML_COMPLETO": 0.4679
       },
       "p": {
-        "CONV_vs_ML_COMPLETO": 7.29e-10,
-        "ML_REGLAS_vs_ML_COMPLETO": 9.63e-11,
+        "CONV_vs_ML_COMPLETO": 1.15e-09,
+        "ML_REGLAS_vs_ML_COMPLETO": 2.7e-10,
         "CONV_vs_ML_REGLAS": 0.453
       }
     },
     {
       "sop": 0.02,
       "reglas": 10,
-      "cob": 0.6854,
+      "cob": 0.6839,
       "rd": "lightgbm",
       "ap": {
-        "regresion_logistica": 0.1411,
-        "lightgbm": 0.223
+        "regresion_logistica": 0.1422,
+        "lightgbm": 0.2178
       },
       "ac": {
         "CONV": 240,
         "ML_REGLAS": 237,
-        "ML_COMPLETO": 300
+        "ML_COMPLETO": 301
       },
       "r5": {
         "CONV": 0.3756,
         "ML_REGLAS": 0.3709,
-        "ML_COMPLETO": 0.4695
+        "ML_COMPLETO": 0.471
       },
       "p": {
-        "CONV_vs_ML_COMPLETO": 2.7e-10,
-        "ML_REGLAS_vs_ML_COMPLETO": 3.47e-11,
+        "CONV_vs_ML_COMPLETO": 2.72e-10,
+        "ML_REGLAS_vs_ML_COMPLETO": 3.62e-11,
         "CONV_vs_ML_REGLAS": 0.25
       }
     }
