@@ -4,6 +4,11 @@
 # No toca la base de datos (backend/ferremax.db) ni /etc/ferremax.env.
 set -euo pipefail
 DIR="/opt/ferremax/app"
+# Las salidas de la evaluación offline se regeneran en el servidor: se respaldan y se restauran a la
+# versión del repositorio antes del pull, para que no bloqueen la actualización (son reproducibles)
+RESPALDO="/opt/ferremax/respaldos/salidas_$(date +%Y%m%d_%H%M%S)"
+sudo -u ferremax mkdir -p "$RESPALDO" && sudo -u ferremax cp -r "$DIR/backend/salidas/." "$RESPALDO/"
+sudo -u ferremax git -C "$DIR" checkout -- backend/salidas
 sudo -u ferremax git -C "$DIR" pull --ff-only
 sudo -u ferremax "$DIR/backend/.venv/bin/pip" install -q -r "$DIR/backend/requirements.txt"
 sudo -u ferremax bash -c "cd '$DIR/frontend' && npm ci --no-audit --no-fund && npm run build"
