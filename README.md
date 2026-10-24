@@ -77,7 +77,7 @@ npm run build          # compilación de producción en frontend/dist
 
 ## Protocolo de una sesión de evaluación (Capa 2)
 
-1. En **Panel → Recomendador**, inicie una sesión: código de cliente anónimo `CLI-###`, escenario `ESC-01`…`ESC-08`, condición CONV o ML y orden A/B. Al iniciarla, el modo activo del recomendador pasa a la condición de la sesión.
+1. En **Panel → Recomendador**, inicie una sesión: código de cliente anónimo `CLI-###`, escenario `ESC-01`…`ESC-08`, condición CONV o ML y orden A/B. Al iniciarla, el modo activo del recomendador pasa a la condición de la sesión. La sesión queda **vinculada al navegador donde se inició**: solo ese navegador registra eventos en ella (el panel indica "Vinculada a este navegador"); cualquier otro visitante del sitio navega sin sesión (`SIN-SESION`). Por eso la sesión se inicia en el mismo equipo que usará el participante.
 2. El participante usa la tienda. Cada acción queda en `registro_eventos` con marca de tiempo en milisegundos:
    `INICIO_BUSQUEDA` (primera interacción), `CONSULTA`, `RECOM_MOSTRADA` (una lista = sus 5 productos con la misma marca de tiempo), `PRODUCTO_AGREGADO` / `PRODUCTO_RETIRADO` (con origen `BUSQUEDA`, `CATEGORIA` o `RECOMENDACION` y la posición en la lista) y `CONFIRMACION_CARRITO` (al realizar el pedido).
 3. Finalice la sesión como válida o inválida. **Panel → Evaluación** muestra los resultados por condición (n, media, mediana y desviación estándar muestral):

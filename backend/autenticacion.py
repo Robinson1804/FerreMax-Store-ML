@@ -48,6 +48,25 @@ def token_valido(token: str | None) -> bool:
     return hmac.compare_digest(firma, _firma(f"{usuario}:{vence}"))
 
 
+# ---------------------------------------------------------------------------
+# Token de dispositivo de una sesión de evaluación
+# ---------------------------------------------------------------------------
+# Al iniciar una sesión, el panel recibe un token derivado del id de sesión y lo guarda en el
+# navegador del observador. Solo ese navegador ve la sesión activa y registra eventos en ella;
+# los visitantes del sitio público quedan como navegación sin sesión.
+CABECERA_SESION = "x-sesion-evaluacion"
+
+
+def token_sesion(id_sesion: str) -> str:
+    return _firma(f"sesion:{id_sesion}")
+
+
+def token_sesion_valido(id_sesion: str | None, token: str | None) -> bool:
+    if not id_sesion or not token:
+        return False
+    return hmac.compare_digest(token, token_sesion(id_sesion))
+
+
 class ProteccionAdmin(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
         ruta = request.url.path.rstrip("/")

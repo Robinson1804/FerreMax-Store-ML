@@ -6,7 +6,7 @@ import statistics
 from datetime import datetime
 from typing import List, Literal
 
-from fastapi import FastAPI, Depends, HTTPException, Query
+from fastapi import FastAPI, Depends, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, ConfigDict
 from sqlalchemy.orm import Session
@@ -17,7 +17,7 @@ from models import (Producto, Configuracion, Regla, SesionEvaluacion, RegistroEv
 from recommender import RecommenderService, obtener_config
 import reordenador
 from evaluacion_offline import run_offline_evaluation, ultimo_resumen
-from autenticacion import ProteccionAdmin, credenciales_validas, emitir_token
+from autenticacion import ProteccionAdmin, credenciales_validas, emitir_token, token_sesion, token_sesion_valido
 
 @asynccontextmanager
 async def lifespan(_app):
@@ -264,7 +264,8 @@ def iniciar_sesion(req: IniciarSesionRequest, db: Session = Depends(get_db)):
     db.add(sesion)
     obtener_config(db).modo_activo = req.condicion
     db.commit()
-    return {"message": "Sesión iniciada", "sesion": _sesion_dict(sesion)}
+    # token_dispositivo: el panel lo guarda en este navegador; solo él registra eventos en la sesión
+    return {"message": "Sesión iniciada", "sesion": _sesion_dict(sesion), "token_dispositivo": token_sesion(id_sesion)}
 
 
 @app.put("/api/admin/sesiones")
@@ -283,11 +284,24 @@ def listar_sesiones(db: Session = Depends(get_db)):
     return [_sesion_dict(s) for s in db.query(SesionEvaluacion).order_by(SesionEvaluacion.inicio.desc()).all()]
 
 
+SIN_SESION = "SIN-SESION"
+
+
 @app.get("/api/sesiones/activa")
-def sesion_activa(db: Session = Depends(get_db)):
-    """La tienda consulta aquí la sesión de evaluación en curso (o null si no hay)."""
+def sesion_activa(x_sesion_evaluacion: str | None = Header(default=None), db: Session = Depends(get_db)):
+    """
+    Sesión de evaluación en curso, solo para el navegador vinculado (cabecera X-Sesion-Evaluacion con el
+    token emitido al iniciarla). Cualquier otro visitante recibe null y navega sin sesión.
+    """
     s = db.query(SesionEvaluacion).filter(SesionEvaluacion.fin == None).order_by(SesionEvaluacion.inicio.desc()).first()
-    return _sesion_dict(s) if s else None
+    if s and token_sesion_valido(s.id_sesion, x_sesion_evaluacion):
+        return _sesion_dict(s)
+    return None
+
+
+def _sesion_autorizada(id_sesion: str, token: str | None) -> bool:
+    """Un evento solo se asocia a una sesión si trae el token de dispositivo de esa sesión."""
+    return id_sesion != SIN_SESION and token_sesion_valido(id_sesion, token)
 
 
 def _validar_evento(tipo: str, origen: str | None):
@@ -298,16 +312,22 @@ def _validar_evento(tipo: str, origen: str | None):
 
 
 @app.post("/api/eventos")
-def registrar_evento(req: EventoRequest, db: Session = Depends(get_db)):
+def registrar_evento(req: EventoRequest, x_sesion_evaluacion: str | None = Header(default=None),
+                     db: Session = Depends(get_db)):
     _validar_evento(req.tipo_evento, req.origen)
-    evento = RegistroEvento(**req.model_dump())
+    datos = req.model_dump()
+    if datos["id_sesion"] != SIN_SESION and not _sesion_autorizada(datos["id_sesion"], x_sesion_evaluacion):
+        # Navegador no vinculado: el evento se registra como navegación pública, fuera de la sesión
+        datos.update(id_sesion=SIN_SESION, codigo_cliente="CLI-000", escenario=None)
+    evento = RegistroEvento(**datos)
     db.add(evento)
     db.commit()
-    return {"message": "Evento registrado", "id_evento": evento.id_evento}
+    return {"message": "Evento registrado", "id_evento": evento.id_evento, "id_sesion": evento.id_sesion}
 
 
 @app.post("/api/carrito/confirmar")
-def confirmar_carrito(req: ConfirmarCarritoRequest, db: Session = Depends(get_db)):
+def confirmar_carrito(req: ConfirmarCarritoRequest, x_sesion_evaluacion: str | None = Header(default=None),
+                      db: Session = Depends(get_db)):
     if not req.items:
         raise HTTPException(status_code=422, detail="El carrito está vacío")
     for it in req.items:
@@ -320,7 +340,10 @@ def confirmar_carrito(req: ConfirmarCarritoRequest, db: Session = Depends(get_db
     for item in req.items:
         db.add(DetallePedido(id_pedido=pedido.id, sku=item.sku, cantidad=item.cantidad, precio=item.precio,
                              origen=item.origen))
-    db.add(RegistroEvento(id_sesion=req.id_sesion, codigo_cliente=req.codigo_cliente, escenario=req.escenario,
+    vinculada = req.id_sesion != SIN_SESION and _sesion_autorizada(req.id_sesion, x_sesion_evaluacion)
+    db.add(RegistroEvento(id_sesion=req.id_sesion if vinculada else SIN_SESION,
+                          codigo_cliente=req.codigo_cliente if vinculada else "CLI-000",
+                          escenario=req.escenario if vinculada else None,
                           condicion=req.condicion, tipo_evento="CONFIRMACION_CARRITO", timestamp=req.timestamp))
     db.commit()
     return {"message": "Pedido confirmado", "id_pedido": pedido.id, "total": pedido.total}

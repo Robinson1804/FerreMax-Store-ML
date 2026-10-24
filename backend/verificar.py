@@ -84,11 +84,26 @@ orden = c.post("/api/buscar-necesidad", json={"texto": "pintar un dormitorio"}).
 comprobar("ML búsqueda ordenada por coseno", [p["puntaje"] for p in orden] == sorted([p["puntaje"] for p in orden], reverse=True))
 
 # 4. Indicadores con una sesión de resultado conocido
-s = c.post("/api/admin/sesiones", json={"codigo_cliente": "CLI-990", "escenario": "ESC-01", "condicion": "ML",
-                                        "orden": "A"}).json()["sesion"]
+inicio = c.post("/api/admin/sesiones", json={"codigo_cliente": "CLI-990", "escenario": "ESC-01", "condicion": "ML",
+                                             "orden": "A"}).json()
+s, token_disp = inicio["sesion"], inicio["token_dispositivo"]
+DISP = {"X-Sesion-Evaluacion": token_disp}  # navegador vinculado a la sesión
 base = {"id_sesion": s["id_sesion"], "codigo_cliente": "CLI-990", "escenario": "ESC-01", "condicion": "ML"}
 T = 1_900_000_000_000
-ev = lambda **k: c.post("/api/eventos", json={**base, **k})
+
+# 4.0 Sesión ligada al dispositivo: un visitante sin token no ve la sesión ni registra eventos en ella
+activa_sin = c.get("/api/sesiones/activa").json()
+activa_con = c.get("/api/sesiones/activa", headers=DISP).json()
+comprobar("sesión activa solo visible para el navegador vinculado",
+          activa_sin is None and activa_con and activa_con["id_sesion"] == s["id_sesion"])
+intruso = c.post("/api/eventos", json={**base, "tipo_evento": "RECOM_MOSTRADA", "sku": "ELE-008", "posicion_recom": 1,
+                                       "origen": "RECOMENDACION", "timestamp": T + 500}).json()
+falso = c.post("/api/eventos", headers={"X-Sesion-Evaluacion": "token-falso"},
+               json={**base, "tipo_evento": "INICIO_BUSQUEDA", "timestamp": T - 5000}).json()
+comprobar("eventos sin token o con token falso quedan como SIN-SESION",
+          intruso["id_sesion"] == "SIN-SESION" and falso["id_sesion"] == "SIN-SESION")
+
+ev = lambda **k: c.post("/api/eventos", headers=DISP, json={**base, **k})
 ev(tipo_evento="INICIO_BUSQUEDA", timestamp=T)
 ev(tipo_evento="CONSULTA", texto_consulta="pintar", timestamp=T + 1000)
 for i, sku in enumerate(["PIN-001", "PIN-002", "HER-012", "PIN-010", "LIJ-001"]):
@@ -104,7 +119,7 @@ ev(tipo_evento="PRODUCTO_AGREGADO", sku="LIJ-001", origen="BUSQUEDA", timestamp=
 for i, sku in enumerate(["PIN-003", "PIN-004", "PIN-005", "PIN-006", "PIN-009"]):
     ev(tipo_evento="RECOM_MOSTRADA", sku=sku, posicion_recom=i + 1, origen="RECOMENDACION", timestamp=T + 9000)
 comprobar("evento con tipo inválido rechazado", ev(tipo_evento="OTRO", timestamp=T).status_code == 422)
-c.post("/api/carrito/confirmar", json={**base, "timestamp": T + 42000, "total": 0, "items": [
+c.post("/api/carrito/confirmar", headers=DISP, json={**base, "timestamp": T + 42000, "total": 0, "items": [
     {"sku": "PIN-002", "cantidad": 1, "precio": 48, "origen": "RECOMENDACION"},
     {"sku": "HER-011", "cantidad": 1, "precio": 6.5, "origen": "RECOMENDACION"},
     {"sku": "LIJ-001", "cantidad": 1, "precio": 5, "origen": "BUSQUEDA"}]})

@@ -2,7 +2,7 @@
 // GET/PUT /api/admin/config, /api/admin/sesiones, /api/sesiones/activa, /api/admin/reglas, /api/productos,
 // POST /api/admin/modelo/reentrenar. Ningún número se escribe a mano.
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { api } from '../../lib/api';
+import { api, CLAVE_SESION_EVAL, sesionVinculada } from '../../lib/api';
 import PanelLayout, { Aviso } from './PanelLayout';
 import { avisarConfig, mensajeError } from './panelUtil';
 
@@ -42,8 +42,13 @@ export default function Recomendador() {
   const cargarConfig = useCallback(() =>
     api.get('/api/admin/config').then((r) => { setConfig(r.data); avisarConfig(r.data); }), []);
   const cargarSesiones = useCallback(() => Promise.all([
-    api.get('/api/admin/sesiones').then((r) => setSesiones(r.data || [])),
-    api.get('/api/sesiones/activa').then((r) => setActiva(r.data || null)),
+    // La sesión activa se toma del listado del panel (no de /api/sesiones/activa, que solo responde
+    // al navegador vinculado), para poder finalizarla desde cualquier navegador del administrador
+    api.get('/api/admin/sesiones').then((r) => {
+      const lista = r.data || [];
+      setSesiones(lista);
+      setActiva(lista.find((s) => !s.fin) || null);
+    }),
   ]), []);
   const cargarReglas = useCallback(() => Promise.all([
     api.get('/api/admin/reglas', { params: { vigentes: true } }).then((r) => setReglas(r.data || [])),
@@ -110,8 +115,12 @@ export default function Recomendador() {
     setOcupado('iniciar');
     try {
       const r = await api.post('/api/admin/sesiones', form);
+      // Vincula la sesión a ESTE navegador: solo aquí se registrarán sus eventos
+      localStorage.setItem(CLAVE_SESION_EVAL, JSON.stringify({
+        id_sesion: r.data?.sesion?.id_sesion, token: r.data?.token_dispositivo,
+      }));
       await Promise.all([cargarSesiones(), cargarConfig()]);
-      setAviso({ tipo: 'ok', texto: `Sesión ${r.data?.sesion?.id_sesion} iniciada. Modo activo fijado en ${form.condicion}.` });
+      setAviso({ tipo: 'ok', texto: `Sesión ${r.data?.sesion?.id_sesion} iniciada y vinculada a este navegador. Modo activo fijado en ${form.condicion}.` });
     } catch (err) {
       setAviso({ tipo: 'error', texto: `No se pudo iniciar la sesión: ${mensajeError(err)}` });
     } finally {
@@ -124,6 +133,7 @@ export default function Recomendador() {
     setOcupado(valida ? 'fin-valida' : 'fin-invalida');
     try {
       await api.put('/api/admin/sesiones', { id_sesion: activa.id_sesion, valida });
+      if (sesionVinculada()?.id_sesion === activa.id_sesion) localStorage.removeItem(CLAVE_SESION_EVAL);
       setAviso({ tipo: 'ok', texto: `Sesión ${activa.id_sesion} finalizada como ${valida ? 'válida' : 'inválida'}.` });
       await cargarSesiones();
     } catch (err) {
@@ -288,7 +298,7 @@ export default function Recomendador() {
                 )}
               </div>
 
-              {/* Sesión activa (GET /api/sesiones/activa) */}
+              {/* Sesión activa (tomada del listado GET /api/admin/sesiones) */}
               {activa && (
                 <div className="mb-4 p-3 rounded-lg border border-orange-200 bg-orange-50/60 text-xs text-[#0F2A4A] grid grid-cols-2 gap-x-4 gap-y-1">
                   <div className="col-span-2 font-mono font-bold">{activa.id_sesion}</div>
@@ -297,6 +307,12 @@ export default function Recomendador() {
                   <div>Condición: <strong>{activa.condicion}</strong></div>
                   <div>Orden: <strong>{activa.orden}</strong></div>
                   <div className="col-span-2 text-slate-500">Inicio: {fechaHora(activa.inicio)}</div>
+                  {/* Solo el navegador vinculado registra eventos de la sesión */}
+                  <div className={`col-span-2 mt-1 font-semibold ${sesionVinculada()?.id_sesion === activa.id_sesion ? 'text-emerald-700' : 'text-red-700'}`}>
+                    {sesionVinculada()?.id_sesion === activa.id_sesion
+                      ? 'Vinculada a este navegador: aquí se registran sus eventos.'
+                      : 'No vinculada a este navegador: los eventos de esta tienda no se asocian a la sesión.'}
+                  </div>
                 </div>
               )}
 

@@ -7,11 +7,26 @@ export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 
 export const api = axios.create({ baseURL: API_URL });
 
-// El panel envía su token en cada llamada a /api/admin/*
+// Sesión de evaluación vinculada a este navegador: { id_sesion, token } (la guarda el panel al iniciarla)
+export const CLAVE_SESION_EVAL = "ferremax_sesion_eval";
+export function sesionVinculada() {
+  try {
+    return JSON.parse(localStorage.getItem(CLAVE_SESION_EVAL));
+  } catch {
+    return null;
+  }
+}
+
 api.interceptors.request.use((config) => {
+  // El panel envía su token en cada llamada a /api/admin/*
   const token = localStorage.getItem("admin_token");
   if (token && config.url?.startsWith("/api/admin")) {
     config.headers = { ...config.headers, Authorization: `Bearer ${token}` };
+  }
+  // Solo el navegador vinculado envía el token de la sesión de evaluación; los demás navegan sin sesión
+  const vinculada = sesionVinculada();
+  if (vinculada?.token && !config.url?.startsWith("/api/admin")) {
+    config.headers = { ...config.headers, "X-Sesion-Evaluacion": vinculada.token };
   }
   return config;
 });
