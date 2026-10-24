@@ -1,0 +1,584 @@
+[
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "ESC-01",
+  "n_resultados": 3,
+  "aciertos": 0,
+  "posibles": 3,
+  "top5": [
+   "FER-005",
+   "PIN-007",
+   "ELE-002"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "ESC-02",
+  "n_resultados": 4,
+  "aciertos": 0,
+  "posibles": 2,
+  "top5": [
+   "FIE-001",
+   "FIE-003",
+   "FIE-002",
+   "ALA-001"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "ESC-03",
+  "n_resultados": 5,
+  "aciertos": 3,
+  "posibles": 5,
+  "top5": [
+   "ACC-001",
+   "TUB-001",
+   "VAL-001",
+   "LAV-001",
+   "IFO-001"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "ESC-04",
+  "n_resultados": 3,
+  "aciertos": 1,
+  "posibles": 3,
+  "top5": [
+   "ELE-005",
+   "PIN-001",
+   "PIN-002"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "ESC-05",
+  "n_resultados": 5,
+  "aciertos": 1,
+  "posibles": 3,
+  "top5": [
+   "CLO-001",
+   "CLO-002",
+   "FER-004",
+   "PIN-001",
+   "PIN-002"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "ESC-06",
+  "n_resultados": 0,
+  "aciertos": 0,
+  "posibles": 4,
+  "top5": []
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "ESC-07",
+  "n_resultados": 0,
+  "aciertos": 0,
+  "posibles": 3,
+  "top5": []
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "ESC-08",
+  "n_resultados": 1,
+  "aciertos": 0,
+  "posibles": 2,
+  "top5": [
+   "PIN-007"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "CTRL-1",
+  "n_resultados": 0,
+  "aciertos": 0,
+  "posibles": 4,
+  "top5": []
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "CTRL-2",
+  "n_resultados": 3,
+  "aciertos": 3,
+  "posibles": 5,
+  "top5": [
+   "ACC-001",
+   "TUB-001",
+   "VAL-001"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "CONV",
+  "escenario": "CTRL-3",
+  "n_resultados": 0,
+  "aciertos": 0,
+  "posibles": 3,
+  "top5": []
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "ESC-01",
+  "n_resultados": 3,
+  "aciertos": 0,
+  "posibles": 3,
+  "top5": [
+   "PIN-007",
+   "FER-005",
+   "ELE-002"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "ESC-02",
+  "n_resultados": 4,
+  "aciertos": 0,
+  "posibles": 2,
+  "top5": [
+   "FIE-001",
+   "FIE-003",
+   "FIE-002",
+   "ALA-001"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "ESC-03",
+  "n_resultados": 5,
+  "aciertos": 3,
+  "posibles": 5,
+  "top5": [
+   "ACC-001",
+   "LAV-001",
+   "IFO-001",
+   "VAL-001",
+   "TUB-001"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "ESC-04",
+  "n_resultados": 3,
+  "aciertos": 1,
+  "posibles": 3,
+  "top5": [
+   "ELE-005",
+   "PIN-002",
+   "PIN-001"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "ESC-05",
+  "n_resultados": 5,
+  "aciertos": 0,
+  "posibles": 3,
+  "top5": [
+   "PIN-002",
+   "PIN-001",
+   "CLO-001",
+   "CLO-002",
+   "PIN-003"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "ESC-06",
+  "n_resultados": 0,
+  "aciertos": 0,
+  "posibles": 4,
+  "top5": []
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "ESC-07",
+  "n_resultados": 0,
+  "aciertos": 0,
+  "posibles": 3,
+  "top5": []
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "ESC-08",
+  "n_resultados": 1,
+  "aciertos": 0,
+  "posibles": 2,
+  "top5": [
+   "PIN-007"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "CTRL-1",
+  "n_resultados": 0,
+  "aciertos": 0,
+  "posibles": 4,
+  "top5": []
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "CTRL-2",
+  "n_resultados": 3,
+  "aciertos": 3,
+  "posibles": 5,
+  "top5": [
+   "ACC-001",
+   "VAL-001",
+   "TUB-001"
+  ]
+ },
+ {
+  "kw": "originales",
+  "modo": "ML",
+  "escenario": "CTRL-3",
+  "n_resultados": 0,
+  "aciertos": 0,
+  "posibles": 3,
+  "top5": []
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "ESC-01",
+  "n_resultados": 5,
+  "aciertos": 3,
+  "posibles": 3,
+  "top5": [
+   "PIN-001",
+   "PIN-007",
+   "PIN-002",
+   "PIN-008",
+   "FER-003"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "ESC-02",
+  "n_resultados": 5,
+  "aciertos": 2,
+  "posibles": 2,
+  "top5": [
+   "PIN-003",
+   "PIN-004",
+   "PIN-005",
+   "HER-007",
+   "FIE-001"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "ESC-03",
+  "n_resultados": 5,
+  "aciertos": 5,
+  "posibles": 5,
+  "top5": [
+   "VAL-002",
+   "ACC-001",
+   "ACC-004",
+   "TUB-001",
+   "VAL-001"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "ESC-04",
+  "n_resultados": 5,
+  "aciertos": 3,
+  "posibles": 3,
+  "top5": [
+   "ELE-005",
+   "ELE-004",
+   "ELE-001",
+   "ELE-002",
+   "ELE-007"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "ESC-05",
+  "n_resultados": 5,
+  "aciertos": 3,
+  "posibles": 3,
+  "top5": [
+   "HER-006",
+   "FER-005",
+   "FER-004",
+   "FER-006",
+   "CON-002"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "ESC-06",
+  "n_resultados": 5,
+  "aciertos": 4,
+  "posibles": 4,
+  "top5": [
+   "CLO-001",
+   "CLO-002",
+   "ALA-001",
+   "FIE-003",
+   "HER-001"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "ESC-07",
+  "n_resultados": 3,
+  "aciertos": 2,
+  "posibles": 3,
+  "top5": [
+   "FIE-001",
+   "HER-005",
+   "ALA-001"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "ESC-08",
+  "n_resultados": 5,
+  "aciertos": 2,
+  "posibles": 2,
+  "top5": [
+   "CON-004",
+   "CON-002",
+   "CON-003",
+   "FER-005",
+   "PIN-007"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "CTRL-1",
+  "n_resultados": 5,
+  "aciertos": 4,
+  "posibles": 4,
+  "top5": [
+   "PIN-001",
+   "PIN-007",
+   "PIN-002",
+   "FER-003",
+   "PIN-005"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "CTRL-2",
+  "n_resultados": 5,
+  "aciertos": 4,
+  "posibles": 5,
+  "top5": [
+   "VAL-002",
+   "ACC-001",
+   "ACC-004",
+   "TUB-001",
+   "TUB-002"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "CONV",
+  "escenario": "CTRL-3",
+  "n_resultados": 3,
+  "aciertos": 3,
+  "posibles": 3,
+  "top5": [
+   "CON-002",
+   "CON-003",
+   "HER-007"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "ESC-01",
+  "n_resultados": 5,
+  "aciertos": 2,
+  "posibles": 3,
+  "top5": [
+   "PIN-007",
+   "PIN-002",
+   "PIN-001",
+   "PIN-008",
+   "ELE-002"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "ESC-02",
+  "n_resultados": 5,
+  "aciertos": 2,
+  "posibles": 2,
+  "top5": [
+   "PIN-003",
+   "PIN-004",
+   "HER-007",
+   "PIN-005",
+   "FIE-003"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "ESC-03",
+  "n_resultados": 5,
+  "aciertos": 4,
+  "posibles": 5,
+  "top5": [
+   "ACC-001",
+   "VAL-001",
+   "TUB-001",
+   "LAV-001",
+   "VAL-002"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "ESC-04",
+  "n_resultados": 5,
+  "aciertos": 2,
+  "posibles": 3,
+  "top5": [
+   "ELE-005",
+   "ELE-004",
+   "ELE-002",
+   "ELE-001",
+   "LAV-001"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "ESC-05",
+  "n_resultados": 5,
+  "aciertos": 3,
+  "posibles": 3,
+  "top5": [
+   "HER-006",
+   "FER-004",
+   "FER-006",
+   "FER-005",
+   "CLO-001"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "ESC-06",
+  "n_resultados": 5,
+  "aciertos": 4,
+  "posibles": 4,
+  "top5": [
+   "CLO-001",
+   "CLO-002",
+   "ALA-001",
+   "FIE-003",
+   "HER-001"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "ESC-07",
+  "n_resultados": 3,
+  "aciertos": 2,
+  "posibles": 3,
+  "top5": [
+   "FIE-001",
+   "HER-005",
+   "ALA-001"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "ESC-08",
+  "n_resultados": 5,
+  "aciertos": 2,
+  "posibles": 2,
+  "top5": [
+   "CON-004",
+   "PIN-007",
+   "CON-003",
+   "CON-002",
+   "FER-006"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "CTRL-1",
+  "n_resultados": 5,
+  "aciertos": 3,
+  "posibles": 4,
+  "top5": [
+   "PIN-002",
+   "PIN-001",
+   "PIN-007",
+   "PIN-008",
+   "PIN-003"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "CTRL-2",
+  "n_resultados": 5,
+  "aciertos": 4,
+  "posibles": 5,
+  "top5": [
+   "ACC-001",
+   "VAL-001",
+   "TUB-001",
+   "TUB-002",
+   "VAL-002"
+  ]
+ },
+ {
+  "kw": "enriquecidas",
+  "modo": "ML",
+  "escenario": "CTRL-3",
+  "n_resultados": 3,
+  "aciertos": 3,
+  "posibles": 3,
+  "top5": [
+   "HER-007",
+   "CON-002",
+   "CON-003"
+  ]
+ }
+]

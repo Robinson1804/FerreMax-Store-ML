@@ -1,5 +1,5 @@
 {
-  "fecha_corrida": "2026-10-24 11:21:27",
+  "fecha_corrida": "2026-10-24 11:40:49",
   "fuente_datos": "empresa",
   "semilla": 42,
   "k": 5,
@@ -27,17 +27,17 @@
   "cf_clientes": 36,
   "reordenador": {
     "tipo": "lightgbm",
-    "n_ejemplos": 115062,
-    "n_positivos": 4923,
+    "n_ejemplos": 114711,
+    "n_positivos": 4929,
     "n_contextos": 6851,
-    "cobertura_candidatos": 0.7186,
+    "cobertura_candidatos": 0.7195,
     "ap_validacion": {
-      "regresion_logistica": 0.1681,
-      "lightgbm": 0.243
+      "regresion_logistica": 0.1696,
+      "lightgbm": 0.246
     },
     "validacion": "temporal: último 10 % de las boletas de entrenamiento"
   },
-  "cobertura_candidatos_prueba": 0.6995,
+  "cobertura_candidatos_prueba": 0.698,
   "modos": [
     "CONV",
     "ML_REGLAS",
@@ -77,33 +77,33 @@
     "ML_COMPLETO": {
       "precision5": {
         "n": 639,
-        "media": 0.0973,
+        "media": 0.0958,
         "mediana": 0.0,
         "de": 0.1
       },
       "recall5": {
         "n": 639,
-        "media": 0.4867,
+        "media": 0.4789,
         "mediana": 0.0,
-        "de": 0.5002
+        "de": 0.4999
       },
-      "aciertos": 311
+      "aciertos": 306
     }
   },
   "mcnemar_exacto": {
     "CONV_vs_ML_COMPLETO": {
-      "ambos": 219,
-      "solo_primero": 21,
-      "solo_segundo": 92,
-      "ninguno": 307,
-      "p_valor": 8.69e-12
+      "ambos": 215,
+      "solo_primero": 25,
+      "solo_segundo": 91,
+      "ninguno": 308,
+      "p_valor": 5.31e-10
     },
     "ML_REGLAS_vs_ML_COMPLETO": {
-      "ambos": 242,
-      "solo_primero": 18,
-      "solo_segundo": 69,
-      "ninguno": 310,
-      "p_valor": 3.32e-08
+      "ambos": 239,
+      "solo_primero": 21,
+      "solo_segundo": 67,
+      "ninguno": 312,
+      "p_valor": 9.2e-07
     },
     "CONV_vs_ML_REGLAS": {
       "ambos": 231,

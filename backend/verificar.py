@@ -249,6 +249,7 @@ print(json.dumps({
   "descuento": [real, esperado],
   "fuente": q("select fuente_datos from configuracion"),
   "cf_clientes": entrenar_cf(compras)["n_clientes"],
+  "kw_pin001": c.execute("select palabras_clave from productos where sku='PIN-001'").fetchone()[0],
 }))
 '''
     env = dict(os.environ, DATABASE_URL="sqlite:///" + base_real, PYTHONIOENCODING="utf-8")
@@ -269,6 +270,13 @@ print(json.dumps({
               r and [r["fechas"][0], r["fechas"][1]] == r["fechas"][2] and r["fraccionarias"] > 0
               and abs(r["descuento"][0] - r["descuento"][1]) < 1e-6 and r["fuente"] == "empresa",
               str(r and (r["fechas"][:2], r["fraccionarias"], r["descuento"])))
+    # Enriquecimiento de palabras clave (datos/kw_enriquecidas.json) y búsqueda en lenguaje natural
+    import escenarios_busqueda as eb
+    filas = eb.evaluar()
+    vacias = sum(1 for f in filas if f["kw"] == "enriquecidas" and f["n_resultados"] == 0)
+    comprobar("datos reales: palabras clave enriquecidas y escenarios del Anexo 7 con resultados en ambos modos",
+              r and "pintar" in r["kw_pin001"].split() and vacias == 0,
+              f"consultas sin resultados: {vacias}")
 else:
     print("(sin datos/datos_empresa_2026.json: se omite la verificación de la siembra con datos reales)")
 

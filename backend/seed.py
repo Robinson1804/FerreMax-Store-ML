@@ -15,6 +15,7 @@ Uso:
     python seed.py --reset --reentrenar                     # fuente automática
     python seed.py --reset --reentrenar --fuente simulado   # reproduce la validación con datos simulados
     python seed.py                                          # siembra solo si la base está vacía
+    python seed.py --solo-kw                                # solo reaplica datos/kw_enriquecidas.json (sin borrar datos)
 """
 import json
 import os
@@ -36,6 +37,22 @@ RUTAS = {
     "simulado": os.path.join(DIR_DATOS, "datos_simulados_prototipo.json"),
 }
 RUTA_JSON = RUTAS["simulado"]  # compatibilidad con código anterior
+# Términos de uso que enriquecen palabras_clave del catálogo real (preparación de datos; versionado)
+RUTA_KW = os.path.join(DIR_DATOS, "kw_enriquecidas.json")
+
+
+def kw_enriquecidas() -> dict:
+    """{sku: [términos]} desde datos/kw_enriquecidas.json (vacío si no existe)."""
+    if not os.path.exists(RUTA_KW):
+        return {}
+    with open(RUTA_KW, encoding="utf-8") as f:
+        return json.load(f).get("terminos", {})
+
+
+def combinar_kw(kw: str, extra: list[str]) -> str:
+    """palabras_clave originales + términos de uso, sin repetir."""
+    palabras = (kw or "").split()
+    return " ".join(dict.fromkeys(palabras + [e for e in extra if e not in palabras]))
 
 
 def fuente_por_defecto() -> str:
@@ -91,11 +108,12 @@ def _sembrar_empresa(db, data):
     """Ventas reales: se respetan número, fecha, cliente (o venta sin cliente), cantidades y precios."""
     boletas = data.get("boletas", [])
     popularidad = popularidad_desde_transacciones([[i["sku"] for i in b["items"]] for b in boletas])
+    extra = kw_enriquecidas()
     for p in data.get("productos", []):
         db.add(Producto(
             sku=p["sku"], nombre=p["nombre"], marca=p.get("marca", ""), categoria=p.get("cat", ""),
             subcategoria=p.get("sub", ""), unidad=p.get("unidad", ""), uso=p.get("uso", ""),
-            palabras_clave=p.get("kw", ""), precio=p["precio"], stock=p["stock"],
+            palabras_clave=combinar_kw(p.get("kw", ""), extra.get(p["sku"], [])), precio=p["precio"], stock=p["stock"],
             stock_minimo=p.get("stock_min", 5), activo=True, popularidad=popularidad.get(p["sku"], 999),
         ))
     # Clientes identificados (códigos anónimos); primera_compra = fecha de su primera boleta
@@ -148,6 +166,23 @@ def seed_data(reset: bool = False, fuente: str | None = None):
     return resumen
 
 
+def aplicar_kw_enriquecidas(fuente: str = "empresa") -> int:
+    """Actualiza solo palabras_clave en una base ya sembrada (sin borrar ventas, sesiones ni eventos)."""
+    with open(RUTAS[fuente], encoding="utf-8") as f:
+        originales = {p["sku"]: p.get("kw", "") for p in json.load(f)["productos"]}
+    extra = kw_enriquecidas()
+    db = SessionLocal()
+    n = 0
+    for prod in db.query(Producto).all():
+        if prod.sku in originales:
+            prod.palabras_clave = combinar_kw(originales[prod.sku], extra.get(prod.sku, []))
+            n += 1
+    db.commit()
+    db.close()
+    print(f"palabras_clave actualizadas en {n} productos ({sum(1 for s in originales if s in extra)} con términos de uso)")
+    return n
+
+
 def reentrenar():
     from recommender import RecommenderService
     db = SessionLocal()
@@ -159,6 +194,9 @@ if __name__ == "__main__":
     fuente = None
     if "--fuente" in sys.argv:
         fuente = sys.argv[sys.argv.index("--fuente") + 1]
+    if "--solo-kw" in sys.argv:  # aplica el enriquecimiento sin volver a sembrar
+        aplicar_kw_enriquecidas(fuente or "empresa")
+        sys.exit(0)
     seed_data(reset="--reset" in sys.argv, fuente=fuente)
     if "--reentrenar" in sys.argv:
         reentrenar()
